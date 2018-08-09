@@ -7,7 +7,7 @@
 # Endpoint types
 ### Non-secure endpoints
 All non-secure endpoints do not need authentication and use the method GET.
-* GET /api/servertime
+* [GET /api/servertime](#get-apiservertime)
 * GET /api/market/symbols
 * GET /api/market/trades
 * GET /api/market/bids
