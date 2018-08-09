@@ -14,7 +14,7 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/asks](#get-apimarketasks)
 
 ### Secure endpoints
-All secure endpoints require authentication and use the method POST.
+All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
 * [GET /api/market/wallet](#post-apimarketwallet)
 * [GET /api/market/balances](#post-apimarketbalances)
 * [GET /api/market/place-bid](#post-apimarketplace-bid)
