@@ -308,6 +308,93 @@ Create a sell order.
 }
 ```
 
+### POST /api/market/cancel-order
+
+### Description:
+Cancel an open order.
+
+### Query:
+* `sym`		**string**		The symbol
+* `id`		**int**		Order id you wish to cancel
+* `sd`		**string**		Order side: buy or sell
+
+### Response:
+```javascript
+{
+  "error": 0
+}
+```
+
+### POST /api/market/my-open-orders
+
+### Description:
+List all open orders of the given symbol.
+
+### Query:
+* `sym`		**string**		The symbol
+
+### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    {
+      "id": 2, // order id
+      "side": "SELL", // order side
+      "type": "limit", // order type
+      "rate": "15000.00", // rate
+      "fee": "35.01", // fee
+      "credit": "35.01", // credit used
+      "amount": "0.93333334", // amount
+      "receive": "14000.00000000", // amount to receive
+      "parent_id": 1, // parent order id
+      "super_id": 1, // super parent order id
+      "ts": 1533834844 // timestamp
+    }
+  ]
+}
+```
+
+### POST /api/market/my-order-history
+
+### Description:
+List all orders that have already matched.
+
+### Query:
+* `sym` **string** The symbol
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    {
+      "txn_id": "ETHBUY0000000197",
+      "order_id": 240,
+      "parent_order_id": 0,
+      "super_order_id": 0,
+      "taken_by_me": true,
+      "side": "buy",
+      "type": "limit",
+      "rate": "13335.57",
+      "fee": "0.34",
+      "credit": "0.34",
+      "amount": 0.00999987,
+      "ts": 1531513395
+    }
+  ],
+  "pagination": {
+      "page": 2,
+      "last": 3,
+      "next": 3,
+      "prev": 1
+  }
+}
+```
+
+
 # Error codes
 Refer to the following descriptions:
 
