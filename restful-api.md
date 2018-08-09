@@ -96,3 +96,92 @@ List recent trades.
   ]
 }
 ```
+
+### GET /api/market/bids
+
+#### Description:
+List open buy orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open buy orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      1, // order id
+      1529453033, // timestamp
+      "997.50", // volume
+      "10000.00", // rate
+      "0.09975000" // amount
+    ]
+  ]
+}
+
+```
+
+### GET /api/market/asks
+
+#### Description:
+List open sell orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open sell orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      680, // order id
+      1529491094, // timestamp
+      "997.50", // volume
+      "10000.00", // rate
+      "0.09975000" // amount
+    ]
+  ]
+}
+```
+
+### GET /api/market/tradingview
+#### Description:
+List open sell orders.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `int`		**int**		Chart interval in minutes
+* `frm`		**int**		Timestamp of the starting time (from)
+* `to`		**int**		Timestamp of the ending time (to)
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    o: [
+      207500
+    ],
+    c: [
+      205000
+    ],
+    h: [
+      207500
+    ],
+    l: [
+      205000
+    ],
+    s: "ok",
+    v: [
+      0.11205317
+    ],
+    t: [
+      1530460800
+    ]
+  ]
+}
+```
