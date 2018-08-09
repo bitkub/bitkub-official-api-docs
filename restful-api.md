@@ -185,3 +185,106 @@ List open sell orders.
   ]
 }
 ```
+
+### POST /api/market/wallet
+
+#### Description:
+Get user wallet info.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "THB": 188379.27,
+    "BTC": 8.90397323,
+    "ETH": 10.1,
+    "WAN": 9.69549736,
+    "ADA": 0,
+    "OMG": 0,
+    "TNZ": 10
+  }
+}
+```
+
+### POST /api/market/balances
+
+#### Description:
+Get balances info: this includes both available and reserved balances.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "THB":  {
+      "available": 188379.27,
+      "reserved": 0
+    },
+    "BTC": {
+      "available": 8.90397323,
+      "reserved": 0
+    },
+    "ETH": {
+      "available": 10.1,
+      "reserved": 0
+    },
+    "WAN": {
+      "available": 9.69549736,
+      "reserved": 0
+    },
+    "ADA": {
+      "available": 0,
+      "reserved": 0
+    },
+    "OMG": {
+      "available": 0,
+      "reserved": 0
+    }
+  }
+}
+```
+
+### POST /api/market/place-bid
+
+#### Description:
+Create a buy order.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to spend
+* `rat`		**float**		Rate you want for the order
+* `typ`		**string**		Order type: limit or market
+
+### POST /api/market/place-ask
+
+#### Description:
+Create a sell order.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to sell
+* `rat`		**float**		Rate you want for the order
+* `typ`		**string**		Order type: limit or market
+
+# Error codes
+Refer to the following descriptions:
+
+Code | Description
+------------ | ------------
+0 | No error
+1 | Invalid JSON payload
+2 | Missing X-BTK-APIKEY
+3 | Invalid API key
+4 | API pending for activation
+5 | IP not allowed
+6 | Missing / invalid signature
+7 | Missing timestamp
+8 | Invalid timestamp
+9 | Invalid user
