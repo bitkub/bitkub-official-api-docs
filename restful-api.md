@@ -262,6 +262,24 @@ Create a buy order.
 * `rat`		**float**		Rate you want for the order
 * `typ`		**string**		Order type: limit or market
 
+#### Response:
+```javascript
+{
+  "error":0,
+  "result":
+  {
+    "id": 1, // order id
+    "typ": "limit", // order type
+    "amt": "1000.00", // spending amount
+    "rat": "15000.00", // rate
+    "fee": 2.5, // fee
+    "cre": 2.5, // fee credit used
+    "rec": 0.06666666, // amount to receive
+    "ts": 1533834547 // timestamp
+  }
+}
+```
+
 ### POST /api/market/place-ask
 
 #### Description:
@@ -272,6 +290,23 @@ Create a sell order.
 * `amt`		**float**		Amount you want to sell
 * `rat`		**float**		Rate you want for the order
 * `typ`		**string**		Order type: limit or market
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "typ": "limit", // order type
+    "amt": "1.00000000", // selling amount
+    "rat": "15000.00", // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+  }
+}
+```
 
 # Error codes
 Refer to the following descriptions:
