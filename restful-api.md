@@ -9,6 +9,7 @@
 All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/servertime](#get-apiservertime)
 * [GET /api/market/symbols](#get-apimarketsymbols)
+* [GET /api/market/ticker](#get-apimarketticker)
 * [GET /api/market/trades](#get-apimarkettrades)
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
@@ -72,6 +73,44 @@ List all available symbols.
 
 #### Query:
 -
+
+### GET /api/market/ticker
+
+#### Description:
+Get ticker information.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+{
+  THB_BTC: {
+    id: 1,
+    last: "216415.00",
+    lowestAsk: "216678.00",
+    highestBid: "215000.00",
+    percentChange: "1.91",
+    baseVolume: "71.02603946",
+    quoteVolume: "15302897.99",
+    isFrozen: "0",
+    high24hr: "221396.00",
+    low24hr: "206414.00"
+  },
+  THB_ETH: {
+    id: 2,
+    last: "11878.00",
+    lowestAsk: "12077.00",
+    highestBid: "11893.00",
+    percentChange: "-0.49",
+    baseVolume: "455.17839270",
+    quoteVolume: "5505664.42",
+    isFrozen: "0",
+    high24hr: "12396.00",
+    low24hr: "11645.00"
+  }
+}
+```
 
 ### GET /api/market/trades
 
