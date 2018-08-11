@@ -66,6 +66,11 @@ Get server timestamp.
 #### Query:
 -
 
+#### Response:
+```javascript
+1529999999
+```
+
 ### GET /api/market/symbols
 
 #### Description:
@@ -73,6 +78,25 @@ List all available symbols.
 
 #### Query:
 -
+
+#### Response:
+```javascript
+{
+  error: 0,
+  result: [
+    {
+      id: 1,
+      symbol: "THB_BTC",
+      info: "Thai Baht to Bitcoin"
+    },
+    {
+      id: 2,
+      symbol: "THB_ETH",
+      info: "Thai Baht to Ethereum"
+    }
+  ]
+}
+```
 
 ### GET /api/market/ticker
 
