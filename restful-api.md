@@ -220,7 +220,7 @@ List open sell orders.
 
 ### GET /api/market/tradingview
 #### Description:
-List open sell orders.
+Get tradingview data for displaying tradingview graph.
 
 #### Query:
 * `sym`		**string**		The symbol
