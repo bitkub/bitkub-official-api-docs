@@ -1,6 +1,13 @@
 
 # RESTful API for Bitkub (2018-08-09)
 
+# Table of contents
+* [Base URL](#base-url)
+* [Endpoint types](#endpoint-types)
+* [Constructing the request](#constructing-the-request)
+* [API documentation](#api-documentation)
+* [Error codes](#error-codes)
+
 # Base URL
 * The base URL is: https://api.bitkub.com
 
