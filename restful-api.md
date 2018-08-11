@@ -35,6 +35,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 ### Request header
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
 * Accepts: application/json
+* Content-type: application/json
 * X-BTK-APIKEY: {YOUR API KEY}
 
 ### Payload
