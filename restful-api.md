@@ -34,7 +34,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 # Constructing the request
 ### Request header
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
-* Accepts: application/json
+* Accept: application/json
 * Content-type: application/json
 * X-BTK-APIKEY: {YOUR API KEY}
 
@@ -58,6 +58,7 @@ Generate the signature from the JSON payload using HMAC SHA-256. Use the API SEC
 ```javascript
 curl -X POST \
   https://api.bitkub.com/api/market/place-ask \
+  -H 'accept: application/json' \
   -H 'content-type: application/json' \
   -H 'x-btk-apikey: 6da634977495306b2206eee7772532cb' \
   -d '{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"sig":"d0c66fabb816c46953270e4a442836ca449711e143c8658dd03103c90b2d0fb7"}'
