@@ -273,11 +273,7 @@ Get user wallet info.
   "result": {
     "THB": 188379.27,
     "BTC": 8.90397323,
-    "ETH": 10.1,
-    "WAN": 9.69549736,
-    "ADA": 0,
-    "OMG": 0,
-    "TNZ": 10
+    "ETH": 10.1
   }
 }
 ```
@@ -305,18 +301,6 @@ Get balances info: this includes both available and reserved balances.
     },
     "ETH": {
       "available": 10.1,
-      "reserved": 0
-    },
-    "WAN": {
-      "available": 9.69549736,
-      "reserved": 0
-    },
-    "ADA": {
-      "available": 0,
-      "reserved": 0
-    },
-    "OMG": {
-      "available": 0,
       "reserved": 0
     }
   }
