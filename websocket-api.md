@@ -76,7 +76,7 @@ The trade stream provides real-time data on matched orders. Each trade contains 
 market.ticker.\<symbol\>
 
 #### Description:
-The ticker stream provides real-time data on ticker of the specified symbol. Ticker for each symbol is re-calculated on trade order creation, cancellation, and match.
+The ticker stream provides real-time data on ticker of the specified symbol. Ticker for each symbol is re-calculated on trade order creation, cancellation, and fulfillment.
 
 #### Response:
 ```javascript
