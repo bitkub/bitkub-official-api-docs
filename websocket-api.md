@@ -55,7 +55,7 @@ Refer to the following for description of each stream
 market.trade.\<symbol\>
 
 #### Description:
-The trade stream provides real-time data on matched orders. Each trade contains buy order id and sell order id which is unique by the order side (buy/sell) and symbol.
+The trade stream provides real-time data on matched orders. Each trade contains buy order id and sell order id. Order id is unique by the order side (buy/sell) and symbol.
 
 #### Response:
 ```javascript
