@@ -1,5 +1,9 @@
 
-# RESTful API for Bitkub (2018-08-09)
+# RESTful API for Bitkub (2018-12-16)
+
+# Releases
+* 2018-12-16 Updated documentation
+* 2018-08-09 V1 Release
 
 # Table of contents
 * [Base URL](#base-url)
@@ -314,8 +318,8 @@ Create a buy order.
 
 #### Query:
 * `sym`		**string**		The symbol
-* `amt`		**float**		Amount you want to spend
-* `rat`		**float**		Rate you want for the order
+* `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
 
 #### Response:
@@ -326,8 +330,8 @@ Create a buy order.
   {
     "id": 1, // order id
     "typ": "limit", // order type
-    "amt": "1000.00", // spending amount
-    "rat": "15000.00", // rate
+    "amt": 1000, // spending amount
+    "rat": 15000, // rate
     "fee": 2.5, // fee
     "cre": 2.5, // fee credit used
     "rec": 0.06666666, // amount to receive
@@ -343,8 +347,8 @@ Create a sell order.
 
 #### Query:
 * `sym`		**string**		The symbol
-* `amt`		**float**		Amount you want to sell
-* `rat`		**float**		Rate you want for the order
+* `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
 
 #### Response:
@@ -354,8 +358,8 @@ Create a sell order.
   "result": {
     "id": 1, // order id
     "typ": "limit", // order type
-    "amt": "1.00000000", // selling amount
-    "rat": "15000.00", // rate
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
     "fee": 37.5, // fee
     "cre": 37.5, // fee credit used
     "rec": 15000, // amount to receive
@@ -398,11 +402,11 @@ List all open orders of the given symbol.
       "id": 2, // order id
       "side": "SELL", // order side
       "type": "limit", // order type
-      "rate": "15000.00", // rate
-      "fee": "35.01", // fee
-      "credit": "35.01", // credit used
-      "amount": "0.93333334", // amount
-      "receive": "14000.00000000", // amount to receive
+      "rate": 15000, // rate
+      "fee": 35.01, // fee
+      "credit": 35.01, // credit used
+      "amount": 0.93333334, // amount
+      "receive": 14000, // amount to receive
       "parent_id": 1, // parent order id
       "super_id": 1, // super parent order id
       "ts": 1533834844 // timestamp
@@ -434,9 +438,9 @@ List all orders that have already matched.
       "taken_by_me": true,
       "side": "buy",
       "type": "limit",
-      "rate": "13335.57",
-      "fee": "0.34",
-      "credit": "0.34",
+      "rate": 13335.57,
+      "fee": 0.34,
+      "credit": 0.34,
       "amount": 0.00999987,
       "ts": 1531513395
     }
