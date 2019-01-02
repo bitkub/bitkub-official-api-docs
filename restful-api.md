@@ -24,6 +24,7 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/trades](#get-apimarkettrades)
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
+* [GET /api/market/trading-view](#get-apimarkettradingview)
 
 ### Secure endpoints
 All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
