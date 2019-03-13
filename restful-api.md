@@ -24,6 +24,7 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/trades](#get-apimarkettrades)
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
+* [GET /api/market/books](#get-apimarketbooks)
 * [GET /api/market/trading-view](#get-apimarkettradingview)
 
 ### Secure endpoints
@@ -222,6 +223,42 @@ List open sell orders.
       "0.09975000" // amount
     ]
   ]
+}
+```
+
+### GET /api/market/books
+
+#### Description:
+List all open orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "bids": [
+      [
+        1, // order id
+        1529453033, // timestamp
+        "997.50", // volume
+        "10000.00", // rate
+        "0.09975000" // amount
+      ]
+    ],
+    "asks": [
+      [
+        680, // order id
+        1529491094, // timestamp
+        "997.50", // volume
+        "10000.00", // rate
+        "0.09975000" // amount
+      ]
+    ]
+  }
 }
 ```
 
