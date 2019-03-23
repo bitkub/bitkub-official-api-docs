@@ -497,7 +497,7 @@ List all orders that have already matched.
 ### POST /api/market/order-info
 
 ### Description:
-Get information regarding to specified order.
+Get information regarding the specified order.
 
 ### Query:
 * `sym`		**string**		The symbol
