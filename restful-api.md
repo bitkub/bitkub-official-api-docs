@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2018-12-16)
+# RESTful API for Bitkub (2019-03-23)
 
 # Releases
+* 2019-03-23 Added order info API
 * 2018-12-16 Updated documentation
 * 2018-08-09 V1 Release
 
@@ -36,6 +37,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
+* [POST /api/market/order-info](#post-apimarketorder-info)
 
 # Constructing the request
 ### Request header
@@ -492,6 +494,94 @@ List all orders that have already matched.
 }
 ```
 
+### POST /api/market/order-info
+
+### Description:
+Get information regarding to specified order.
+
+### Query:
+* `sym`		**string**		The symbol
+* `id`		**int**		Order id
+* `sd`		**string**		Order side: buy or sell
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": {
+        "id": 289, // order id
+        "first": 289, // first order id
+        "parent": 0, // parent order id
+        "last": 316, // last order id
+        "amount": 4000, // order amount
+        "rate": 291000, // order rate
+        "fee": 10, // order fee
+        "credit": 10, // order fee credit used
+        "filled": 3999.97, // filled amount
+        "total": 4000, // total amount
+        "status": "filled", // order status
+        "history": [
+            {
+                "amount": 98.14848,
+                "credit": 0.25,
+                "fee": 0.25,
+                "id": 289,
+                "rate": 291000,
+                "timestamp": 1525944169
+            },
+            {
+                "amount": 87.3,
+                "credit": 0.22,
+                "fee": 0.22,
+                "id": 290,
+                "rate": 291000,
+                "timestamp": 1525947677
+            },
+            {
+                "amount": 11.64,
+                "credit": 0.03,
+                "fee": 0.03,
+                "id": 301,
+                "rate": 291000,
+                "timestamp": 1525947712
+            },
+            {
+                "amount": 116.4,
+                "credit": 0.3,
+                "fee": 0.3,
+                "id": 302,
+                "rate": 291000,
+                "timestamp": 1525947746
+            },
+            {
+                "amount": 10.185,
+                "credit": 0.03,
+                "fee": 0.03,
+                "id": 303,
+                "rate": 291000,
+                "timestamp": 1525948237
+            },
+            {
+                "amount": 10.185,
+                "credit": 0.03,
+                "fee": 0.03,
+                "id": 315,
+                "rate": 291000,
+                "timestamp": 1525948253
+            },
+            {
+                "amount": 3666.13731,
+                "credit": 9.17,
+                "fee": 9.17,
+                "id": 316,
+                "rate": 291000,
+                "timestamp": 1525977397
+            }
+        ]
+    }
+}
+```
+
 
 # Error codes
 Refer to the following descriptions:
@@ -522,6 +612,7 @@ Code | Description
 21 | Invalid order for cancellation
 22 | Invalid side
 23 | Failed to update order status
+24 | Invalid order for lookup
 30 | Limit exceeds
 40 | Pending withdrawal exists
 41 | Invalid currency for withdrawal
