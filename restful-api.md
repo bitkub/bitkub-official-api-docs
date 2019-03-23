@@ -519,7 +519,7 @@ Get information regarding the specified order.
         "credit": 10, // order fee credit used
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
-        "status": "filled", // order status
+        "status": "filled", // order status: filled, unfilled, or cancelled
         "history": [
             {
                 "amount": 98.14848,
