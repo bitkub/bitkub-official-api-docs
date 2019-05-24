@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2019-03-23)
+# RESTful API for Bitkub (2019-05-25)
 
 # Releases
+* 2019-05-25 Ticker API now allows symbol query
 * 2019-03-23 Added order info API
 * 2018-12-16 Updated documentation
 * 2018-08-09 V1 Release
@@ -121,7 +122,7 @@ List all available symbols.
 Get ticker information.
 
 #### Query:
--
+* `sym` **string** The symbol (optional)
 
 #### Response:
 ```javascript
