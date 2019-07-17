@@ -9,7 +9,7 @@ API_KEY = 'YOUR API KEY'
 API_SECRET = b'YOUR API SECRET'
 
 def json_encode(data):
-	return json.dumps(data, separators=(',', ':'))
+	return json.dumps(data, separators=(',', ':'), sort_keys=True)
 
 def sign(data):
 	j = json_encode(data)
