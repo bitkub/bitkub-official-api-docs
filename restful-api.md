@@ -306,7 +306,7 @@ Get tradingview data for displaying tradingview graph.
 ### POST /api/market/wallet
 
 #### Description:
-Get user wallet info.
+Get user available balances (for both available and reserved balances please use [POST /api/market/balances](#post-apimarketbalances)).
 
 #### Query:
 -
