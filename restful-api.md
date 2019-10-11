@@ -39,6 +39,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
+* [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 
 # Constructing the request
 ### Request header
@@ -71,6 +72,14 @@ curl -X POST \
   -H 'content-type: application/json' \
   -H 'x-btk-apikey: 6da634977495306b2206eee7772532cb' \
   -d '{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"sig":"d0c66fabb816c46953270e4a442836ca449711e143c8658dd03103c90b2d0fb7"}'
+```
+
+### Nonce
+You can secure your request even further by including `nonce` in the request payload. Nonce is a numeric value which is incremental in each request (nonce value has to be higher in each new request). Use `non` as the key name for nonce.
+
+#### Example payload (with nonce):
+```javascript
+{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"non":1}
 ```
 
 # API documentation
@@ -584,6 +593,33 @@ Get information regarding the specified order.
 ```
 
 
+### POST /api/crypto/withdraw
+
+### Description:
+Make a withdrawal to a **trusted** address.
+
+### Query:
+* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
+* `amt`		**float**		Amount you want to withdraw
+* `adr`		**string**		Address to which you want to withdraw
+* `mem`		**string**		Memo or destination tag to which you want to withdraw
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": {
+        "txn": "BTCWD0000012345", // local transaction id
+        "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
+        "mem": "1000123", // memo
+        "cur": "BTC", // currency
+        "amt": 0.1, // withdraw amount
+        "fee": 0.0002, // withdraw fee
+        "ts": 1569999999 // timestamp
+    }
+}
+```
+
 # Error codes
 Refer to the following descriptions:
 
@@ -620,3 +656,6 @@ Code | Description
 42 | Address is not in whitelist
 43 | Failed to deduct crypto
 44 | Failed to create withdrawal record
+45 | Nonce has to be numeric
+46 | Invalid nonce
+47 | Withdrawal limit exceeds
