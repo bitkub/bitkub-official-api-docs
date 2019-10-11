@@ -602,7 +602,7 @@ Make a withdrawal to a **trusted** address.
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
 * `amt`		**float**		Amount you want to withdraw
 * `adr`		**string**		Address to which you want to withdraw
-* `mem`		**string**		Memo or destination tag to which you want to withdraw
+* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
 
 ### Response:
 ```javascript
@@ -611,7 +611,7 @@ Make a withdrawal to a **trusted** address.
     "result": {
         "txn": "BTCWD0000012345", // local transaction id
         "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
-        "mem": "1000123", // memo
+        "mem": "", // memo
         "cur": "BTC", // currency
         "amt": 0.1, // withdraw amount
         "fee": 0.0002, // withdraw fee
