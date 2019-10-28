@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2019-05-25)
 
 # Releases
+* 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
 * 2019-05-25 Ticker API now allows symbol query
 * 2019-03-23 Added order info API
 * 2018-12-16 Updated documentation
@@ -40,6 +41,8 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
 * [POST /api/crypto/withdraw](#post-apicryptowithdraw)
+* [POST /api/crypto/deposit-history](#post-apicryptodeposithistory)
+* [POST /api/crypto/withdraw-history](#post-apicryptowithdrawhistory)
 
 # Constructing the request
 ### Request header
@@ -617,6 +620,68 @@ Make a withdrawal to a **trusted** address.
         "fee": 0.0002, // withdraw fee
         "ts": 1569999999 // timestamp
     }
+}
+```
+
+### POST /api/crypto/deposit-history
+
+### Description:
+List crypto deposit history.
+
+### Query:
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "hash":"XRPWD0000100276",
+         "currency":"XRP",
+         "amount":5.75111474,
+         "address":null,
+         "confirmations":1,
+         "status":"complete",
+         "time":1570893867
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
+}
+```
+
+### POST /api/crypto/withdraw-history
+
+### Description:
+List crypto withdrawal history.
+
+### Query:
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "hash":"send_internal",
+         "currency":"XRP",
+         "amount":"5.75111474",
+         "fee":0.01,
+         "address":"rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
+         "status":"complete",
+         "time":1570893493
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
 }
 ```
 
