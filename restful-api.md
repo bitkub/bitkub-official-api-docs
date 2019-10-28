@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2019-05-25)
+# RESTful API for Bitkub (2019-10-28)
 
 # Releases
 * 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
