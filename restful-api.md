@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2019-10-28)
 
 # Releases
+* 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
 * 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
 * 2019-05-25 Ticker API now allows symbol query
 * 2019-03-23 Added order info API
@@ -40,9 +41,14 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
+* [POST /api/crypto/addresses](#post-apicryptoaddresses)
 * [POST /api/crypto/withdraw](#post-apicryptowithdraw)
-* [POST /api/crypto/deposit-history](#post-apicryptodeposithistory)
-* [POST /api/crypto/withdraw-history](#post-apicryptowithdrawhistory)
+* [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
+* [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
+* [POST /api/fiat/accounts](#post-apifiataccounts)
+* [POST /api/fiat/withdraw](#post-apifiatwithdraw)
+* [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
+* [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
 
 # Constructing the request
 ### Request header
@@ -595,6 +601,33 @@ Get information regarding the specified order.
 }
 ```
 
+### POST /api/crypto/addresses
+
+### Description:
+List all crypto addresses.
+
+### Query (URL):
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "currency":"BTC",
+         "address":"3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
+         "tag":0,
+         "time":1570893867
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
+}
+```
 
 ### POST /api/crypto/withdraw
 
@@ -628,7 +661,7 @@ Make a withdrawal to a **trusted** address.
 ### Description:
 List crypto deposit history.
 
-### Query:
+### Query (URL):
 * `p` **int** Page (optional)
 * `lmt` **int** Limit (optional)
 
@@ -659,7 +692,7 @@ List crypto deposit history.
 ### Description:
 List crypto withdrawal history.
 
-### Query:
+### Query (URL):
 * `p` **int** Page (optional)
 * `lmt` **int** Limit (optional)
 
@@ -674,6 +707,118 @@ List crypto withdrawal history.
          "amount":"5.75111474",
          "fee":0.01,
          "address":"rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
+         "status":"complete",
+         "time":1570893493
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
+}
+```
+
+### POST /api/fiat/accounts
+
+### Description:
+List all approved bank accounts.
+
+### Query (URL):
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "id":"7262109099",
+         "bank":"Kasikorn Bank",
+         "name":"Somsak",
+         "time":1570893867
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
+}
+```
+
+### POST /api/fiat/withdraw
+
+### Description:
+Make a withdrawal to an **approved** bank account.
+
+### Query:
+* `id`		**string**	Bank account id
+* `amt`		**float**		Amount you want to withdraw
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": {
+        "txn": "THBWD0000012345", // local transaction id
+        "acc": "7262109099", // bank account id
+        "cur": "THB", // currency
+        "amt": 21, // withdraw amount
+        "fee": 20, // withdraw fee
+        "rec": 1, // amount to receive
+        "ts": 1569999999 // timestamp
+    }
+}
+```
+
+### POST /api/fiat/deposit-history
+
+### Description:
+List fiat deposit history.
+
+### Query (URL):
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "txn_id":"THBDP0000012345",
+         "currency":"THB",
+         "amount":5000.55,
+         "status":"complete",
+         "time":1570893867
+      }
+   ],
+   "pagination":{
+      "page":1,
+      "last":1
+   }
+}
+```
+
+### POST /api/fiat/withdraw-history
+
+### Description:
+List fiat withdrawal history.
+
+### Query (URL):
+* `p` **int** Page (optional)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "txn_id":"THBWD0000012345",
+         "currency":"THB",
+         "amount":"21",
+         "fee":20,
          "status":"complete",
          "time":1570893493
       }
@@ -724,3 +869,6 @@ Code | Description
 45 | Nonce has to be numeric
 46 | Invalid nonce
 47 | Withdrawal limit exceeds
+48 | Invalid bank account
+49 | Bank limit exceeds
+50 | Pending withdrawal exists
