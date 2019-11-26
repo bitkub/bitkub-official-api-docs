@@ -5,7 +5,8 @@
 * [Stream name](#stream-name)
 * [Symbols](#symbols)
 * [Websocket API documentation](#web-socket-api-documentation)
-* [Demo](#demo)
+* [Stream Demo](#stream-demo)
+* [Live Order Book](#live-order-book)
 
 # Websocket endpoint
 * The websocket endpoint is: **wss://api.bitkub.com/websocket-api/[\<streamName\>](#stream-name)**
@@ -95,5 +96,80 @@ The ticker stream provides real-time data on ticker of the specified symbol. Tic
  }
 ```
 
-# Demo
+# Stream Demo
 The demo page is available [here](https://api.bitkub.com/websocket-api?streams=) for testing streams subscription.
+
+# Live Order Book
+#### Description:
+Use symbol id to get real-time data of order book: **wss://api.bitkub.com/websocket-api/[\<symbol-id\>](#symbols)**.
+
+#### Data:
+```javascript
+{
+    "data": (data),
+    "event": (event type)
+}
+```
+There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
+* **bidschanged** occurs when any buy order has changed (created/cancelled). Data is array of buy orders after the change (max. 20 orders).
+* **askschanged** occurs when any sell order has changed (created/cancelled). Data is array of sell orders after the change (max. 20 orders).
+* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 20 orders). You get this event as the initial data upon successful subscription.
+
+#### Example response (bidschanged or askschanged):
+```javascript
+{
+   "data":[
+      [
+         121.82, // vol
+         112510.1, // rate
+         0.00108283, // amount
+         0, // reserved, always 0
+         false, // is new order
+         false // user is owner (available when authenticated)
+      ]
+   ],
+   "event":"bidschanged"
+}
+```
+
+#### Example response (tradeschanged):
+```javascript
+{
+   "data":[
+      [
+         [
+            1550320593, // timestamp
+            113587, // rate
+            0.12817027, // amount
+            "BUY", // side
+            0, // reserved, always 0
+            0, // reserved, always 0
+            true, // is new order
+            false, // reserved, always false
+            false // reserved, always false
+         ]
+      ],
+      [
+         [
+            121.82, // vol
+            112510.1, // bid rate
+            0.00108283, // bid amount
+            0, // reserved, always 0
+            false, // is new order
+            false // reserved, always false
+         ]
+      ],
+      [
+         [
+            51247.13, // vol
+            113699, // ask rate
+            0.45072632, // ask amount
+            0, // reserved, always 0
+            false, // is new order
+            false // reserved, always false
+         ]
+      ]
+   ],
+   "event":"tradeschanged"
+}
+```
