@@ -155,8 +155,8 @@ There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
             0, // reserved, always 0
             0, // reserved, always 0
             true, // is new order
-            false, // reserved, always false
-            false // reserved, always false
+            false, // user is buyer (available when authenticated)
+            false // user is seller (available when authenticated)
          ]
       ],
       [
@@ -166,7 +166,7 @@ There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
             0.00108283, // bid amount
             0, // reserved, always 0
             false, // is new order
-            false // reserved, always false
+            false // user is owner (available when authenticated)
          ]
       ],
       [
@@ -176,7 +176,7 @@ There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
             0.45072632, // ask amount
             0, // reserved, always 0
             false, // is new order
-            false // reserved, always false
+            false // user is owner (available when authenticated)
          ]
       ]
    ],
