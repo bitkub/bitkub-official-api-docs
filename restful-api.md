@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2019-10-28)
 
 # Releases
+* 2019-11-26 Websocket token API
 * 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
 * 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
 * 2019-05-25 Ticker API now allows symbol query
@@ -49,6 +50,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/fiat/withdraw](#post-apifiatwithdraw)
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
+* [POST /api/market/wstoken](#post-apimarketwstoken)
 
 # Constructing the request
 ### Request header
@@ -827,6 +829,22 @@ List fiat withdrawal history.
       "page":1,
       "last":1
    }
+}
+```
+
+### POST /api/market/wstoken
+
+### Description:
+Get the token for websocket authentication.
+
+### Query (URL):
+-
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":"BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
 }
 ```
 
