@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2019-10-28)
 
 # Releases
+* 2019-12-03 Limit API
 * 2019-11-26 Websocket token API
 * 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
 * 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
@@ -51,6 +52,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
 * [POST /api/market/wstoken](#post-apimarketwstoken)
+* [POST /api/user/limits](#post-apiuserlimits)
 
 # Constructing the request
 ### Request header
@@ -845,6 +847,47 @@ Get the token for websocket authentication.
 {
    "error":0,
    "result":"BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
+}
+```
+
+### POST /api/user/limits
+
+### Description:
+Check deposit/withdraw limitations and usage.
+
+### Query (URL):
+-
+
+### Response:
+```javascript
+{ 
+   "limits":{ // limitations by kyc level
+      "crypto":{ 
+         "deposit":0.88971929, // BTC value equivalent
+         "withdraw":0.88971929 // BTC value equivalent
+      },
+      "fiat":{ 
+         "deposit":200000, // THB value equivalent
+         "withdraw":200000 // THB value equivalent
+      }
+   },
+   "usage":{ // today's usage
+      "crypto":{ 
+         "deposit":0, // BTC value equivalent
+         "withdraw":0, // BTC value equivalent
+         "deposit_percentage":0,
+         "withdraw_percentage":0,
+         "deposit_thb_equivalent":0, // THB value equivalent
+         "withdraw_thb_equivalent":0 // THB value equivalent
+      },
+      "fiat":{ 
+         "deposit":0, // THB value equivalent
+         "withdraw":0, // THB value equivalent
+         "deposit_percentage":0,
+         "withdraw_percentage":0
+      }
+   },
+   "rate":224790 // current THB rate used to calculate
 }
 ```
 
