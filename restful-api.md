@@ -293,9 +293,9 @@ Get tradingview data for displaying tradingview graph.
 
 #### Query:
 * `sym`		**string**		The symbol
-* `int`		**int**		Chart interval in minutes
-* `frm`		**int**		Timestamp of the starting time (from)
-* `to`		**int**		Timestamp of the ending time (to)
+* `int`		**int**		Chart interval in seconds (e.g. 60, 900, 3600, 86400)
+* `frm`		**int**		Timestamp of the starting time (e.g. 1574477162)
+* `to`		**int**		Timestamp of the ending time (e.g. 1575773222)
 
 #### Response:
 ```javascript
