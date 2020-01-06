@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2019-10-28)
+# RESTful API for Bitkub (2020-01-06)
 
 # Releases
+* 2020-01-06 Status API
 * 2019-12-03 Limit API
 * 2019-11-26 Websocket token API
 * 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
@@ -24,6 +25,7 @@
 # Endpoint types
 ### Non-secure endpoints
 All non-secure endpoints do not need authentication and use the method GET.
+* [GET /api/status](#get-apistatus)
 * [GET /api/servertime](#get-apiservertime)
 * [GET /api/market/symbols](#get-apimarketsymbols)
 * [GET /api/market/ticker](#get-apimarketticker)
@@ -97,6 +99,30 @@ You can secure your request even further by including `nonce` in the request pay
 
 # API documentation
 Refer to the following for description of each endpoint
+
+### GET /api/status
+
+#### Description:
+Get endpoint status.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+[
+  {
+    "name": "Non-secure endpoints",
+    "status": "ok",
+    "message": ""
+  },
+  {
+    "name": "Secure endpoints",
+    "status": "ok",
+    "message": ""
+  }
+]
+```
 
 ### GET /api/servertime
 
