@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2020-01-06)
+# RESTful API for Bitkub (2020-01-07)
 
 # Releases
+* 2020-01-07 Place ask by fiat API
 * 2020-01-06 Status API
 * 2019-12-03 Limit API
 * 2019-11-26 Websocket token API
@@ -41,6 +42,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/balances](#post-apimarketbalances)
 * [POST /api/market/place-bid](#post-apimarketplace-bid)
 * [POST /api/market/place-ask](#post-apimarketplace-ask)
+* [POST /api/market/place-ask-by-fiat](#post-apimarketplace-ask-by-fiat)
 * [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
@@ -453,6 +455,34 @@ Create a sell order.
     "cre": 37.5, // fee credit used
     "rec": 15000, // amount to receive
     "ts": 1533834844 // timestamp
+  }
+}
+```
+
+### POST /api/market/place-ask-by-fiat
+
+#### Description:
+Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Fiat amount you want to receive with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "typ": "limit", // order type
+    "amt": 0.0000422, // selling amount resulted from calculation
+    "rat": 236999, // rate
+    "fee": 0.03, // fee
+    "cre": 0.03, // fee credit used
+    "rec": 10, // fiat amount to receive
+    "ts": 1578390814 // timestamp
   }
 }
 ```
