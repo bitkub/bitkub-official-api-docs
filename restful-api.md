@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-01-07)
 
 # Releases
+* 2020-01-14 Trading credit balance API
 * 2020-01-07 Place ask by fiat API
 * 2020-01-06 Status API
 * 2019-12-03 Limit API
@@ -57,6 +58,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
+* [POST /api/user/trading-credits](#post-apiusertrading-credits)
 
 # Constructing the request
 ### Request header
@@ -762,6 +764,7 @@ List crypto withdrawal history.
    "error":0,
    "result":[
       {
+         "txn_id":"XRPWD0000100276",
          "hash":"send_internal",
          "currency":"XRP",
          "amount":"5.75111474",
@@ -916,34 +919,54 @@ Check deposit/withdraw limitations and usage.
 
 ### Response:
 ```javascript
-{ 
-   "limits":{ // limitations by kyc level
-      "crypto":{ 
-         "deposit":0.88971929, // BTC value equivalent
-         "withdraw":0.88971929 // BTC value equivalent
-      },
-      "fiat":{ 
-         "deposit":200000, // THB value equivalent
-         "withdraw":200000 // THB value equivalent
-      }
-   },
-   "usage":{ // today's usage
-      "crypto":{ 
-         "deposit":0, // BTC value equivalent
-         "withdraw":0, // BTC value equivalent
-         "deposit_percentage":0,
-         "withdraw_percentage":0,
-         "deposit_thb_equivalent":0, // THB value equivalent
-         "withdraw_thb_equivalent":0 // THB value equivalent
-      },
-      "fiat":{ 
-         "deposit":0, // THB value equivalent
-         "withdraw":0, // THB value equivalent
-         "deposit_percentage":0,
-         "withdraw_percentage":0
-      }
-   },
-   "rate":224790 // current THB rate used to calculate
+{
+   "error":0,
+   "result":{ 
+       "limits":{ // limitations by kyc level
+          "crypto":{ 
+             "deposit":0.88971929, // BTC value equivalent
+             "withdraw":0.88971929 // BTC value equivalent
+          },
+          "fiat":{ 
+             "deposit":200000, // THB value equivalent
+             "withdraw":200000 // THB value equivalent
+          }
+       },
+       "usage":{ // today's usage
+          "crypto":{ 
+             "deposit":0, // BTC value equivalent
+             "withdraw":0, // BTC value equivalent
+             "deposit_percentage":0,
+             "withdraw_percentage":0,
+             "deposit_thb_equivalent":0, // THB value equivalent
+             "withdraw_thb_equivalent":0 // THB value equivalent
+          },
+          "fiat":{ 
+             "deposit":0, // THB value equivalent
+             "withdraw":0, // THB value equivalent
+             "deposit_percentage":0,
+             "withdraw_percentage":0
+          }
+       },
+       "rate":224790 // current THB rate used to calculate
+    }
+}
+```
+
+
+### POST /api/user/trading-credits
+
+### Description:
+Check trading credit balance.
+
+### Query (URL):
+-
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":1000
 }
 ```
 
