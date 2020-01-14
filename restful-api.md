@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2020-01-07)
+# RESTful API for Bitkub (2020-01-14)
 
 # Releases
 * 2020-01-14 Trading credit balance API
