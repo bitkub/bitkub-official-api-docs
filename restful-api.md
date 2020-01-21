@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2020-01-14)
+# RESTful API for Bitkub (2020-01-21)
 
 # Releases
+* 2020-01-21 Depth API
 * 2020-01-14 Trading credit balance API
 * 2020-01-07 Place ask by fiat API
 * 2020-01-06 Status API
@@ -36,6 +37,7 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/asks](#get-apimarketasks)
 * [GET /api/market/books](#get-apimarketbooks)
 * [GET /api/market/trading-view](#get-apimarkettradingview)
+* [GET /api/market/depth](#get-apimarketdepth)
 
 ### Secure endpoints
 All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
@@ -350,6 +352,65 @@ Get tradingview data for displaying tradingview graph.
     ],
     t: [
       1530460800
+    ]
+  ]
+}
+```
+
+### GET /api/market/depth
+
+#### Description:
+Get depth information.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** Depth size
+
+#### Response:
+```javascript
+{
+  "asks": [
+    [
+      262600,
+      0.61905798
+    ],
+    [
+      263000,
+      0.00210796
+    ],
+    [
+      263200,
+      0.89555545
+    ],
+    [
+      263422.5,
+      0.03796183
+    ],
+    [
+      263499,
+      0.4123439
+    ]
+  ],
+  "bids": [
+    [
+      262510,
+      0.38038703
+    ],
+    [
+      262100.01,
+      1.22519999
+    ],
+    [
+      262100,
+      0.00381533
+    ],
+    [
+      262024.88,
+      0.00352718
+    ],
+    [
+      262001,
+      0.09999961
     ]
   ]
 }
