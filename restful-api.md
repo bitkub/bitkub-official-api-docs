@@ -857,9 +857,9 @@ List all approved bank accounts.
    "error":0,
    "result":[
       {
-         "id":"7262109099",
-         "bank":"Kasikorn Bank",
-         "name":"Somsak",
+         "id":"0852492453",
+         "bank":"Siam Commercial Bank",
+         "name":"Tatsana Iempong",
          "time":1570893867
       }
    ],
