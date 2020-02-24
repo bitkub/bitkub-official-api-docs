@@ -121,9 +121,9 @@ Authentication is required in order to access certain data. Send the **[websocke
 }
 ```
 There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
-* **bidschanged** occurs when any buy order has changed (opened/closed/cancelled). Data is array of buy orders after the change (max. 20 orders).
-* **askschanged** occurs when any sell order has changed (opened/closed/cancelled). Data is array of sell orders after the change (max. 20 orders).
-* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 20 orders). You get this event as the initial data upon successful subscription.
+* **bidschanged** occurs when any buy order has changed (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
+* **askschanged** occurs when any sell order has changed (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
+* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
 
 #### Example response (bidschanged or askschanged):
 ```javascript
