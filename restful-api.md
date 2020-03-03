@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-01-21)
 
 # Releases
+* 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info).
 * 2020-01-21 Depth API
 * 2020-01-14 Trading credit balance API
 * 2020-01-07 Place ask by fiat API
@@ -483,6 +484,7 @@ Create a buy order.
   "result":
   {
     "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
     "typ": "limit", // order type
     "amt": 1000, // spending amount
     "rat": 15000, // rate
@@ -511,6 +513,7 @@ Create a sell order.
   "error": 0,
   "result": {
     "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
     "typ": "limit", // order type
     "amt": 1.00000000, // selling amount
     "rat": 15000, // rate
@@ -539,6 +542,7 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
   "error": 0,
   "result": {
     "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
     "typ": "limit", // order type
     "amt": 0.0000422, // selling amount resulted from calculation
     "rat": 236999, // rate
@@ -559,6 +563,7 @@ Cancel an open order.
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id you wish to cancel
 * `sd`		**string**		Order side: buy or sell
+* `hash`	**string**		Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
@@ -582,6 +587,7 @@ List all open orders of the given symbol.
   "result": [
     {
       "id": 2, // order id
+      "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
       "side": "SELL", // order side
       "type": "limit", // order type
       "rate": 15000, // rate
@@ -615,6 +621,7 @@ List all orders that have already matched.
     {
       "txn_id": "ETHBUY0000000197",
       "order_id": 240,
+      "hash": "fwQ6dnQWQPs4cbaujNyejinS43a", // order hash
       "parent_order_id": 0,
       "super_order_id": 0,
       "taken_by_me": true,
@@ -645,6 +652,7 @@ Get information regarding the specified order.
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id
 * `sd`		**string**		Order side: buy or sell
+* `hash`	**string**		Lookup an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
