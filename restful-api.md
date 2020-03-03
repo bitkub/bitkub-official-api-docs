@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2020-01-21)
+# RESTful API for Bitkub (2020-03-03)
 
 # Releases
 * 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info).
