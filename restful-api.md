@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2020-03-03)
+# RESTful API for Bitkub (2020-03-12)
 
 # Releases
 * 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
