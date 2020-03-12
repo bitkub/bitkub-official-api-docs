@@ -2,7 +2,8 @@
 # RESTful API for Bitkub (2020-03-03)
 
 # Releases
-* 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info).
+* 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
+* 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info)
 * 2020-01-21 Depth API
 * 2020-01-14 Trading credit balance API
 * 2020-01-07 Place ask by fiat API
@@ -612,6 +613,8 @@ List all orders that have already matched.
 * `sym` **string** The symbol
 * `p` **int** Page (optional)
 * `lmt` **int** Limit (optional)
+* `start` **int** Start timestamp (optional)
+* `end` **int** End timestamp (optional)
 
 ### Response:
 ```javascript
