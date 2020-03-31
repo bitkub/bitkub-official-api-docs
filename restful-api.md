@@ -1084,3 +1084,4 @@ Code | Description
 48 | Invalid bank account
 49 | Bank limit exceeds
 50 | Pending withdrawal exists
+90 | Server error (please contact support)
