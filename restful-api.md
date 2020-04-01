@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2020-03-12)
+# RESTful API for Bitkub (2020-04-01)
 
 # Releases
+* 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
 * 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
 * 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info)
 * 2020-01-21 Depth API
@@ -56,6 +57,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
+* [POST /api/crypto/generate-address](#post-apicryptogenerate-address)
 * [POST /api/fiat/accounts](#post-apifiataccounts)
 * [POST /api/fiat/withdraw](#post-apifiatwithdraw)
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
@@ -850,6 +852,28 @@ List crypto withdrawal history.
       "page":1,
       "last":1
    }
+}
+```
+
+### POST /api/crypto/generate-address
+
+### Description:
+Generate a new crypto address (will replace existing address; previous address can still be used to received funds)
+
+### Query (URL):
+* `sym` **string** Symbol (e.g. THB_BTC, THB_ETH, etc.)
+
+### Response:
+```javascript
+{
+   "error":0,
+   "result":[
+      {
+         "currency":"ETH",
+         "address":"0x520165471daa570ab632dd504c6af257bd36edfb",
+         "memo":""
+      }
+   ]
 }
 ```
 
