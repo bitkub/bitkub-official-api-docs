@@ -185,29 +185,29 @@ Get ticker information.
 #### Response:
 ```javascript
 {
-  THB_BTC: {
-    id: 1,
-    last: "216415.00",
-    lowestAsk: "216678.00",
-    highestBid: "215000.00",
-    percentChange: "1.91",
-    baseVolume: "71.02603946",
-    quoteVolume: "15302897.99",
-    isFrozen: "0",
-    high24hr: "221396.00",
-    low24hr: "206414.00"
+  "THB_BTC": {
+    "id": 1,
+    "last": 216415.00,
+    "lowestAsk": 216678.00,
+    "highestBid": 215000.00,
+    "percentChange": 1.91,
+    "baseVolume": 71.02603946,
+    "quoteVolume": 15302897.99,
+    "isFrozen": 0,
+    "high24hr": 221396.00,
+    "low24hr": 206414.00
   },
-  THB_ETH: {
-    id: 2,
-    last: "11878.00",
-    lowestAsk: "12077.00",
-    highestBid: "11893.00",
-    percentChange: "-0.49",
-    baseVolume: "455.17839270",
-    quoteVolume: "5505664.42",
-    isFrozen: "0",
-    high24hr: "12396.00",
-    low24hr: "11645.00"
+  "THB_ETH": {
+    "id": 2,
+    "last": 11878.00,
+    "lowestAsk": 12077.00,
+    "highestBid": 11893.00,
+    "percentChange": -0.49,
+    "baseVolume": 455.17839270,
+    "quoteVolume": 5505664.42,
+    "isFrozen": 0,
+    "high24hr": 12396.00,
+    "low24hr": 11645.00
   }
 }
 ```
@@ -228,8 +228,8 @@ List recent trades.
   "result": [
     [
       1529516287, // timestamp
-      "10000.00", // rate
-      "0.09975000", // amount
+      10000.00, // rate
+      0.09975000, // amount
       "BUY" // side
     ]
   ]
@@ -253,9 +253,9 @@ List open buy orders.
     [
       1, // order id
       1529453033, // timestamp
-      "997.50", // volume
-      "10000.00", // rate
-      "0.09975000" // amount
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
     ]
   ]
 }
@@ -279,9 +279,9 @@ List open sell orders.
     [
       680, // order id
       1529491094, // timestamp
-      "997.50", // volume
-      "10000.00", // rate
-      "0.09975000" // amount
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
     ]
   ]
 }
@@ -305,18 +305,18 @@ List all open orders.
       [
         1, // order id
         1529453033, // timestamp
-        "997.50", // volume
-        "10000.00", // rate
-        "0.09975000" // amount
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
       ]
     ],
     "asks": [
       [
         680, // order id
         1529491094, // timestamp
-        "997.50", // volume
-        "10000.00", // rate
-        "0.09975000" // amount
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
       ]
     ]
   }
@@ -336,23 +336,23 @@ Get tradingview data for displaying tradingview graph.
 #### Response:
 ```javascript
 {
-    o: [
+    "o": [
       207500
     ],
-    c: [
+    "c": [
       205000
     ],
-    h: [
+    "h": [
       207500
     ],
-    l: [
+    "l": [
       205000
     ],
-    s: "ok",
-    v: [
+    "s": "ok",
+    "v": [
       0.11205317
     ],
-    t: [
+    "t": [
       1530460800
     ]
 }
@@ -480,9 +480,8 @@ Create a buy order.
 #### Response:
 ```javascript
 {
-  "error":0,
-  "result":
-  {
+  "error": 0,
+  "result": {
     "id": 1, // order id
     "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
     "typ": "limit", // order type
@@ -747,17 +746,17 @@ List all crypto addresses.
 ```javascript
 {
    "error":0,
-   "result":[
+   "result": [
       {
-         "currency":"BTC",
-         "address":"3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
-         "tag":0,
-         "time":1570893867
+         "currency": "BTC",
+         "address": "3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
+         "tag": 0,
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -801,21 +800,21 @@ List crypto deposit history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "hash":"XRPWD0000100276",
-         "currency":"XRP",
-         "amount":5.75111474,
-         "address":null,
-         "confirmations":1,
-         "status":"complete",
-         "time":1570893867
+         "hash": "XRPWD0000100276",
+         "currency": "XRP",
+         "amount": 5.75111474,
+         "address": null,
+         "confirmations": 1,
+         "status": "complete",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -832,22 +831,22 @@ List crypto withdrawal history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "txn_id":"XRPWD0000100276",
-         "hash":"send_internal",
-         "currency":"XRP",
-         "amount":"5.75111474",
-         "fee":0.01,
-         "address":"rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
-         "status":"complete",
-         "time":1570893493
+         "txn_id": "XRPWD0000100276",
+         "hash": "send_internal",
+         "currency": "XRP",
+         "amount": "5.75111474",
+         "fee": 0.01,
+         "address": "rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
+         "status": "complete",
+         "time": 1570893493
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -863,12 +862,12 @@ Generate a new crypto address (will replace existing address; previous address c
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "currency":"ETH",
-         "address":"0x520165471daa570ab632dd504c6af257bd36edfb",
-         "memo":""
+         "currency": "ETH",
+         "address": "0x520165471daa570ab632dd504c6af257bd36edfb",
+         "memo": ""
       }
    ]
 }
@@ -886,18 +885,18 @@ List all approved bank accounts.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "id":"7262109099",
-         "bank":"Kasikorn Bank",
-         "name":"Somsak",
-         "time":1570893867
+         "id": "7262109099",
+         "bank": "Kasikorn Bank",
+         "name": "Somsak",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -939,19 +938,19 @@ List fiat deposit history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "txn_id":"THBDP0000012345",
-         "currency":"THB",
-         "amount":5000.55,
-         "status":"complete",
-         "time":1570893867
+         "txn_id": "THBDP0000012345",
+         "currency": "THB",
+         "amount": 5000.55,
+         "status": "complete",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -969,19 +968,19 @@ List fiat withdrawal history.
 ```javascript
 {
    "error":0,
-   "result":[
+   "result": [
       {
-         "txn_id":"THBWD0000012345",
-         "currency":"THB",
-         "amount":"21",
-         "fee":20,
-         "status":"complete",
-         "time":1570893493
+         "txn_id": "THBWD0000012345",
+         "currency": "THB",
+         "amount": "21",
+         "fee": 20,
+         "status": "complete",
+         "time": 1570893493
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -997,8 +996,8 @@ Get the token for websocket authentication.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":"BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
+   "error": 0,
+   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
 }
 ```
 
@@ -1013,35 +1012,35 @@ Check deposit/withdraw limitations and usage.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":{ 
-       "limits":{ // limitations by kyc level
-          "crypto":{ 
-             "deposit":0.88971929, // BTC value equivalent
-             "withdraw":0.88971929 // BTC value equivalent
+   "error": 0,
+   "result": { 
+       "limits": { // limitations by kyc level
+          "crypto": { 
+             "deposit": 0.88971929, // BTC value equivalent
+             "withdraw": 0.88971929 // BTC value equivalent
           },
-          "fiat":{ 
-             "deposit":200000, // THB value equivalent
-             "withdraw":200000 // THB value equivalent
+          "fiat": { 
+             "deposit": 200000, // THB value equivalent
+             "withdraw": 200000 // THB value equivalent
           }
        },
-       "usage":{ // today's usage
-          "crypto":{ 
-             "deposit":0, // BTC value equivalent
-             "withdraw":0, // BTC value equivalent
-             "deposit_percentage":0,
-             "withdraw_percentage":0,
-             "deposit_thb_equivalent":0, // THB value equivalent
-             "withdraw_thb_equivalent":0 // THB value equivalent
+       "usage": { // today's usage
+          "crypto": { 
+             "deposit": 0, // BTC value equivalent
+             "withdraw": 0, // BTC value equivalent
+             "deposit_percentage": 0,
+             "withdraw_percentage": 0,
+             "deposit_thb_equivalent": 0, // THB value equivalent
+             "withdraw_thb_equivalent": 0 // THB value equivalent
           },
-          "fiat":{ 
-             "deposit":0, // THB value equivalent
-             "withdraw":0, // THB value equivalent
-             "deposit_percentage":0,
-             "withdraw_percentage":0
+          "fiat": { 
+             "deposit": 0, // THB value equivalent
+             "withdraw": 0, // THB value equivalent
+             "deposit_percentage": 0,
+             "withdraw_percentage": 0
           }
        },
-       "rate":224790 // current THB rate used to calculate
+       "rate": 224790 // current THB rate used to calculate
     }
 }
 ```
@@ -1058,8 +1057,8 @@ Check trading credit balance.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":1000
+   "error": 0,
+   "result": 1000
 }
 ```
 
