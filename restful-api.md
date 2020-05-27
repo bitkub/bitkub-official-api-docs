@@ -39,7 +39,7 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
 * [GET /api/market/books](#get-apimarketbooks)
-* [GET /api/market/trading-view](#get-apimarkettradingview)
+* [GET /api/market/tradingview](#get-apimarkettradingview)
 * [GET /api/market/depth](#get-apimarketdepth)
 
 ### Secure endpoints
@@ -158,17 +158,17 @@ List all available symbols.
 #### Response:
 ```javascript
 {
-  error: 0,
-  result: [
+  "error": 0,
+  "result": [
     {
-      id: 1,
-      symbol: "THB_BTC",
-      info: "Thai Baht to Bitcoin"
+      "id": 1,
+      "symbol": "THB_BTC",
+      "info": "Thai Baht to Bitcoin"
     },
     {
-      id: 2,
-      symbol: "THB_ETH",
-      info: "Thai Baht to Ethereum"
+      "id": 2,
+      "symbol": "THB_ETH",
+      "info": "Thai Baht to Ethereum"
     }
   ]
 }
@@ -336,8 +336,6 @@ Get tradingview data for displaying tradingview graph.
 #### Response:
 ```javascript
 {
-  "error": 0,
-  "result": [
     o: [
       207500
     ],
@@ -357,7 +355,6 @@ Get tradingview data for displaying tradingview graph.
     t: [
       1530460800
     ]
-  ]
 }
 ```
 
