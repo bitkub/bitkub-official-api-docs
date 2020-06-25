@@ -67,16 +67,20 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
 
 # Constructing the request
-### Request header
+### GET/POST request
+* GET requests require parameters as **query string** in the URL (e.g. ?sym=THB_BTC&lmt=10). 
+* POST requests require JSON payload (application/json).
+
+### Request headers (POST)
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
 * Accept: application/json
 * Content-type: application/json
 * X-BTK-APIKEY: {YOUR API KEY}
 
-### Payload
+### Payload (POST)
 The payload is always JSON. **Always include timestamp in the payload; use `ts` as the key name for timestamp**.
 
-### Signature
+### Signature (POST)
 Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload.
 
 #### Example payload:
@@ -113,7 +117,7 @@ Refer to the following for description of each endpoint
 ### GET /api/status
 
 #### Description:
-Get endpoint status.
+Get endpoint status. When status is not `ok`, it is highly recommended to wait until the status changes back to `ok`.
 
 #### Query:
 -
