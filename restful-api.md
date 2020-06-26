@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2020-04-01)
+# RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
 * 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
 * 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
 * 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info)
@@ -48,6 +49,8 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/balances](#post-apimarketbalances)
 * [POST /api/market/place-bid](#post-apimarketplace-bid)
 * [POST /api/market/place-ask](#post-apimarketplace-ask)
+* [POST /api/market/place-bid/test](#post-apimarketplace-bidtest)
+* [POST /api/market/place-ask/test](#post-apimarketplace-asktest)
 * [POST /api/market/place-ask-by-fiat](#post-apimarketplace-ask-by-fiat)
 * [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
@@ -499,6 +502,35 @@ Create a buy order.
 }
 ```
 
+### POST /api/market/place-bid/test
+
+#### Description:
+Test creating a buy order (no balance is deducted).
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 0, // order id
+    "hash": "test", // test hash
+    "typ": "limit", // order type
+    "amt": 1000, // spending amount
+    "rat": 15000, // rate
+    "fee": 2.5, // fee
+    "cre": 2.5, // fee credit used
+    "rec": 0.06666666, // amount to receive
+    "ts": 1533834547 // timestamp
+  }
+}
+```
+
 ### POST /api/market/place-ask
 
 #### Description:
@@ -517,6 +549,35 @@ Create a sell order.
   "result": {
     "id": 1, // order id
     "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
+    "typ": "limit", // order type
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+  }
+}
+```
+
+### POST /api/market/place-ask/test
+
+#### Description:
+Test creating a sell order (no balance is deducted).
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 0, // order id
+    "hash": "test", // test hash
     "typ": "limit", // order type
     "amt": 1.00000000, // selling amount
     "rat": 15000, // rate
