@@ -44,7 +44,7 @@ Above subscription provides real-time data from trade and ticker streams of symb
 
 
 # Symbols
-Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#get-apimarketsymbols) for all available symbols.
+Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#get-apimarketsymbols) for all available symbols and symbol ids).
 
 
 
@@ -101,7 +101,7 @@ The demo page is available [here](https://api.bitkub.com/websocket-api?streams=)
 
 # Live Order Book
 #### Description:
-Use symbol id to get real-time data of order book: **wss://api.bitkub.com/websocket-api/[\<symbol-id\>](#symbols)**.
+Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/[\<symbol-id\>](#symbols)**.
 
 #### Authentication:
 Authentication is required in order to access certain data. Send the **[websocket token](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#post-apimarketwstoken)** to the server via the established socket connection. The message is in **JSON** format.
