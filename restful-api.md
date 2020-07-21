@@ -84,7 +84,7 @@ Authentication requires API KEY and API SECRET. Every request to the server must
 The payload is always JSON. **Always include timestamp in the payload; use `ts` as the key name for timestamp**.
 
 ### Signature (POST)
-Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload.
+Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload. Signature is in **hex** format.
 
 #### Example payload:
 ```javascript
