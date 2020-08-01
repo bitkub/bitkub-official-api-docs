@@ -1169,4 +1169,5 @@ Code | Description
 48 | Invalid bank account
 49 | Bank limit exceeds
 50 | Pending withdrawal exists
+51 | Withdrawal is under maintenance
 90 | Server error (please contact support)
