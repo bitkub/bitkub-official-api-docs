@@ -43,6 +43,6 @@ signature = sign(data)
 data['sig'] = signature
 
 print('Payload with signature: ' + json_encode(data))
-response = requests.post(API_HOST + '/api/market/place-bid', headers=header, data=json_encode(data))
+response = requests.post(API_HOST + '/api/market/place-bid/test', headers=header, data=json_encode(data))
 
 print('Response: ' + response.text)

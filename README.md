@@ -12,13 +12,16 @@ Name | Description
 
 <br />
 
-# Run docker for sample call RESTful API 
+# docker for sample call API 
 
-* change your environment in .env file
+* change your environment in .env file https://www.bitkub.com/publicapi
 ```
 API_HOST=https://api.bitkub.com
 API_KEY=YOUR API KEY
 API_SECRET=YOUR API SECRET
+
+WS_HOST=wss://api.bitkub.com/websocket-api
+STREAM_NAME=market.trade.thb_btc
 ```
 * run this command in terminal
 ```
