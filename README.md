@@ -14,7 +14,7 @@ Name | Description
 
 # docker for sample call API 
 
-* change your environment in .env file https://www.bitkub.com/publicapi
+* change API_KEY and API_SECRET in .env from https://www.bitkub.com/publicapi ( Please don't forget login )
 ```
 API_HOST=https://api.bitkub.com
 API_KEY=YOUR API KEY
