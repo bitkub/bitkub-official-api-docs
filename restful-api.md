@@ -483,6 +483,7 @@ Create a buy order.
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your order client_id
 
 #### Response:
 ```javascript
@@ -512,6 +513,7 @@ Test creating a buy order (no balance is deducted).
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your order client_id
 
 #### Response:
 ```javascript
@@ -541,6 +543,8 @@ Create a sell order.
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your order client_id
+
 
 #### Response:
 ```javascript
@@ -570,6 +574,7 @@ Test creating a sell order (no balance is deducted).
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your order client_id
 
 #### Response:
 ```javascript
@@ -735,7 +740,7 @@ Get information regarding the specified order.
         "credit": 10, // order fee credit used
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
-        "status": "filled", // order status: filled, unfilled, or cancelled
+        "status": "filled", // order status: filled, unfilled
         "history": [
             {
                 "amount": 98.14848,
