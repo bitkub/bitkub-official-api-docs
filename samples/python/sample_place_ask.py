@@ -9,8 +9,8 @@ load_dotenv('../../.env')
 
 # API info
 API_HOST = os.environ['API_HOST']
-API_KEY = os.environ['API_KEY']
-API_SECRET = bytes(os.environ['API_SECRET'], encoding='utf-8')
+API_KEY = "aa17635ee581cac261da91ee4a5792cf"
+API_SECRET = bytes("d61ca04669ea1eed94ab7f7a9bf1d5cb", encoding='utf-8')
 
 def json_encode(data):
 	return json.dumps(data, separators=(',', ':'), sort_keys=True)
@@ -43,6 +43,6 @@ signature = sign(data)
 data['sig'] = signature
 
 print('Payload with signature: ' + json_encode(data))
-response = requests.post(API_HOST + '/api/market/place-ask/test', headers=header, data=json_encode(data))
+response = requests.post(API_HOST + '/api/market/place-ask', headers=header, data=json_encode(data))
 
 print('Response: ' + response.text)

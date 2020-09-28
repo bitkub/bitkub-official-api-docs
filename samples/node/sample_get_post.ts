@@ -9,11 +9,18 @@ const samplegetkey = async () => {
   const { data: servertime } = await axios.get(
     `${process.env.API_HOST}/api/servertime`
   );
-  console.log("get servertime", servertime);
-
+  const body = {
+    ts: servertime,
+    sym: "THB_BTC",
+    amt: 0.000088,
+    rat: 0,
+    typ: "market",
+  };
+  const str = JSON.stringify(body);
+  console.log(" parseInt,", parseFloat("0.000001"));
   // generate sig with servertime
   const hash = createHmac("sha256", process.env.API_SECRET)
-    .update(`{"ts":${servertime}}`)
+    .update(str)
     .digest("hex");
 
   console.log("hash", hash);
@@ -29,11 +36,7 @@ const samplegetkey = async () => {
     },
     data: {
       sig: hash,
-      ts: servertime,
-    //   sym: '',
-    //   int: '',
-    //   frm: '',
-    //   to: '',
+      ...body,
     },
   });
   console.log("get wstoken", wstoken);

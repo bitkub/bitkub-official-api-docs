@@ -5,7 +5,7 @@
   "main": "sample_socket.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node sample_get_post.ts",
+    "start": "ts-node sample_socket.ts",
     "build": "./node_modules/.bin/tsc",
     "prod": "node ./dist/sample_get_post.js"
   },

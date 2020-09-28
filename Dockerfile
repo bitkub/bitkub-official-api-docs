@@ -1,6 +1,7 @@
-FROM node:14.0.0
+FROM python
 
 COPY . .
-RUN npm install --prefix samples/node
+RUN pip install python-dotenv
+RUN pip install requests
 
-CMD ["npm", "start", "--prefix", "samples/node"]
+CMD ["python", "./samples/python/sample_balance.py"]
