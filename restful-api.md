@@ -482,7 +482,7 @@ Create a buy order.
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
-* `typ`		**string**		Order type: limit or market
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
 * `
 
 
@@ -545,7 +545,7 @@ Create a sell order.
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
-* `typ`		**string**		Order type: limit or market
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
 * `client_id`		**string**		your id for reference ( no required )
 
 
