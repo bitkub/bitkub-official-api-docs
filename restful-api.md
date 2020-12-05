@@ -78,7 +78,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
 * Accept: application/json
 * Content-type: application/json
-* X-BTK-APIKEY: {YOUR API KEY}
+* X-BTK-APIKEY: 33b7d9cfc8bb86473eea372c4beb4ec1
 
 ### Payload (POST)
 The payload is always JSON. **Always include timestamp in the payload; use `ts` as the key name for timestamp**.
