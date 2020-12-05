@@ -80,39 +80,12 @@ Authentication requires API KEY and API SECRET. Every request to the server must
 * Content-type: application/json
 * X-BTK-APIKEY: {YOUR API KEY}
 
-### Payload (POST)
-The payload is always JSON. **Always include timestamp in the payload; use `ts` as the key name for timestamp**.
-
-### Signature (POST)
-Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload. Signature is in **hex** format.
-
-#### Example payload:
-```javascript
-{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685}
-```
-
-#### Example payload with signature:
-```javascript
-{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"sig":"d0c66fabb816c46953270e4a442836ca449711e143c8658dd03103c90b2d0fb7"}
-```
-
-#### Example cURL:
-```javascript
-curl -X POST \
+Curl -X (POST)
   https://api.bitkub.com/api/market/place-ask \
   -H 'accept: application/json' \
   -H 'content-type: application/json' \
-  -H 'x-btk-apikey: 6da634977495306b2206eee7772532cb' \
-  -d '{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"sig":"d0c66fabb816c46953270e4a442836ca449711e143c8658dd03103c90b2d0fb7"}'
-```
-
-### Nonce
-You can secure your request even further by including `nonce` in the request payload. Nonce is a numeric value which is incremental in each request (nonce value has to be higher in each new request). Use `non` as the key name for nonce.
-
-#### Example payload (with nonce):
-```javascript
-{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"non":1}
-```
+  -H 'x-btk-apikey: 5dd5e3de2ebaccfcc2247e17656b5c90' \
+  -d '{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"sig":"4fcc5ef41dbc8d3349c0f429d1d63c4d"}'
 
 # API documentation
 Refer to the following for description of each endpoint
@@ -126,14 +99,7 @@ Get endpoint status. When status is not `ok`, it is highly recommended to wait u
 -
 
 #### Response:
-```javascript
-[
-  {
-    "name": "Non-secure endpoints",
-    "status": "ok",
-    "message": ""
-  },
-  {
+```
     "name": "Secure endpoints",
     "status": "ok",
     "message": ""
