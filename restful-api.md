@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2021-01-16 [tradingview](#get-apimarkettradingview) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
 * 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
 * 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
 * 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
