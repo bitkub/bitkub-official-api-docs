@@ -1165,7 +1165,7 @@ Code | Description
 21 | Invalid order for cancellation
 22 | Invalid side
 23 | Failed to update order status
-24 | Invalid order for lookup (or cancelled)
+24 | Invalid order for lookup
 25 | KYC level 1 is required to proceed
 30 | Limit exceeds
 40 | Pending withdrawal exists
