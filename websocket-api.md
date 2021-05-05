@@ -101,7 +101,7 @@ The demo page is available [here](https://api.bitkub.com/websocket-api?streams=)
 
 # Live Order Book
 #### Description:
-Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/[\<symbol-id\>](#symbols)**.
+Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/orderbook/[\<symbol-id\>](#symbols)**.
 
 #### Authentication:
 Authentication is required in order to access certain data. Send the **[websocket token](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#post-apimarketwstoken)** to the server via the established socket connection. The message is in **JSON** format.
