@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * 2021-01-16 [tradingview](#get-apimarkettradingview) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
 * 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
 * 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
@@ -699,7 +700,8 @@ List all orders that have already matched.
       "hash": "fwQ6dnQWQPs4cbaujNyejinS43a", // order hash
       "parent_order_id": 0,
       "super_order_id": 0,
-      "taken_by_me": true,
+      "taken_by_me": false,
+      "is_maker": true,
       "side": "buy",
       "type": "limit",
       "rate": 13335.57,
