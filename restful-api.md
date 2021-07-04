@@ -883,7 +883,8 @@ List crypto deposit history.
          "hash": "XRPWD0000100276",
          "currency": "XRP",
          "amount": 5.75111474,
-         "address": null,
+         "from_address": "sender address",
+         "to_address": "recipient address",
          "confirmations": 1,
          "status": "complete",
          "time": 1570893867
