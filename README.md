@@ -10,3 +10,25 @@ Name | Description
 [restful-api.md](./restful-api.md) | Details on the RESTful API (/api)
 [websocket-api.md](./websocket-api.md) | Details on the Websocket API (/websocket-api)
 
+<br />
+
+# docker for sample call API 
+
+* change API_KEY and API_SECRET in .env from https://www.bitkub.com/publicapi ( Please don't forget login )
+```
+API_HOST=https://api.bitkub.com
+API_KEY=YOUR API KEY
+API_SECRET=YOUR API SECRET
+
+WS_HOST=wss://api.bitkub.com/websocket-api
+STREAM_NAME=market.trade.thb_btc
+```
+* run this command in terminal
+```
+docker build -t samples:test .
+```
+```
+docker run samples:test
+```
+* follow your result
+

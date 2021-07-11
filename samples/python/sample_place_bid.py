@@ -1,12 +1,16 @@
 import hashlib
 import hmac
 import json
+import os
 import requests
 
+from dotenv import load_dotenv
+load_dotenv('../../.env')
+
 # API info
-API_HOST = 'https://api.bitkub.com'
-API_KEY = 'YOUR API KEY'
-API_SECRET = b'YOUR API SECRET'
+API_HOST = os.environ['API_HOST']
+API_KEY = os.environ['API_KEY']
+API_SECRET = bytes(os.environ['API_SECRET'], encoding='utf-8')
 
 def json_encode(data):
 	return json.dumps(data, separators=(',', ':'), sort_keys=True)
@@ -39,6 +43,6 @@ signature = sign(data)
 data['sig'] = signature
 
 print('Payload with signature: ' + json_encode(data))
-response = requests.post(API_HOST + '/api/market/place-bid', headers=header, data=json_encode(data))
+response = requests.post(API_HOST + '/api/market/place-bid/test', headers=header, data=json_encode(data))
 
 print('Response: ' + response.text)
