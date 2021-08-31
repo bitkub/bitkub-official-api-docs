@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
 * 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * 2021-01-16 [tradingview](#get-apimarkettradingview) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
@@ -61,6 +62,7 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/order-info](#post-apimarketorder-info)
 * [POST /api/crypto/addresses](#post-apicryptoaddresses)
 * [POST /api/crypto/withdraw](#post-apicryptowithdraw)
+* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) 
 * [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
 * [POST /api/crypto/generate-address](#post-apicryptogenerate-address)
@@ -865,6 +867,35 @@ Make a withdrawal to a **trusted** address.
 }
 ```
 
+### POST /api/crypto/internal-withdraw
+
+### Description:
+Make a withdraw to an internal address. The destination address is not required to be a trusted address.
+**This API is not enabled by default**, Only KYB users can request this feature by contacting us via **support@bitkub.com**
+
+### Query:
+* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
+* `amt`		**float**		Amount you want to withdraw
+* `adr`		**string**		Address to which you want to withdraw
+* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": {
+        "txn": "BTCWD0000012345", // local transaction id
+        "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
+        "mem": "", // memo
+        "cur": "BTC", // currency
+        "amt": 0.1, // withdraw amount
+        "fee": 0.0002, // withdraw fee
+        "ts": 1569999999 // timestamp
+    }
+}
+```
+
+
 ### POST /api/crypto/deposit-history
 
 ### Description:
@@ -1184,4 +1215,7 @@ Code | Description
 49 | Bank limit exceeds
 50 | Pending withdrawal exists
 51 | Withdrawal is under maintenance
+52 | Invalid permission
+53 | Invalid internal address 
+54 | Address has been deprecated
 90 | Server error (please contact support)
