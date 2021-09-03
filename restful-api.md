@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
 * 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
 * 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
@@ -750,6 +751,8 @@ Get information regarding the specified order.
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
         "status": "filled", // order status: filled, unfilled
+        "partial_filled": false, // true when order has been partially filled, false when not filled or fully filled
+        "remaining": 0, // remaining amount to be executed
         "history": [
             {
                 "amount": 98.14848,
