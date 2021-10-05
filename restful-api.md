@@ -2,12 +2,12 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
-* 2021-10-05 Updated usage of [tradingview](#get-apimarkettradingview) endpoint
+* 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
 * 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
 * 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
-* 2021-01-16 [tradingview](#get-apimarkettradingview) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
+* 2021-01-16 [tradingview](#get-tradingviewhistory) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
 * 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
 * 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
 * 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
@@ -46,8 +46,8 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
 * [GET /api/market/books](#get-apimarketbooks)
-* [GET /api/market/tradingview](#get-apimarkettradingview)
 * [GET /api/market/depth](#get-apimarketdepth)
+* [GET /tradingview/history](#get-tradingviewhistory)
 
 ### Secure endpoints
 All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
