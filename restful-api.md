@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2020-06-26)
 
 # Releases
+* 2021-10-05 Updated usage of [tradingview](#get-apimarkettradingview) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
 * 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
 * 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
@@ -336,38 +337,56 @@ List all open orders.
 }
 ```
 
-### GET /api/market/tradingview
+### GET /tradingview/history
 #### Description:
-Get tradingview data for displaying tradingview graph.
+Get historical data for TradingView chart.
 
 #### Query:
-* `sym`		**string**		The symbol
-* `int`		**int**		Chart interval in seconds (e.g. 60, 900, 3600, 86400)
-* `frm`		**int**		Timestamp of the starting time (e.g. 1574477162)
-* `to`		**int**		Timestamp of the ending time (e.g. 1575773222)
+* `symbol`		**string**		The symbol (e.g. BTC_THB)
+* `resolution`		**string**		Chart resolution (1, 5, 15, 60, 240, 1D)
+* `from`		**int**		Timestamp of the starting time (e.g. 1633424427)
+* `to`		**int**		Timestamp of the ending time (e.g. 1633427427)
 
 #### Response:
 ```javascript
 {
-    "o": [
-      207500
-    ],
-    "c": [
-      205000
-    ],
-    "h": [
-      207500
-    ],
-    "l": [
-      205000
-    ],
-    "s": "ok",
-    "v": [
-      0.11205317
-    ],
-    "t": [
-      1530460800
-    ]
+  "c": [
+    1685000,
+    1680699.95,
+    1688998.99,
+    1692222.22
+  ],
+  "h": [
+    1685000,
+    1685000,
+    1689000,
+    1692222.22
+  ],
+  "l": [
+    1680053.22,
+    1671000,
+    1680000,
+    1684995.07
+  ],
+  "o": [
+    1682500,
+    1685000,
+    1680100,
+    1684995.07
+  ],
+  "s": "ok",
+  "t": [
+    1633424400,
+    1633425300,
+    1633426200,
+    1633427100
+  ],
+  "v": [
+    4.604352630000001,
+    8.530631670000005,
+    4.836581560000002,
+    2.8510189200000022
+  ]
 }
 ```
 
