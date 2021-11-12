@@ -1,6 +1,6 @@
 <?php
 $key = ''; //Fill in your key
-$secret_key = ''; Fill in your secret key
+$secret_key = ''; //Fill in your secret key
 $API_HOST = 'https://api.bitkub.com';
 // Step 1 : Request server time API
 $ch1 = curl_init();
