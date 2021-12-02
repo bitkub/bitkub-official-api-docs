@@ -44,7 +44,7 @@ Above subscription provides real-time data from trade and ticker streams of symb
 
 
 # Symbols
-Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#get-apimarketsymbols) for all available symbols.
+Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#get-apimarketsymbols) for all available symbols and symbol ids).
 
 
 
@@ -101,7 +101,7 @@ The demo page is available [here](https://api.bitkub.com/websocket-api?streams=)
 
 # Live Order Book
 #### Description:
-Use symbol id to get real-time data of order book: **wss://api.bitkub.com/websocket-api/[\<symbol-id\>](#symbols)**.
+Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/orderbook/[\<symbol-id\>](#symbols)**.
 
 #### Authentication:
 Authentication is required in order to access certain data. Send the **[websocket token](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#post-apimarketwstoken)** to the server via the established socket connection. The message is in **JSON** format.
@@ -121,9 +121,9 @@ Authentication is required in order to access certain data. Send the **[websocke
 }
 ```
 There are 3 event types: **bidschanged**, **askschanged**, and **tradeschanged**
-* **bidschanged** occurs when any buy order has changed (opened/closed/cancelled). Data is array of buy orders after the change (max. 20 orders).
-* **askschanged** occurs when any sell order has changed (opened/closed/cancelled). Data is array of sell orders after the change (max. 20 orders).
-* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 20 orders). You get this event as the initial data upon successful subscription.
+* **bidschanged** occurs when any buy order has changed (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
+* **askschanged** occurs when any sell order has changed (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
+* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
 
 #### Example response (bidschanged or askschanged):
 ```javascript

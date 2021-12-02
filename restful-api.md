@@ -1,7 +1,21 @@
 
-# RESTful API for Bitkub (2019-10-28)
+# RESTful API for Bitkub (2021-10-05)
 
 # Releases
+* 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
+* 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
+* 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
+* 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
+* 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
+* 2021-01-16 [tradingview](#get-tradingviewhistory) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
+* 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
+* 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
+* 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
+* 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info)
+* 2020-01-21 Depth API
+* 2020-01-14 Trading credit balance API
+* 2020-01-07 Place ask by fiat API
+* 2020-01-06 Status API
 * 2019-12-03 Limit API
 * 2019-11-26 Websocket token API
 * 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
@@ -24,6 +38,7 @@
 # Endpoint types
 ### Non-secure endpoints
 All non-secure endpoints do not need authentication and use the method GET.
+* [GET /api/status](#get-apistatus)
 * [GET /api/servertime](#get-apiservertime)
 * [GET /api/market/symbols](#get-apimarketsymbols)
 * [GET /api/market/ticker](#get-apimarketticker)
@@ -31,7 +46,8 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/bids](#get-apimarketbids)
 * [GET /api/market/asks](#get-apimarketasks)
 * [GET /api/market/books](#get-apimarketbooks)
-* [GET /api/market/trading-view](#get-apimarkettradingview)
+* [GET /api/market/depth](#get-apimarketdepth)
+* [GET /tradingview/history](#get-tradingviewhistory)
 
 ### Secure endpoints
 All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
@@ -39,33 +55,43 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/balances](#post-apimarketbalances)
 * [POST /api/market/place-bid](#post-apimarketplace-bid)
 * [POST /api/market/place-ask](#post-apimarketplace-ask)
+* [POST /api/market/place-bid/test](#post-apimarketplace-bidtest)
+* [POST /api/market/place-ask/test](#post-apimarketplace-asktest)
+* [POST /api/market/place-ask-by-fiat](#post-apimarketplace-ask-by-fiat)
 * [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * [POST /api/market/my-open-orders](#post-apimarketmy-open-orders)
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
 * [POST /api/crypto/addresses](#post-apicryptoaddresses)
 * [POST /api/crypto/withdraw](#post-apicryptowithdraw)
+* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) 
 * [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
+* [POST /api/crypto/generate-address](#post-apicryptogenerate-address)
 * [POST /api/fiat/accounts](#post-apifiataccounts)
 * [POST /api/fiat/withdraw](#post-apifiatwithdraw)
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
+* [POST /api/user/trading-credits](#post-apiusertrading-credits)
 
 # Constructing the request
-### Request header
+### GET/POST request
+* GET requests require parameters as **query string** in the URL (e.g. ?sym=THB_BTC&lmt=10). 
+* POST requests require JSON payload (application/json).
+
+### Request headers (POST)
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
 * Accept: application/json
 * Content-type: application/json
 * X-BTK-APIKEY: {YOUR API KEY}
 
-### Payload
+### Payload (POST)
 The payload is always JSON. **Always include timestamp in the payload; use `ts` as the key name for timestamp**.
 
-### Signature
-Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload.
+### Signature (POST)
+Generate the signature from the JSON payload using HMAC SHA-256. Use the API SECRET as the secret key for generating the HMAC variant of JSON payload. Signature is in **hex** format.
 
 #### Example payload:
 ```javascript
@@ -98,6 +124,30 @@ You can secure your request even further by including `nonce` in the request pay
 # API documentation
 Refer to the following for description of each endpoint
 
+### GET /api/status
+
+#### Description:
+Get endpoint status. When status is not `ok`, it is highly recommended to wait until the status changes back to `ok`.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+[
+  {
+    "name": "Non-secure endpoints",
+    "status": "ok",
+    "message": ""
+  },
+  {
+    "name": "Secure endpoints",
+    "status": "ok",
+    "message": ""
+  }
+]
+```
+
 ### GET /api/servertime
 
 #### Description:
@@ -122,17 +172,17 @@ List all available symbols.
 #### Response:
 ```javascript
 {
-  error: 0,
-  result: [
+  "error": 0,
+  "result": [
     {
-      id: 1,
-      symbol: "THB_BTC",
-      info: "Thai Baht to Bitcoin"
+      "id": 1,
+      "symbol": "THB_BTC",
+      "info": "Thai Baht to Bitcoin"
     },
     {
-      id: 2,
-      symbol: "THB_ETH",
-      info: "Thai Baht to Ethereum"
+      "id": 2,
+      "symbol": "THB_ETH",
+      "info": "Thai Baht to Ethereum"
     }
   ]
 }
@@ -149,29 +199,29 @@ Get ticker information.
 #### Response:
 ```javascript
 {
-  THB_BTC: {
-    id: 1,
-    last: "216415.00",
-    lowestAsk: "216678.00",
-    highestBid: "215000.00",
-    percentChange: "1.91",
-    baseVolume: "71.02603946",
-    quoteVolume: "15302897.99",
-    isFrozen: "0",
-    high24hr: "221396.00",
-    low24hr: "206414.00"
+  "THB_BTC": {
+    "id": 1,
+    "last": 216415.00,
+    "lowestAsk": 216678.00,
+    "highestBid": 215000.00,
+    "percentChange": 1.91,
+    "baseVolume": 71.02603946,
+    "quoteVolume": 15302897.99,
+    "isFrozen": 0,
+    "high24hr": 221396.00,
+    "low24hr": 206414.00
   },
-  THB_ETH: {
-    id: 2,
-    last: "11878.00",
-    lowestAsk: "12077.00",
-    highestBid: "11893.00",
-    percentChange: "-0.49",
-    baseVolume: "455.17839270",
-    quoteVolume: "5505664.42",
-    isFrozen: "0",
-    high24hr: "12396.00",
-    low24hr: "11645.00"
+  "THB_ETH": {
+    "id": 2,
+    "last": 11878.00,
+    "lowestAsk": 12077.00,
+    "highestBid": 11893.00,
+    "percentChange": -0.49,
+    "baseVolume": 455.17839270,
+    "quoteVolume": 5505664.42,
+    "isFrozen": 0,
+    "high24hr": 12396.00,
+    "low24hr": 11645.00
   }
 }
 ```
@@ -192,8 +242,8 @@ List recent trades.
   "result": [
     [
       1529516287, // timestamp
-      "10000.00", // rate
-      "0.09975000", // amount
+      10000.00, // rate
+      0.09975000, // amount
       "BUY" // side
     ]
   ]
@@ -217,9 +267,9 @@ List open buy orders.
     [
       1, // order id
       1529453033, // timestamp
-      "997.50", // volume
-      "10000.00", // rate
-      "0.09975000" // amount
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
     ]
   ]
 }
@@ -243,9 +293,9 @@ List open sell orders.
     [
       680, // order id
       1529491094, // timestamp
-      "997.50", // volume
-      "10000.00", // rate
-      "0.09975000" // amount
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
     ]
   ]
 }
@@ -269,57 +319,131 @@ List all open orders.
       [
         1, // order id
         1529453033, // timestamp
-        "997.50", // volume
-        "10000.00", // rate
-        "0.09975000" // amount
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
       ]
     ],
     "asks": [
       [
         680, // order id
         1529491094, // timestamp
-        "997.50", // volume
-        "10000.00", // rate
-        "0.09975000" // amount
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
       ]
     ]
   }
 }
 ```
 
-### GET /api/market/tradingview
+### GET /tradingview/history
 #### Description:
-Get tradingview data for displaying tradingview graph.
+Get historical data for TradingView chart.
 
 #### Query:
-* `sym`		**string**		The symbol
-* `int`		**int**		Chart interval in seconds (e.g. 60, 900, 3600, 86400)
-* `frm`		**int**		Timestamp of the starting time (e.g. 1574477162)
-* `to`		**int**		Timestamp of the ending time (e.g. 1575773222)
+* `symbol`		**string**		The symbol (e.g. BTC_THB)
+* `resolution`		**string**		Chart resolution (1, 5, 15, 60, 240, 1D)
+* `from`		**int**		Timestamp of the starting time (e.g. 1633424427)
+* `to`		**int**		Timestamp of the ending time (e.g. 1633427427)
 
 #### Response:
 ```javascript
 {
-  "error": 0,
-  "result": [
-    o: [
-      207500
+  "c": [
+    1685000,
+    1680699.95,
+    1688998.99,
+    1692222.22
+  ],
+  "h": [
+    1685000,
+    1685000,
+    1689000,
+    1692222.22
+  ],
+  "l": [
+    1680053.22,
+    1671000,
+    1680000,
+    1684995.07
+  ],
+  "o": [
+    1682500,
+    1685000,
+    1680100,
+    1684995.07
+  ],
+  "s": "ok",
+  "t": [
+    1633424400,
+    1633425300,
+    1633426200,
+    1633427100
+  ],
+  "v": [
+    4.604352630000001,
+    8.530631670000005,
+    4.836581560000002,
+    2.8510189200000022
+  ]
+}
+```
+
+### GET /api/market/depth
+
+#### Description:
+Get depth information.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** Depth size
+
+#### Response:
+```javascript
+{
+  "asks": [
+    [
+      262600,
+      0.61905798
     ],
-    c: [
-      205000
+    [
+      263000,
+      0.00210796
     ],
-    h: [
-      207500
+    [
+      263200,
+      0.89555545
     ],
-    l: [
-      205000
+    [
+      263422.5,
+      0.03796183
     ],
-    s: "ok",
-    v: [
-      0.11205317
+    [
+      263499,
+      0.4123439
+    ]
+  ],
+  "bids": [
+    [
+      262510,
+      0.38038703
     ],
-    t: [
-      1530460800
+    [
+      262100.01,
+      1.22519999
+    ],
+    [
+      262100,
+      0.00381533
+    ],
+    [
+      262024.88,
+      0.00352718
+    ],
+    [
+      262001,
+      0.09999961
     ]
   ]
 }
@@ -383,15 +507,49 @@ Create a buy order.
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
-* `typ`		**string**		Order type: limit or market
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
+* `
+
+
+`		**string**		your id for reference ( no required )
 
 #### Response:
 ```javascript
 {
-  "error":0,
-  "result":
-  {
+  "error": 0,
+  "result": {
     "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
+    "typ": "limit", // order type
+    "amt": 1000, // spending amount
+    "rat": 15000, // rate
+    "fee": 2.5, // fee
+    "cre": 2.5, // fee credit used
+    "rec": 0.06666666, // amount to receive
+    "ts": 1533834547 // timestamp
+  }
+}
+```
+
+### POST /api/market/place-bid/test
+
+#### Description:
+Test creating a buy order (no balance is deducted).
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your id for reference ( no required )
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 0, // order id
+    "hash": "test", // test hash
     "typ": "limit", // order type
     "amt": 1000, // spending amount
     "rat": 15000, // rate
@@ -412,6 +570,67 @@ Create a sell order.
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
+* `client_id`		**string**		your id for reference ( no required )
+
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
+    "typ": "limit", // order type
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+  }
+}
+```
+
+### POST /api/market/place-ask/test
+
+#### Description:
+Test creating a sell order (no balance is deducted).
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+* `client_id`		**string**		your id for reference ( no required )
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 0, // order id
+    "hash": "test", // test hash
+    "typ": "limit", // order type
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+  }
+}
+```
+
+### POST /api/market/place-ask-by-fiat
+
+#### Description:
+Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Fiat amount you want to receive with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
 
 #### Response:
@@ -420,13 +639,14 @@ Create a sell order.
   "error": 0,
   "result": {
     "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
     "typ": "limit", // order type
-    "amt": 1.00000000, // selling amount
-    "rat": 15000, // rate
-    "fee": 37.5, // fee
-    "cre": 37.5, // fee credit used
-    "rec": 15000, // amount to receive
-    "ts": 1533834844 // timestamp
+    "amt": 0.0000422, // selling amount resulted from calculation
+    "rat": 236999, // rate
+    "fee": 0.03, // fee
+    "cre": 0.03, // fee credit used
+    "rec": 10, // fiat amount to receive
+    "ts": 1578390814 // timestamp
   }
 }
 ```
@@ -440,6 +660,7 @@ Cancel an open order.
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id you wish to cancel
 * `sd`		**string**		Order side: buy or sell
+* `hash`	**string**		Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
@@ -463,6 +684,7 @@ List all open orders of the given symbol.
   "result": [
     {
       "id": 2, // order id
+      "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
       "side": "SELL", // order side
       "type": "limit", // order type
       "rate": 15000, // rate
@@ -487,6 +709,8 @@ List all orders that have already matched.
 * `sym` **string** The symbol
 * `p` **int** Page (optional)
 * `lmt` **int** Limit (optional)
+* `start` **int** Start timestamp (optional)
+* `end` **int** End timestamp (optional)
 
 ### Response:
 ```javascript
@@ -496,9 +720,11 @@ List all orders that have already matched.
     {
       "txn_id": "ETHBUY0000000197",
       "order_id": 240,
+      "hash": "fwQ6dnQWQPs4cbaujNyejinS43a", // order hash
       "parent_order_id": 0,
       "super_order_id": 0,
-      "taken_by_me": true,
+      "taken_by_me": false,
+      "is_maker": true,
       "side": "buy",
       "type": "limit",
       "rate": 13335.57,
@@ -526,6 +752,7 @@ Get information regarding the specified order.
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id
 * `sd`		**string**		Order side: buy or sell
+* `hash`	**string**		Lookup an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
@@ -542,7 +769,9 @@ Get information regarding the specified order.
         "credit": 10, // order fee credit used
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
-        "status": "filled", // order status: filled, unfilled, or cancelled
+        "status": "filled", // order status: filled, unfilled
+        "partial_filled": false, // true when order has been partially filled, false when not filled or fully filled
+        "remaining": 0, // remaining amount to be executed
         "history": [
             {
                 "amount": 98.14848,
@@ -618,17 +847,17 @@ List all crypto addresses.
 ```javascript
 {
    "error":0,
-   "result":[
+   "result": [
       {
-         "currency":"BTC",
-         "address":"3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
-         "tag":0,
-         "time":1570893867
+         "currency": "BTC",
+         "address": "3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
+         "tag": 0,
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -660,6 +889,35 @@ Make a withdrawal to a **trusted** address.
 }
 ```
 
+### POST /api/crypto/internal-withdraw
+
+### Description:
+Make a withdraw to an internal address. The destination address is not required to be a trusted address.
+**This API is not enabled by default**, Only KYB users can request this feature by contacting us via **support@bitkub.com**
+
+### Query:
+* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
+* `amt`		**float**		Amount you want to withdraw
+* `adr`		**string**		Address to which you want to withdraw
+* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": {
+        "txn": "BTCWD0000012345", // local transaction id
+        "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
+        "mem": "", // memo
+        "cur": "BTC", // currency
+        "amt": 0.1, // withdraw amount
+        "fee": 0.0002, // withdraw fee
+        "ts": 1569999999 // timestamp
+    }
+}
+```
+
+
 ### POST /api/crypto/deposit-history
 
 ### Description:
@@ -672,21 +930,22 @@ List crypto deposit history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "hash":"XRPWD0000100276",
-         "currency":"XRP",
-         "amount":5.75111474,
-         "address":null,
-         "confirmations":1,
-         "status":"complete",
-         "time":1570893867
+         "hash": "XRPWD0000100276",
+         "currency": "XRP",
+         "amount": 5.75111474,
+         "from_address": "sender address",
+         "to_address": "recipient address",
+         "confirmations": 1,
+         "status": "complete",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -703,22 +962,45 @@ List crypto withdrawal history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "hash":"send_internal",
-         "currency":"XRP",
-         "amount":"5.75111474",
-         "fee":0.01,
-         "address":"rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
-         "status":"complete",
-         "time":1570893493
+         "txn_id": "XRPWD0000100276",
+         "hash": "send_internal",
+         "currency": "XRP",
+         "amount": "5.75111474",
+         "fee": 0.01,
+         "address": "rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
+         "status": "complete",
+         "time": 1570893493
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
+}
+```
+
+### POST /api/crypto/generate-address
+
+### Description:
+Generate a new crypto address (will replace existing address; previous address can still be used to received funds)
+
+### Query (URL):
+* `sym` **string** Symbol (e.g. THB_BTC, THB_ETH, etc.)
+
+### Response:
+```javascript
+{
+   "error": 0,
+   "result": [
+      {
+         "currency": "ETH",
+         "address": "0x520165471daa570ab632dd504c6af257bd36edfb",
+         "memo": ""
+      }
+   ]
 }
 ```
 
@@ -734,18 +1016,18 @@ List all approved bank accounts.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "id":"7262109099",
-         "bank":"Kasikorn Bank",
-         "name":"Somsak",
-         "time":1570893867
+         "id": "7262109099",
+         "bank": "Kasikorn Bank",
+         "name": "Somsak",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -787,19 +1069,19 @@ List fiat deposit history.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":[
+   "error": 0,
+   "result": [
       {
-         "txn_id":"THBDP0000012345",
-         "currency":"THB",
-         "amount":5000.55,
-         "status":"complete",
-         "time":1570893867
+         "txn_id": "THBDP0000012345",
+         "currency": "THB",
+         "amount": 5000.55,
+         "status": "complete",
+         "time": 1570893867
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -817,19 +1099,19 @@ List fiat withdrawal history.
 ```javascript
 {
    "error":0,
-   "result":[
+   "result": [
       {
-         "txn_id":"THBWD0000012345",
-         "currency":"THB",
-         "amount":"21",
-         "fee":20,
-         "status":"complete",
-         "time":1570893493
+         "txn_id": "THBWD0000012345",
+         "currency": "THB",
+         "amount": "21",
+         "fee": 20,
+         "status": "complete",
+         "time": 1570893493
       }
    ],
-   "pagination":{
-      "page":1,
-      "last":1
+   "pagination": {
+      "page": 1,
+      "last": 1
    }
 }
 ```
@@ -845,8 +1127,8 @@ Get the token for websocket authentication.
 ### Response:
 ```javascript
 {
-   "error":0,
-   "result":"BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
+   "error": 0,
+   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
 }
 ```
 
@@ -860,34 +1142,54 @@ Check deposit/withdraw limitations and usage.
 
 ### Response:
 ```javascript
-{ 
-   "limits":{ // limitations by kyc level
-      "crypto":{ 
-         "deposit":0.88971929, // BTC value equivalent
-         "withdraw":0.88971929 // BTC value equivalent
-      },
-      "fiat":{ 
-         "deposit":200000, // THB value equivalent
-         "withdraw":200000 // THB value equivalent
-      }
-   },
-   "usage":{ // today's usage
-      "crypto":{ 
-         "deposit":0, // BTC value equivalent
-         "withdraw":0, // BTC value equivalent
-         "deposit_percentage":0,
-         "withdraw_percentage":0,
-         "deposit_thb_equivalent":0, // THB value equivalent
-         "withdraw_thb_equivalent":0 // THB value equivalent
-      },
-      "fiat":{ 
-         "deposit":0, // THB value equivalent
-         "withdraw":0, // THB value equivalent
-         "deposit_percentage":0,
-         "withdraw_percentage":0
-      }
-   },
-   "rate":224790 // current THB rate used to calculate
+{
+   "error": 0,
+   "result": { 
+       "limits": { // limitations by kyc level
+          "crypto": { 
+             "deposit": 0.88971929, // BTC value equivalent
+             "withdraw": 0.88971929 // BTC value equivalent
+          },
+          "fiat": { 
+             "deposit": 200000, // THB value equivalent
+             "withdraw": 200000 // THB value equivalent
+          }
+       },
+       "usage": { // today's usage
+          "crypto": { 
+             "deposit": 0, // BTC value equivalent
+             "withdraw": 0, // BTC value equivalent
+             "deposit_percentage": 0,
+             "withdraw_percentage": 0,
+             "deposit_thb_equivalent": 0, // THB value equivalent
+             "withdraw_thb_equivalent": 0 // THB value equivalent
+          },
+          "fiat": { 
+             "deposit": 0, // THB value equivalent
+             "withdraw": 0, // THB value equivalent
+             "deposit_percentage": 0,
+             "withdraw_percentage": 0
+          }
+       },
+       "rate": 224790 // current THB rate used to calculate
+    }
+}
+```
+
+
+### POST /api/user/trading-credits
+
+### Description:
+Check trading credit balance.
+
+### Query (URL):
+-
+
+### Response:
+```javascript
+{
+   "error": 0,
+   "result": 1000
 }
 ```
 
@@ -920,7 +1222,8 @@ Code | Description
 21 | Invalid order for cancellation
 22 | Invalid side
 23 | Failed to update order status
-24 | Invalid order for lookup (or cancelled)
+24 | Invalid order for lookup
+25 | KYC level 1 is required to proceed
 30 | Limit exceeds
 40 | Pending withdrawal exists
 41 | Invalid currency for withdrawal
@@ -933,3 +1236,8 @@ Code | Description
 48 | Invalid bank account
 49 | Bank limit exceeds
 50 | Pending withdrawal exists
+51 | Withdrawal is under maintenance
+52 | Invalid permission
+53 | Invalid internal address 
+54 | Address has been deprecated
+90 | Server error (please contact support)
