@@ -508,10 +508,7 @@ Create a buy order.
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
-* `
-
-
-`		**string**		your id for reference ( no required )
+* `client_id` **string**		your id for reference ( not required )
 
 #### Response:
 ```javascript
@@ -541,7 +538,7 @@ Test creating a buy order (no balance is deducted).
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
-* `client_id`		**string**		your id for reference ( no required )
+* `client_id`		**string**		your id for reference ( not required )
 
 #### Response:
 ```javascript
@@ -571,7 +568,7 @@ Create a sell order.
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
-* `client_id`		**string**		your id for reference ( no required )
+* `client_id`		**string**		your id for reference ( not required )
 
 
 #### Response:
@@ -602,7 +599,7 @@ Test creating a sell order (no balance is deducted).
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `typ`		**string**		Order type: limit or market
-* `client_id`		**string**		your id for reference ( no required )
+* `client_id`		**string**		your id for reference ( not required )
 
 #### Response:
 ```javascript
