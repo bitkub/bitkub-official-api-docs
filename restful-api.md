@@ -1237,4 +1237,5 @@ Code | Description
 52 | Invalid permission
 53 | Invalid internal address 
 54 | Address has been deprecated
+55 | Cancel only mode
 90 | Server error (please contact support)
