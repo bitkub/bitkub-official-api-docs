@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2021-10-05)
+# RESTful API for Bitkub (2022-06-02)
 
 # Releases
+* 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
 * 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
@@ -31,6 +32,7 @@
 * [Constructing the request](#constructing-the-request)
 * [API documentation](#api-documentation)
 * [Error codes](#error-codes)
+* [Rate limits](#rate-limits)
 
 # Base URL
 * The base URL is: https://api.bitkub.com
@@ -724,10 +726,10 @@ List all orders that have already matched.
       "is_maker": true,
       "side": "buy",
       "type": "limit",
-      "rate": 13335.57,
-      "fee": 0.34,
-      "credit": 0.34,
-      "amount": 0.00999987,
+      "rate": "13335.57",
+      "fee": "0.34",
+      "credit": "0.34",
+      "amount": "0.00999987",
       "ts": 1531513395
     }
   ],
@@ -1239,3 +1241,30 @@ Code | Description
 54 | Address has been deprecated
 55 | Cancel only mode
 90 | Server error (please contact support)
+
+# Rate limits
+If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests.
+
+|Endpoint   | Rate Limit   |
+| ------------ | ------------ |
+| /api/market/ticker  | 100 req/sec  |
+| /api/market/depth | 10 req/sec  |
+| /api/market/symbols |  100 req/sec |
+| /api/market/trades |  100 req/sec |
+| /api/market/bids  |  100 req/sec |
+| /api/market/asks  |  100 req/sec |
+| /api/market/books  |  100 req/sec |
+| /api/market/order-info  |  100 req/sec |
+| /api/market/place-bid  | 45 req/sec  |
+| /api/market/place-ask |  45 req/sec |
+| /api/market/place-ask-by-fiat   | 45 req/sec  |
+| /api/market/cancel  |  45 req/sec |
+| /api/market/balances |  150 req/sec |
+| /api/market/wallet | 150 req/sec  |
+| /api/crypto/deposit-history |  20 req/sec |
+| /api/servertime  | 2000 req/10sec  |
+| /api/status | 100 req/sec  |
+| /api/crypto/* | 250 req/10sec  |
+| /api/fiat/* | 20 req/sec  |
+| /api/user/*   |  20 req/sec |
+| /tradingview/* | 100 req/sec  |
