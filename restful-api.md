@@ -1262,9 +1262,9 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/balances |  150 req/sec |
 | /api/market/wallet | 150 req/sec  |
 | /api/crypto/deposit-history |  20 req/sec |
-| /api/servertime  | 2,000 req/10sec  |
+| /api/servertime  | 2,000 req/10secs  |
 | /api/status | 100 req/sec  |
-| /api/crypto/* | 250 req/10sec  |
+| /api/crypto/* | 250 req/10secs  |
 | /api/fiat/* | 20 req/sec  |
 | /api/user/*   |  20 req/sec |
 | /tradingview/* | 100 req/sec  |
