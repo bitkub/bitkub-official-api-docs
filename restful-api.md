@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2022-06-02)
 
 # Releases
+* 2022-15-03 add trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [place-ask-by-fiat-v2](#post-apimarketV2place-ask-by-fiat), [cancel-order-v2](#post-apimarketV2cancel-order), [my-open-orders-v2](#post-apimarketV2my-open-orders). These apis's performance are improved, though they are considered as beta.
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
@@ -77,6 +78,11 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
+* [POST /api/market/v2/place-bid](#post-apimarketV2place-bid)
+* [POST /api/market/v2/place-ask](#post-apimarketV2place-ask)
+* [POST /api/market/v2/place-ask-by-fiat](#post-apimarketV2place-ask-by-fiat)
+* [POST /api/market/v2/cancel-order](#post-apimarketV2cancel-order)
+* [POST /api/market/v2/my-open-orders](#post-apimarketV2my-open-orders)
 
 # Constructing the request
 ### GET/POST request
@@ -1189,6 +1195,147 @@ Check trading credit balance.
 {
    "error": 0,
    "result": 1000
+}
+```
+
+### POST /api/market/v2/place-bid
+
+#### Description:
+[Beta] Create a buy order.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
+* `client_id` **string**		your id for reference ( not required )
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
+    "typ": "limit", // order type
+    "amt": 1000, // spending amount
+    "rat": 15000, // rate
+    "fee": 2.5, // fee
+    "cre": 2.5, // fee credit used
+    "rec": 0.06666666, // amount to receive
+    "ts": 1533834547 // timestamp
+    "ci": "input_client_id" // input id for reference
+  }
+}
+```
+
+### POST /api/market/v2/place-ask
+
+#### Description:
+[Beta] Create a sell order.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market (for market order, please specify rat as 0)
+* `client_id`		**string**		your id for reference ( not required )
+
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
+    "typ": "limit", // order type
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+    "ci": "input_client_id" // input id for reference
+  }
+}
+```
+
+### POST /api/market/v2/place-ask-by-fiat
+
+#### Description:
+[Beta] Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
+
+#### Query:
+* `sym`		**string**		The symbol
+* `amt`		**float**		Fiat amount you want to receive with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`		**string**		Order type: limit or market
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
+    "typ": "limit", // order type
+    "amt": 0.0000422, // selling amount resulted from calculation
+    "rat": 236999, // rate
+    "fee": 0.03, // fee
+    "cre": 0.03, // fee credit used
+    "rec": 10, // fiat amount to receive
+    "ts": 1578390814 // timestamp
+  }
+}
+```
+
+### POST /api/market/v2/cancel-order
+
+### Description:
+[Beta] Cancel an open order.
+
+### Query:
+* `sym`		**string**		The symbol
+* `id`		**int**		Order id you wish to cancel
+* `sd`		**string**		Order side: buy or sell
+* `hash`	**string**		Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
+
+### Response:
+```javascript
+{
+  "error": 0
+}
+```
+
+### POST /api/market/v2/my-open-orders
+
+### Description:
+[Beta] List all open orders of the given symbol.
+
+### Query:
+* `sym`		**string**		The symbol
+
+### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    {
+      "id": 2, // order id
+      "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
+      "side": "SELL", // order side
+      "type": "limit", // order type
+      "rate": 15000, // rate
+      "fee": 35.01, // fee
+      "credit": 35.01, // credit used
+      "amount": 0.93333334, // amount
+      "receive": 14000, // amount to receive
+      "parent_id": 1, // parent order id
+      "super_id": 1, // super parent order id
+      "ts": 1533834844 // timestamp
+    }
+  ]
 }
 ```
 
