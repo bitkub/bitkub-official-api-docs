@@ -2,7 +2,8 @@
 # RESTful API for Bitkub (2022-06-02)
 
 # Releases
-* 2022-15-03 add trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [place-ask-by-fiat-v2](#post-apimarketV2place-ask-by-fiat), [cancel-order-v2](#post-apimarketV2cancel-order), [my-open-orders-v2](#post-apimarketV2my-open-orders). These apis's performance are improved, though they are considered as beta.
+* 2022-06-06 add trading apis prefix ```api/market/v2``` namely [get-symbols-V2](#get-apimarketV2symbols), [get-ticker-V2](#get-apimarketV2ticker), [get-trades-V2](#get-apimarketV2trades), [get-bids-V2](#get-apimarketV2bids), [get-asks-V2](#get-apimarketV2asks), [get-books-V2](#get-apimarketV2books). These apis's performance are improved, though they are considered as ```beta```.
+* 2022-15-03 add trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [place-ask-by-fiat-v2](#post-apimarketV2place-ask-by-fiat), [cancel-order-v2](#post-apimarketV2cancel-order), [my-open-orders-v2](#post-apimarketV2my-open-orders). These apis's performance are improved, though they are considered as ```beta```.
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
@@ -51,6 +52,12 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /api/market/books](#get-apimarketbooks)
 * [GET /api/market/depth](#get-apimarketdepth)
 * [GET /tradingview/history](#get-tradingviewhistory)
+* [GET /api/market/v2/symbols](#get-apimarketV2symbols)
+* [GET /api/market/v2/ticker](#get-apimarketV2ticker)
+* [GET /api/market/v2/trades](#get-apimarketV2trades)
+* [GET /api/market/v2/bids](#get-apimarketV2bids)
+* [GET /api/market/v2/asks](#get-apimarketV2asks)
+* [GET /api/market/v2/books](#get-apimarketV2books)
 
 ### Secure endpoints
 All secure endpoints require [authentication](#constructing-the-request) and use the method POST.
@@ -456,6 +463,186 @@ Get depth information.
   ]
 }
 ```
+
+
+
+
+### GET /api/market/v2/symbols
+
+#### Description:
+[```Beta```] List all available symbols.
+
+#### Query:
+-
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    {
+      "id": 1,
+      "symbol": "THB_BTC",
+      "info": "Thai Baht to Bitcoin"
+    },
+    {
+      "id": 2,
+      "symbol": "THB_ETH",
+      "info": "Thai Baht to Ethereum"
+    }
+  ]
+}
+```
+
+### GET /api/market/v2/ticker
+
+#### Description:
+[```Beta```] Get ticker information.
+
+#### Query:
+* `sym` **string** The symbol (optional)
+
+#### Response:
+```javascript
+{
+  "THB_BTC": {
+    "id": 1,
+    "last": 216415.00,
+    "lowestAsk": 216678.00,
+    "highestBid": 215000.00,
+    "percentChange": 1.91,
+    "baseVolume": 71.02603946,
+    "quoteVolume": 15302897.99,
+    "isFrozen": 0,
+    "high24hr": 221396.00,
+    "low24hr": 206414.00
+  },
+  "THB_ETH": {
+    "id": 2,
+    "last": 11878.00,
+    "lowestAsk": 12077.00,
+    "highestBid": 11893.00,
+    "percentChange": -0.49,
+    "baseVolume": 455.17839270,
+    "quoteVolume": 5505664.42,
+    "isFrozen": 0,
+    "high24hr": 12396.00,
+    "low24hr": 11645.00
+  }
+}
+```
+
+### GET /api/market/v2/trades
+
+#### Description:
+[```Beta```] List recent trades.
+
+#### Query:
+* `sym`		**string** The symbol
+* `lmt`		**int** No. of limit to query recent trades
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      1529516287, // timestamp
+      10000.00, // rate
+      0.09975000, // amount
+      "BUY" // side
+    ]
+  ]
+}
+```
+
+### GET /api/market/v2/bids
+
+#### Description:
+[```Beta```] List open buy orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open buy orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      1, // order id
+      1529453033, // timestamp
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
+    ]
+  ]
+}
+
+```
+
+### GET /api/market/v2/asks
+
+#### Description:
+[```Beta```] List open sell orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open sell orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      680, // order id
+      1529491094, // timestamp
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
+    ]
+  ]
+}
+```
+
+### GET /api/market/v2/books
+
+#### Description:
+[```Beta```] List all open orders.
+
+#### Query:
+* `sym` **string** The symbol
+* `lmt` **int** No. of limit to query open orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "bids": [
+      [
+        1, // order id
+        1529453033, // timestamp
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
+      ]
+    ],
+    "asks": [
+      [
+        680, // order id
+        1529491094, // timestamp
+        997.50, // volume
+        10000.00, // rate
+        0.09975000 // amount
+      ]
+    ]
+  }
+}
+```
+
 
 ### POST /api/market/wallet
 
@@ -1201,7 +1388,7 @@ Check trading credit balance.
 ### POST /api/market/v2/place-bid
 
 #### Description:
-[Beta] Create a buy order.
+[```Beta```] Create a buy order.
 
 #### Query:
 * `sym`		**string**		The symbol
@@ -1232,7 +1419,7 @@ Check trading credit balance.
 ### POST /api/market/v2/place-ask
 
 #### Description:
-[Beta] Create a sell order.
+[```Beta```] Create a sell order.
 
 #### Query:
 * `sym`		**string**		The symbol
@@ -1264,7 +1451,7 @@ Check trading credit balance.
 ### POST /api/market/v2/place-ask-by-fiat
 
 #### Description:
-[Beta] Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
+[```Beta```] Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
 
 #### Query:
 * `sym`		**string**		The symbol
@@ -1293,7 +1480,7 @@ Check trading credit balance.
 ### POST /api/market/v2/cancel-order
 
 ### Description:
-[Beta] Cancel an open order.
+[```Beta```] Cancel an open order.
 
 ### Query:
 * `sym`		**string**		The symbol
@@ -1311,7 +1498,7 @@ Check trading credit balance.
 ### POST /api/market/v2/my-open-orders
 
 ### Description:
-[Beta] List all open orders of the given symbol.
+[```Beta```] List all open orders of the given symbol.
 
 ### Query:
 * `sym`		**string**		The symbol
