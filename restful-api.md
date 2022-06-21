@@ -1,6 +1,7 @@
 
 # RESTful API for Bitkub (2022-06-02)
 # Releases
+* 2022-06-21 Add field ```net``` for the api [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
