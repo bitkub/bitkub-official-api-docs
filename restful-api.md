@@ -1,7 +1,8 @@
 
 # RESTful API for Bitkub (2022-06-02)
+
 # Releases
-* 2022-06-21 Add field ```net``` for the api [POST /api/crypto/withdraw](#post-apicryptowithdraw)
+* 2022-06-21 Added field ```net``` for the api [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
@@ -1205,7 +1206,7 @@ For the  use of `cur`(currency) for any APIs request. Please be cautious of thes
 Name|Currency
 ---|---
 Terra Classic|`LUNA`
-Terra 2.0|`LINA2`
+Terra 2.0|`LUNA2`
 
 # Error codes
 Refer to the following descriptions:
