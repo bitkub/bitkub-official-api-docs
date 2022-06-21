@@ -1,6 +1,5 @@
 
 # RESTful API for Bitkub (2022-06-02)
-
 # Releases
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
@@ -867,10 +866,17 @@ List all crypto addresses.
 Make a withdrawal to a **trusted** address.
 
 ### Query:
-* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
+* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH).
 * `amt`		**float**		Amount you want to withdraw
 * `adr`		**string**		Address to which you want to withdraw
-* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
+* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw\
+
+### Only for `USDT`
+* `net` **string** (Optional) Cryptocurrency network to withdraw.\
+The default value of this field is `ETH` which refers to `ERC-20`.\
+For request on `ERC-20`, please assigned the ‘net’ value as `ETH`.\
+For request on `BEP-20`, please assigned the ‘net’ value as `BSC`.
+
 
 ### Response:
 ```javascript
@@ -1191,6 +1197,14 @@ Check trading credit balance.
    "result": 1000
 }
 ```
+
+# Additional
+For the  use of `cur`(currency) for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
+
+Name|Currency
+---|---
+Terra Classic|`LUNA`
+Terra 2.0|`LINA2`
 
 # Error codes
 Refer to the following descriptions:
