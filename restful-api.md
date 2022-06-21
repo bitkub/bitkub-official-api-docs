@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2022-06-02)
+# RESTful API for Bitkub (2022-06-21)
 
 # Releases
 * 2022-06-21 Added field ```net``` for the api [POST /api/crypto/withdraw](#post-apicryptowithdraw)
@@ -868,16 +868,16 @@ List all crypto addresses.
 Make a withdrawal to a **trusted** address.
 
 ### Query:
-* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH).
+* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
 * `amt`		**float**		Amount you want to withdraw
 * `adr`		**string**		Address to which you want to withdraw
-* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw\
+* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
 
 ### Only for `USDT`
-* `net` **string** (Optional) Cryptocurrency network to withdraw.\
-The default value of this field is `ETH` which refers to `ERC-20`.\
-For request on `ERC-20`, please assigned the ‘net’ value as `ETH`.\
-For request on `BEP-20`, please assigned the ‘net’ value as `BSC`.
+* `net` **string** (Optional) Cryptocurrency network to withdraw\
+The default value of this field is `ETH` which refers to `ERC-20`\
+For request on `ERC-20`, please assign the ‘net’ value as `ETH`\
+For request on `BEP-20`, please assign the ‘net’ value as `BSC`
 
 
 ### Response:
