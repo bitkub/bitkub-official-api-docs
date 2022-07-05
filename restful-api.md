@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2022-06-21)
+# RESTful API for Bitkub (2022-07-05)
 
 # Releases
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
@@ -1275,7 +1275,7 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/place-bid  | 50 req/sec  |
 | /api/market/place-ask |  50 req/sec |
 | /api/market/place-ask-by-fiat   | 45 req/sec  |
-| /api/market/cancel-order  |  1000 req/10sec |
+| /api/market/cancel-order  |  1,000 req/10sec |
 | /api/market/balances |  150 req/sec |
 | /api/market/wallet | 150 req/sec  |
 | /api/crypto/deposit-history |  20 req/sec |
