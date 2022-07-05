@@ -2,7 +2,8 @@
 # RESTful API for Bitkub (2022-06-21)
 
 # Releases
-* 2022-06-21 Added field ```net``` for the api [POST /api/crypto/withdraw](#post-apicryptowithdraw)
+* 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
+* 2022-06-21 Added field ```net``` for the APIs [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
 * 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
 * 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
@@ -1258,23 +1259,23 @@ Code | Description
 55 | Cancel only mode
 90 | Server error (please contact support)
 
-# Rate limits
+# Rate limits 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests.
 
 |Endpoint   | Rate Limit   |
 | ------------ | ------------ |
 | /api/market/ticker  | 100 req/sec  |
-| /api/market/depth | 10 req/sec  |
+| /api/market/depth | 150 req/sec  |
 | /api/market/symbols |  100 req/sec |
 | /api/market/trades |  100 req/sec |
 | /api/market/bids  |  100 req/sec |
 | /api/market/asks  |  100 req/sec |
 | /api/market/books  |  100 req/sec |
 | /api/market/order-info  |  100 req/sec |
-| /api/market/place-bid  | 45 req/sec  |
-| /api/market/place-ask |  45 req/sec |
+| /api/market/place-bid  | 50 req/sec  |
+| /api/market/place-ask |  50 req/sec |
 | /api/market/place-ask-by-fiat   | 45 req/sec  |
-| /api/market/cancel  |  45 req/sec |
+| /api/market/cancel-order  |  1000 req/10sec |
 | /api/market/balances |  150 req/sec |
 | /api/market/wallet | 150 req/sec  |
 | /api/crypto/deposit-history |  20 req/sec |
