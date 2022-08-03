@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2022-07-05)
+# RESTful API for Bitkub (2022-08-04)
 
 # Releases
+* 2022-08-04 Added new error code. For suspended purchasing and selling.
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * 2022-06-21 Added field ```net``` for the APIs [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
@@ -1257,6 +1258,8 @@ Code | Description
 53 | Invalid internal address 
 54 | Address has been deprecated
 55 | Cancel only mode
+56 | User has been suspended from purchasing
+57 | User has been suspended from selling
 90 | Server error (please contact support)
 
 # Rate limits 
