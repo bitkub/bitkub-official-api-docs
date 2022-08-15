@@ -878,9 +878,9 @@ Make a withdrawal to a **trusted** address.
 No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
 
 For example `ETH` refers to `ERC-20`.\
-For request on `ERC-20`, please assign the ‘net’ value as `ETH`.\
-For request on `BEP-20`, please assign the ‘net’ value as `BSC`.\
-For request on `KAP-20`, please assign the ‘net’ value as `BKC`.
+For request on `ERC-20`, please assign the `net` value as `ETH`.\
+For request on `BEP-20`, please assign the `net` value as `BSC`.\
+For request on `KAP-20`, please assign the `net` value as `BKC`.
 
 
 ### Response:
