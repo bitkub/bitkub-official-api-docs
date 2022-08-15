@@ -1261,7 +1261,6 @@ Code | Description
 53 | Invalid internal address 
 54 | Address has been deprecated
 55 | Cancel only mode
-56 | Invalid networks for the currency
 90 | Server error (please contact support)
 
 # Rate limits 
