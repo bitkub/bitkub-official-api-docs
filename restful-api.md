@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2022-07-05)
 
 # Releases
+* 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * 2022-06-21 Added field ```net``` for the APIs [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
@@ -868,17 +869,18 @@ List all crypto addresses.
 ### Description:
 Make a withdrawal to a **trusted** address.
 
-### Query:
+### Body:
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
 * `amt`		**float**		Amount you want to withdraw
 * `adr`		**string**		Address to which you want to withdraw
 * `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
+* `net` **string** Cryptocurrency network to withdraw\
+No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
 
-### Only for `USDT`
-* `net` **string** (Optional) Cryptocurrency network to withdraw\
-The default value of this field is `ETH` which refers to `ERC-20`\
-For request on `ERC-20`, please assign the ‘net’ value as `ETH`\
-For request on `BEP-20`, please assign the ‘net’ value as `BSC`
+For example `ETH` refers to `ERC-20`.\
+For request on `ERC-20`, please assign the `net` value as `ETH`.\
+For request on `BEP-20`, please assign the `net` value as `BSC`.\
+For request on `KAP-20`, please assign the `net` value as `BKC`.
 
 
 ### Response:
