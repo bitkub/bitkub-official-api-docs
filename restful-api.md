@@ -2,8 +2,7 @@
 # RESTful API for Bitkub (2022-07-05)
 
 # Releases
-* 2022-08-02 Changed the input `net` (network) to mandatory
-* 2022-08-02 Return error 56 if the input network doesn't match any available network of the currency
+* 2022-08-15 Changed the input `net` (network) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
 * 2022-06-21 Added field ```net``` for the APIs [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2022-06-02 Added rate limits table
@@ -878,94 +877,12 @@ Make a withdrawal to a **trusted** address.
 
 ### Now changed to mandatory
 * `net` **string** Cryptocurrency network to withdraw\
-No default value of this field. Please find the available network in the  table as follows.
-
-**List of networks of the currency**
-currency | networks
---- | ---
-CVC  | ETH 
-ETH  | ETH 
-KUB  | BKC <br/><hr/> ETH 
-COMP  | ETH 
-CRV  | ETH 
-AXS  | ETH 
-SAND  | ETH 
-XRP  | XRP 
-LINK  | ETH 
-KNC  | ETH 
-XLM  | XLM 
-SIX  | XLM 
-ALPHA  | ETH 
-BAL  | ETH 
-LTC  | LTC 
-IOST  | IOST 
-CTXC  | CTXC 
-NEAR  | NEAR 
-AAVE  | ETH 
-JFIN  | ETH 
-BAT  | ETH 
-ZIL  | ZIL 
-DOT  | DOT 
-SUSHI  | ETH 
-BCH  | BCH 
-ADA  | ADA 
-BNB  | BSC 
-POW  | ETH 
-SCRT  | SCRT 
-YFI  | ETH 
-BTC  | BTC 
-OMG  | ETH 
-USDT  | ETH <br/><hr/> BSC 
-DOGE  | DOGE 
-USDC  | ETH 
-MKR  | ETH 
-ENJ  | ETH 
-KSM  | KSM 
-DON  | IOST 
-WAN  | WAN 
-SNT  | ETH 
-ZRX  | ETH 
-ABT  | ETH 
-MANA  | ETH 
-DAI  | ETH 
-BAND  | BAND 
-GLM  | ETH 
-UNI  | ETH 
-FTT  | ETH 
-OCEAN  | ETH 
-SNX  | ETH 
-BOBA  | ETH 
-GALA  | ETH 
-GT  | ETH 
-SGB  | SGB 
-GF  | ETH 
-IMX  | ETH 
-ENS  | ETH 
-DYDX  | ETH 
-ILV  | ETH 
-CHZ  | ETH 
-GRT  | ETH 
-LYXE  | ETH 
-EXFI  | SGB 
-SOL  | SOL 
-AVAX  | AVAX_C 
-MATIC  | MATIC 
-FTM  | FTM 
-LUNA  | LUNA 
-APE  | ETH 
-HBAR  | HBAR 
-XTZ  | XTZ 
-LRC  | ETH 
-CELO  | CELO 
-TRX  | TRX 
-GAL  | ETH 
-SOLO  | XRP 
-LUNA2  | LUNA2 
-OP  | OP
+No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
 
 For example `ETH` refers to `ERC-20`.\
 For request on `ERC-20`, please assign the ‘net’ value as `ETH`.\
-For request on `BEP-20`, please assign the ‘net’ value as `BSC`.
+For request on `BEP-20`, please assign the ‘net’ value as `BSC`.\
+For request on `KAP-20`, please assign the ‘net’ value as `BKC`.
 
 
 ### Response:
