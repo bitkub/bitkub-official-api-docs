@@ -1,5 +1,8 @@
 # Websocket API for Bitkub (2022-08-31)
 
+# Changes
+* 2022-08-31 Deprecated the authentication to `Live Order Book` websocket.
+
 # Table of contents
 * [Websocket endpoint](#websocket-endpoint)
 * [Stream name](#stream-name)
@@ -102,18 +105,6 @@ The demo page is available [here](https://api.bitkub.com/websocket-api?streams=)
 # Live Order Book
 #### Description:
 Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/orderbook/[\<symbol-id\>](#symbols)**.
-
-#### Authentication:
-Authentication via websocket is now deprecated.
-
-~~Authentication is required in order to access certain data. Send the **[websocket token](https://github.com/bitkub/bitkub-official-api-docs/blob/master/restful-api.md#post-apimarketwstoken)** to the server via the established socket connection. The message is in **JSON** format.~~
-
-#### Sample authentication message (JSON string):
-```javascript
-{
-    "auth": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
-}
-```
 
 #### Message data:
 ```javascript
