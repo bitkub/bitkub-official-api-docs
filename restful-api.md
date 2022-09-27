@@ -1265,7 +1265,7 @@ Code | Description
 90 | Server error (please contact support)
 
 # Rate limits 
-If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests.
+If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual IP address accessing the API.
 
 |Endpoint   | Rate Limit   |
 | ------------ | ------------ |
