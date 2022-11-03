@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2022-08-16)
+# RESTful API for Bitkub (2022-11-03)
 
 # Releases
+* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [cancel-order-v2](#post-apimarketV2cancel-order). We recommend to use these apis because their performance are improved.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
@@ -81,6 +82,9 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
+* [POST /api/market/v2/place-bid](#post-apimarketV2place-bid)
+* [POST /api/market/v2/place-ask](#post-apimarketV2place-ask)
+* [POST /api/market/v2/cancel-order](#post-apimarketV2cancel-order)
 
 # Constructing the request
 ### GET/POST request
@@ -1201,6 +1205,87 @@ Check trading credit balance.
 {
    "error": 0,
    "result": 1000
+}
+```
+
+### POST /api/market/v2/place-bid
+
+#### Description:
+Create a buy order.
+
+#### Body:
+* `sym`   **string**    The symbol
+* `amt`   **float**   Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `rat`   **float**   Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
+* `client_id` **string**    your id for reference ( not required )
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
+    "typ": "limit", // order type
+    "amt": 1000, // spending amount
+    "rat": 15000, // rate
+    "fee": 2.5, // fee
+    "cre": 2.5, // fee credit used
+    "rec": 0.06666666, // amount to receive
+    "ts": 1533834547 // timestamp
+    "ci": "input_client_id" // input id for reference
+  }
+}
+```
+
+### POST /api/market/v2/place-ask
+
+#### Description:
+Create a sell order.
+
+#### Body:
+* `sym`   **string**    The symbol
+* `amt`   **float**   Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
+* `rat`   **float**   Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
+* `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
+* `client_id`   **string**    your id for reference ( not required )
+
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": {
+    "id": 1, // order id
+    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
+    "typ": "limit", // order type
+    "amt": 1.00000000, // selling amount
+    "rat": 15000, // rate
+    "fee": 37.5, // fee
+    "cre": 37.5, // fee credit used
+    "rec": 15000, // amount to receive
+    "ts": 1533834844 // timestamp
+    "ci": "input_client_id" // input id for reference
+  }
+}
+```
+
+### POST /api/market/v2/cancel-order
+
+### Description:
+Cancel an open order.
+
+### Body:
+* `sym`   **string**    The symbol
+* `id`    **int**   Order id you wish to cancel
+* `sd`    **string**    Order side: buy or sell
+* `hash`  **string**    Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
+
+### Response:
+```javascript
+{
+  "error": 0
 }
 ```
 
