@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2022-11-03)
 
 # Releases
-* 2022–11-03 added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [cancel-order-v2](#post-apimarketV2cancel-order). We recommend to use these apis because their performance are improved.
+* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [cancel-order-v2](#post-apimarketV2cancel-order). We recommend to use these apis because their performance are improved.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
