@@ -82,9 +82,9 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
-* [POST /api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bid(```beta```))
-* [POST /api/market/v2/place-ask(```beta```)](#post-apimarketV2place-ask(```beta```))
-* [POST /api/market/v2/cancel-order(```beta```)](#post-apimarketV2cancel-order(```beta```))
+* [POST /api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bidbeta)
+* [POST /api/market/v2/place-ask(```beta```)](#post-apimarketV2place-askbeta)
+* [POST /api/market/v2/cancel-order(```beta```)](#post-apimarketV2cancel-orderbeta)
 
 # Constructing the request
 ### GET/POST request
