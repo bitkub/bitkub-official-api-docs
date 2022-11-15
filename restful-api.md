@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2022-11-03)
 
 # Releases
-* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2(```beta```)](#post-apimarketV2place-bid), [place-ask-v2(```beta```)](#post-apimarketV2place-ask), [cancel-order-v2(```beta```)](#post-apimarketV2cancel-order). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
+* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2(```beta```)](#post-apimarketV2place-bid(```beta```)), [place-ask-v2(```beta```)](#post-apimarketV2place-ask(```beta```)), [cancel-order-v2(```beta```)](#post-apimarketV2cancel-order(```beta```)). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
@@ -82,9 +82,9 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
-* [POST /api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bid)
-* [POST /api/market/v2/place-ask(```beta```)](#post-apimarketV2place-ask)
-* [POST /api/market/v2/cancel-order(```beta```)](#post-apimarketV2cancel-order)
+* [POST /api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bid(```beta```))
+* [POST /api/market/v2/place-ask(```beta```)](#post-apimarketV2place-ask(```beta```))
+* [POST /api/market/v2/cancel-order(```beta```)](#post-apimarketV2cancel-order(```beta```))
 
 # Constructing the request
 ### GET/POST request
