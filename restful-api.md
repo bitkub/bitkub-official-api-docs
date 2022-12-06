@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2022-11-03)
+# RESTful API for Bitkub (2022-11-17)
 
 # Releases
+* 2022–11-03 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
 * 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2(```beta```)](#post-apimarketV2place-bidbeta), [place-ask-v2(```beta```)](#post-apimarketV2place-askbeta), [cancel-order-v2(```beta```)](#post-apimarketV2cancel-orderbeta). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
@@ -513,7 +514,7 @@ Get balances info: this includes both available and reserved balances.
 #### Description:
 Create a buy order.
 
-#### Query:
+#### Body:
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
@@ -543,7 +544,7 @@ Create a buy order.
 #### Description:
 Test creating a buy order (no balance is deducted).
 
-#### Query:
+#### Body:
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to spend with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
@@ -573,7 +574,7 @@ Test creating a buy order (no balance is deducted).
 #### Description:
 Create a sell order.
 
-#### Query:
+#### Body:
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
@@ -604,7 +605,7 @@ Create a sell order.
 #### Description:
 Test creating a sell order (no balance is deducted).
 
-#### Query:
+#### Body:
 * `sym`		**string**		The symbol
 * `amt`		**float**		Amount you want to sell with no trailing zero (e.g 0.10000000 is invalid, 0.1 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
@@ -634,7 +635,7 @@ Test creating a sell order (no balance is deducted).
 #### Description:
 Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
 
-#### Query:
+#### Body:
 * `sym`		**string**		The symbol
 * `amt`		**float**		Fiat amount you want to receive with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
 * `rat`		**float**		Rate you want for the order with no trailing zero (e.g 1000.00 is invalid, 1000 is ok)
@@ -663,7 +664,7 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
 ### Description:
 Cancel an open order.
 
-### Query:
+### Body:
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id you wish to cancel
 * `sd`		**string**		Order side: buy or sell
@@ -681,7 +682,7 @@ Cancel an open order.
 ### Description:
 List all open orders of the given symbol.
 
-### Query:
+### Body:
 * `sym`		**string**		The symbol
 
 ### Response:
@@ -701,18 +702,24 @@ List all open orders of the given symbol.
       "receive": 14000, // amount to receive
       "parent_id": 1, // parent order id
       "super_id": 1, // super parent order id
+      "client_id": "client_id" // client id
       "ts": 1533834844 // timestamp
     }
   ]
 }
 ```
+Note : The ```client_id``` of this API response is the input body field name ```client_id``` , was inputted by the user of APIs 
+* [api/market/place-bid](#post-apimarketplace-bid)
+* [api/market/place-ask](#post-apimarketplace-ask)
+* [api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bidbeta)
+* [api/market/v2/place-ask(```beta```)](#post-apimarketV2place-askbeta)
 
 ### POST /api/market/my-order-history
 
 ### Description:
 List all orders that have already matched.
 
-### Query:
+### Body:
 * `sym` **string** The symbol
 * `p` **int** Page (optional)
 * `lmt` **int** Limit (optional)
@@ -755,7 +762,7 @@ List all orders that have already matched.
 ### Description:
 Get information regarding the specified order.
 
-### Query:
+### Body:
 * `sym`		**string**		The symbol
 * `id`		**int**		Order id
 * `sd`		**string**		Order side: buy or sell
