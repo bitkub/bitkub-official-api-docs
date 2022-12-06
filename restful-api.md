@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2022-11-17)
 
 # Releases
-* 2022–11-03 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
+* 2022–11-17 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
 * 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2(```beta```)](#post-apimarketV2place-bidbeta), [place-ask-v2(```beta```)](#post-apimarketV2place-askbeta), [cancel-order-v2(```beta```)](#post-apimarketV2cancel-orderbeta). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
