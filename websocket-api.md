@@ -1,7 +1,7 @@
-# Websocket API for Bitkub (2022-08-31)
+# Websocket API for Bitkub (2023-01-16)
 
 # Changes
-* 2023-01-01 Update `Live Order Book`, added a new event info.
+* 2023-01-16 Update `Live Order Book`, added a new event info.
 * 2022-08-31 Deprecated the authentication to `Live Order Book` websocket.
 # Table of contents
 * [Websocket endpoint](#websocket-endpoint)
