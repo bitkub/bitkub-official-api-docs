@@ -1,0 +1,28 @@
+{
+  "name": "sample_socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sample_socket.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node sample_socket.ts",
+    "build": "./node_modules/.bin/tsc",
+    "prod": "node ./dist/sample_get_post.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.33",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "socket.io-client": "^2.3.0",
+    "ws": "^7.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/ws": "^7.2.6",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
