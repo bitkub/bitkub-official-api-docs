@@ -1,9 +1,13 @@
 
-# RESTful API for Bitkub (2022-11-17)
+# RESTful API for Bitkub (2023-02-07)
 
+# Announcement
+* On February 21st, 2022, the [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) API will be deprecated and removed from the API due to low usage and improving system maintainability. We apologize for the inconvenience.
+
+* On March 7th, 2022, the place-bid, place-ask, and place-ask-by-fiat APIs will be deprecated. Please switch to place-bid-v2, place-ask-v2, cancel-order-v2.
 # Releases
 * 2022–11-17 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
-* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2(```beta```)](#post-apimarketV2place-bidbeta), [place-ask-v2(```beta```)](#post-apimarketV2place-askbeta), [cancel-order-v2(```beta```)](#post-apimarketV2cancel-orderbeta). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
+* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketV2place-bid), [place-ask-v2](#post-apimarketV2place-ask), [cancel-order-v2](#post-apimarketV2cancel-order). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
 * 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
 * 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
@@ -83,9 +87,9 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
-* [POST /api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bidbeta)
-* [POST /api/market/v2/place-ask(```beta```)](#post-apimarketV2place-askbeta)
-* [POST /api/market/v2/cancel-order(```beta```)](#post-apimarketV2cancel-orderbeta)
+* [POST /api/market/v2/place-bid](#post-apimarketV2place-bid)
+* [POST /api/market/v2/place-ask](#post-apimarketV2place-ask)
+* [POST /api/market/v2/cancel-order](#post-apimarketV2cancel-order)
 
 # Constructing the request
 ### GET/POST request
@@ -711,8 +715,8 @@ List all open orders of the given symbol.
 Note : The ```client_id``` of this API response is the input body field name ```client_id``` , was inputted by the user of APIs 
 * [api/market/place-bid](#post-apimarketplace-bid)
 * [api/market/place-ask](#post-apimarketplace-ask)
-* [api/market/v2/place-bid(```beta```)](#post-apimarketV2place-bidbeta)
-* [api/market/v2/place-ask(```beta```)](#post-apimarketV2place-askbeta)
+* [api/market/v2/place-bid](#post-apimarketV2place-bid)
+* [api/market/v2/place-ask](#post-apimarketV2place-ask)
 
 ### POST /api/market/my-order-history
 
@@ -1215,7 +1219,7 @@ Check trading credit balance.
 }
 ```
 
-### POST /api/market/v2/place-bid(```beta```)
+### POST /api/market/v2/place-bid
 
 #### Description:
 Create a buy order.
@@ -1246,7 +1250,7 @@ Create a buy order.
 }
 ```
 
-### POST /api/market/v2/place-ask(```beta```)
+### POST /api/market/v2/place-ask
 
 #### Description:
 Create a sell order.
@@ -1278,7 +1282,7 @@ Create a sell order.
 }
 ```
 
-### POST /api/market/v2/cancel-order(```beta```)
+### POST /api/market/v2/cancel-order
 
 ### Description:
 Cancel an open order.
