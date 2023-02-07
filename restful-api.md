@@ -6,6 +6,7 @@
 
 * On March 7th, 2022, the place-bid, place-ask, and place-ask-by-fiat APIs will be deprecated. Please switch to place-bid-v2, place-ask-v2, cancel-order-v2.
 # Releases
+* 2023-02-07 Removed ```Beta``` status from APIs [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
 * 2022–11-17 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
 * 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask), [cancel-order-v2](#post-apimarketv2cancel-order). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
 * 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
@@ -514,7 +515,7 @@ Get balances info: this includes both available and reserved balances.
 ```
 
 ### POST /api/market/place-bid
-
+<mark>This API will be deprecated on 7th March 2022. Please switch to [place-bid-v2](#post-apimarketv2place-bid).</mark>
 #### Description:
 Create a buy order.
 
@@ -574,7 +575,7 @@ Test creating a buy order (no balance is deducted).
 ```
 
 ### POST /api/market/place-ask
-
+<mark>This API will be deprecated on 7th March 2022. Please switch to [place-ask-v2](#post-apimarketv2place-ask).</mark>
 #### Description:
 Create a sell order.
 
@@ -636,6 +637,7 @@ Test creating a sell order (no balance is deducted).
 
 ### POST /api/market/place-ask-by-fiat
 
+<mark>This API will be deprecated on 21st February 2022.</mark>
 #### Description:
 Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
 
@@ -664,7 +666,7 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
 ```
 
 ### POST /api/market/cancel-order
-
+<mark>This API will be deprecated on 7th March 2022. Please switch to [cancel-order-v2](#post-apimarketv2cancel-order).</mark>
 ### Description:
 Cancel an open order.
 
