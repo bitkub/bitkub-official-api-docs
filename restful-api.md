@@ -1369,7 +1369,7 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 |Endpoint   | Rate Limit   |
 | ------------ | ------------ |
 | /api/market/ticker  | 100 req/sec  |
-| /api/market/depth | 150 req/sec  |
+| /api/market/depth | 10 req/sec  |
 | /api/market/symbols |  100 req/sec |
 | /api/market/trades |  100 req/sec |
 | /api/market/bids  |  100 req/sec |
