@@ -1,11 +1,11 @@
 
-# RESTful API for Bitkub (2023-02-07)
+# RESTful API for Bitkub (2023-03-20)
 
 # Announcement
-* On February 21st, 2023, the [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) API will be deprecated and removed from the API due to low usage and improving system maintainability. We apologize for the inconvenience.
 
-* On March 7th, 2023, the [place-bid](#post-apimarketplace-bid)
-, [place-ask](#post-apimarketplace-ask) and [cancel-order](#post-apimarketcancel-order) APIs will be deprecated. Please switch to [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
+* On February 27th, 2023, [place-bid](#post-apimarketplace-bid)
+, [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) and [cancel-order](#post-apimarketcancel-order) APIs will be deprecated. Please switch to [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order). The deprecation was postponed from the previous announcement.
+
 # Releases
 * 2023-02-07 Removed ```Beta``` status from APIs [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
 * 2022–11-17 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
@@ -516,7 +516,7 @@ Get balances info: this includes both available and reserved balances.
 ```
 
 ### POST /api/market/place-bid
-<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 7th March 2023.</strong> Please switch to [place-bid-v2](#post-apimarketv2place-bid).</span>
+<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 27th March 2023.</strong> Please switch to [place-bid-v2](#post-apimarketv2place-bid).</span>
 
 #### Description:
 Create a buy order.
@@ -577,7 +577,7 @@ Test creating a buy order (no balance is deducted).
 ```
 
 ### POST /api/market/place-ask
-<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 7th March 2023.</strong> Please switch to [place-ask-v2](#post-apimarketv2place-ask).</span>
+<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 27th March 2023.</strong> Please switch to [place-ask-v2](#post-apimarketv2place-ask).</span>
 #### Description:
 Create a sell order.
 
@@ -638,7 +638,7 @@ Test creating a sell order (no balance is deducted).
 ```
 
 ### POST /api/market/place-ask-by-fiat
-<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 21st February 2023.</strong> </span>
+<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 27th March 2022.</strong> </span>
 #### Description:
 Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
 
@@ -667,7 +667,7 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
 ```
 
 ### POST /api/market/cancel-order
-<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 7th March 2022.</strong> Please switch to [cancel-order-v2](#post-apimarketv2cancel-order).</span>
+<span style="color:white;background:red;"> ⚠️ This API will be <strong style="color:yellow;">deprecated on 27th March 2022.</strong> Please switch to [cancel-order-v2](#post-apimarketv2cancel-order).</span>
 ### Description:
 Cancel an open order.
 
