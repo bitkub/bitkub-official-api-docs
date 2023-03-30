@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2023-03-27)
 
 # Announcement
-* On April 18th, 2023 at 12:00 PM, the field **order ID** of APIs and WebSocket will be changed from integer to **string** to support non-integer order ID in the future. This change will be applied to the following API; [cancel-order](#post-apimarketcancel-order), [order-info](#post-apimarketorder-info), [my-open-orders](#post-apimarketmy-open-orders), [my-order-history](#post-apimarketmy-order-history), [place-bids](#post-apimarketplace-bid), [place-asks](#post-apimarketplace-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks). This change will be applied to the following WebSocket; market.trade.{symbol}. Please adjust your use to support this incoming change by the aforementioned date and time.
+* On April 18th, 2023 at 12:00 PM, the field **order ID** of APIs and WebSocket will be changed from integer to **string** to support non-integer order ID in the future. This change will be applied to the following API; [cancel-order](#post-apimarketcancel-order), [order-info](#post-apimarketorder-info), [my-open-orders](#post-apimarketmy-open-orders), [my-order-history](#post-apimarketmy-order-history), [place-bids](#post-apimarketplace-bid), [place-asks](#post-apimarketplace-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks). This change will be applied to the following WebSocket; market.trade.\<symbol\>. Please adjust your use to support this incoming change by the aforementioned date and time.
 
 # Releases
 * 2023-03-27 Deprecated [place-bid](#post-apimarketplace-bid)
