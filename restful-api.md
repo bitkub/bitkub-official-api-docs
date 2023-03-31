@@ -524,7 +524,6 @@ Get balances info: this includes both available and reserved balances.
 
 ### POST /api/market/place-bid
 
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [place-bid-v2](#post-apimarketv2place-bid).</span>
 
 #### Description:
@@ -557,8 +556,6 @@ Create a buy order.
 
 ### POST /api/market/place-bid/test
 
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
-
 #### Description:
 Test creating a buy order (no balance is deducted).
 
@@ -589,7 +586,6 @@ Test creating a buy order (no balance is deducted).
 
 ### POST /api/market/place-ask
 
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [place-ask-v2](#post-apimarketv2place-ask).</span>
 #### Description:
 Create a sell order.
@@ -621,8 +617,6 @@ Create a sell order.
 ```
 
 ### POST /api/market/place-ask/test
-
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 Test creating a sell order (no balance is deducted).
@@ -684,7 +678,6 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
 
 ### POST /api/market/cancel-order
 
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [cancel-order-v2](#post-apimarketv2cancel-order).</span>
 ### Description:
 Cancel an open order.
