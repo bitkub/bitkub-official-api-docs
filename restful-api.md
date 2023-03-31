@@ -181,8 +181,6 @@ Get server timestamp.
 
 ### GET /api/market/symbols
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
-
 #### Description:
 List all available symbols.
 
@@ -209,7 +207,6 @@ List all available symbols.
 ```
 
 ### GET /api/market/ticker
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by April 18th, 2023 at 12:00 PM.</span>
 
 #### Description:
 Get ticker information.
@@ -273,7 +270,7 @@ List recent trades.
 
 ### GET /api/market/bids
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 List open buy orders.
@@ -301,7 +298,7 @@ List open buy orders.
 
 ### GET /api/market/asks
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 List open sell orders.
@@ -328,7 +325,7 @@ List open sell orders.
 
 ### GET /api/market/books
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 List all open orders.
@@ -527,7 +524,7 @@ Get balances info: this includes both available and reserved balances.
 
 ### POST /api/market/place-bid
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [place-bid-v2](#post-apimarketv2place-bid).</span>
 
 #### Description:
@@ -560,7 +557,7 @@ Create a buy order.
 
 ### POST /api/market/place-bid/test
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 Test creating a buy order (no balance is deducted).
@@ -592,7 +589,7 @@ Test creating a buy order (no balance is deducted).
 
 ### POST /api/market/place-ask
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [place-ask-v2](#post-apimarketv2place-ask).</span>
 #### Description:
 Create a sell order.
@@ -625,7 +622,7 @@ Create a sell order.
 
 ### POST /api/market/place-ask/test
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 Test creating a sell order (no balance is deducted).
@@ -657,7 +654,6 @@ Test creating a sell order (no balance is deducted).
 
 ### POST /api/market/place-ask-by-fiat
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> </span>
 #### Description:
 Create a sell order by specifying the fiat amount you want to receive (selling amount of cryptocurrency is automatically calculated). If order type is `market`, currrent highest bid will be used as rate.
@@ -688,7 +684,7 @@ Create a sell order by specifying the fiat amount you want to receive (selling a
 
 ### POST /api/market/cancel-order
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 <span style="color:white;background:red;"> ⚠️ This API is <strong style="color:yellow;">deprecated.</strong> Please switch to [cancel-order-v2](#post-apimarketv2cancel-order).</span>
 ### Description:
 Cancel an open order.
@@ -708,7 +704,7 @@ Cancel an open order.
 
 ### POST /api/market/my-open-orders
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 ### Description:
 List all open orders of the given symbol.
@@ -747,7 +743,7 @@ Note : The ```client_id``` of this API response is the input body field name ```
 
 ### POST /api/market/my-order-history
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 ### Description:
 List all orders that have already matched.
@@ -792,7 +788,7 @@ List all orders that have already matched.
 
 ### POST /api/market/order-info
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 ### Description:
 Get information regarding the specified order.
@@ -1091,8 +1087,6 @@ List all approved bank accounts.
 
 ### POST /api/fiat/withdraw
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
-
 ### Description:
 Make a withdrawal to an **approved** bank account.
 
@@ -1254,7 +1248,7 @@ Check trading credit balance.
 
 ### POST /api/market/v2/place-bid
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 #### Description:
 Create a buy order.
@@ -1287,8 +1281,7 @@ Create a buy order.
 
 ### POST /api/market/v2/place-ask
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
-
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 #### Description:
 Create a sell order.
 
@@ -1321,7 +1314,7 @@ Create a sell order.
 
 ### POST /api/market/v2/cancel-order
 
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 
 ### Description:
 Cancel an open order.
