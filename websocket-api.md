@@ -58,7 +58,7 @@ Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/m
 Refer to the following for description of each stream
 
 ### Trade stream
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 #### Name:
 market.trade.\<symbol\>
 
@@ -80,7 +80,6 @@ The trade stream provides real-time data on matched orders. Each trade contains 
 ```
 
 ### Ticker stream
-<span style="color:white;background:red;"> ⚠️ Field <strong>id (order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
 #### Name:
 market.ticker.\<symbol\>
 
