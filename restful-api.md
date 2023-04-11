@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2023-04-11)
 
 # Announcement
-* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.** This change will be applied to the following API
+* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT).** <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> **and time and please ensure that order ID is used as string only after this change. This change will be applied to the following API**
   * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [order-info](#post-apimarketorder-info) —  Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
