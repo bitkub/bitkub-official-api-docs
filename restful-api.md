@@ -2,16 +2,12 @@
 # RESTful API for Bitkub (2023-04-11)
 
 # Announcement
-* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.**
-
-
-This change will be applied to the following API
-
-* [cancel-order-v2](#post-apimarketv2cancel-order) — Field **id, first, parent, last** change type from **Integer to String**.
-* [order-info](#post-apimarketorder-info) —  Field **id, first, parent, last** change type from **Integer to String**.
-* [my-open-orders](#post-apimarketmy-open-orders) — Field **id, super_id, parent_id** change type from **Integer to String**.
-* [my-order-history](#post-apimarketmy-order-history) — Field **id, super_order_id, parent_order_id** change type from **Integer to String**.
-* [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field **id** change type from **Integer to String**.
+* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.** This change will be applied to the following API
+  * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
+  * [order-info](#post-apimarketorder-info) —  Field ```id, first, parent, last``` change type from ```Integer to String```.
+  * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
+  * [my-order-history](#post-apimarketmy-order-history) — Field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
+  * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field ```id``` change type from ```Integer to String```.
 
 
 # Releases
@@ -282,7 +278,7 @@ List recent trades.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **order id** change type from **Integer to String**.
+* Response field ```order id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 #### Description:
@@ -313,7 +309,7 @@ List open buy orders.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **order id** change type from **Integer to String**.
+* Response field ```order id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 
@@ -344,7 +340,7 @@ List open sell orders.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **order id** change type from **Integer to String**.
+* Response field ```order id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 
@@ -720,7 +716,7 @@ Cancel an open order.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **id, super_id, parent_id** change type from **Integer to String**.
+* Response field ```id, super_id, parent_id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 
@@ -763,7 +759,7 @@ Note : The ```client_id``` of this API response is the input body field name ```
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **id, super_order_id, parent_order_id** change type from **Integer to String**.
+* Response field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 ### Description:
@@ -809,8 +805,9 @@ List all orders that have already matched.
 
 ### POST /api/market/order-info
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
-* Response Field **id, first, parent, last** change type from **Integer to String**.
-* Body param **id** change type from **Integer to String**.
+
+* Response Field ```id, first, parent, last``` change type from ```Integer to String```.
+* Body param ```id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 ### Description:
@@ -1273,7 +1270,7 @@ Check trading credit balance.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **id** change type from **Integer to String**.
+* Response field ```id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 #### Description:
@@ -1309,7 +1306,7 @@ Create a buy order.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **id** change type from **Integer to String**.
+* Response field ```id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 #### Description:
 Create a sell order.
@@ -1345,8 +1342,8 @@ Create a sell order.
 
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **id, first, parent, last** change type from **Integer to String**.
-* Body param **id** change type from **Integer to String**.
+* Response field ```id, first, parent, last``` change type from ```Integer to String```.
+* Body param ```id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 ### Description:

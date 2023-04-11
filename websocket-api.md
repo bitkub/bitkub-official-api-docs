@@ -5,7 +5,7 @@
 
 This change will be applied to the following WebSocket
 market.trade.<symbol> 
-* Field **bid, sid** change type from **Integer to String**.
+* Field ```bid, sid``` change type from ```Integer to String```.
 
 # Changes
 * 2023-01-16 Update `Live Order Book`, added a new event info.
@@ -64,7 +64,7 @@ Refer to the following for description of each stream
 ### Trade stream
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response field **bid, sid** change type from **Integer to String**.
+* Response field ```bid, sid``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
 #### Name:
