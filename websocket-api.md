@@ -1,7 +1,11 @@
-# Websocket API for Bitkub (2023-01-16)
+# Websocket API for Bitkub (2023-04-11)
 
 # Announcement
-* On April 18th, 2023 at 12:00 PM, the field <strong>order ID</strong> of WebSocket will be changed from integer to <strong>string</strong> to support non-integer order ID in the future. This change will be applied to the following WebSocket; [market.trade.\<symbol\>](#symbols). Please adjust your use to support this incoming change by the aforementioned date and time.
+* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.**
+
+This change will be applied to the following WebSocket
+market.trade.<symbol> 
+* Field ```bid, sid``` change type from ```Integer to String```.
 
 # Changes
 * 2023-01-16 Update `Live Order Book`, added a new event info.
@@ -58,7 +62,11 @@ Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/m
 Refer to the following for description of each stream
 
 ### Trade stream
-<span style="color:white;background:red;"> ⚠️ Field ```id``` <strong>(order ID)</strong> will be changed from integer to string. Please adjust your use to support this incoming change by <strong>April 18th, 2023 at 12:00 PM.</strong></span>
+<span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
+
+* Response field ```bid, sid``` change type from ```Integer to String```.
+* Ref: [Announcement](#announcement)
+
 #### Name:
 market.trade.\<symbol\>
 
