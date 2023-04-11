@@ -2,7 +2,8 @@
 # RESTful API for Bitkub (2023-04-11)
 
 # Announcement
-* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT)**. <span style="color:white;background:red;">The APIs server will be closed during this update</span>. Please adjust your use to support this incoming change by the aforementioned date and time.
+* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.**
+
 
 This change will be applied to the following API
 
