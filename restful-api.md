@@ -2,12 +2,12 @@
 # RESTful API for Bitkub (2023-04-18)
 
 # Announcement
-* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT).** <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> **and time and please ensure that order ID is used as string only after this change. This change will be applied to the following API**
-  * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```. Change input body param ```id``` type from ```Integer to String```.
-  * [order-info](#post-apimarketorder-info) —  Field ```id, first, parent, last``` change type from ```Integer to String```. Add field ```txn_id``` to the API response. Change input body param ```id``` type from ```Integer to String```.
-  * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
-  * [my-order-history](#post-apimarketmy-order-history) — Field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
-  * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field ```id``` change type from ```Integer to String```.
+* The field order ID of APIs and WebSocket will be changed from **Integer to String**. The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT).** <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> **and time and please ensure that order ID is used as string only after this change. This change will be applied to the following APIs**
+  * [cancel-order-v2](#post-apimarketv2cancel-order) — Response field ```id, first, parent, last```, change type from ```Integer to String```. Change input body param ```id``` type from ```Integer to String```.
+  * [order-info](#post-apimarketorder-info) — Response field ```id, first, parent, last```, change type from ```Integer to String```. Add field ```txn_id``` to the API response. Change input body param ```id``` type from ```Integer to String```.
+  * [my-open-orders](#post-apimarketmy-open-orders) — Response field ```id, super_id, parent_id```, change type from ```Integer to String```.
+  * [my-order-history](#post-apimarketmy-order-history) — Response field ```id, super_order_id, parent_order_id```, change type from ```Integer to String```.
+  * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Response field ```id```, change type from ```Integer to String```.
 
 
 # Releases
