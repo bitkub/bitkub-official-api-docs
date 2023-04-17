@@ -1,10 +1,10 @@
 
-# RESTful API for Bitkub (2023-04-11)
+# RESTful API for Bitkub (2023-04-18)
 
 # Announcement
 * The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT).** <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> **and time and please ensure that order ID is used as string only after this change. This change will be applied to the following API**
-  * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
-  * [order-info](#post-apimarketorder-info) —  Field ```id, first, parent, last``` change type from ```Integer to String```.
+  * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```. Change input body param ```id``` type from ```Integer to String```.
+  * [order-info](#post-apimarketorder-info) —  Field ```id, first, parent, last``` change type from ```Integer to String```. Add field ```txn_id``` to the API response. Change input body param ```id``` type from ```Integer to String```.
   * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
   * [my-order-history](#post-apimarketmy-order-history) — Field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
   * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field ```id``` change type from ```Integer to String```.
@@ -806,7 +806,8 @@ List all orders that have already matched.
 ### POST /api/market/order-info
 <span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
 
-* Response Field ```id, first, parent, last``` change type from ```Integer to String```.
+* Response field ```id, first, parent, last``` change type from ```Integer to String```.
+* Added response field ```txn_id``` to each member of the field ```history```
 * Body param ```id``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
 
@@ -822,80 +823,56 @@ Get information regarding the specified order.
 ### Response:
 ```javascript
 {
-    "error": 0,
-    "result": {
-        "id": 289, // order id
-        "first": 289, // first order id
-        "parent": 0, // parent order id
-        "last": 316, // last order id
-        "amount": 4000, // order amount
-        "rate": 291000, // order rate
-        "fee": 10, // order fee
-        "credit": 10, // order fee credit used
-        "filled": 3999.97, // filled amount
-        "total": 4000, // total amount
-        "status": "filled", // order status: filled, unfilled
-        "partial_filled": false, // true when order has been partially filled, false when not filled or fully filled
-        "remaining": 0, // remaining amount to be executed
-        "history": [
-            {
-                "amount": 98.14848,
-                "credit": 0.25,
-                "fee": 0.25,
-                "id": 289,
-                "rate": 291000,
-                "timestamp": 1525944169
-            },
-            {
-                "amount": 87.3,
-                "credit": 0.22,
-                "fee": 0.22,
-                "id": 290,
-                "rate": 291000,
-                "timestamp": 1525947677
-            },
-            {
-                "amount": 11.64,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": 301,
-                "rate": 291000,
-                "timestamp": 1525947712
-            },
-            {
-                "amount": 116.4,
-                "credit": 0.3,
-                "fee": 0.3,
-                "id": 302,
-                "rate": 291000,
-                "timestamp": 1525947746
-            },
-            {
-                "amount": 10.185,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": 303,
-                "rate": 291000,
-                "timestamp": 1525948237
-            },
-            {
-                "amount": 10.185,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": 315,
-                "rate": 291000,
-                "timestamp": 1525948253
-            },
-            {
-                "amount": 3666.13731,
-                "credit": 9.17,
-                "fee": 9.17,
-                "id": 316,
-                "rate": 291000,
-                "timestamp": 1525977397
-            }
-        ]
-    }
+  "error": 0,
+  "result": {
+    "id": "90836783", // order id
+    "first": "90836780", // first order id
+    "parent": "90836782", // parent order id
+    "last": "90836782", // last order id
+    "amount": 1488750, // order amount
+    "rate": 1500000, // order rate
+    "fee": 3721.88, // order fee
+    "credit": 0,  // order fee credit used
+    "filled": 4511250, // filled amount
+    "total": 6000000, // total amount
+    "status": "cancelled", // order status: filled, unfilled, cancelled
+    "partial_filled": true, // true when order has been partially filled, false when not filled or fully filled
+    "remaining": 1488750, // remaining amount to be executed
+    "client_id": "",
+    "side": "buy",
+    "history": [
+        {
+            "amount": 1503750,
+            "credit": 0,
+            "fee": 3750,
+            "hash": "K9kLV2SMCtcJW5iAiwa",
+            "id": "90836780",
+            "rate": 1500000,
+            "timestamp": 1681726594,
+            "txn_id": "BTCBUY0003313222"
+        },
+        {
+            "amount": 1503750,
+            "credit": 0,
+            "fee": 3750,
+            "hash": "K9kLV2SMCtcJWCFhZ5r",
+            "id": "90836781",
+            "rate": 1500000,
+            "timestamp": 1681726594,
+            "txn_id": "BTCBUY0003313223"
+        },
+        {
+            "amount": 1503750,
+            "credit": 0,
+            "fee": 3750,
+            "hash": "K9kLV2SMCtcJWJoEPE8",
+            "id": "90836782",
+            "rate": 1500000,
+            "timestamp": 1681726594,
+            "txn_id": "BTCBUY0003313224"
+        }
+    ]
+  }
 }
 ```
 
