@@ -10,7 +10,8 @@
   * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Response field ```id```, change type from ```Integer to String```.
 
 
-# Releases
+# Change Log
+* 2023-04-18 Changed field order id from integer to string for the involved [APIs](#announcement) and added response field ```tnx_id``` to [order-info](#post-apimarketorder-info)
 * 2023-03-27 Deprecated [place-bid](#post-apimarketplace-bid)
 , [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) and [cancel-order](#post-apimarketcancel-order). Please switch to [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
 

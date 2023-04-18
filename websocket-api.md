@@ -7,7 +7,8 @@ This change will be applied to the following WebSocket
 market.trade.<symbol> 
 * Field ```bid, sid``` change type from ```Integer to String```.
 
-# Changes
+# Change Log
+* 2023-04-18 Changed fields ```bid```, ```sid``` from ```integer to string```
 * 2023-01-16 Update `Live Order Book`, added a new event info.
 * 2022-08-31 Deprecated the authentication to `Live Order Book` websocket.
 # Table of contents
