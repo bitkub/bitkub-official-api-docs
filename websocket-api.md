@@ -1,13 +1,8 @@
-# Websocket API for Bitkub (2023-04-11)
+# Websocket API for Bitkub (2023-04-19)
 
-# Announcement
-* The field order ID of APIs and WebSocket will be changed from **Integer to String**. On The system update will be started on **April 18th, 2023 at 16:00PM(+7GMT) until 18:00 PM(+7GMT). <span style="color:white;background:red;">Please avoid using APIs during the aforementioned date</span> and time and please ensure that order ID is used as string only after this change.**
-
-This change will be applied to the following WebSocket
-market.trade.<symbol> 
-* Field ```bid, sid``` change type from ```Integer to String```.
-
-# Changes
+# Changelog
+* 2023-04-19 Changed the webSocket
+market.trade.symbol. Field ```bid, sid``` changed type from ```Integer to String```.
 * 2023-01-16 Update `Live Order Book`, added a new event info.
 * 2022-08-31 Deprecated the authentication to `Live Order Book` websocket.
 # Table of contents

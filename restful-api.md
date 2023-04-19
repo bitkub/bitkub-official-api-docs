@@ -1,15 +1,13 @@
 
-# RESTful API for Bitkub (2023-04-11)
+# RESTful API for Bitkub (2023-04-19)
 
-# Announcement
-* **The change was rescheduled to April 18th, 2023 at 16:00PM until 18:00 PM (GMT+7). We apologize for any inconvenience this may cause.** The field order ID of APIs and WebSocket will be changed from **Integer to String.** On The system update will be started on ~~```April 18th, 2023 at 16:00PM until 18:00 PM (GMT+7)```~~ . (Postponed to **April 19th, 2023 at 16:00PM until 18:00 PM (GMT+7)**) Please avoid using APIs during the aforementioned date and time and please ensure that order ID is used as string only after this change. This change will be applied to the following API
+# Change log
+* 2023-04-19 Changed will be applied to the following APIs
   * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [order-info](#post-apimarketorder-info) — Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
   * [my-order-history](#post-apimarketmy-order-history) — Field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
   * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field ```id``` change type from ```Integer to String```.
-
-# Releases
 * 2023-03-27 Deprecated [place-bid](#post-apimarketplace-bid)
 , [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) and [cancel-order](#post-apimarketcancel-order). Please switch to [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
 
