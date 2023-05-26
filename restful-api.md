@@ -1,6 +1,11 @@
 
 # RESTful API for Bitkub (2023-04-19)
 
+# Announcement
+* Temporary Suspension of ```All Digital Currencies Deposit, Withdrawal, Trading, and All Activities``` on Public API for Scheduled System Improvement
+  * Scheduled System Improvement: ```31 May 2023, 12:01 AM - 06:00 AM (GMT+7)```
+
+
 # Change log
 * 2023-04-19 Changed will be applied to the following APIs
   * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
