@@ -4,7 +4,7 @@
 # Announcement
 
 # Change log
-* 2023-11-14 Update [Rate-limits](#rate-limits) of V2 endpoints and Update rate limit from per IP to per user.
+* 2023-11-14 Changed [Rate-limits](#rate-limits) counting of APIs V2 from per `IP` to per `user`.
 * 2023-04-19 Changed will be applied to the following APIs
   * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [order-info](#post-apimarketorder-info) — Field ```id, first, parent, last``` change type from ```Integer to String```.
