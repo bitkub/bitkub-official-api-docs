@@ -1,12 +1,10 @@
 
-# RESTful API for Bitkub (2023-04-19)
+# RESTful API for Bitkub (2023-11-14)
 
 # Announcement
-* Temporary Suspension of ```All Digital Currencies Deposit, Withdrawal, Trading, and All Activities``` on Public API for Scheduled System Improvement
-  * Scheduled System Improvement: ```31 May 2023, 12:01 AM - 06:00 AM (GMT+7)```
-
 
 # Change log
+* 2023-11-14 Update [Rate-limits](#rate-limits) of V2 endpoints.
 * 2023-04-19 Changed will be applied to the following APIs
   * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
   * [order-info](#post-apimarketorder-info) — Field ```id, first, parent, last``` change type from ```Integer to String```.
@@ -1437,10 +1435,9 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/asks  |  100 req/sec |
 | /api/market/books  |  100 req/sec |
 | /api/market/order-info  |  100 req/sec |
-| /api/market/place-bid  | 50 req/sec  |
-| /api/market/place-ask |  50 req/sec |
-| /api/market/place-ask-by-fiat   | 45 req/sec  |
-| /api/market/cancel-order  |  1,000 req/10sec |
+| /api/market/v2/place-bid  | 50 req/sec  |
+| /api/market/v2/place-ask |  50 req/sec |
+| /api/market/v2/cancel-order  |  100 req/sec |
 | /api/market/balances |  150 req/sec |
 | /api/market/wallet | 150 req/sec  |
 | /api/crypto/deposit-history |  20 req/sec |
