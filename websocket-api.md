@@ -121,10 +121,11 @@ Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitk
 }
 ```
 There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, and **global.ticker**
-* **bidschanged** occurs when any buy order has changed (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
-* **askschanged** occurs when any sell order has changed (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
-* **tradeschanged** occurs when buy and sell orders have been matched. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
-* **global.ticker** occurs every time when either **bidschanged**, **askschanged**, or **tradeschanged** is fired by any symbol in the exchange.
+* **bidschanged** occurs when any buy order has changed on the selected symbol (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
+* **askschanged** occurs when any sell order has changed on the selected symbol (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
+* **tradeschanged** occurs when buy and sell orders have been matched on the selected symbol. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
+* **ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on the selected symbol.
+* **global.ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on any symbol in the exchange.
 
 #### Example response (bidschanged or askschanged):
 ```javascript
@@ -139,7 +140,8 @@ There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, an
          false // user is owner (deprecated)
       ]
    ],
-   "event":"bidschanged"
+   "event":"bidschanged",
+   "pairing_id":1
 }
 ```
 
@@ -181,7 +183,34 @@ There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, an
          ]
       ]
    ],
-   "event":"tradeschanged"
+   "event":"tradeschanged",
+   "pairing_id":1
+}
+```
+
+#### Example response (ticker):
+```javascript
+{
+   "data":{
+      "baseVolume":106302.39237032, // amount of crypto
+      "change":0.16, // difference of price compare to the latest
+      "close":15.9, // close price
+      "high24hr":16.72, // the highest bidding price taken in the last 24 hours
+      "highestBid":15.81, // the highest bidding price
+      "highestBidSize":5640.39911448, // the amount of the highest bidding order
+      "id":139, // symbol id
+      "isFrozen":0, // symbol trade status
+      "last":15.9, // the latest price
+      "low24hr":15.7, // the lowest price taken in the last 24 hours
+      "lowestAsk":16.22, // the lowest asking price
+      "lowestAskSize":1582, // the amount of the lowest asking order
+      "open":15.74, // open price
+      "percentChange":1.02, // difference of price compare to the latest in percent
+      "quoteVolume":1715566.77, //  amount of fiat
+      "stream":"market.ticker.thb_1inch" // stream name
+   },
+   "event":"global.ticker", // event name
+   "pairing_id":1
 }
 ```
 
