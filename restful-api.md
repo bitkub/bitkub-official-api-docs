@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2023-11-29)
+# RESTful API for Bitkub (2023-11-30)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated in the future around early 2024.
@@ -1242,7 +1242,7 @@ Check trading credit balance.
 Create a buy order.
 
 #### Body:
-* `sym`   **string**    The symbol
+* `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
 * `amt`   **float**   Amount you want to spend with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
@@ -1273,7 +1273,7 @@ Create a buy order.
 Create a sell order.
 
 #### Body:
-* `sym`   **string**    The symbol
+* `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
 * `amt`   **float**   Amount you want to sell with no trailing zero (e.g. 0.10000000 is invalid, 0.1 is ok)
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
@@ -1305,7 +1305,7 @@ Create a sell order.
 Cancel an open order.
 
 ### Body:
-* `sym`   **string**    The symbol
+* `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
 * `id`    **string**   Order id you wish to cancel
 * `sd`    **string**    Order side: buy or sell
 * `hash`  **string**    Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
@@ -1428,7 +1428,7 @@ List all orders that have already matched.
 ### Description:
 Get information regarding the specified order.
 
-### Body:
+### Query:
 * `sym`		**string**		The symbol (e.g. btc_thb)
 * `id`		**string**		Order id
 * `sd`		**string**		Order side: buy or sell
