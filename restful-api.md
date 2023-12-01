@@ -112,12 +112,12 @@ All secure endpoints require [authentication](#constructing-the-request).
 
 |Endpoint   | Method   | Trade | Deposit |Withdraw |
 | ------------ | ------------ | ------------ |------------ |------------ |
-| [/api/v3/market/wallet](#post-apiv3marketwallet)|POST| ✅ |✅||
+| [/api/v3/market/wallet](#post-apiv3marketwallet)|POST| ✅ |✅|✅|
 | [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)|POST|✅|||
 | [/api/v3/market/place-bid](#post-apiv3marketplace-bid) |POST|✅|||
 | [/api/v3/market/place-ask](#post-apiv3marketplace-ask) |POST|✅|||
 | [/api/v3/market/cancel-order](#post-apiv3marketcancel-order) |POST|✅|||
-| [/api/v3/market/balances](#post-apiv3marketbalances) |POST|✅|✅||
+| [/api/v3/market/balances](#post-apiv3marketbalances) |POST|✅|✅|✅|
 | [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders) |GET|✅|||
 | [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) |GET|✅|||
 | [/api/v3/market/order-info](#get-apiv3marketorder-info) |GET|✅|||
@@ -688,7 +688,7 @@ Get information regarding the specified order.
         "credit": 10, // order fee credit used
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
-        "status": "filled", // order status: filled, unfilled, canceled
+        "status": "filled", // order status: filled, unfilled, cancelled
         "partial_filled": false, // true when order has been partially filled, false when not filled or fully filled
         "remaining": 0, // remaining amount to be executed
         "history": [
