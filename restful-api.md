@@ -6,7 +6,7 @@
 
 
 # Change log
-* 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote
+* 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
 * 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
 * 2023-11-29 Release Secure Endpoint V3
   * It can be used only with new API keys generated from the new API management page on BItkub website. It does not work with the old API keys.
@@ -1853,7 +1853,7 @@ Code | Description
 18 | Insufficient balance
 19 | Failed to insert order into db
 20 | Failed to deduct balance
-21 | Invalid order for cancellation
+21 | Invalid order for cancellation (Unable to find OrderID or Symbol.)
 22 | Invalid side
 23 | Failed to update order status
 24 | Invalid order for lookup
@@ -1892,6 +1892,8 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/asks  |  100 req/sec |
 | /api/market/books  |  100 req/sec |
 | /api/market/order-info  |  100 req/sec |
+| /api/market/my-open-orders  |  100 req/sec |
+| /api/market/my-order-history  |  100 req/sec |
 | /api/market/place-bid  | 50 req/sec  |
 | /api/market/place-ask |  50 req/sec |
 | /api/market/cancel-order  |  100 req/sec |
