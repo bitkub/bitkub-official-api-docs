@@ -1,11 +1,13 @@
 
-# RESTful API for Bitkub (2023-11-30)
+# RESTful API for Bitkub (2023-12-14)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated in the future around early 2024.
 
 
 # Change log
+* 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
+* 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
 * 2023-11-29 Release Secure Endpoint V3
   * It can be used only with new API keys generated from the new API management page on BItkub website. It does not work with the old API keys.
   * The signature is generated with a new method and moved to the header.
@@ -112,12 +114,12 @@ All secure endpoints require [authentication](#constructing-the-request).
 
 |Endpoint   | Method   | Trade | Deposit |Withdraw |
 | ------------ | ------------ | ------------ |------------ |------------ |
-| [/api/v3/market/wallet](#post-apiv3marketwallet)|POST| ✅ |✅|✅|
-| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)|POST|✅|||
+| [/api/v3/market/wallet](#post-apiv3marketwallet)|POST|  |||
+| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)|POST||||
 | [/api/v3/market/place-bid](#post-apiv3marketplace-bid) |POST|✅|||
 | [/api/v3/market/place-ask](#post-apiv3marketplace-ask) |POST|✅|||
 | [/api/v3/market/cancel-order](#post-apiv3marketcancel-order) |POST|✅|||
-| [/api/v3/market/balances](#post-apiv3marketbalances) |POST|✅|✅|✅|
+| [/api/v3/market/balances](#post-apiv3marketbalances) |POST||||
 | [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders) |GET|✅|||
 | [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) |GET|✅|||
 | [/api/v3/market/order-info](#get-apiv3marketorder-info) |GET|✅|||
@@ -1242,7 +1244,7 @@ Check trading credit balance.
 Create a buy order.
 
 #### Body:
-* `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
+* `sym`   **string**    The symbol you want to trade (e.g. btc_thb).
 * `amt`   **float**   Amount you want to spend with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
@@ -1273,7 +1275,7 @@ Create a buy order.
 Create a sell order.
 
 #### Body:
-* `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
+* `sym`   **string**    The symbol. The symbol you want to trade (e.g. btc_thb).
 * `amt`   **float**   Amount you want to sell with no trailing zero (e.g. 0.10000000 is invalid, 0.1 is ok)
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
@@ -1360,17 +1362,17 @@ List all open orders of the given symbol.
     {
       "id": "2", // order id
       "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
-      "side": "SELL", // order side
+      "side": "sell", // order side
       "type": "limit", // order type
-      "rate": 15000, // rate
-      "fee": 35.01, // fee
-      "credit": 35.01, // credit used
-      "amount": 0.93333334, // amount
-      "receive": 14000, // amount to receive
-      "parent_id": 1, // parent order id
-      "super_id": 1, // super parent order id
+      "rate": "15000", // rate
+      "fee": "35.01", // fee
+      "credit": "35.01", // credit used
+      "amount": "0.93333334", // amount
+      "receive": "14000", // amount to receive
+      "parent_id": "1", // parent order id
+      "super_id": "1", // super parent order id
       "client_id": "client_id" // client id
-      "ts": 1533834844 // timestamp
+      "ts": 1702543272000 // timestamp
     }
   ]
 }
@@ -1402,8 +1404,8 @@ List all orders that have already matched.
       "txn_id": "ETHBUY0000000197",
       "order_id": "240",
       "hash": "fwQ6dnQWQPs4cbaujNyejinS43a", // order hash
-      "parent_order_id": 0,
-      "super_order_id": 0,
+      "parent_order_id": "0",
+      "super_order_id": "0",
       "taken_by_me": false,
       "is_maker": true,
       "side": "buy",
@@ -1443,13 +1445,13 @@ Get information regarding the specified order.
         "first": "289", // first order id
         "parent": "0", // parent order id
         "last": "316", // last order id
-        "amount": 4000, // order amount
+        "amount": "4000", // order amount
         "rate": 291000, // order rate
         "fee": 10, // order fee
         "credit": 10, // order fee credit used
         "filled": 3999.97, // filled amount
         "total": 4000, // total amount
-        "status": "filled", // order status: filled, unfilled, canceled
+        "status": "filled", // order status: filled, unfilled, cancelled
         "partial_filled": false, // true when order has been partially filled, false when not filled or fully filled
         "remaining": 0, // remaining amount to be executed
         "history": [
@@ -1457,57 +1459,11 @@ Get information regarding the specified order.
                 "amount": 98.14848,
                 "credit": 0.25,
                 "fee": 0.25,
+                "hash": "K9kLVGNVb9AVffm7t6U"
                 "id": "289",
                 "rate": 291000,
-                "timestamp": 1525944169
-            },
-            {
-                "amount": 87.3,
-                "credit": 0.22,
-                "fee": 0.22,
-                "id": "290",
-                "rate": 291000,
-                "timestamp": 1525947677
-            },
-            {
-                "amount": 11.64,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": "301",
-                "rate": 291000,
-                "timestamp": 1525947712
-            },
-            {
-                "amount": 116.4,
-                "credit": 0.3,
-                "fee": 0.3,
-                "id": "302",
-                "rate": 291000,
-                "timestamp": 1525947746
-            },
-            {
-                "amount": 10.185,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": "303",
-                "rate": 291000,
-                "timestamp": 1525948237
-            },
-            {
-                "amount": 10.185,
-                "credit": 0.03,
-                "fee": 0.03,
-                "id": "315",
-                "rate": 291000,
-                "timestamp": 1525948253
-            },
-            {
-                "amount": 3666.13731,
-                "credit": 9.17,
-                "fee": 9.17,
-                "id": "316",
-                "rate": 291000,
-                "timestamp": 1525977397
+                "timestamp": 1702466375000,
+                "txn_id": "BTCBUY0003372258"
             }
         ]
     }
@@ -1897,7 +1853,7 @@ Code | Description
 18 | Insufficient balance
 19 | Failed to insert order into db
 20 | Failed to deduct balance
-21 | Invalid order for cancellation
+21 | Invalid order for cancellation (Unable to find OrderID or Symbol.)
 22 | Invalid side
 23 | Failed to update order status
 24 | Invalid order for lookup
@@ -1936,6 +1892,8 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/asks  |  100 req/sec |
 | /api/market/books  |  100 req/sec |
 | /api/market/order-info  |  100 req/sec |
+| /api/market/my-open-orders  |  100 req/sec |
+| /api/market/my-order-history  |  100 req/sec |
 | /api/market/place-bid  | 50 req/sec  |
 | /api/market/place-ask |  50 req/sec |
 | /api/market/cancel-order  |  100 req/sec |
