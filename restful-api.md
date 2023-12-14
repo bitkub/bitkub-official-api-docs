@@ -1,11 +1,13 @@
 
-# RESTful API for Bitkub (2023-11-30)
+# RESTful API for Bitkub (2023-12-14)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated in the future around early 2024.
 
 
 # Change log
+* 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote
+* 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
 * 2023-11-29 Release Secure Endpoint V3
   * It can be used only with new API keys generated from the new API management page on BItkub website. It does not work with the old API keys.
   * The signature is generated with a new method and moved to the header.
