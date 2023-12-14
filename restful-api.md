@@ -112,29 +112,38 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 ### Secure endpoints V3
 All secure endpoints require [authentication](#constructing-the-request).
 
-|Endpoint   | Method   | Trade | Deposit |Withdraw |
-| ------------ | ------------ | ------------ |------------ |------------ |
-| [/api/v3/market/wallet](#post-apiv3marketwallet)|POST|  |||
-| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)|POST||||
-| [/api/v3/market/place-bid](#post-apiv3marketplace-bid) |POST|✅|||
-| [/api/v3/market/place-ask](#post-apiv3marketplace-ask) |POST|✅|||
-| [/api/v3/market/cancel-order](#post-apiv3marketcancel-order) |POST|✅|||
-| [/api/v3/market/balances](#post-apiv3marketbalances) |POST||||
-| [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders) |GET|✅|||
-| [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) |GET|✅|||
-| [/api/v3/market/order-info](#get-apiv3marketorder-info) |GET|✅|||
-| [/api/v3/crypto/addresses](#post-apiv3cryptoaddresses) |POST||✅||
-| [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw) |POST|||✅|
-| [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) |POST||||
-| [/api/v3/crypto/deposit-history](#post-apiv3cryptodeposit-history) |POST||✅||
-| [/api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history) |POST|||✅|
-| [/api/v3/crypto/generate-address](#post-apiv3cryptogenerate-address) |POST||✅||
-| [/api/v3/fiat/accounts](#post-apiv3fiataccounts) |POST|||✅|
-| [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw) |POST|||✅|
-| [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history) |POST||✅||
-| [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) |POST|||✅|
-| [/api/v3/market/wstoken](#post-apiv3marketwstoken) |POST|✅|||
-| [/api/v3/user/limits](#post-apiv3userlimits) |POST||✅|✅|
+| User Endpoint                                                  | Method | Trade | Deposit | Withdraw |
+| -------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits) | POST   |       |         |          |
+| [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       | ✅       | ✅        |
+
+| Market Endpoint                                                     | Method | Trade | Deposit | Withdraw |
+| ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/market/wallet](#post-apiv3marketwallet)                    | POST   |       |         |          |
+| [/api/v3/market/balances](#post-apiv3marketbalances)                | POST   |       |         |          |
+| [/api/v3/market/place-bid](#post-apiv3marketplace-bid)              | POST   | ✅     |         |          |
+| [/api/v3/market/place-ask](#post-apiv3marketplace-ask)              | POST   | ✅     |         |          |
+| [/api/v3/market/cancel-order](#post-apiv3marketcancel-order)        | POST   | ✅     |         |          |
+| [/api/v3/market/wstoken](#post-apiv3marketwstoken)                  | POST   | ✅     |         |          |
+| [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    | ✅     |         |          |
+| [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    | ✅     |         |          |
+| [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    | ✅     |         |          |
+
+| Crypto Endpoint                                                        | Method | Trade | Deposit | Withdraw |
+| ---------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) | POST   |       |         |          |
+| [/api/v3/crypto/addresses](#post-apiv3cryptoaddresses)                 | POST   |       | ✅       |          |
+| [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)                   | POST   |       |         | ✅        |
+| [/api/v3/crypto/deposit-history](#post-apiv3cryptodeposit-history)     | POST   |       | ✅       |          |
+| [/api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)   | POST   |       |         | ✅        |
+| [/api/v3/crypto/generate-address](#post-apiv3cryptogenerate-address)   | POST   |       | ✅       |          |
+
+| Fiat Endpoint                                                    | Method | Trade | Deposit | Withdraw |
+| ---------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/fiat/accounts](#post-apiv3fiataccounts)                 | POST   |       |         | ✅        |
+| [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw)                 | POST   |       |         | ✅        |
+| [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history)   | POST   |       | ✅       |          |
+| [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) | POST   |       |         | ✅        |
 
 # Constructing the request
 ### GET/POST request
@@ -1822,87 +1831,87 @@ Check deposit/withdraw limitations and usage.
 # Additional
 For the  use of `cur`(currency) for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
 
-Name|Currency
----|---
-Terra Classic|`LUNA`
-Terra 2.0|`LUNA2`
+| Name          | Currency |
+| ------------- | -------- |
+| Terra Classic | `LUNA`   |
+| Terra 2.0     | `LUNA2`  |
 
 # Error codes
 Refer to the following descriptions:
 
-Code | Description
------------- | ------------
-0 | No error
-1 | Invalid JSON payload
-2 | Missing X-BTK-APIKEY
-3 | Invalid API key
-4 | API pending for activation
-5 | IP not allowed
-6 | Missing / invalid signature
-7 | Missing timestamp
-8 | Invalid timestamp
-9 | Invalid user
-10 | Invalid parameter
-11 | Invalid symbol
-12 | Invalid amount
-13 | Invalid rate
-14 | Improper rate
-15 | Amount too low
-16 | Failed to get balance
-17 | Wallet is empty
-18 | Insufficient balance
-19 | Failed to insert order into db
-20 | Failed to deduct balance
-21 | Invalid order for cancellation (Unable to find OrderID or Symbol.)
-22 | Invalid side
-23 | Failed to update order status
-24 | Invalid order for lookup
-25 | KYC level 1 is required to proceed
-30 | Limit exceeds
-40 | Pending withdrawal exists
-41 | Invalid currency for withdrawal
-42 | Address is not in whitelist
-43 | Failed to deduct crypto
-44 | Failed to create withdrawal record
-45 | Nonce has to be numeric
-46 | Invalid nonce
-47 | Withdrawal limit exceeds
-48 | Invalid bank account
-49 | Bank limit exceeds
-50 | Pending withdrawal exists
-51 | Withdrawal is under maintenance
-52 | Invalid permission
-53 | Invalid internal address 
-54 | Address has been deprecated
-55 | Cancel only mode
-56 | User has been suspended from purchasing
-57 | User has been suspended from selling
-90 | Server error (please contact support)
+| Code | Description                                                        |
+| ---- | ------------------------------------------------------------------ |
+| 0    | No error                                                           |
+| 1    | Invalid JSON payload                                               |
+| 2    | Missing X-BTK-APIKEY                                               |
+| 3    | Invalid API key                                                    |
+| 4    | API pending for activation                                         |
+| 5    | IP not allowed                                                     |
+| 6    | Missing / invalid signature                                        |
+| 7    | Missing timestamp                                                  |
+| 8    | Invalid timestamp                                                  |
+| 9    | Invalid user                                                       |
+| 10   | Invalid parameter                                                  |
+| 11   | Invalid symbol                                                     |
+| 12   | Invalid amount                                                     |
+| 13   | Invalid rate                                                       |
+| 14   | Improper rate                                                      |
+| 15   | Amount too low                                                     |
+| 16   | Failed to get balance                                              |
+| 17   | Wallet is empty                                                    |
+| 18   | Insufficient balance                                               |
+| 19   | Failed to insert order into db                                     |
+| 20   | Failed to deduct balance                                           |
+| 21   | Invalid order for cancellation (Unable to find OrderID or Symbol.) |
+| 22   | Invalid side                                                       |
+| 23   | Failed to update order status                                      |
+| 24   | Invalid order for lookup                                           |
+| 25   | KYC level 1 is required to proceed                                 |
+| 30   | Limit exceeds                                                      |
+| 40   | Pending withdrawal exists                                          |
+| 41   | Invalid currency for withdrawal                                    |
+| 42   | Address is not in whitelist                                        |
+| 43   | Failed to deduct crypto                                            |
+| 44   | Failed to create withdrawal record                                 |
+| 45   | Nonce has to be numeric                                            |
+| 46   | Invalid nonce                                                      |
+| 47   | Withdrawal limit exceeds                                           |
+| 48   | Invalid bank account                                               |
+| 49   | Bank limit exceeds                                                 |
+| 50   | Pending withdrawal exists                                          |
+| 51   | Withdrawal is under maintenance                                    |
+| 52   | Invalid permission                                                 |
+| 53   | Invalid internal address                                           |
+| 54   | Address has been deprecated                                        |
+| 55   | Cancel only mode                                                   |
+| 56   | User has been suspended from purchasing                            |
+| 57   | User has been suspended from selling                               |
+| 90   | Server error (please contact support)                              |
 
 # Rate limits 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual IP address accessing the API. ***The rate limit is applied to each endpoint regardless the API version.***
 
-|Endpoint   | Rate Limit   |
-| ------------ | ------------ |
-| /api/market/ticker  | 100 req/sec  |
-| /api/market/depth | 10 req/sec  |
-| /api/market/symbols |  100 req/sec |
-| /api/market/trades |  100 req/sec |
-| /api/market/bids  |  100 req/sec |
-| /api/market/asks  |  100 req/sec |
-| /api/market/books  |  100 req/sec |
-| /api/market/order-info  |  100 req/sec |
-| /api/market/my-open-orders  |  100 req/sec |
-| /api/market/my-order-history  |  100 req/sec |
-| /api/market/place-bid  | 50 req/sec  |
-| /api/market/place-ask |  50 req/sec |
-| /api/market/cancel-order  |  100 req/sec |
-| /api/market/balances |  150 req/sec |
-| /api/market/wallet | 150 req/sec  |
-| /api/crypto/deposit-history |  20 req/sec |
-| /api/servertime  | 2,000 req/10secs  |
-| /api/status | 100 req/sec  |
-| /api/crypto/* | 250 req/10secs  |
-| /api/fiat/* | 20 req/sec  |
-| /api/user/*   |  20 req/sec |
-| /tradingview/* | 100 req/sec  |
+| Endpoint                     | Rate Limit       |
+| ---------------------------- | ---------------- |
+| /api/market/ticker           | 100 req/sec      |
+| /api/market/depth            | 10 req/sec       |
+| /api/market/symbols          | 100 req/sec      |
+| /api/market/trades           | 100 req/sec      |
+| /api/market/bids             | 100 req/sec      |
+| /api/market/asks             | 100 req/sec      |
+| /api/market/books            | 100 req/sec      |
+| /api/market/order-info       | 100 req/sec      |
+| /api/market/my-open-orders   | 100 req/sec      |
+| /api/market/my-order-history | 100 req/sec      |
+| /api/market/place-bid        | 50 req/sec       |
+| /api/market/place-ask        | 50 req/sec       |
+| /api/market/cancel-order     | 100 req/sec      |
+| /api/market/balances         | 150 req/sec      |
+| /api/market/wallet           | 150 req/sec      |
+| /api/crypto/deposit-history  | 20 req/sec       |
+| /api/servertime              | 2,000 req/10secs |
+| /api/status                  | 100 req/sec      |
+| /api/crypto/*                | 250 req/10secs   |
+| /api/fiat/*                  | 20 req/sec       |
+| /api/user/*                  | 20 req/sec       |
+| /tradingview/*               | 100 req/sec      |
