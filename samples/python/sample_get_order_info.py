@@ -7,24 +7,32 @@ import requests
 def gen_sign(api_secret, payload_string=None):
     return hmac.new(api_secret.encode('utf-8'), payload_string.encode('utf-8'), hashlib.sha256).hexdigest()
 
+def gen_query_param(url, query_param):
+    req = requests.PreparedRequest()
+    req.prepare_url(url, query_param)
+    return req.url.replace(url,"")
+
 if __name__ == '__main__':
+    
     host = 'https://api.bitkub.com'
-    path = '/api/v3/market/place-bid'
+    path = '/api/v3/market/order-info'
     api_key = 'your API key'
     api_secret = 'your API SECRET'
 
     ts = str(round(time.time() * 1000))
-    reqBody = {
-        'sym': 'btc_thb', # {quote}_{base}
-        'amt': 10,
-        'rat': 10,
-        'typ': 'limit' # limit, market
+    param = {
+        'sym':"", # symbol in quote_base format: e.g. btc_thb
+        'id': "", # order id
+        "sd": "", # side buy or sell
+        # "hash":"", # order hash (optional)
     }
+    query_param = gen_query_param(host+path, param)
+
     payload = []
     payload.append(ts)
-    payload.append('POST')
+    payload.append('GET')
     payload.append(path)
-    payload.append(json.dumps(reqBody))
+    payload.append(query_param)
 
     sig = gen_sign(api_secret, ''.join(payload))
     headers = {
@@ -35,5 +43,5 @@ if __name__ == '__main__':
         'X-BTK-APIKEY': api_key
     }
 
-    response = requests.request('POST', host + path, headers=headers, data=json.dumps(reqBody), verify=False)
+    response = requests.request('GET', f'{host}{path}{query_param}', headers=headers, data={}, verify=False)
     print(response.text)
