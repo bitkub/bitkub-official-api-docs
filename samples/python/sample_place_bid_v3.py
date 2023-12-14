@@ -15,10 +15,10 @@ if __name__ == '__main__':
 
     ts = str(round(time.time() * 1000))
     reqBody = {
-        'sym': 'thb_btc',
+        'sym': 'btc_thb', # {quote}_{base}
         'amt': 10,
         'rat': 10,
-        'typ': 'limit'
+        'typ': 'limit' # limit, market
     }
     payload = []
     payload.append(ts)
