@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2023-12-14)
 
 # Announcement
-* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated in the future around early 2024.
+* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated on 1 March 2024.
 
 
 # Change log
