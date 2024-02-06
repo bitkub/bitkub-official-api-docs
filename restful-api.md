@@ -241,7 +241,7 @@ Get server timestamp. This can't use with secure endpoint V3. Please use [/api/v
 
 #### Response:
 ```javascript
-1529999999
+1707220534359
 ```
 
 ### GET /api/v3/servertime
@@ -1272,7 +1272,7 @@ Create a buy order.
     "fee": 2.5, // fee
     "cre": 2.5, // fee credit used
     "rec": 0.06666666, // amount to receive
-    "ts": 1533834547 // timestamp
+    "ts": "1707220636" // timestamp
     "ci": "input_client_id" // input id for reference
   }
 }
@@ -1304,7 +1304,7 @@ Create a sell order.
     "fee": 37.5, // fee
     "cre": 37.5, // fee credit used
     "rec": 15000, // amount to receive
-    "ts": 1533834844 // timestamp
+    "ts": "1533834844" // timestamp
     "ci": "input_client_id" // input id for reference
   }
 }
@@ -1368,7 +1368,7 @@ List all open orders of the given symbol.
 {
   "error": 0,
   "result": [
-    {
+    { // Example of sell order
       "id": "2", // order id
       "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
       "side": "sell", // order side
@@ -1376,13 +1376,28 @@ List all open orders of the given symbol.
       "rate": "15000", // rate
       "fee": "35.01", // fee
       "credit": "35.01", // credit used
-      "amount": "0.93333334", // amount
-      "receive": "14000", // amount to receive
+      "amount": "0.93333334", // amount of crypto quantity
+      "receive": "14000", // amount of THB 
       "parent_id": "1", // parent order id
       "super_id": "1", // super parent order id
       "client_id": "client_id" // client id
       "ts": 1702543272000 // timestamp
-    }
+    },
+    { // Example of buy order
+      "id": "278465822",
+      "hash": "fwQ6dnQYKnqFPHx8sFM3z8oydmJ",
+      "side": "buy",
+      "type": "limit",
+      "rate": "10",
+      "fee": "0.25",
+      "credit": "0",
+      "amount": "100", // amount of THB 
+      "receive": "9.975", // amount of crypto quantity
+      "parent_id": "0",
+      "super_id": "0",
+      "client_id": "client_id",
+      "ts": 1707220636000
+    },
   ]
 }
 ```
@@ -1410,20 +1425,40 @@ List all orders that have already matched.
   "error": 0,
   "result": [
     {
-      "txn_id": "ETHBUY0000000197",
-      "order_id": "240",
-      "hash": "fwQ6dnQWQPs4cbaujNyejinS43a", // order hash
+      "txn_id": "BTCSELL0021206932",
+      "order_id": "241407793",
+      "hash": "fwQ6dnYz5mbyeY9ssuqA74NmDej",
       "parent_order_id": "0",
+      "parent_order_hash": "fwQ6dnQWQPs4cbatFGc8qWckMTH",
       "super_order_id": "0",
+      "super_order_hash": "fwQ6dnQWQPs4cbatFGc8qWckMTH",
       "taken_by_me": false,
-      "is_maker": true,
+      "is_maker": false,
+      "side": "sell",
+      "type": "market",
+      "rate": "1525096.27",
+      "fee": "0.04",
+      "credit": "0",
+      "amount": "0.00001", // crypto amount
+      "ts": 1707221396584
+    },
+    {
+      "txn_id": "BTCBUY0021182426",
+      "order_id": "277231907",
+      "hash": "fwQ6dnQYKnqFP3TPmYEajSfSbap",
+      "parent_order_id": "0",
+      "parent_order_hash": "fwQ6dnQWQPs4cbatF5Am2qegYs2",
+      "super_order_id": "0",
+      "super_order_hash": "fwQ6dnQWQPs4cbatF5Am2qegYs2",
+      "taken_by_me": false,
+      "is_maker": false,
       "side": "buy",
-      "type": "limit",
-      "rate": "13335.57",
-      "fee": "0.34",
-      "credit": "0.34",
-      "amount": "0.00999987",
-      "ts": 1531513395
+      "type": "market",
+      "rate": "1497974.74",
+      "fee": "0.03",
+      "credit": "0",
+      "amount": "11", // THB amount
+      "ts": 1706775718739
     }
   ],
   "pagination": {
@@ -1454,7 +1489,7 @@ Get information regarding the specified order.
         "first": "289", // first order id
         "parent": "0", // parent order id
         "last": "316", // last order id
-        "amount": "4000", // order amount
+        "amount": "4000", // order amount THB amount if it Buy side. And Crypto Amount if it sell side
         "rate": 291000, // order rate
         "fee": 10, // order fee
         "credit": 10, // order fee credit used
