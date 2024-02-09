@@ -102,7 +102,6 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/fiat/withdraw](#post-apifiatwithdraw)
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
-* [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
 * [POST /api/market/v2/place-bid](#post-apimarketv2place-bid)
@@ -124,7 +123,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/market/place-bid](#post-apiv3marketplace-bid)              | POST   | ✅     |         |          |
 | [/api/v3/market/place-ask](#post-apiv3marketplace-ask)              | POST   | ✅     |         |          |
 | [/api/v3/market/cancel-order](#post-apiv3marketcancel-order)        | POST   | ✅     |         |          |
-| [/api/v3/market/wstoken](#post-apiv3marketwstoken)                  | POST   | ✅     |         |          |
 | [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    | ✅     |         |          |
 | [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    | ✅     |         |          |
 | [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    | ✅     |         |          |
@@ -194,14 +192,6 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-open-orders?sym=BTC_THB
 --header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
 --header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
 
-```
-
-### Nonce
-You can secure your request even further by including `nonce` in the request payload. Nonce is a numeric value which is incremental in each request (nonce value has to be higher in each new request). Use `non` as the key name for nonce.
-
-#### Example payload (with nonce):
-```javascript
-{"sym":"THB_BTC","amt":0.1,"rat":10000,"typ":"limit","ts":1529490685,"non":1}
 ```
 
 # API documentation
@@ -1787,22 +1777,6 @@ List fiat withdrawal history.
 }
 ```
 
-### POST /api/v3/market/wstoken
-
-### Description:
-Get the token for websocket authentication.
-
-### Query (URL):
--
-
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
-}
-```
-
 ### POST /api/v3/user/limits
 
 ### Description:
@@ -1892,8 +1866,6 @@ Refer to the following descriptions:
 | 42   | Address is not in whitelist                                        |
 | 43   | Failed to deduct crypto                                            |
 | 44   | Failed to create withdrawal record                                 |
-| 45   | Nonce has to be numeric                                            |
-| 46   | Invalid nonce                                                      |
 | 47   | Withdrawal limit exceeds                                           |
 | 48   | Invalid bank account                                               |
 | 49   | Bank limit exceeds                                                 |
