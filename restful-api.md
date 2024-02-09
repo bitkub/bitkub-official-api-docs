@@ -1054,22 +1054,6 @@ List fiat withdrawal history.
 }
 ```
 
-### POST /api/market/wstoken
-
-### Description:
-Get the token for websocket authentication.
-
-### Query (URL):
--
-
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
-}
-```
-
 ### POST /api/user/limits
 
 ### Description:
