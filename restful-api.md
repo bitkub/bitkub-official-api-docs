@@ -103,7 +103,6 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/fiat/withdraw](#post-apifiatwithdraw)
 * [POST /api/fiat/deposit-history](#post-apifiatdeposit-history)
 * [POST /api/fiat/withdraw-history](#post-apifiatwithdraw-history)
-* [POST /api/market/wstoken](#post-apimarketwstoken)
 * [POST /api/user/limits](#post-apiuserlimits)
 * [POST /api/user/trading-credits](#post-apiusertrading-credits)
 * [POST /api/market/v2/place-bid](#post-apimarketv2place-bid)
@@ -1047,18 +1046,6 @@ List fiat withdrawal history.
 }
 ```
 
-### POST /api/market/wstoken
-### Description:
-Get the token for websocket authentication.
-### Query (URL):
--
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
-}
-```
 
 ### POST /api/user/limits
 
@@ -1790,18 +1777,6 @@ List fiat withdrawal history.
       "page": 1,
       "last": 1
    }
-}
-```
-### POST /api/v3/market/wstoken
-### Description:
-Get the token for websocket authentication.
-### Query (URL):
--
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": "BYGoc1Pt81s1ouhZD095UtMdwWU2ZU0tVPYZSZ22WPU8GcMC9jOldV3e9aBJoDWLsfqxWH8jkZYI9ID4EZeeueEFNDL1OznPcS0z1Da19sSF0MlBbqpgT3TQpyp2oea9"
 }
 ```
 
