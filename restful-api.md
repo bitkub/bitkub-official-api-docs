@@ -1,11 +1,12 @@
 
-# RESTful API for Bitkub (2024-02-09)
+# RESTful API for Bitkub (2024-02-15)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated on 1 March 2024.
 
 
 # Change log
+* 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
 * 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
 * 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
 * 2023-11-29 Release Secure Endpoint V3
@@ -115,7 +116,7 @@ All secure endpoints require [authentication](#constructing-the-request).
 | User Endpoint                                                  | Method | Trade | Deposit | Withdraw |
 | -------------------------------------------------------------- | ------ | ----- | ------- | -------- |
 | [/api/v3/user/trading-credits](#post-apiv3usertrading-credits) | POST   |       |         |          |
-| [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       | ✅       | ✅        |
+| [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       |         |          |
 
 | Market Endpoint                                                     | Method | Trade | Deposit | Withdraw |
 | ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
@@ -125,25 +126,25 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/market/place-ask](#post-apiv3marketplace-ask)              | POST   | ✅     |         |          |
 | [/api/v3/market/cancel-order](#post-apiv3marketcancel-order)        | POST   | ✅     |         |          |
 | [/api/v3/market/wstoken](#post-apiv3marketwstoken)                  | POST   | ✅     |         |          |
-| [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    | ✅     |         |          |
-| [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    | ✅     |         |          |
-| [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    | ✅     |         |          |
+| [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    |        |         |          |
+| [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    |        |         |          |
+| [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    |       |         |          |
 
 | Crypto Endpoint                                                        | Method | Trade | Deposit | Withdraw |
 | ---------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
 | [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) | POST   |       |         |          |
-| [/api/v3/crypto/addresses](#post-apiv3cryptoaddresses)                 | POST   |       | ✅       |          |
+| [/api/v3/crypto/addresses](#post-apiv3cryptoaddresses)                 | POST   |       |         |          |
 | [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)                   | POST   |       |         | ✅        |
-| [/api/v3/crypto/deposit-history](#post-apiv3cryptodeposit-history)     | POST   |       | ✅       |          |
-| [/api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)   | POST   |       |         | ✅        |
-| [/api/v3/crypto/generate-address](#post-apiv3cryptogenerate-address)   | POST   |       | ✅       |          |
+| [/api/v3/crypto/deposit-history](#post-apiv3cryptodeposit-history)     | POST   |       |         |          |
+| [/api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)   | POST   |       |         |          |
+| [/api/v3/crypto/generate-address](#post-apiv3cryptogenerate-address)   | POST   |       | ✅      |          |
 
 | Fiat Endpoint                                                    | Method | Trade | Deposit | Withdraw |
 | ---------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/fiat/accounts](#post-apiv3fiataccounts)                 | POST   |       |         | ✅        |
-| [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw)                 | POST   |       |         | ✅        |
-| [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history)   | POST   |       | ✅       |          |
-| [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) | POST   |       |         | ✅        |
+| [/api/v3/fiat/accounts](#post-apiv3fiataccounts)                 | POST   |       |         | ✅       |
+| [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw)                 | POST   |       |         |          |
+| [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history)   | POST   |       |         |          |
+| [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) | POST   |       |         |          |
 
 # Constructing the request
 ### GET/POST request
