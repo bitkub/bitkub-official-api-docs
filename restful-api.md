@@ -785,11 +785,12 @@ List all crypto addresses.
 }
 ```
 
-### POST /api/crypto/withdraw ( Deprecated )
+### POST /api/crypto/withdraw 
 
 ### Description:
 Make a withdrawal to a **trusted** address.
 
+**This Endpoints will be drecated on 6 March. Please use [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw).**
 ### Body:
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
 * `amt`		**float**		Amount you want to withdraw
@@ -820,12 +821,13 @@ For request on `KAP-20`, please assign the `net` value as `BKC`.
 }
 ```
 
-### POST /api/crypto/internal-withdraw ( Deprecated )
+### POST /api/crypto/internal-withdraw 
 
 ### Description:
 Make a withdraw to an internal address. The destination address is not required to be a trusted address.
 **This API is not enabled by default**, Only KYB users can request this feature by contacting us via **support@bitkub.com**
 
+**This Endpoints will be drecated on 6 March. Please use [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw).**
 ### Query:
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
 * `amt`		**float**		Amount you want to withdraw
