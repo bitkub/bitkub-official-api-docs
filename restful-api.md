@@ -3,7 +3,7 @@
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
-* The endpoints [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) and [POST /api/crypto/withdraw](#post-apicryptowithdraw) were deprecated on March 6, 2024.
+* The endpoints [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) and [POST /api/crypto/withdraw](#post-apicryptowithdraw) will deprecated on March 6, 2024.
 
 
 # Change log
