@@ -2,10 +2,11 @@
 # RESTful API for Bitkub (2024-02-15)
 
 # Announcement
-* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated on 1 March 2024.
+* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
 
 
 # Change log
+* 2024-2-28 Updated deprecated endpoints [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) and [POST /api/crypto/withdraw](#post-apicryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
 * 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
 * 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
@@ -94,8 +95,8 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
 * [POST /api/crypto/addresses](#post-apicryptoaddresses)
-* [POST /api/crypto/withdraw](#post-apicryptowithdraw)
-* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) 
+* [POST /api/crypto/withdraw](#post-apicryptowithdraw) (Deprecated)
+* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) (Deprecated)
 * [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
 * [POST /api/crypto/generate-address](#post-apicryptogenerate-address)
@@ -784,7 +785,7 @@ List all crypto addresses.
 }
 ```
 
-### POST /api/crypto/withdraw
+### POST /api/crypto/withdraw ( Deprecated )
 
 ### Description:
 Make a withdrawal to a **trusted** address.
@@ -819,7 +820,7 @@ For request on `KAP-20`, please assign the `net` value as `BKC`.
 }
 ```
 
-### POST /api/crypto/internal-withdraw
+### POST /api/crypto/internal-withdraw ( Deprecated )
 
 ### Description:
 Make a withdraw to an internal address. The destination address is not required to be a trusted address.
