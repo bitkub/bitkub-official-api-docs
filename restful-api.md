@@ -1,8 +1,9 @@
 
-# RESTful API for Bitkub (2024-02-15)
+# RESTful API for Bitkub (2024-02-28)
 
 # Announcement
-* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated on 1 March 2024.
+* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
+* The endpoints [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) and [POST /api/crypto/withdraw](#post-apicryptowithdraw) will deprecated on March 6, 2024. Please move to endpoint V3 instead, [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw), [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 
 
 # Change log
@@ -94,8 +95,8 @@ All secure endpoints require [authentication](#constructing-the-request) and use
 * [POST /api/market/my-order-history](#post-apimarketmy-order-history)
 * [POST /api/market/order-info](#post-apimarketorder-info)
 * [POST /api/crypto/addresses](#post-apicryptoaddresses)
-* [POST /api/crypto/withdraw](#post-apicryptowithdraw)
-* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) 
+* [POST /api/crypto/withdraw](#post-apicryptowithdraw) (To be Deprecated)
+* [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) (To be Deprecated)
 * [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
 * [POST /api/crypto/withdraw-history](#post-apicryptowithdraw-history)
 * [POST /api/crypto/generate-address](#post-apicryptogenerate-address)
@@ -784,10 +785,12 @@ List all crypto addresses.
 }
 ```
 
-### POST /api/crypto/withdraw
+### POST /api/crypto/withdraw 
 
 ### Description:
 Make a withdrawal to a **trusted** address.
+
+<span style="color:white;background:red;"> ⚠️ **This Endpoints will be drecated on 6 March. Please use [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw).**</span>
 
 ### Body:
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
@@ -819,11 +822,13 @@ For request on `KAP-20`, please assign the `net` value as `BKC`.
 }
 ```
 
-### POST /api/crypto/internal-withdraw
+### POST /api/crypto/internal-withdraw 
 
 ### Description:
 Make a withdraw to an internal address. The destination address is not required to be a trusted address.
 **This API is not enabled by default**, Only KYB users can request this feature by contacting us via **support@bitkub.com**
+
+<span style="color:white;background:red;"> ⚠️ **This Endpoints will be deprecate on 6 March. Please use [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw).**</span>
 
 ### Query:
 * `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
