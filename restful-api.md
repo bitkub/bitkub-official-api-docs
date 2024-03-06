@@ -1569,6 +1569,8 @@ Make a withdraw to an internal address. The destination address is not required 
 * `amt`		**float**		Amount you want to withdraw
 * `adr`		**string**		Address to which you want to withdraw
 * `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
+* `net` **string** Cryptocurrency network to withdraw\
+No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
 
 ### Response:
 ```javascript
