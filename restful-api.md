@@ -1241,6 +1241,7 @@ Create a buy order.
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
 * `client_id` **string**    your id for reference ( not required )
+* `post_only`   **bool**    Postonly flag: true or false ( not required )
 
 #### Response:
 ```javascript
@@ -1272,6 +1273,7 @@ Create a sell order.
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
 * `client_id`   **string**    your id for reference ( not required )
+* `post_only`   **bool**    Postonly flag: true or false ( not required )
 
 
 #### Response:
@@ -1474,6 +1476,8 @@ Get information regarding the specified order.
         "first": "289", // first order id
         "parent": "0", // parent order id
         "last": "316", // last order id
+        "client_id": "", // your id for reference
+        "post_only": false, // post_only: true, false
         "amount": "4000", // order amount THB amount if it Buy side. And Crypto Amount if it sell side
         "rate": 291000, // order rate
         "fee": 10, // order fee
