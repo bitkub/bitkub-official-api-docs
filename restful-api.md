@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2024-03-06)
+# RESTful API for Bitkub (2024-05-16)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
@@ -7,6 +7,7 @@
 
 
 # Change log
+* 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
 * 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
 * 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
@@ -1241,6 +1242,7 @@ Create a buy order.
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
 * `client_id` **string**    your id for reference ( not required )
+* `post_only`   **bool**    Postonly flag: true or false ( not required )
 
 #### Response:
 ```javascript
@@ -1272,6 +1274,7 @@ Create a sell order.
 * `rat`   **float**   Rate you want for the order with no trailing zero (e.g. 1000.00 is invalid, 1000 is ok)
 * `typ`   **string**    Order type: limit or market (for market order, please specify rat as 0)
 * `client_id`   **string**    your id for reference ( not required )
+* `post_only`   **bool**    Postonly flag: true or false ( not required )
 
 
 #### Response:
@@ -1474,6 +1477,8 @@ Get information regarding the specified order.
         "first": "289", // first order id
         "parent": "0", // parent order id
         "last": "316", // last order id
+        "client_id": "", // your id for reference
+        "post_only": false, // post_only: true, false
         "amount": "4000", // order amount THB amount if it Buy side. And Crypto Amount if it sell side
         "rate": 291000, // order rate
         "fee": 10, // order fee
