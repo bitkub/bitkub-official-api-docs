@@ -1579,6 +1579,7 @@ Make a withdraw to an internal address. The destination address is not required 
 * `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
 * `net` **string** Cryptocurrency network to withdraw\
 No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
+* `ext_ref` **string** (Optional) External reference
 
 ### Response:
 ```javascript
@@ -1586,6 +1587,7 @@ No default value of this field. Please find the available network from the link 
     "error": 0,
     "result": {
         "txn": "BTCWD0000012345", // local transaction id
+        "ext_ref": "XXWD0000012345", // external reference
         "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
         "mem": "", // memo
         "cur": "BTC", // currency
@@ -1641,23 +1643,40 @@ List crypto withdrawal history.
 ### Response:
 ```javascript
 {
-   "error": 0,
-   "result": [
-      {
-         "txn_id": "XRPWD0000100276",
-         "hash": "send_internal",
-         "currency": "XRP",
-         "amount": "5.75111474",
-         "fee": 0.01,
-         "address": "rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
-         "status": "complete",
-         "time": 1570893493
-      }
-   ],
-   "pagination": {
-      "page": 1,
-      "last": 1
-   }
+  "error": 0,
+  "result": [
+    {
+      "txn_id": "RDNTWD0000804050",
+      "ext_ref": "XX_1111111111",
+      "hash": null,
+      "currency": "RDNT",
+      "amount": "2.00000000",
+      "fee": 4.36,
+      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+      "memo": "",
+      "status": "processing",
+      "note": "-",
+      "time": 1668485932
+    },
+    {
+      "txn_id": "BTCWD1321312683",
+      "ext_ref": "XX_1111111112",
+      "hash": "0x8891b79c79f0842c9a654db47745fe0291fba222b290d22cabc93f8ae4490303",
+      "currency": "BTC",
+      "amount": "0.10000000",
+      "fee": 0.0025,
+      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+      "memo": "",
+      "status": "complete",
+      "note": "-",
+      "time": 1711678588
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "last": 57,
+    "next": 2
+  }
 }
 ```
 
