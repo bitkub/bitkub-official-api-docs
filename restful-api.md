@@ -8,6 +8,7 @@
 
 # Change log
 * 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
+* 2024-06-11 Added new error code 58 - Transaction Not Found
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
 * 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
@@ -1675,8 +1676,7 @@ List crypto withdrawal history.
   ],
   "pagination": {
     "page": 1,
-    "last": 57,
-    "next": 2
+    "last": 1,
   }
 }
 ```
