@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2024-05-16)
+# RESTful API for Bitkub (2024-06-11)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
@@ -7,6 +7,7 @@
 
 
 # Change log
+* 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
 * 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
@@ -1914,6 +1915,7 @@ Refer to the following descriptions:
 | 55   | Cancel only mode                                                   |
 | 56   | User has been suspended from purchasing                            |
 | 57   | User has been suspended from selling                               |
+| 58   | Transaction not found                                              |
 | 90   | Server error (please contact support)                              |
 
 # Rate limits 
