@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2024-05-16)
+# RESTful API for Bitkub (2024-06-11)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
@@ -7,6 +7,8 @@
 
 
 # Change log
+* 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
+* 2024-06-11 Added new error code 58 - Transaction Not Found
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
 * 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
@@ -1579,6 +1581,7 @@ Make a withdraw to an internal address. The destination address is not required 
 * `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
 * `net` **string** Cryptocurrency network to withdraw\
 No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
+* `ext_ref` **string** (Optional) External reference
 
 ### Response:
 ```javascript
@@ -1586,6 +1589,7 @@ No default value of this field. Please find the available network from the link 
     "error": 0,
     "result": {
         "txn": "BTCWD0000012345", // local transaction id
+        "ext_ref": "XXWD0000012345", // external reference
         "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
         "mem": "", // memo
         "cur": "BTC", // currency
@@ -1641,23 +1645,39 @@ List crypto withdrawal history.
 ### Response:
 ```javascript
 {
-   "error": 0,
-   "result": [
-      {
-         "txn_id": "XRPWD0000100276",
-         "hash": "send_internal",
-         "currency": "XRP",
-         "amount": "5.75111474",
-         "fee": 0.01,
-         "address": "rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW",
-         "status": "complete",
-         "time": 1570893493
-      }
-   ],
-   "pagination": {
-      "page": 1,
-      "last": 1
-   }
+  "error": 0,
+  "result": [
+    {
+      "txn_id": "RDNTWD0000804050",
+      "ext_ref": "XX_1111111111",
+      "hash": null,
+      "currency": "RDNT",
+      "amount": "2.00000000",
+      "fee": 4.36,
+      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+      "memo": "",
+      "status": "processing",
+      "note": "-",
+      "time": 1668485932
+    },
+    {
+      "txn_id": "BTCWD1321312683",
+      "ext_ref": "XX_1111111112",
+      "hash": "0x8891b79c79f0842c9a654db47745fe0291fba222b290d22cabc93f8ae4490303",
+      "currency": "BTC",
+      "amount": "0.10000000",
+      "fee": 0.0025,
+      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+      "memo": "",
+      "status": "complete",
+      "note": "-",
+      "time": 1711678588
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "last": 1,
+  }
 }
 ```
 
@@ -1895,6 +1915,7 @@ Refer to the following descriptions:
 | 55   | Cancel only mode                                                   |
 | 56   | User has been suspended from purchasing                            |
 | 57   | User has been suspended from selling                               |
+| 58   | Transaction not found                                              |
 | 90   | Server error (please contact support)                              |
 
 # Rate limits 
