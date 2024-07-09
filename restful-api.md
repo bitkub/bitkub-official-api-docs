@@ -3,10 +3,11 @@
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
-* The endpoints [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw) and [POST /api/crypto/withdraw](#post-apicryptowithdraw) will deprecated on March 6, 2024. Please move to endpoint V3 instead, [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw), [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
+* The Secure Endpoint [Secure Endpoint V1,V2](#secure-endpoints-old) will be deprecated on 17 July 2024. Please move to use new secure endpoints [Secure ENdpoint V3](#secure-endpoints-v3)
 
 
 # Change log
+* 2024-07-05 Update rate-limits which will be apply on 17 July 2024 [Rate-Limits](#rate-limits)
 * 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
 * 2024-06-11 Added new error code 58 - Transaction Not Found
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
@@ -1919,7 +1920,7 @@ Refer to the following descriptions:
 | 90   | Server error (please contact support)                              |
 
 # Rate limits 
-If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual IP address accessing the API. ***The rate limit is applied to each endpoint regardless the API version.***
+If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual user accessing the API. ***The rate limit is applied to each endpoint regardless the API version.***
 
 | Endpoint                     | Rate Limit       |
 | ---------------------------- | ---------------- |
@@ -1933,9 +1934,9 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/order-info       | 100 req/sec      |
 | /api/market/my-open-orders   | 100 req/sec      |
 | /api/market/my-order-history | 100 req/sec      |
-| /api/market/place-bid        | 50 req/sec       |
-| /api/market/place-ask        | 50 req/sec       |
-| /api/market/cancel-order     | 100 req/sec      |
+| /api/market/place-bid        | 200 req/sec       |
+| /api/market/place-ask        | 200 req/sec       |
+| /api/market/cancel-order     | 200 req/sec      |
 | /api/market/balances         | 150 req/sec      |
 | /api/market/wallet           | 150 req/sec      |
 | /api/crypto/deposit-history  | 20 req/sec       |
