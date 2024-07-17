@@ -1937,7 +1937,7 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/my-order-history | 100 req/sec      | 
 | /api/market/place-bid        | 150 req/sec       |
 | /api/market/place-ask        | 150 req/sec       |
-| /api/market/cancel-order     | 150 req/sec      |
+| /api/market/cancel-order     | 200 req/sec      |
 | /api/market/balances         | 150 req/sec      |
 | /api/market/wallet           | 150 req/sec      |
 | /api/crypto/deposit-history  | 20 req/sec       |
