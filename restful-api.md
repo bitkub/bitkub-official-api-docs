@@ -1,12 +1,13 @@
 
-# RESTful API for Bitkub (2024-06-11)
+# RESTful API for Bitkub (2024-07-17)
 
 # Announcement
 * ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
-* The Secure Endpoint [Secure Endpoint V1,V2](#secure-endpoints-old) will be deprecated on 17 July 2024. Please move to use new secure endpoints [Secure ENdpoint V3](#secure-endpoints-v3)
+* The Secure Endpoint [Secure Endpoint V1,V2](#secure-endpoints-old) will be deprecated on 25 July 2024. Please move to use new secure endpoints [Secure ENdpoint V3](#secure-endpoints-v3)
 
 
 # Change log
+* 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders  [Rate-Limits](#rate-limits)
 * 2024-07-05 Update rate-limits which will be apply on 17 July 2024 [Rate-Limits](#rate-limits)
 * 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
 * 2024-06-11 Added new error code 58 - Transaction Not Found
@@ -1932,10 +1933,10 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/asks             | 100 req/sec      |
 | /api/market/books            | 100 req/sec      |
 | /api/market/order-info       | 100 req/sec      |
-| /api/market/my-open-orders   | 100 req/sec      |
-| /api/market/my-order-history | 100 req/sec      |
-| /api/market/place-bid        | 200 req/sec       |
-| /api/market/place-ask        | 200 req/sec       |
+| /api/market/my-open-orders   | 150 req/sec      |
+| /api/market/my-order-history | 100 req/sec      | 
+| /api/market/place-bid        | 150 req/sec       |
+| /api/market/place-ask        | 150 req/sec       |
 | /api/market/cancel-order     | 200 req/sec      |
 | /api/market/balances         | 150 req/sec      |
 | /api/market/wallet           | 150 req/sec      |
