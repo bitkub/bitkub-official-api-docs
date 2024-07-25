@@ -709,8 +709,6 @@ List all open orders of the given symbol.
 }
 ```
 Note : The ```client_id``` of this API response is the input body field name ```client_id``` , was inputted by the user of APIs 
-* [api/market/v2/place-bid](#post-apimarketv2place-bid)
-* [api/market/v2/place-ask](#post-apimarketv2place-ask)
 * [api/v3/market/place-bid](#post-apiv3marketplace-bid)
 * [api/v3/market/place-ask](#post-apiv3marketplace-ask)
 
