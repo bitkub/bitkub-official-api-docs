@@ -2,11 +2,11 @@
 # RESTful API for Bitkub (2024-07-25)
 
 # Announcement
-* ***Public API Secure endpoint V3*** released on 29 November 2023. This came along with the new API management page on Bitkub website. We encourage you to move these new secure endpoints because the old secure endpoints will be deprecated.
-* The Secure Endpoint [Secure Endpoint V1,V2](#secure-endpoints-old) will be deprecated on 25 July 2024. Please move to use new secure endpoints [Secure ENdpoint V3](#secure-endpoints-v3)
+* We are excited to announce the release of our new [Get Market Data V3 endpoint](#non-secure-endpoints-v3)
 
 
 # Change log
+* 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
 * 2024-07-25 Deprecated Secure Endpoint V1/V2 and Remove from the Document.
 * 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders  [Rate-Limits](#rate-limits)
 * 2024-07-05 Update rate-limits which will be apply on 17 July 2024 [Rate-Limits](#rate-limits)
@@ -15,52 +15,7 @@
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
 * 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
-* 2023-12-14 Edited API request of [/api/v3/market/place-bid](#post-apiv3marketplace-bid), [/api/v3/market/place-ask](#post-apiv3marketplace-ask) on field sym from quote_base to base_quote. After the release on 2023-12-14, Public APIv3 is using base_quote instead of quote_base.
-* 2023-12-14 Edited API response of [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history)
-* 2023-11-29 Release Secure Endpoint V3
-  * It can be used only with new API keys generated from the new API management page on BItkub website. It does not work with the old API keys.
-  * The signature is generated with a new method and moved to the header.
-  * [/api/v3/market/order-info](#get-apiv3marketorder-info), [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders), [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) are changed from POST to GET method.
-* 2023-11-14 Update [Rate-limits](#rate-limits) of V2 endpoints.
-* 2023-04-19 Changed will be applied to the following APIs
-  * [cancel-order-v2](#post-apimarketv2cancel-order) — Field ```id, first, parent, last``` change type from ```Integer to String```.
-  * [order-info](#post-apimarketorder-info) — Field ```id, first, parent, last``` change type from ```Integer to String```.
-  * [my-open-orders](#post-apimarketmy-open-orders) — Field ```id, super_id, parent_id``` change type from ```Integer to String```.
-  * [my-order-history](#post-apimarketmy-order-history) — Field ```id, super_order_id, parent_order_id``` change type from ```Integer to String```.
-  * [place-bids-v2](#post-apimarketv2place-bid), [place-asks-v2](#post-apimarketv2place-ask), [bids](#get-apimarketbids), [asks](#get-apimarketasks), and [books](#get-apimarketbooks) — Field ```id``` change type from ```Integer to String```.
-* 2023-03-27 Deprecated [place-bid](#post-apimarketplace-bid)
-, [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat) and [cancel-order](#post-apimarketcancel-order). Please switch to [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
 
-* 2023-02-07 Removed ```Beta``` status from APIs [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask) and [cancel-order-v2](#post-apimarketv2cancel-order).
-* 2022–11-17 Edited response of the  [/api/market/my-open-orders](#post-apimarketmy-open-orders). Added ```client_id``` to the output.
-* 2022–11-03 Added trading apis prefix ```api/market/v2``` namely [place-bid-v2](#post-apimarketv2place-bid), [place-ask-v2](#post-apimarketv2place-ask), [cancel-order-v2](#post-apimarketv2cancel-order). We recommend to use these apis because their performance are improved. These API are considered as ```beta```. If you encounter any issue, please kindly contact Bitkub customer support.
-* 2022-08-16 Added new error code. For `suspended purchasing` and `selling`.
-* 2022-08-15 Changed the input `net` (network) of the API [POST /api/crypto/withdraw](#post-apicryptowithdraw) to mandatory. Please find available `net` from https://www.bitkub.com/fee/cryptocurrency
-* 2022-07-05 Increased APIs rate limit. For APIs [GET /api/market/depth](#get-apimarketdepth), [POST /api/market/place-bid](#post-apimarketplace-bid), [POST /api/market/place-ask](#post-apimarketplace-ask) and [POST /api/market/cancel-order](#post-apimarketcancel-order)
-* 2022-06-21 Added field ```net``` for the APIs [POST /api/crypto/withdraw](#post-apicryptowithdraw)
-* 2022-06-02 Added rate limits table
-* 2021-10-05 Updated usage of [tradingview](#get-tradingviewhistory) endpoint
-* 2021-09-03 Include ```partial_filled``` and ```remaining``` in [POST /api/market/order-info](#post-apimarketorder-info)
-* 2021-08-31 Added [POST /api/crypto/internal-withdraw](#post-apicryptointernal-withdraw)
-* 2021-07-03 Removed ~~```address```~~ and instead include ```from_address``` and ```to_address``` in [POST /api/crypto/deposit-history](#post-apicryptodeposit-history)
-* 2021-05-28 Include ```is_maker``` in [POST /api/market/my-order-history](#post-apimarketmy-order-history)
-* 2021-01-16 [tradingview](#get-tradingviewhistory) endpoint is now deprecated and will be updated with a new endpoint soon. The old endpoint will always return empty result.
-* 2020-06-26 Added [place-bid/test](#post-apimarketplace-bidtest) and [place-ask/test](#post-apimarketplace-asktest)
-* 2020-04-01 Added [generate-address](#post-apicryptogenerate-address)
-* 2020-03-12 Added query by start and end timestamps to [my-order-history](#post-apimarketmy-order-history)
-* 2020-03-03 Added order hash to: [my-order-history](#post-apimarketmy-order-history), [my-open-orders](#post-apimarketmy-open-orders), [place-bid](#post-apimarketplace-bid), [place-ask](#post-apimarketplace-ask), [place-ask-by-fiat](#post-apimarketplace-ask-by-fiat), [cancel-order](#post-apimarketcancel-order), and [order-info](#post-apimarketorder-info)
-* 2020-01-21 Depth API
-* 2020-01-14 Trading credit balance API
-* 2020-01-07 Place ask by fiat API
-* 2020-01-06 Status API
-* 2019-12-03 Limit API
-* 2019-11-26 Websocket token API
-* 2019-11-12 Fiat withdrawal and fiat deposit/withdrawal history
-* 2019-10-28 Crypto withdrawal and crypto deposit/withdrawal history
-* 2019-05-25 Ticker API now allows symbol query
-* 2019-03-23 Added order info API
-* 2018-12-16 Updated documentation
-* 2018-08-09 V1 Release
 
 # Table of contents
 * [Base URL](#base-url)
@@ -75,7 +30,7 @@
 
 # Endpoint types
 ### Non-secure endpoints
-All non-secure endpoints do not need authentication and use the method GET.
+Our existing endpoints remain available for use. However, for enhanced security and performance, we strongly recommend utilizing the new [Non-Secure Endpoint V3](#non-secure-endpoints-v3).
 * [GET /api/status](#get-apistatus)
 * [GET /api/servertime](#get-apiservertime)
 * [GET /api/market/symbols](#get-apimarketsymbols)
@@ -88,6 +43,19 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /tradingview/history](#get-tradingviewhistory)
 * [GET /api/v3/servertime](#get-apiv3servertime)
 
+### Non-secure endpoints V3
+| Market Data Endpoint                                          | Method |
+| --------------------------------------------------------------| ------ |
+| [GET /api/v3/market/ticker](#get-apiv3marketticker)           | GET    |
+| [GET /api/v3/market/bids](#get-apiv3marketbids)               | GET    |
+| [GET /api/v3/market/asks](#get-apiv3marketasks)               | GET    |
+| [GET /api/v3/market/depth](#get-apiv3marketdepth)             | GET    |
+| [GET /api/v3/market/trades](#get-apiv3markettrades)           | GET    |
+
+| Exchange Information Endpoint                                 | Method |
+| --------------------------------------------------------------| ------ |
+| [GET /api/v3/servertime](#get-apiv3servertime)                | GET    |
+
 
 ### Secure endpoints V3
 All secure endpoints require [authentication](#constructing-the-request).
@@ -97,7 +65,7 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/user/trading-credits](#post-apiv3usertrading-credits) | POST   |       |         |          |
 | [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       |         |          |
 
-| Market Endpoint                                                     | Method | Trade | Deposit | Withdraw |
+| Trading Endpoint                                                     | Method | Trade | Deposit | Withdraw |
 | ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
 | [/api/v3/market/wallet](#post-apiv3marketwallet)                    | POST   |       |         |          |
 | [/api/v3/market/balances](#post-apiv3marketbalances)                | POST   |       |         |          |
@@ -517,6 +485,164 @@ Get depth information.
 }
 ```
 
+
+## Market Data Endpoint
+
+### GET /api/v3/market/ticker
+
+### Description:
+Get ticker information.
+
+### Query (URL):
+* `sym` **string** The symbol (e.g. btc_thb)
+
+### Response:
+```javascript
+[
+    {
+        "symbol": "ADA_THB",
+        "base_volume": "1875227.0489781",
+        "high_24_hr": "38",
+        "highest_bid": "37.33",
+        "last": "37.36",
+        "low_24_hr": "35.76",
+        "lowest_ask": "37.39",
+        "percent_change": "2.69",
+        "quote_volume": "69080877.73"
+    },
+    {
+        "symbol": "CRV_THB",
+        "base_volume": "1811348.93318162",
+        "high_24_hr": "39",
+        "highest_bid": "38.4",
+        "last": "38.42",
+        "low_24_hr": "35.51",
+        "lowest_ask": "38.42",
+        "percent_change": "4.52",
+        "quote_volume": "67340316.65"
+    }
+]
+```
+
+
+### GET /api/v3/market/bids
+#### Description:
+List open buy orders.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** No. of limit to query open buy orders
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "order_id": "131058985",
+            "price": "31.15",
+            "side": "sell",
+            "size": "422.98897028",
+            "timestamp": 1734635968000,
+            "volume": "13143.15"
+        }
+    ]
+}
+
+```
+
+### GET /api/v3/market/asks
+
+
+#### Description:
+List open sell orders.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** No. of limit to query open sell orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      "680", // order id
+      1529491094, // timestamp
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
+    ]
+  ]
+}
+```
+
+### GET /api/v3/market/depth
+
+#### Description:
+Get depth information.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** Depth size
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "order_id": "365117079",
+            "price": "3356000.03",
+            "side": "buy",
+            "size": "0.00618921",
+            "timestamp": 1734661601000,
+            "volume": "20771"
+        },
+        {
+            "order_id": "365117080",
+            "price": "3356000.03",
+            "side": "buy",
+            "size": "0.06613538",
+            "timestamp": 1734661602000,
+            "volume": "221950.34"
+        }
+    ]
+}
+```
+
+### GET /api/v3/market/trades
+
+#### Description:
+List recent trades.
+
+#### Query:
+* `sym`		**string** The symbol (e.g. btc_thb)
+* `lmt`		**int** No. of limit to query recent trades
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        [
+            1734661894000,
+            3367353.98,
+            0.00148484,
+            "BUY"
+        ],
+        [
+            1734661893000,
+            3367353.98,
+            0.00029622,
+            "BUY"
+        ]
+    ]
+}
+```
+## Trading Endpoint V3
+
+
 ### POST /api/v3/market/wallet
 
 #### Description:
@@ -712,6 +838,8 @@ Note : The ```client_id``` of this API response is the input body field name ```
 * [api/v3/market/place-bid](#post-apiv3marketplace-bid)
 * [api/v3/market/place-ask](#post-apiv3marketplace-ask)
 
+
+
 ### GET /api/v3/market/my-order-history
 
 ### Description:
@@ -822,6 +950,9 @@ Get information regarding the specified order.
     }
 }
 ```
+
+## Crypto Endpoint
+
 ### POST /api/v3/crypto/addresses
 
 ### Description:
@@ -1020,6 +1151,9 @@ Generate a new crypto address (will replace existing address; previous address c
 }
 ```
 
+
+## Fiat Endpoint
+
 ### POST /api/v3/fiat/accounts
 
 ### Description:
@@ -1132,6 +1266,8 @@ List fiat withdrawal history.
 }
 ```
 
+## User information Endpoint
+
 ### POST /api/v3/user/limits
 
 ### Description:
@@ -1175,6 +1311,8 @@ Check deposit/withdraw limitations and usage.
     }
 }
 ```
+
+
 
 # Additional
 For the  use of `cur`(currency) for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
