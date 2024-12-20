@@ -495,7 +495,6 @@ Get ticker information.
 
 ### Query (URL):
 * `sym` **string** The symbol (e.g. btc_thb)
-* `lmt` **int** Limit (optional)
 
 ### Response:
 ```javascript
