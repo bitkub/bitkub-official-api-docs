@@ -88,6 +88,14 @@ All non-secure endpoints do not need authentication and use the method GET.
 * [GET /tradingview/history](#get-tradingviewhistory)
 * [GET /api/v3/servertime](#get-apiv3servertime)
 
+### Non-secure endpoints V3
+| Market Endpoint                                               | Method |
+| --------------------------------------------------------------| ------ |
+| [GET /api/v3/market/ticker](#get-apiv3marketticker)           | GET    |
+| [GET /api/v3/market/bids](#get-apiv3marketbids)               | GET    |
+| [GET /api/v3/market/asks](#get-apiv3marketasks)               | GET    |
+| [GET /api/v3/market/depth](#get-apiv3marketdepth)             | GET    |
+| [GET /api/v3/market/trades](#get-apiv3markettrades)           | GET    |
 
 ### Secure endpoints V3
 All secure endpoints require [authentication](#constructing-the-request).
@@ -1173,6 +1181,160 @@ Check deposit/withdraw limitations and usage.
        },
        "rate": 224790 // current THB rate used to calculate
     }
+}
+```
+
+### GET /api/v3/market/ticker
+
+### Description:
+Get ticker information.
+
+### Query (URL):
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** Limit (optional)
+
+### Response:
+```javascript
+[
+    {
+        "symbol": "ADA_THB",
+        "base_volume": "1875227.0489781",
+        "high_24_hr": "38",
+        "highest_bid": "37.33",
+        "last": "37.36",
+        "low_24_hr": "35.76",
+        "lowest_ask": "37.39",
+        "percent_change": "2.69",
+        "quote_volume": "69080877.73"
+    },
+    {
+        "symbol": "CRV_THB",
+        "base_volume": "1811348.93318162",
+        "high_24_hr": "39",
+        "highest_bid": "38.4",
+        "last": "38.42",
+        "low_24_hr": "35.51",
+        "lowest_ask": "38.42",
+        "percent_change": "4.52",
+        "quote_volume": "67340316.65"
+    }
+]
+```
+
+
+### GET /api/v3/market/bids
+#### Description:
+List open buy orders.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** No. of limit to query open buy orders
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "order_id": "131058985",
+            "price": "31.15",
+            "side": "sell",
+            "size": "422.98897028",
+            "timestamp": 1734635968000,
+            "volume": "13143.15"
+        }
+    ]
+}
+
+```
+
+### GET /api/v3/market/asks
+
+
+#### Description:
+List open sell orders.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** No. of limit to query open sell orders
+
+#### Response:
+```javascript
+{
+  "error": 0,
+  "result": [
+    [
+      "680", // order id
+      1529491094, // timestamp
+      997.50, // volume
+      10000.00, // rate
+      0.09975000 // amount
+    ]
+  ]
+}
+```
+
+### GET /api/v3/market/depth
+
+#### Description:
+Get depth information.
+
+#### Query:
+* `sym` **string** The symbol (e.g. btc_thb)
+* `lmt` **int** Depth size
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "order_id": "365117079",
+            "price": "3356000.03",
+            "side": "buy",
+            "size": "0.00618921",
+            "timestamp": 1734661601000,
+            "volume": "20771"
+        },
+        {
+            "order_id": "365117080",
+            "price": "3356000.03",
+            "side": "buy",
+            "size": "0.06613538",
+            "timestamp": 1734661602000,
+            "volume": "221950.34"
+        }
+    ]
+}
+```
+
+### GET /api/v3/market/trades
+
+#### Description:
+List recent trades.
+
+#### Query:
+* `sym`		**string** The symbol (e.g. btc_thb)
+* `lmt`		**int** No. of limit to query recent trades
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        [
+            1734661894000,
+            3367353.98,
+            0.00148484,
+            "BUY"
+        ],
+        [
+            1734661893000,
+            3367353.98,
+            0.00029622,
+            "BUY"
+        ]
+    ]
 }
 ```
 
