@@ -611,21 +611,21 @@ Get depth information.
     "asks": [
       [
        3338932.98, // price
-       0.00619979, //volume
+       0.00619979, //size
       ],
       [
        3341006.36, // price
-       0.00134854 //volume
+       0.00134854 //size
       ]
     ],
     "bids": [
       [
         3334907.27, // price
-        0.00471255 //volume
+        0.00471255 //size
       ],
       [
         3334907.26, // price
-        0.36895805 //volume
+        0.36895805 //size
       ]
     ]
   }
