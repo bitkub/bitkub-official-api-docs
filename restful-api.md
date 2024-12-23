@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2024-07-25)
+# RESTful API for Bitkub (2024-12-23)
 
 # Announcement
 * We are excited to announce the release of our new [Get Market Data V3 endpoint](#non-secure-endpoints-v3)
@@ -536,17 +536,25 @@ List open buy orders.
 #### Response:
 ```javascript
 {
-    "error": 0,
-    "result": [
-        {
-            "order_id": "131058985",
-            "price": "31.15",
-            "side": "sell",
-            "size": "422.98897028",
-            "timestamp": 1734635968000,
-            "volume": "13143.15"
-        }
-    ]
+  "error": 0,
+  "result": [
+    {
+      "order_id": "365357265",
+      "price": "3330100.43",
+      "side": "buy",
+      "size": "0.87901418",
+      "timestamp": 1734714699000,
+      "volume": "2927205.5"
+    },
+    {
+      "order_id": "365357190",
+      "price": "3330100.13",
+      "side": "buy",
+      "size": "0.00314952",
+      "timestamp": 1734689476000,
+      "volume": "10488.24"
+    }
+  ]
 }
 
 ```
@@ -566,13 +574,22 @@ List open sell orders.
 {
   "error": 0,
   "result": [
-    [
-      "680", // order id
-      1529491094, // timestamp
-      997.50, // volume
-      10000.00, // rate
-      0.09975000 // amount
-    ]
+    {
+      "order_id": "303536416",
+      "price": "3334889",
+      "side": "sell",
+      "size": "0.01289714",
+      "timestamp": 1734689550000,
+      "volume": "42903"
+    },
+    {
+      "order_id": "303536239",
+      "price": "3334889.31",
+      "side": "sell",
+      "size": "0.129",
+      "timestamp": 1734714713000,
+      "volume": "430200.72"
+    }
   ]
 }
 ```
@@ -589,25 +606,29 @@ Get depth information.
 #### Response:
 ```javascript
 {
-    "error": 0,
-    "result": [
-        {
-            "order_id": "365117079",
-            "price": "3356000.03",
-            "side": "buy",
-            "size": "0.00618921",
-            "timestamp": 1734661601000,
-            "volume": "20771"
-        },
-        {
-            "order_id": "365117080",
-            "price": "3356000.03",
-            "side": "buy",
-            "size": "0.06613538",
-            "timestamp": 1734661602000,
-            "volume": "221950.34"
-        }
+  "error": 0,
+  "result": {
+    "asks": [
+      [
+       3338932.98, // price
+       0.00619979, //size
+      ],
+      [
+       3341006.36, // price
+       0.00134854 //size
+      ]
+    ],
+    "bids": [
+      [
+        3334907.27, // price
+        0.00471255 //size
+      ],
+      [
+        3334907.26, // price
+        0.36895805 //size
+      ]
     ]
+  }
 }
 ```
 
