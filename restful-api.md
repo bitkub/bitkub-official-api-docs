@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2024-07-25)
+# RESTful API for Bitkub (2024-12-23)
 
 # Announcement
 * We are excited to announce the release of our new [Get Market Data V3 endpoint](#non-secure-endpoints-v3)
