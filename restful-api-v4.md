@@ -349,11 +349,13 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 
 ## Additional
 For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.\
+\
 Please refer to the link below for the available coins and networks.\
 https://www.bitkub.com/fee/cryptocurrency \
+\
 Note the following exceptions for the coin and network:
 
-| Currency/Network    |  Symbol |
+| Currency / Network  |  Symbol |
 | ------------------- | ------- |
 | Terra Classic(LUNC) | `LUNA`  |
 | Terra 2.0 (LUNA)    | `LUNA2` |
@@ -363,7 +365,7 @@ The following is the JSON payload for the Response Error:
 ```javascript
 {
    "code": "V1007-CW",
-   "message": "asset not found",
+   "message": "Symbol not found",
    "data": {}
  }
 ```
