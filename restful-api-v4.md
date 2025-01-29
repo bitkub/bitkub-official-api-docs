@@ -348,9 +348,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 ```
 
 ## Additional
-For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
-Please refer to the link below for the available coins and networks.
-https://www.bitkub.com/fee/cryptocurrency
+For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.\
+Please refer to the link below for the available coins and networks.\
+https://www.bitkub.com/fee/cryptocurrency\
 Note the following exceptions for the coin and network:
 
 | Currency/Network    |  Symbol |
@@ -438,6 +438,6 @@ Internal Server Error.
 # Rate limits 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual user accessing the API. ***The rate limit is applied to each endpoint regardless the API version.***
 
-| Endpoint                     | Rate Limit       |
-| ---------------------------- | ---------------- |
-| /api/crypto/*                | 250 req/10secs   |
+| Endpoint                     | Rate Limit        |
+| ---------------------------- | ----------------- |
+| /api/v4/crypto/*             | 250 req / 10 secs |
