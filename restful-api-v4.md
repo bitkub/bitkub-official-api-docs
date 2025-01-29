@@ -423,7 +423,7 @@ Internal Server Error.
 | V1003-CW    | 400     | Invalid signature                                         | 
 | V1004-CW    | 401     | Signature has expired                                     | 
 | V1005-CW    | 404     | Transaction not found                                     | 
-| V1006-CW    | 400     | Invalid parameter*messages can vary                       | 
+| V1006-CW    | 400     | Invalid parameter                                         | 
 | V1007-CW    | 404     | Symbol not found                                          | 
 | V1008-CW    | 400     | Address not yet generated for this symbol                 | 
 | V1009-CW    | 404     | Memo not found for this address                           | 
