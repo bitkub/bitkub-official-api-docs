@@ -30,7 +30,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v4/crypto/deposits](#get-apiv4cryptodeposits)                      | GET    |         |          |       |
 | [/api/v4/crypto/withdraws](#get-apiv4cryptowithdraws)                    | GET    |         |          |       |
 | [/api/v4/crypto/withdraws](#post-apiv4cryptowithdraws)                   | POST   |         |    ✅    |       |
-| [/api/v4/crypto/withdraws/internal](#post-apiv4cryptowithdraws-internal) | POST   |         |    ✅    |       |
 
 
 # Constructing the request
@@ -45,9 +44,6 @@ Authentication requires API KEY and API SECRET. Every request to the server must
 * X-BTK-APIKEY: {YOUR API KEY}
 * X-BTK-TIMESTAMP: {Timestamp i.e. 1699376552354 }
 * X-BTK-SIGN: [Signature](#signature)
-
-### Payload (POST)
-The payload is always JSON.
 
 ### Signature
 Generate the signature from the timestamp, the request method, API path, query parameter, and JSON payload using HMAC SHA-256. Use the API Secret as the secret key for generating the HMAC variant of JSON payload. The signature is in **hex**  format. The user has to attach the signature via the Request Header
@@ -273,6 +269,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "external_ref": "XX_1111111111",
         "hash": null,
         "symbol": "RDNT",
+        "network": "ARB",
         "amount": "2.00000000",
         "fee": "4.36",
         "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
@@ -285,6 +282,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "external_ref": "XX_1111111112",
         "hash": "0x8891b79c79f0842c9a654db47745fe0291fba222b290d22cabc93f8ae4490303",
         "symbol": "BTC",
+        "network": "BTC",
         "amount": "0.10000000",
         "fee": "0.0025",
         "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
@@ -349,71 +347,16 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 }
 ```
 
-### POST /api/v4/crypto/withdraws/internal
-
-#### Description:
-Make a withdraw to an internal address. The destination address is not required to be a trusted address. This API is not enabled by default. Only KYB users can request this feature by contacting us via support@bitkub.com
-
-#### Required Permission: `is_internal`
-
-#### Path Params: -
-
-#### Query Params: -
-
-#### Body Params: 
-| Key          | Type      | Required   | Description                                |
-| ------------ | --------- | ---------- | ------------------------------------------ |
-| symbol       | String    | true       | Symbol for withdrawal (e.g. BTC, ETH)      |
-| amount       | String    | true       | Amount to withdraw                         |
-| address      | String    | true       | Address to withdraw                        |
-| memo         | String    | false      | Memo or destination tag to withdraw        |
-| network      | String    | true       | Network to withdraw                        |
-| external_ref | String    | false      | External reference                         |
-
-**Note**: When `external_ref` is presented in the request body, the system will validate against `external_ref` existing in the database. If `external_ref` already exists, the system will reject the request.
-
-#### Example cURL:
-```javascript
-curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
---header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a' \
---header 'Content-Type: application/json' \
---data '{
-    "symbol": "BTC",
-    "amount": "0.1",
-    "address": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x",
-    "network": "BTC"
-}'
-```
-
-#### Response:
-```javascript
-{
-  "code": "0",
-  "message": "success",
-  "data": {
-    "txn_id": "BTCWD0000012345", 
-    "external_ref": "XXWD0000012345", 
-    "address": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", 
-    "memo": "", 
-    "symbol": "BTC", 
-    "network": "BTC",
-    "amount": "0.1", 
-    "fee": "0.0002",
-    "created_at": "2024-09-01T10:02:43.211Z" 
-  }
-}
-```
-
-
 ## Additional
 For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
+Please refer to the link below for the available coins and networks.
+https://www.bitkub.com/fee/cryptocurrency
+Note the following exceptions for the coin and network:
 
-| Coin Name     | Symbol   |
-| ------------- | -------- |
-| Terra Classic | `LUNA`   |
-| Terra 2.0     | `LUNA2`  |
+| Currency/Network    |  Symbol |
+| ------------------- | ------- |
+| Terra Classic(LUNC) | `LUNA`  |
+| Terra 2.0 (LUNA)    | `LUNA2` |
 
 # Error codes
 The following is the JSON payload for the Response Error:
