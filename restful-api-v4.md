@@ -350,7 +350,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 ## Additional
 For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.\
 Please refer to the link below for the available coins and networks.\
-https://www.bitkub.com/fee/cryptocurrency\
+https://www.bitkub.com/fee/cryptocurrency \
 Note the following exceptions for the coin and network:
 
 | Currency/Network    |  Symbol |
