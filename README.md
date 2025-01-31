@@ -7,6 +7,6 @@ Official Documentation for Bitkub APIs
 
 Name | Description
 ------------ | ------------ 
-[restful-api.md](./restful-api.md) | Details on the RESTful API (/api)
-[websocket-api.md](./websocket-api.md) | Details on the Websocket API (/websocket-api)
-
+[restful-api.md](./restful-api.md)       | Details on the RESTful API V3 (/api)
+[restful-api-v4.md](./restful-api-v4.md) | Details on the RESTful API V4 (/api)
+[websocket-api.md](./websocket-api.md)   | Details on the Websocket API (/websocket-api)

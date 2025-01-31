@@ -1,9 +1,8 @@
 
-# RESTful API for Bitkub (2024-12-23)
+# RESTful API for Bitkub (2025-02-03)
 
 # Announcement
-* We are excited to announce the release of our new [Get Market Data V3 endpoint](#non-secure-endpoints-v3)
-
+* Introducing the New Public API v4 for [Crypto Endpoints](restful-api-v4.md)
 
 # Change log
 * 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
