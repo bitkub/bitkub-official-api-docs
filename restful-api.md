@@ -1072,7 +1072,7 @@ List crypto deposit history.
    "error": 0,
    "result": [
       {
-        "hash": "XRPWD0000100276",
+         "hash": "XRPWD0000100276",
          "currency": "XRP",
          "amount": 5.75111474,
          "from_address": "sender address",
