@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2025-02-03)
 
 # Announcement
+* Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](#https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 * Introducing the New Public API v4 for [Crypto Endpoints](restful-api-v4.md)
 
 # Change log
@@ -717,7 +718,6 @@ Create a buy order.
   "error": 0,
   "result": {
     "id": "1", // order id
-    "hash": "fwQ6dnQWQPs4cbatF5Am2xCDP1J", // order hash
     "typ": "limit", // order type
     "amt": 1000, // spending amount
     "rat": 15000, // rate
@@ -750,7 +750,6 @@ Create a sell order.
   "error": 0,
   "result": {
     "id": "1", // order id
-    "hash": "fwQ6dnQWQPs4cbatFGc9LPnpqyu", // order hash
     "typ": "limit", // order type
     "amt": 1.00000000, // selling amount
     "rat": 15000, // rate
@@ -772,7 +771,6 @@ Cancel an open order.
 * `sym`   **string**    The symbol. ***Please note that the current endpoint requires the symbol thb_btc. However, it will be changed to btc_thb soon and you will need to update the configurations accordingly for uninterrupted API functionality.***
 * `id`    **string**   Order id you wish to cancel
 * `sd`    **string**    Order side: buy or sell
-* `hash`  **string**    Cancel an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
@@ -823,7 +821,6 @@ List all open orders of the given symbol.
   "result": [
     { // Example of sell order
       "id": "2", // order id
-      "hash": "fwQ6dnQWQPs4cbatFSJpMCcKTFR", // order hash
       "side": "sell", // order side
       "type": "limit", // order type
       "rate": "15000", // rate
@@ -838,7 +835,6 @@ List all open orders of the given symbol.
     },
     { // Example of buy order
       "id": "278465822",
-      "hash": "fwQ6dnQYKnqFPHx8sFM3z8oydmJ",
       "side": "buy",
       "type": "limit",
       "rate": "10",
@@ -880,11 +876,8 @@ List all orders that have already matched.
     {
       "txn_id": "BTCSELL0021206932",
       "order_id": "241407793",
-      "hash": "fwQ6dnYz5mbyeY9ssuqA74NmDej",
       "parent_order_id": "0",
-      "parent_order_hash": "fwQ6dnQWQPs4cbatFGc8qWckMTH",
       "super_order_id": "0",
-      "super_order_hash": "fwQ6dnQWQPs4cbatFGc8qWckMTH",
       "client_id": "",
       "taken_by_me": false,
       "is_maker": false,
@@ -899,11 +892,8 @@ List all orders that have already matched.
     {
       "txn_id": "BTCBUY0021182426",
       "order_id": "277231907",
-      "hash": "fwQ6dnQYKnqFP3TPmYEajSfSbap",
       "parent_order_id": "0",
-      "parent_order_hash": "fwQ6dnQWQPs4cbatF5Am2qegYs2",
       "super_order_id": "0",
-      "super_order_hash": "fwQ6dnQWQPs4cbatF5Am2qegYs2",
       "client_id": "client_id",
       "taken_by_me": false,
       "is_maker": false,
@@ -933,7 +923,6 @@ Get information regarding the specified order.
 * `sym`		**string**		The symbol (e.g. btc_thb)
 * `id`		**string**		Order id
 * `sd`		**string**		Order side: buy or sell
-* `hash`	**string**		Lookup an order with order hash (optional). You don't need to specify sym, id, and sd when you specify order hash.
 
 ### Response:
 ```javascript
@@ -960,7 +949,6 @@ Get information regarding the specified order.
                 "amount": 98.14848,
                 "credit": 0.25,
                 "fee": 0.25,
-                "hash": "K9kLVGNVb9AVffm7t6U"
                 "id": "289",
                 "rate": 291000,
                 "timestamp": 1702466375000,
@@ -1084,7 +1072,7 @@ List crypto deposit history.
    "error": 0,
    "result": [
       {
-         "hash": "XRPWD0000100276",
+        "hash": "XRPWD0000100276",
          "currency": "XRP",
          "amount": 5.75111474,
          "from_address": "sender address",
