@@ -91,19 +91,24 @@ The ticker stream provides real-time data on ticker of the specified symbol. Tic
 
 #### Response:
 ```javascript
-{
-  "stream": "market.ticker.thb_bch", // stream name
-  "id": 6, // symbol id
-  "last": "15425.00",
-  "lowestAsk": "17799.00",
-  "highestBid": "15425.00",
-  "percentChange": "-10.15",
-  "baseVolume": "55.76940380",
-  "quoteVolume": "905856.89",
-  "isFrozen": "0",
-  "high24hr": "17980.00",
-  "low24hr": "15409.00"
- }
+ {
+    "stream": "market.ticker.thb_btc",
+    "id": 1,
+    "last": 2883194.85,
+    "lowestAsk": 2883194.9,
+    "lowestAskSize": 0.0070947,
+    "highestBid": 2881000.31,
+    "highestBidSize": 0.00470253,
+    "change": 60622.33,
+    "percentChange": 2.15,
+    "baseVolume": 89.25334259,
+    "quoteVolume": 256768588.16,
+    "isFrozen": 0,
+    "high24hr": 2916959.99,
+    "low24hr": 2819009.05,
+    "open": 2822572.52,
+    "close": 2883194.85
+}
 ```
 
 # Stream Demo
