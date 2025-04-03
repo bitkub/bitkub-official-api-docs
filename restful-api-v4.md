@@ -30,7 +30,7 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v4/crypto/deposits](#get-apiv4cryptodeposits)                      | GET    |         |          |       |
 | [/api/v4/crypto/withdraws](#get-apiv4cryptowithdraws)                    | GET    |         |          |       |
 | [/api/v4/crypto/withdraws](#post-apiv4cryptowithdraws)                   | POST   |         |    ✅    |       |
-
+| [/api/v4/crypto/coins](#get-apiv4cryptocoins)                            | GET    |         |          |       |
 
 # Constructing the request
 ### GET/POST request
@@ -346,6 +346,68 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
   }
 }
 ```
+
+### GET /api/v4/crypto/coins
+
+#### Description:
+Get all coins (available for deposit and withdraw).
+
+#### Path Params: -
+
+#### Query Params: 
+| Key         | Type      | Required   | Description                                |
+| ----------- | --------- | ---------- | ------------------------------------------ |
+| symbol      | String    | false      | Coin Symbol (e.g. BTC, ETH)                |
+| network     | String    | false      | Network                                    |
+
+#### Body Params: -
+
+#### Example cURL:
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/crypto/coin?symbol=ATOM' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+```javascript
+{
+    "code": "0",
+    "message": "success",
+    "data": {
+        "items":[
+            {
+                "name": "Bitcoin",
+                "symbol": "BTC",
+                "networks": [
+                    {
+                        "name": "Bitcoin",
+                        "network": "BTC",
+                        "address_regex": "^[13][a-km-zA-HJ-NP-Z1-9]{26,35}$|^(tb1)[0-9A-Za-z]{39,59}$",
+                        "memo_regex": "",
+                        "explorer": "https://www.blockchain.com/btc/tx/",
+                        "contract_address": "",
+                        "withdraw_min": "0.0002",
+                        "withdraw_fee": "0.0001",
+                        "withdraw_internal_min": "",
+                        "withdraw_internal_fee": "",
+                        "withdraw_decimal_places": 8,
+                        "min_confirm": 3,
+                        "decimal": 8,
+                        "deposit_enable": true,
+                        "withdraw_enable": true,
+                        "is_memo": false
+                    }
+                ],
+                "deposit_enable": true,
+                "withdraw_enable": true
+            }
+        ]
+    }
+}
+```
+
 
 ## Additional
 For the use of coins and networks, please use coin or network symbol for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.\

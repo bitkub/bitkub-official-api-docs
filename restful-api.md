@@ -1,11 +1,12 @@
 
-# RESTful API for Bitkub (2025-03-18)
+# RESTful API for Bitkub (2025-04-03)
 
 # Announcement
+* API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](restful-api-v4.md)
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
-* Introducing the New Public API v4 for [Crypto Endpoints](restful-api-v4.md)
 
 # Change log
+* 2025-04-03 Deprecated Crypto Endpoint v3 and Remove from the Document.
 * 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
 * 2024-07-25 Deprecated Secure Endpoint V1/V2 and Remove from the Document.
 * 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders  [Rate-Limits](#rate-limits)
@@ -76,15 +77,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    |        |         |          |
 | [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    |        |         |          |
 | [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    |       |         |          |
-
-| Crypto Endpoint                                                        | Method | Trade | Deposit | Withdraw |
-| ---------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) | POST   |       |         |          |
-| [/api/v3/crypto/addresses](#post-apiv3cryptoaddresses)                 | POST   |       |         |          |
-| [/api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)                   | POST   |       |         | ✅        |
-| [/api/v3/crypto/deposit-history](#post-apiv3cryptodeposit-history)     | POST   |       |         |          |
-| [/api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)   | POST   |       |         |          |
-| [/api/v3/crypto/generate-address](#post-apiv3cryptogenerate-address)   | POST   |       | ✅      |          |
 
 | Fiat Endpoint                                                    | Method | Trade | Deposit | Withdraw |
 | ---------------------------------------------------------------- | ------ | ----- | ------- | -------- |
@@ -959,207 +951,6 @@ Get information regarding the specified order.
 }
 ```
 
-## Crypto Endpoint
-
-### POST /api/v3/crypto/addresses
-
-### Description:
-List all crypto addresses.
-
-### Query (URL):
-* `p` **int** Page (optional)
-* `lmt` **int** Limit (optional)
-
-### Response:
-```javascript
-{
-   "error":0,
-   "result": [
-      {
-         "currency": "BTC",
-         "address": "3BtxdKw6XSbneNvmJTLVHS9XfNYM7VAe8k",
-         "tag": 0,
-         "time": 1570893867
-      }
-   ],
-   "pagination": {
-      "page": 1,
-      "last": 1
-   }
-}
-```
-
-### POST /api/v3/crypto/withdraw
-
-### Description:
-Make a withdrawal to a **trusted** address.
-
-### Body:
-* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
-* `amt`		**float**		Amount you want to withdraw
-* `adr`		**string**		Address to which you want to withdraw
-* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
-* `net` **string** Cryptocurrency network to withdraw\
-No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
-
-For example `ETH` refers to `ERC-20`.\
-For request on `ERC-20`, please assign the `net` value as `ETH`.\
-For request on `BEP-20`, please assign the `net` value as `BSC`.\
-For request on `KAP-20`, please assign the `net` value as `BKC`.
-
-
-### Response:
-```javascript
-{
-    "error": 0,
-    "result": {
-        "txn": "BTCWD0000012345", // local transaction id
-        "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
-        "mem": "", // memo
-        "cur": "BTC", // currency
-        "amt": 0.1, // withdraw amount
-        "fee": 0.0002, // withdraw fee
-        "ts": 1569999999 // timestamp
-    }
-}
-```
-
-### POST /api/v3/crypto/internal-withdraw
-
-### Description:
-Make a withdraw to an internal address. The destination address is not required to be a trusted address.
-**This API is not enabled by default**, Only KYB users can request this feature by contacting us via **support@bitkub.com**
-
-### Query:
-* `cur`		**string**		Currency for withdrawal (e.g. BTC, ETH)
-* `amt`		**float**		Amount you want to withdraw
-* `adr`		**string**		Address to which you want to withdraw
-* `mem`		**string**		(Optional) Memo or destination tag to which you want to withdraw
-* `net` **string** Cryptocurrency network to withdraw\
-No default value of this field. Please find the available network from the link as follows. https://www.bitkub.com/fee/cryptocurrency
-* `ext_ref` **string** (Optional) External reference
-
-### Response:
-```javascript
-{
-    "error": 0,
-    "result": {
-        "txn": "BTCWD0000012345", // local transaction id
-        "ext_ref": "XXWD0000012345", // external reference
-        "adr": "4asyjKw6XScneNvhJTLVHS9XfNYM7VBf8x", // address
-        "mem": "", // memo
-        "cur": "BTC", // currency
-        "amt": 0.1, // withdraw amount
-        "fee": 0.0002, // withdraw fee
-        "ts": 1569999999 // timestamp
-    }
-}
-```
-
-
-### POST /api/v3/crypto/deposit-history
-
-### Description:
-List crypto deposit history.
-
-### Query (URL):
-* `p` **int** Page (optional)
-* `lmt` **int** Limit (optional)
-
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": [
-      {
-         "hash": "XRPWD0000100276",
-         "currency": "XRP",
-         "amount": 5.75111474,
-         "from_address": "sender address",
-         "to_address": "recipient address",
-         "confirmations": 1,
-         "status": "complete",
-         "time": 1570893867
-      }
-   ],
-   "pagination": {
-      "page": 1,
-      "last": 1
-   }
-}
-```
-
-### POST /api/v3/crypto/withdraw-history
-
-### Description:
-List crypto withdrawal history.
-
-### Query (URL):
-* `p` **int** Page (optional)
-* `lmt` **int** Limit (optional)
-
-### Response:
-```javascript
-{
-  "error": 0,
-  "result": [
-    {
-      "txn_id": "RDNTWD0000804050",
-      "ext_ref": "XX_1111111111",
-      "hash": null,
-      "currency": "RDNT",
-      "amount": "2.00000000",
-      "fee": 4.36,
-      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
-      "memo": "",
-      "status": "processing",
-      "note": "-",
-      "time": 1668485932
-    },
-    {
-      "txn_id": "BTCWD1321312683",
-      "ext_ref": "XX_1111111112",
-      "hash": "0x8891b79c79f0842c9a654db47745fe0291fba222b290d22cabc93f8ae4490303",
-      "currency": "BTC",
-      "amount": "0.10000000",
-      "fee": 0.0025,
-      "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
-      "memo": "",
-      "status": "complete",
-      "note": "-",
-      "time": 1711678588
-    }
-  ],
-  "pagination": {
-    "page": 1,
-    "last": 1,
-  }
-}
-```
-
-### POST /api/v3/crypto/generate-address
-
-### Description:
-Generate a new crypto address (will replace existing address; previous address can still be used to received funds)
-
-### Query (URL):
-* `sym` **string** Symbol (e.g. THB_BTC, THB_ETH, etc.)
-
-### Response:
-```javascript
-{
-   "error": 0,
-   "result": [
-      {
-         "currency": "ETH",
-         "address": "0x520165471daa570ab632dd504c6af257bd36edfb",
-         "memo": ""
-      }
-   ]
-}
-```
-
-
 ## Fiat Endpoint
 
 ### POST /api/v3/fiat/accounts
@@ -1320,16 +1111,6 @@ Check deposit/withdraw limitations and usage.
 }
 ```
 
-
-
-# Additional
-For the  use of `cur`(currency) for any APIs request. Please be cautious of these cryptocurrency when you specified on the request.
-
-| Name          | Currency |
-| ------------- | -------- |
-| Terra Classic | `LUNA`   |
-| Terra 2.0     | `LUNA2`  |
-
 # Error codes
 Refer to the following descriptions:
 
@@ -1401,10 +1182,8 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/cancel-order     | 200 req/sec      |
 | /api/market/balances         | 150 req/sec      |
 | /api/market/wallet           | 150 req/sec      |
-| /api/crypto/deposit-history  | 20 req/sec       |
 | /api/servertime              | 2,000 req/10secs |
 | /api/status                  | 100 req/sec      |
-| /api/crypto/*                | 250 req/10secs   |
 | /api/fiat/*                  | 20 req/sec       |
 | /api/user/*                  | 20 req/sec       |
 | /tradingview/*               | 100 req/sec      |
