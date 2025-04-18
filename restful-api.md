@@ -61,10 +61,11 @@ Our existing endpoints remain available for use. However, for enhanced security 
 ### Secure endpoints V3
 All secure endpoints require [authentication](#constructing-the-request).
 
-| User Endpoint                                                  | Method | Trade | Deposit | Withdraw |
-| -------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits) | POST   |       |         |          |
-| [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       |         |          |
+| User Endpoint                                                             | Method | Trade | Deposit | Withdraw |
+| ------------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)            | POST   |       |         |          |
+| [/api/v3/user/limits](#post-apiv3userlimits)                              | POST   |       |         |          |
+| [/api/v3/user/coin-convert-history](#get-apiv3usercoin-convert-history)   | GET    |       |         |          |
 
 | Trading Endpoint                                                     | Method | Trade | Deposit | Withdraw |
 | ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
@@ -84,10 +85,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw)                 | POST   |       |         |          |
 | [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history)   | POST   |       |         |          |
 | [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) | POST   |       |         |          |
-
-| BKP Endpoint                                                           | Method | Trade | Deposit | Withdraw |
-| ------------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/user/coin-convert-history](#get-apiv3usercoin-convert-history)   | GET    |       |         |          |
 
 # Constructing the request
 ### GET/POST request
@@ -1114,11 +1111,8 @@ Check deposit/withdraw limitations and usage.
     }
 }
 ```
-
-## BKP Endpoint
-
 ### GET /api/v3/user/coin-convert-history
-#### Description:
+### Description:
 List all coin convert histories (paginated).
 
 ### Query (URL):
