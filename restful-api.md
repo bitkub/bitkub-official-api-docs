@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2025-04-03)
+# RESTful API for Bitkub (2025-04-18)
 
 # Announcement
 * API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](restful-api-v4.md)
@@ -61,10 +61,11 @@ Our existing endpoints remain available for use. However, for enhanced security 
 ### Secure endpoints V3
 All secure endpoints require [authentication](#constructing-the-request).
 
-| User Endpoint                                                  | Method | Trade | Deposit | Withdraw |
-| -------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits) | POST   |       |         |          |
-| [/api/v3/user/limits](#post-apiv3userlimits)                   | POST   |       |         |          |
+| User Endpoint                                                             | Method | Trade | Deposit | Withdraw |
+| ------------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)            | POST   |       |         |          |
+| [/api/v3/user/limits](#post-apiv3userlimits)                              | POST   |       |         |          |
+| [/api/v3/user/coin-convert-history](#get-apiv3usercoin-convert-history)   | GET    |       |         |          |
 
 | Trading Endpoint                                                     | Method | Trade | Deposit | Withdraw |
 | ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
@@ -1107,6 +1108,50 @@ Check deposit/withdraw limitations and usage.
           }
        },
        "rate": 224790 // current THB rate used to calculate
+    }
+}
+```
+### GET /api/v3/user/coin-convert-history
+### Description:
+List all coin convert histories (paginated).
+
+### Query (URL):
+* `p` **int** Page default = 1 (optional)
+* `lmt` **int** Limit default = 100 (optional)
+* `sort` **int** Sort [1, -1] default = 1 (optional)
+* `status` **string** Status [success, fail, all] (default = all) (optional)
+* `sym` **string** The symbol (optional)
+  * e.g. KUB
+* `start` **int** Start timestamp (optional)
+* `end` **int** End timestamp (optional)
+
+
+### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "transaction_id": "67ef4ca7ddb88f34ce16a126",
+            "status": "success",
+            "amount": "0.0134066",
+            "from_currency": "KUB",
+            "trading_fee_received": "1.34",
+            "timestamp": 1743761171000
+        },
+        {
+            "transaction_id": "6707a7426fb3370035725c03",
+            "status": "fail",
+            "amount": "0.000006",
+            "from_currency": "KUB",
+            "trading_fee_received": "0",
+            "timestamp": 1728580016000
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "last": 12,
+        "next": 2
     }
 }
 ```
