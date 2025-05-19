@@ -6,6 +6,7 @@
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 # Change log
+* 2025-01-07 Update FIAT Withdraw error code
 * 2025-04-03 Deprecated Crypto Endpoint v3 and Remove from the Document.
 * 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
 * 2024-07-25 Deprecated Secure Endpoint V1/V2 and Remove from the Document.
@@ -25,6 +26,7 @@
 * [API documentation](#api-documentation)
 * [Error codes](#error-codes)
 * [Rate limits](#rate-limits)
+
 
 # Base URL
 * The base URL is: https://api.bitkub.com
@@ -123,10 +125,10 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-bid' \
 --header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a' \
 --header 'Content-Type: application/json' \
 --data '{
-	"sym": "thb_btc",
-	"amt": 1000,
-	"rat": 10,
-	"typ": "limit",
+  "sym": "thb_btc",
+  "amt": 1000,
+  "rat": 10,
+  "typ": "limit",
 }'
 ```
 ```javascript
@@ -1156,56 +1158,57 @@ List all coin convert histories (paginated).
 }
 ```
 
+
 # Error codes
 Refer to the following descriptions:
 
-| Code | Description                                                        |
-| ---- | ------------------------------------------------------------------ |
-| 0    | No error                                                           |
-| 1    | Invalid JSON payload                                               |
-| 2    | Missing X-BTK-APIKEY                                               |
-| 3    | Invalid API key                                                    |
-| 4    | API pending for activation                                         |
-| 5    | IP not allowed                                                     |
-| 6    | Missing / invalid signature                                        |
-| 7    | Missing timestamp                                                  |
-| 8    | Invalid timestamp                                                  |
-| 9    | Invalid user                                                       |
-| 10   | Invalid parameter                                                  |
-| 11   | Invalid symbol                                                     |
-| 12   | Invalid amount                                                     |
-| 13   | Invalid rate                                                       |
-| 14   | Improper rate                                                      |
-| 15   | Amount too low                                                     |
-| 16   | Failed to get balance                                              |
-| 17   | Wallet is empty                                                    |
-| 18   | Insufficient balance                                               |
-| 19   | Failed to insert order into db                                     |
-| 20   | Failed to deduct balance                                           |
-| 21   | Invalid order for cancellation (Unable to find OrderID or Symbol.) |
-| 22   | Invalid side                                                       |
-| 23   | Failed to update order status                                      |
-| 24   | Invalid order for lookup                                           |
-| 25   | KYC level 1 is required to proceed                                 |
-| 30   | Limit exceeds                                                      |
-| 40   | Pending withdrawal exists                                          |
-| 41   | Invalid currency for withdrawal                                    |
-| 42   | Address is not in whitelist                                        |
-| 43   | Failed to deduct crypto                                            |
-| 44   | Failed to create withdrawal record                                 |
-| 47   | Withdrawal limit exceeds                                           |
-| 48   | Invalid bank account                                               |
-| 49   | Bank limit exceeds                                                 |
-| 50   | Pending withdrawal exists                                          |
-| 51   | Withdrawal is under maintenance                                    |
-| 52   | Invalid permission                                                 |
-| 53   | Invalid internal address                                           |
-| 54   | Address has been deprecated                                        |
-| 55   | Cancel only mode                                                   |
-| 56   | User has been suspended from purchasing                            |
-| 57   | User has been suspended from selling                               |
-| 58   | Transaction not found                                              |
-| 90   | Server error (please contact support)                              |
+| Code | Message                | Description                                                |
+| ---- | ---------------------- | ---------------------------------------------------------- |
+| 0    | | No error                                                           |
+| 1    | | Invalid JSON payload                                               |
+| 2    | | Missing X-BTK-APIKEY                                               |
+| 3    | | Invalid API key                                                    |
+| 4    | | API pending for activation                                         |
+| 5    | | IP not allowed                                                     |
+| 6    | | Missing / invalid signature                                        |
+| 7    | | Missing timestamp                                                  |
+| 8    | | Invalid timestamp                                                  |
+| 9    | | • Invalid user <br> • User not found <br> • Freeze withdrawal <br> • User is not allowed to perform this action within the last 24 hours <br> • User has suspicious withdraw crypto txn |
+| 10   | | • Invalid parameter <br> • Invalid response: Code not found in response <br> • Validate params <br> • Default |
+| 11   | | Invalid symbol                                                     |
+| 12   | | • Invalid amount <br> • Withdrawal amount is below the minimum threshold |
+| 13   | | Invalid rate                                                       |
+| 14   | | Improper rate                                                      |
+| 15   | | Amount too low                                                     |
+| 16   | | Failed to get balance                                              |
+| 17   | | Wallet is empty                                                    |
+| 18   | | Insufficient balance                                               |
+| 19   | | Failed to insert order into db                                     |
+| 20   | | Failed to deduct balance                                           |
+| 21   | | Invalid order for cancellation (Unable to find OrderID or Symbol.) |
+| 22   | | Invalid side                                                       |
+| 23   | | Failed to update order status                                      |
+| 24   | | • Invalid order for lookup <br> • Invalid kyc level |
+| 25   | | KYC level 1 is required to proceed                                 |
+| 30   | | Limit exceeds                                                      |
+| 40   | | Pending withdrawal exists                                          |
+| 41   | | Invalid currency for withdrawal                                    |
+| 42   | | Address is not in whitelist                                        |
+| 43   | | • Failed to deduct crypto <br> • Insufficient balance <br> • Deduct balance failed |
+| 44   | | Failed to create withdrawal record                                 |
+| 47   | | Withdrawal amount exceeds the maximum limit                                           |
+| 48   | | • Invalid bank account <br> • User bank id is not found <br> • User bank is unavailable |
+| 49   | | Bank limit exceeds                                                 |
+| 50   | | • Pending withdrawal exists <br> • Cannot perform the action due to pending transactions |
+| 51   | | Withdrawal is under maintenance                                    |
+| 52   | | Invalid permission                                                 |
+| 53   | | Invalid internal address                                           |
+| 54   | | Address has been deprecated                                        |
+| 55   | | Cancel only mode                                                   |
+| 56   | | User has been suspended from purchasing                            |
+| 57   | | User has been suspended from selling                               |
+| 58   | | ~~Transaction not found~~ <br> User bank is not verified           |
+| 90   | | Server error (please contact support)                              |
 
 # Rate limits 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual user accessing the API. ***The rate limit is applied to each endpoint regardless the API version.***
