@@ -411,38 +411,38 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/coin?symbol=ATOM' \
 
 ```javascript
 {
-    "code": "0",
-    "message": "success",
-    "data": {
-        "items":[
-            {
-                "name": "Bitcoin",
-                "symbol": "BTC",
-                "networks": [
-                    {
-                        "name": "Bitcoin",
-                        "network": "BTC",
-                        "address_regex": "^[13][a-km-zA-HJ-NP-Z1-9]{26,35}$|^(tb1)[0-9A-Za-z]{39,59}$",
-                        "memo_regex": "",
-                        "explorer": "https://www.blockchain.com/btc/tx/",
-                        "contract_address": "",
-                        "withdraw_min": "0.0002",
-                        "withdraw_fee": "0.0001",
-                        "internal_withdraw_min": "0.00000001",
-                        "internal_withdraw_fee": "0",
-                        "withdraw_decimal_places": 8,
-                        "min_confirm": 3,
-                        "decimal": 8,
-                        "deposit_enable": true,
-                        "withdraw_enable": true,
-                        "is_memo": false
-                    }
-                ],
-                "deposit_enable": true,
-                "withdraw_enable": true
-            }
-        ]
-    }
+  "code": "0",
+  "message": "success",
+  "data": {
+    "items":[
+      {
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "networks": [
+          {
+            "name": "Bitcoin",
+            "network": "BTC",
+            "address_regex": "^[13][a-km-zA-HJ-NP-Z1-9]{26,35}$|^(tb1)[0-9A-Za-z]{39,59}$",
+            "memo_regex": "",
+            "explorer": "https://www.blockchain.com/btc/tx/",
+            "contract_address": "",
+            "withdraw_min": "0.0002",
+            "withdraw_fee": "0.0001",
+            "withdraw_internal_min": "",
+            "withdraw_internal_fee": "",
+            "withdraw_decimal_places": 8,
+            "min_confirm": 3,
+            "decimal": 8,
+            "deposit_enable": true,
+            "withdraw_enable": true,
+            "is_memo": false
+          }
+        ],
+        "deposit_enable": true,
+        "withdraw_enable": true
+      }
+    ]
+  }
 }
 ```
 
@@ -488,24 +488,24 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
     "total_page": 1,
     "total_item": 21,
     "items": [
-              {
-                "txn_id": "XRPCP1234",
-                "symbol": "XRP",
-                "type": "DECOMPENSATE",
-                "amount": "-1",
-                "status": "COMPLETED",
-                "created_at": "2024-02-09T12:00:00.000+00:00",
-                "completed_at": "2024-02-09T13:00:00.000+00:00"
-              },
-              {
-                "txn_id": "BLUECP1234",
-                "symbol": "BLUE",
-                "type": "COMPENSATE",
-                "amount": "20",
-                "status": "COMPLETED",
-                "created_at": "2025-04-09T18:30:04.000+07:00",
-                "completed_at": "2025-04-09T18:30:04.000+07:00"
-              }
+      {
+        "txn_id": "XRPCP1234",
+        "symbol": "XRP",
+        "type": "DECOMPENSATE",
+        "amount": "-1",
+        "status": "COMPLETED",
+        "created_at": "2024-02-09T12:00:00.000+00:00",
+        "completed_at": "2024-02-09T13:00:00.000+00:00"
+      },
+      {
+        "txn_id": "BLUECP1234",
+        "symbol": "BLUE",
+        "type": "COMPENSATE",
+        "amount": "20",
+        "status": "COMPLETED",
+        "created_at": "2025-04-09T18:30:04.000+07:00",
+        "completed_at": "2025-04-09T18:30:04.000+07:00"
+      }
     ]
   }
 }
