@@ -6,7 +6,7 @@
 
 # Change log
 
-- 2025-05-27 Added new Crypto endpoint GET [/api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for GET [/api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and GET [/api/v4/crypto/deposits](#get-apiv4cryptodeposits)
+- 2025-05-27 Added new Crypto endpoint [GET /api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for [GET /api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits)
 - 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
 - 2025-04-03 Added new Crypto endpoint GET /api/v4/crypto/coins
 - 2025-02-03 Introducing Crypto V4 Endpoints
