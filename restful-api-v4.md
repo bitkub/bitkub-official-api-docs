@@ -6,6 +6,9 @@
 
 # Change log
 
+- 2025-05-27 Added new Crypto endpoint GET [/api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for GET [/api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and GET [/api/v4/crypto/deposits](#get-apiv4cryptodeposits)
+- 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
+- 2025-04-03 Added new Crypto endpoint GET /api/v4/crypto/coins
 - 2025-02-03 Introducing Crypto V4 Endpoints
 
 # Table of contents
@@ -213,10 +216,12 @@ List crypto deposit history.
 
 #### Query Params:
 
-| Key   | Type | Required | Description                      |
-| ----- | ---- | -------- | -------------------------------- |
-| page  | int  | false    | Page (default = 1)               |
-| limit | int  | false    | Limit (default = 100, max = 200) |
+| Key           | Type   | Required | Description                                                                                                                                                                |
+| ------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page          | int    | false    | Page (default = 1)                                                                                                                                                         |
+| limit         | int    | false    | Limit (default = 100, max = 200)                                                                                                                                           |
+| created_start | String | false    | The start of the time range for the transaction creation timestamp. Only transactions created on or after this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z) |
+| created_end   | String | false    | The end of the time range for the transaction creation timestamp. Only transactions created on or before this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z)  |
 
 #### Body Params: -
 
@@ -240,16 +245,17 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/deposits?limit=10' \
     "total_page": 1,
     "total_item": 1,
     "items": [
-      {
+     {
         "hash": "XRPWD0000100276",
         "symbol": "XRP",
         "network": "XRP",
         "amount": "5.75111474",
-        "from_address": "sender address",
-        "to_address": "recipient address",
+        "from_address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+        "to_address": "0x2b0849d47a90e3c4784a5b1130a14305a099d828",
         "confirmations": 1,
         "status": "complete",
-        "created_at": "2022-03-18T05:41:40.199Z"
+        "created_at": "2022-03-18T05:41:40.199Z",
+        "completed_at": "2022-03-18T05:45:50.199Z"
       }
     ]
   }
@@ -266,10 +272,12 @@ List crypto withdrawal history.
 
 #### Query Params:
 
-| Key   | Type | Required | Description                      |
-| ----- | ---- | -------- | -------------------------------- |
-| page  | int  | false    | Page (default = 1)               |
-| limit | int  | false    | Limit (default = 100, max = 200) |
+| Key           | Type   | Required | Description                                                                                                                                                                |
+| ------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page          | int    | false    | Page (default = 1)                                                                                                                                                         |
+| limit         | int    | false    | Limit (default = 100, max = 200)                                                                                                                                           |
+| created_start | String | false    | The start of the time range for the transaction creation timestamp. Only transactions created on or after this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z) |
+| created_end   | String | false    | The end of the time range for the transaction creation timestamp. Only transactions created on or before this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z)  |
 
 #### Body Params: -
 
@@ -293,7 +301,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
     "total_page": 1,
     "total_item": 2,
     "items": [
-      {
+       {
         "txn_id": "RDNTWD0000804050",
         "external_ref": "XX_1111111111",
         "hash": null,
@@ -304,7 +312,8 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
         "memo": "",
         "status": "processing",
-        "created_at": "2024-09-01T10:02:43.211Z"
+        "created_at": "2024-09-01T10:02:43.211Z",
+        "completed_at": "2024-09-01T10:02:45.031Z"
       },
       {
         "txn_id": "BTCWD1321312683",
@@ -317,7 +326,8 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
         "memo": "",
         "status": "complete",
-        "created_at": "2024-09-01T10:02:43.211Z"
+        "created_at": "2024-09-01T10:02:43.211Z",
+        "completed_at": "2024-09-01T10:02:45.031Z"
       }
     ]
   }
@@ -587,6 +597,7 @@ Internal Server Error.
 | B1013-CW | 400    | Withdrawal is frozen           |
 | B1014-CW | 400    | Address is not whitelisted     |
 | B1015-CW | 400    | Request is processing          |
+| B1016-CW | 400    | Deposit is frozen              |
 
 ### Validation Error
 
@@ -605,6 +616,7 @@ Internal Server Error.
 | V1010-CW | 404    | Address not found                         |
 | V1011-CW | 400    | Address already exists                    |
 | V1012-CW | 400    | Destination address not active            |
+| V1015-CW | 404    | Coin not found                            |
 
 ### Authentication Error
 
