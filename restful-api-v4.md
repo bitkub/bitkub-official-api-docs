@@ -220,6 +220,8 @@ List crypto deposit history.
 | ------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | page          | int    | false    | Page (default = 1)                                                                                                                                                         |
 | limit         | int    | false    | Limit (default = 100, max = 200)                                                                                                                                           |
+| symbol        | String | false    | Coin Symbol (e.g. BTC, ETH)                                                                                                                                                |
+| status        | String | false    | Transaction Deposit Status (PENDING, REJECTED, COMPLETED)                                                                                                                  |
 | created_start | String | false    | The start of the time range for the transaction creation timestamp. Only transactions created on or after this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z) |
 | created_end   | String | false    | The end of the time range for the transaction creation timestamp. Only transactions created on or before this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z)  |
 
@@ -276,6 +278,8 @@ List crypto withdrawal history.
 | ------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | page          | int    | false    | Page (default = 1)                                                                                                                                                         |
 | limit         | int    | false    | Limit (default = 100, max = 200)                                                                                                                                           |
+| symbol        | String | false    | Coin Symbol (e.g. BTC, ETH)                                                                                                                                                |
+| status        | String | false    | Transaction Withdraw Status (PENDING, PROCESSING, REPORTED, REJECTED, COMPLETED)                                                                                           |
 | created_start | String | false    | The start of the time range for the transaction creation timestamp. Only transactions created on or after this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z) |
 | created_end   | String | false    | The end of the time range for the transaction creation timestamp. Only transactions created on or before this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z)  |
 
