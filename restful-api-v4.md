@@ -252,7 +252,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/deposits?limit=10' \
         "symbol": "XRP",
         "network": "XRP",
         "amount": "5.75111474",
-        "from_address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+        "from_address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
         "to_address": "0x2b0849d47a90e3c4784a5b1130a14305a099d828",
         "confirmations": 1,
         "status": "complete",
@@ -313,7 +313,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "network": "ARB",
         "amount": "2.00000000",
         "fee": "4.36",
-        "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+        "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
         "memo": "",
         "status": "processing",
         "created_at": "2024-09-01T10:02:43.211Z",
@@ -327,7 +327,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "network": "BTC",
         "amount": "0.10000000",
         "fee": "0.0025",
-        "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+        "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
         "memo": "",
         "status": "complete",
         "created_at": "2024-09-01T10:02:43.211Z",
@@ -371,7 +371,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 --data '{
     "symbol": "RDNT",
     "amount": "2.00000000",
-    "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+    "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
     "network": "ARB"
 }'
 ```
@@ -388,7 +388,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
     "network": "ARB",
     "amount": "2.00000000",
     "fee": "4.36",
-    "address": "0x8b5B4E70BFCB3784f1c1157A50bd5f103c4b0102",
+    "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
     "memo": "",
     "created_at": "2024-09-01T10:02:43.211Z"
   }
