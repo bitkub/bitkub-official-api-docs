@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2025-04-18)
 
 # Announcement
+* order_id and txn_id formats of my-open-orders, my-order-history, my-order-info, place-bid, place-ask, cancel-order may change for some symbols due to a system upgrade, See affected symbols and detail : [here](https://support.bitkub.com/en/support/solutions/articles/151000214886-announcement-trading-system-upgrade)
 * API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](restful-api-v4.md)
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
