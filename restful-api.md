@@ -2,7 +2,7 @@
 # RESTful API for Bitkub (2025-04-18)
 
 # Announcement
-* Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history). More details here.
+* Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
 * Order history older than 90 days is archived for [my-order-history] (#get-apiv3marketmy-order-history) More details here.
 * order_id and txn_id formats of [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) may change for some symbols due to a system upgrade, See affected symbols and detail : [here](https://support.bitkub.com/en/support/solutions/articles/151000214886-announcement-trading-system-upgrade)
 * API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](restful-api-v4.md)
