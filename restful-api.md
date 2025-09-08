@@ -7,6 +7,7 @@
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 # Change log
+* 2025-01-07 Update API API [my-order-history](#get-apiv3marketmy-order-history) spec
 * 2025-01-07 Update FIAT Withdraw error code
 * 2025-04-03 Deprecated Crypto Endpoint v3 and Remove from the Document.
 * 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
@@ -857,59 +858,157 @@ Note : The ```client_id``` of this API response is the input body field name ```
 ### Description:
 List all orders that have already matched.
 
-### Query:
-* `sym` **string** The symbol (e.g. btc_thb)
-* `p` **int** Page (optional)
-* `lmt` **int** Limit (optional)
-* `start` **int** Start timestamp (optional)
-* `end` **int** End timestamp (optional)
+#### Query:
+* `sym` **string** The trading symbol (e.g. BTC_THB)
+* `p` **string** Page number for page-based pagination (optional)
+* `lmt` **string** Limit per page, default: 10, min: 1 (optional)
+* `cursor` **string** Base64 encoded cursor for keyset pagination (optional)
+* `start` **string** Start timestamp (optional)
+* `end` **string** End timestamp (optional)
+* `pagination_type` **string** Pagination type: "page" or "keyset", default: "page" (optional)
 
-### Response:
-```javascript
+#### Validation Rules:
+- `sym` is required and must be a valid trading symbol
+- `p` and `cursor` cannot be used together
+- `p` requires `pagination_type=page` or no pagination_type specified
+- `cursor` requires `pagination_type=keyset`
+- `lmt` must be a positive integer >= 1
+- `start` and `end` must be valid timestamps if provided
+- `start` must be less than `end` if both provided
+
+#### Response (Page-based pagination):
+```json
 {
-  "error": 0,
-  "result": [
-    {
-      "txn_id": "BTCSELL0021206932",
-      "order_id": "241407793",
-      "parent_order_id": "0",
-      "super_order_id": "0",
-      "client_id": "",
-      "taken_by_me": false,
-      "is_maker": false,
-      "side": "sell",
-      "type": "market",
-      "rate": "1525096.27",
-      "fee": "0.04",
-      "credit": "0",
-      "amount": "0.00001", // crypto amount
-      "ts": 1707221396584
-    },
-    {
-      "txn_id": "BTCBUY0021182426",
-      "order_id": "277231907",
-      "parent_order_id": "0",
-      "super_order_id": "0",
-      "client_id": "client_id",
-      "taken_by_me": false,
-      "is_maker": false,
-      "side": "buy",
-      "type": "market",
-      "rate": "1497974.74",
-      "fee": "0.03",
-      "credit": "0",
-      "amount": "11", // THB amount
-      "ts": 1706775718739
+    "error": 0,
+    "result": [
+        {
+            "txn_id": "68a82566596d482000f4e4edaa05m0",
+            "order_id": "68a82566596d482000f4e4edaa05m0",
+            "parent_order_id": "68a82566596d482000f4e4edaa05m0",
+            "super_order_id": "68a82566596d482000f4e4edaa05m0",
+            "client_id": "CLIENT123",
+            "taken_by_me": false,
+            "is_maker": true,
+            "side": "buy",
+            "type": "limit",
+            "rate": "2500000.00",
+            "fee": "25.00",
+            "credit": "0.00",
+            "amount": "1000.00",
+            "ts": 1755850086843,
+            "order_closed_at": 1755850086843
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "last": 10,
+        "next": 2,
+        "prev": null
     }
-  ],
-  "pagination": {
-      "page": 2,
-      "last": 3,
-      "next": 3,
-      "prev": 1
-  }
 }
 ```
+
+#### Response (Keyset-based pagination):
+```json
+{
+    "error": 0,
+    "result": [
+        {
+            "txn_id": "68a82566596d482000f4e4edaa05m0",
+            "order_id": "68a82566596d482000f4e4edaa05m0",
+            "parent_order_id": "68a82566596d482000f4e4edaa05m0",
+            "super_order_id": "68a82566596d482000f4e4edaa05m0",
+            "client_id": "CLIENT123",
+            "taken_by_me": false,
+            "is_maker": true,
+            "side": "buy",
+            "type": "limit",
+            "rate": "2500000.00",
+            "fee": "25.00",
+            "credit": "0.00",
+            "amount": "1000.00",
+            "ts": 1755850086843,
+            "order_closed_at": 1755850086843
+        }
+    ],
+    "pagination": {
+        "cursor": "eyJpZCI6Ik9SRDEyMzQ1Njc4OSIsInRzIjoiMTY3MjUzMTIwMCJ9",
+        "has_next": true
+    }
+}
+```
+
+#### Response Fields:
+
+**Order Item Fields:**
+- `txn_id`: Transaction ID
+- `order_id`: Unique order identifier
+- `parent_order_id`: Parent order ID (for linked orders)
+- `super_order_id`: Super order ID (for grouped orders)
+- `client_id`: Client-provided order ID
+- `taken_by_me`: Whether the order was taken by the user
+- `is_maker`: Whether the order was a maker order
+- `side`: Order side ("buy" or "sell")
+- `type`: Order type ("limit" or "market")
+- `rate`: Order price/rate
+- `fee`: Fee paid in THB
+- `credit`: Credit used for fee payment
+- `amount`: Order amount (quote quantity for buy orders, base quantity for sell orders)
+- `ts`: Order close timestamp in millisecond
+- `order_closed_at`: Order closure timestamp in millisecond (nullable)
+
+**Pagination Fields (Page-based):**
+- `page`: Current page number
+- `last`: Total number of pages
+- `next`: Next page number (nullable)
+- `prev`: Previous page number (nullable)
+
+**Pagination Fields (Keyset-based):**
+- `cursor`: Base64 encoded cursor for next page
+- `has_next`: Whether there are more records
+
+#### Cursor Encoding Details:
+
+The `cursor` parameter uses Base64 encoding of a JSON object containing pagination state:
+
+**Cursor Structure:**
+```json
+{
+  "id": "ORDER_ID_STRING",
+  "ts": "TIMESTAMP_DECIMAL"
+}
+```
+
+**Encoding Process:**
+1. Create JSON object with `id` (order ID) and `ts` (timestamp as decimal)
+2. Convert JSON to string
+3. Encode string using Base64 standard encoding
+
+**Example:**
+```json
+// Original cursor object
+{
+  "id": "ORD123456789", 
+  "ts": "1672531200"
+}
+
+// JSON string
+'{"id":"ORD123456789","ts":"1672531200"}'
+
+// Base64 encoded
+"eyJpZCI6Ik9SRDEyMzQ1Njc4OSIsInRzIjoiMTY3MjUzMTIwMCJ9"
+```
+
+**Custom Cursor Creation:**
+Users can create custom cursors by:
+1. Taking the last item's `order_id` and `ts` from previous response
+2. Creating JSON: `{"id":"LAST_ORDER_ID","ts":"LAST_TIMESTAMP"}`
+3. Base64 encoding the JSON string
+4. Using encoded string as `cursor` parameter
+
+**Empty Cursor:**
+- Default empty cursor: `e30=` (Base64 of `{}`)
+- Used when no cursor is provided in keyset pagination
 
 ### GET /api/v3/market/order-info
 ### Description:
