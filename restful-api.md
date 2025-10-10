@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2025-04-18)
+# RESTful API for Bitkub (2025-10-10)
 
 # Announcement
+* New endpoint [GET /api/v3/market/symbols](#get-apiv3marketsymbols) is now available. The old [GET /api/market/symbols](#get-apimarketsymbols) will be deprecated on 9 Dec 2025.
 * Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
 * Order history older than 90 days is archived for [my-order-history] (#get-apiv3marketmy-order-history) More details here.
 * order_id and txn_id formats of [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) may change for some symbols due to a system upgrade, See affected symbols and detail : [here](https://support.bitkub.com/en/support/solutions/articles/151000214886-announcement-trading-system-upgrade)
@@ -61,6 +62,7 @@ Our existing endpoints remain available for use. However, for enhanced security 
 
 | Exchange Information Endpoint                                 | Method |
 | --------------------------------------------------------------| ------ |
+| [GET /api/v3/market/symbols](#get-apiv3marketsymbols)         | GET    |
 | [GET /api/v3/servertime](#get-apiv3servertime)                | GET    |
 
 
@@ -194,6 +196,48 @@ Get server timestamp.
 #### Response:
 ```javascript
 1701251212273
+```
+
+### GET /api/v3/market/symbols
+
+#### Description:
+List all available symbols.
+
+#### Query:
+- n/a
+
+#### Response:
+```javascript
+{
+    "error": 0,
+    "result": [
+        {
+            "base_asset": "BTC",
+            "base_asset_scale": 8,
+            "buy_price_gap_as_percent": 20,
+            "created_at": "2017-10-30T22:16:10+07:00",
+            "description": "Thai Baht to Bitcoin",
+            "freeze_buy": false,
+            "freeze_cancel": false,
+            "freeze_sell": false,
+            "market_segment": "SPOT",
+            "min_quote_size": 10,
+            "modified_at": "2025-05-20T16:48:04.599+07:00",
+            "name": "Bitcoin",
+            "pairing_id": 1,
+            "price_scale": 2,
+            "price_step": "0.01",
+            "quantity_scale": 0,
+            "quantity_step": "1",
+            "quote_asset": "THB",
+            "quote_asset_scale": 2,
+            "sell_price_gap_as_percent": 20,
+            "status": "active",
+            "symbol": "BTC_THB",
+            "source": "exchange"
+        }
+    ]
+}
 ```
 
 ### GET /api/market/symbols
@@ -1310,6 +1354,7 @@ Refer to the following descriptions:
 | 56   | | User has been suspended from purchasing                            |
 | 57   | | User has been suspended from selling                               |
 | 58   | | ~~Transaction not found~~ <br> User bank is not verified           |
+| 61   | | This endpoint doesn't support broker coins ('source' = broker). You can check 'source' of each symbol in /api/v3/market/symbols.           |
 | 90   | | Server error (please contact support)                              |
 
 # Rate limits 
