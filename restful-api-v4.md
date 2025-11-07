@@ -476,7 +476,7 @@ List crypto compensations history.
 | limit         | int    | false    | Limit (default = 100, max = 200)                                                                                                                                           |
 | symbol        | String | false    | Coin Symbol (e.g. BTC, ETH)                                                                                                                                                |
 | type          | String | false    | Compensation Type (COMPENSATE,DECOMPENSATE)                                                                                                                                |
-| status        | String | false    | Transaction Compensation Status (PENDING, COMPLETED)                                                                                                                       |
+| status        | String | false    | Transaction Compensation Status (complete)                                                                                                                                 |
 | created_start | String | false    | The start of the time range for the transaction creation timestamp. Only transactions created on or after this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z) |
 | created_end   | String | false    | The end of the time range for the transaction creation timestamp. Only transactions created on or before this timestamp will be included. (e.g. 2025-01-11T10:00:00.000Z)  |
 
@@ -494,31 +494,33 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
 #### Response:
 
 ```javascript
- {
+{
   "code": "0",
-  "message": "success",
+  "message": "Success",
   "data": {
     "page": 1,
     "total_page": 1,
-    "total_item": 21,
+    "total_item": 2,
     "items": [
       {
-        "txn_id": "XRPCP1234",
+        "txn_id": "XRPCP0000001234",
         "symbol": "XRP",
         "type": "DECOMPENSATE",
         "amount": "-1",
-        "status": "COMPLETED",
-        "created_at": "2024-02-09T12:00:00.000+00:00",
-        "completed_at": "2024-02-09T13:00:00.000+00:00"
+        "status": "complete",
+        "created_at": "2024-02-09T12:00:00Z",
+        "completed_at": "2024-02-09T13:00:00Z",
+        "user_id": "1234"
       },
       {
-        "txn_id": "BLUECP1234",
+        "txn_id": "BLUECP0000001234",
         "symbol": "BLUE",
         "type": "COMPENSATE",
         "amount": "20",
-        "status": "COMPLETED",
-        "created_at": "2025-04-09T18:30:04.000+07:00",
-        "completed_at": "2025-04-09T18:30:04.000+07:00"
+        "status": "complete",
+        "created_at": "2025-04-09T18:30:04Z",
+        "completed_at": "2025-04-09T18:30:04Z",
+        "user_id": "1234"
       }
     ]
   }
