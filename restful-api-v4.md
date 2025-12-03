@@ -2,6 +2,7 @@
 
 # Announcement
 
+- Deposit history records are available for the last 90 days only for [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits). Records older than 90 days are archived.
 - Introducing the New Public API v4 for Crypto Endpoints
 
 # Change log
@@ -211,6 +212,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses' \
 #### Description:
 
 List crypto deposit history.
+Note: Only deposit records within the last 90 days will be returned.
 
 #### Path Params: -
 
