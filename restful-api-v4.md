@@ -212,7 +212,8 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses' \
 #### Description:
 
 List crypto deposit history.
-Note: Only deposit records within the last 90 days will be returned.
+
+#### Note: Only deposit records within the last 90 days will be returned.
 
 #### Path Params: -
 
