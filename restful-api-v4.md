@@ -1,4 +1,4 @@
-# RESTful API for Bitkub V4 (2025-02-03)
+# RESTful API for Bitkub V4 (2025-12-03)
 
 # Announcement
 
