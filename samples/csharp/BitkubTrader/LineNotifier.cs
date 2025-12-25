@@ -8,7 +8,16 @@ using Spectre.Console;
 namespace BitkubTrader
 {
     /// <summary>
-    /// 📱 LINE Notify Integration - ส่งการแจ้งเตือนไป LINE
+    /// ⚠️ DEPRECATED - LINE Notify บริการนี้ถูกยกเลิกแล้ว!
+    ///
+    /// กรุณาใช้ LineMessenger.cs แทน (LINE Official Account Messaging API)
+    ///
+    /// ไฟล์นี้เก็บไว้เพื่อความเข้ากันได้แบบย้อนหลังเท่านั้น
+    /// LINE Notify service has been discontinued. Use LineMessenger.cs instead.
+    ///
+    /// ---
+    ///
+    /// 📱 LINE Notify Integration - ส่งการแจ้งเตือนไป LINE (เลิกใช้แล้ว)
     ///
     /// วิธีตั้งค่า:
     /// 1. ไปที่ https://notify-bot.line.me/
@@ -16,6 +25,7 @@ namespace BitkubTrader
     /// 3. Generate Token
     /// 4. ใส่ Token ใน config
     /// </summary>
+    [Obsolete("LINE Notify service has been discontinued. Use LineMessenger class instead.")]
     public class LineNotifier
     {
         private readonly string _accessToken;

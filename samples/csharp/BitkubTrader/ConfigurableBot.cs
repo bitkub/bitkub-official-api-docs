@@ -97,7 +97,7 @@ namespace BitkubTrader
                         $"[cyan]Mode:[/] [green]{_config.General.TradingMode}[/]\n" +
                         $"[cyan]Balance:[/] [green]{_initialBalance:N0}[/] THB\n\n" +
                         $"[cyan]Auto Trading:[/] {(_config.General.EnableAutoTrading ? "[green]ON[/]" : "[red]OFF[/]")}\n" +
-                        $"[cyan]LINE OA:[/] {(_config.Notifications.EnableLineNotify ? "[green]ON[/]" : "[red]OFF[/]")}\n\n" +
+                        $"[cyan]LINE OA:[/] {(_config.Notifications.EnableLineOA ? "[green]ON[/]" : "[red]OFF[/]")}\n\n" +
                         $"[dim]ปรับแต่งได้ทุกอย่างใน trading_config.json[/]"
                     ),
                     VerticalAlignment.Middle
