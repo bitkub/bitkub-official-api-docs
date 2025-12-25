@@ -113,6 +113,84 @@
 - ✅ Risk management อัจฉริยะ
 - ✅ Multi-mode support ตามความเสี่ยงที่รับได้
 
+### 🎛️ CONFIGURABLE TRADING SYSTEM (ปรับแต่งได้ทุกอย่าง!)
+**ระบบที่ยืดหยุ่นที่สุด! ตั้งค่ากลยุทธ์ได้เอง + แจ้งเตือน LINE + วางแผนการเทรด**
+
+#### ⚙️ Configuration System
+- 📝 **ตั้งค่าผ่าน JSON** - แก้ไข `trading_config.json` ง่ายๆ
+- 🎯 **Entry Logic ละเอียด**:
+  - Master Score threshold (เข้าเมื่อคะแนนเท่าไหร่)
+  - Technical Conditions (RSI range, MACD, Bollinger Bands)
+  - Elliott Wave (เข้าได้เฉพาะ Wave ไหน, Confidence ขั้นต่ำ)
+  - Fibonacci (ระยะห่างจาก Support สูงสุด, ระดับที่ชอบ)
+  - Volume Profile (ต้องอยู่เหนือ POC หรือไม่, ระยะจาก VAL)
+  - Market Structure (Trend ที่ต้องการ, ยอมรับ BOS/CHoCH)
+  - Order Flow (Bid/Ask ratio ขั้นต่ำ, ต้องมี Buying Pressure)
+- 🚪 **Exit Logic**:
+  - Stop Loss: PERCENTAGE, FIBONACCI, ATR
+  - Take Profit: PERCENTAGE, FIBONACCI, RESISTANCE
+  - Trailing Stop (เปิด/ปิดได้)
+  - Time-based Exit (ถือครองสูงสุดกี่ชั่วโมง)
+  - Signal-based (ออกเมื่อ Master Score ต่ำเกินไป)
+- 💰 **Risk Management**:
+  - Max Risk per Trade (เสี่ยงไม่เกิน X% ต่อ trade)
+  - Position Sizing (RISK_BASED, FIXED_AMOUNT, PERCENTAGE)
+  - Max Daily Loss (ขาดทุนวันละไม่เกิน X%)
+  - Max Daily Trades (เทรดวันละไม่เกิน X ครั้ง)
+  - Pyramiding (เพิ่มออเดอร์ตามกำไร)
+- 📊 **Indicator Settings**:
+  - ปรับค่า RSI, MACD, Bollinger Bands, ATR, EMA ได้หมด
+  - Overbought/Oversold levels
+  - Period และ Multiplier
+
+#### 📱 LINE Notify Integration
+- ✅ **แจ้งเตือนสัญญาณ** - STRONG_BUY, BUY, SELL พร้อม Master Score และเหตุผล
+- ✅ **แจ้งเตือนเข้า Position** - ราคา, จำนวน, Stop Loss, Take Profit
+- ✅ **แจ้งเตือนออก Position** - กำไร/ขาดทุน, เปอร์เซ็นต์, เหตุผล
+- ✅ **แจ้งเตือน Stop Loss** - พร้อมสาเหตุ
+- ✅ **แจ้งเตือน Take Profit** - แยกแต่ละระดับ
+- ✅ **แจ้งเตือนราคาผ่านจุดสำคัญ** - Fibonacci, Support/Resistance
+- ✅ **แจ้งเตือน Elliott Wave** - เมื่อเปลี่ยน Wave
+- ✅ **แจ้งเตือน Pattern** - เมื่อพบ Chart Pattern
+- ✅ **สรุปประจำวัน** - Win Rate, P/L, Best/Worst Trades
+- ✅ **Custom Events** - กำหนดเงื่อนไขเอง (เช่น "BTC > 2M", "Score >= 85")
+
+#### 📊 Chart Planning System
+- 📈 **กราฟราคาแบบ Visual** - แสดงทุกระดับในกราฟเดียว
+- 🎯 **จุดเข้า (Entry Points)**:
+  - แสดงราคา, จำนวน, มูลค่า
+  - รองรับ LIMIT, MARKET, STOP orders
+  - คำนวณระยะห่างจากราคาปัจจุบัน
+- 🛑 **Stop Loss** - แสดงระดับ SL พร้อม %
+- 💰 **Multiple Take Profit Levels** - TP1, TP2, TP3... พร้อม %
+- 📍 **Key Levels**:
+  - Fibonacci Support/Resistance
+  - Volume Profile (POC, VAH, VAL)
+  - Market Structure zones
+- ⚖️ **Risk/Reward Analysis**:
+  - คำนวณ R:R ratio อัตโนมัติ
+  - แนะนำถ้า R:R < 2 (ไม่ดี)
+  - แสดงกำไร/ขาดทุนที่คาดการณ์
+
+#### 🎮 Configurable Bot Features
+- 🤖 **Auto/Manual Mode** - เปิด/ปิด Auto Trading ได้
+- 📊 **Real-time Monitoring** - แสดงสถานะทุกอย่าง
+- 💼 **Position Management**:
+  - Multiple Take Profit Levels
+  - Trailing Stop อัตโนมัติ
+  - Time-based Exit
+  - Signal-based Exit
+- 📈 **Performance Tracking**:
+  - Daily P/L
+  - Today's Trades
+  - Win Rate
+  - Open Positions
+- ⚠️ **Risk Protection**:
+  - Daily loss limit
+  - Daily trade limit
+  - Position size limit
+- 🎛️ **Interactive Config Editor** - แก้ไข Config ในโปรแกรมได้
+
 ## ความต้องการของระบบ
 
 - .NET 6.0 SDK หรือใหม่กว่า
@@ -145,6 +223,75 @@ private const string API_SECRET = "YOUR_API_SECRET";
 **⚠️ คำเตือน:** ห้ามเปิดเผย API Key และ Secret ในที่สาธารณะ!
 
 ## การใช้งาน
+
+### รันโปรแกรม CONFIGURABLE TRADING SYSTEM (🎛️ แนะนำที่สุด!)
+
+```bash
+# รัน Configurable Trading System - ปรับแต่งได้ทุกอย่าง!
+dotnet run
+# แล้วแก้ไข BitkubTrader.csproj ให้ชี้ไปที่ ProgramConfigurable
+```
+
+แก้ไข `BitkubTrader.csproj` เปลี่ยน entry point:
+```xml
+<PropertyGroup>
+  <StartupObject>BitkubTrader.ProgramConfigurable</StartupObject>
+</PropertyGroup>
+```
+
+**CONFIGURABLE TRADING SYSTEM มี:**
+- 🚀 **Start Configurable Bot** - รันบอทที่ปรับแต่งได้ทุกอย่าง!
+- ⚙️ **Edit Configuration** - แก้ไข Config แบบ Interactive
+- 👀 **View Configuration** - ดู Config ปัจจุบัน
+- 📱 **Test LINE Notification** - ทดสอบการส่ง LINE
+- 📊 **Create Trading Plan** - วางแผนการเทรดพร้อมกราฟ
+- 💼 **View Open Positions** - ดู Positions ที่เปิดอยู่
+- 📈 **View Performance** - ดูสถิติการเทรด
+
+**วิธีตั้งค่า LINE Notify:**
+1. ไปที่ https://notify-bot.line.me/
+2. Login ด้วย LINE account
+3. Generate Token
+4. ใส่ Token ใน Config หรือแก้ไขผ่านโปรแกรม
+
+**ตัวอย่าง Config (trading_config.json):**
+```json
+{
+  "General": {
+    "TradingMode": "BALANCED",
+    "Symbol": "THB_BTC",
+    "UpdateInterval": 30,
+    "EnableAutoTrading": false
+  },
+  "Entry": {
+    "MinMasterScore": 75,
+    "TechnicalConditions": {
+      "RSI_Min": 30,
+      "RSI_Max": 70
+    },
+    "ElliottWaveConditions": {
+      "PreferredWaves": ["WAVE_3", "WAVE_5"],
+      "MinConfidence": 70
+    }
+  },
+  "Exit": {
+    "StopLossPercent": 3.0,
+    "TakeProfitPercent": 5.0,
+    "EnableTrailingStop": true
+  },
+  "Risk": {
+    "MaxRiskPerTradePercent": 2.0,
+    "MaxDailyLossPercent": 5.0,
+    "MaxDailyTrades": 10
+  },
+  "Notifications": {
+    "EnableLineNotify": true,
+    "LineAccessToken": "YOUR_LINE_TOKEN",
+    "NotifyOnSignal": true,
+    "NotifyOnEntry": true
+  }
+}
+```
 
 ### รันโปรแกรม ULTIMATE TRADING SYSTEM (🌟 แนะนำสุดๆ!)
 
@@ -387,6 +534,14 @@ BitkubTrader/
 - **UltimateBot.cs** - บอทรวมทุกฟีเจอร์ + Master Score
 - **AdvancedAnalysis.cs** - Elliott Wave, Fibonacci, Volume Profile, Market Structure, Order Flow
 - **MachineLearning.cs** - Linear Regression, Pattern Recognition
+
+### 🎛️ ไฟล์สำคัญของ Configurable System
+- **ProgramConfigurable.cs** - Entry point พร้อมเมนูและ Config Editor
+- **ConfigurableBot.cs** - บอทที่ใช้ Config ในการตัดสินใจทุกอย่าง
+- **TradingConfig.cs** - ระบบ Config แบบ JSON (trading_config.json)
+- **LineNotifier.cs** - ระบบแจ้งเตือน LINE Notify
+- **ChartPlanner.cs** - ระบบวางแผนการเทรดพร้อมกราฟ
+- **README_ULTIMATE.md** - คู่มือละเอียดของ Ultimate System
 
 ## API Methods
 
