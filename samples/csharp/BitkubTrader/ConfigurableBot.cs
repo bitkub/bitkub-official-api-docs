@@ -9,14 +9,14 @@ namespace BitkubTrader
 {
     /// <summary>
     /// 🎛️ Configurable Trading Bot
-    /// บอทที่ปรับแต่งได้ทุกอย่าง + LINE Notify + Chart Planning
+    /// บอทที่ปรับแต่งได้ทุกอย่าง + LINE OA + Chart Planning
     /// </summary>
     public class ConfigurableBot
     {
         private readonly BitkubClient _client;
         private readonly DatabaseManager _db;
         private readonly TradingConfig _config;
-        private readonly LineNotifier _lineNotifier;
+        private readonly LineMessenger _lineMessenger;
 
         private List<decimal> _priceHistory = new();
         private List<decimal> _volumeHistory = new();
@@ -39,9 +39,10 @@ namespace BitkubTrader
             _initialBalance = initialBalance;
             _currentBalance = initialBalance;
 
-            _lineNotifier = new LineNotifier(
-                _config.Notifications.LineAccessToken,
-                _config.Notifications.EnableLineNotify
+            _lineMessenger = new LineMessenger(
+                _config.Notifications.LineChannelAccessToken,
+                _config.Notifications.LineUserIds,
+                _config.Notifications.EnableLineOA
             );
         }
 
@@ -55,9 +56,9 @@ namespace BitkubTrader
             ShowIntro();
 
             // ทดสอบ LINE
-            if (_config.Notifications.EnableLineNotify)
+            if (_config.Notifications.EnableLineOA)
             {
-                await _lineNotifier.TestConnectionAsync();
+                await _lineMessenger.TestConnectionAsync();
                 await Task.Delay(2000);
             }
 
@@ -71,7 +72,7 @@ namespace BitkubTrader
                 catch (Exception ex)
                 {
                     ConsoleUI.ShowError($"Error: {ex.Message}");
-                    await _lineNotifier.NotifyErrorAsync(ex.Message, ex.StackTrace);
+                    await _lineMessenger.NotifyErrorAsync(ex.Message, ex.StackTrace);
                     await Task.Delay(10000, cancellationToken);
                 }
             }
@@ -96,7 +97,7 @@ namespace BitkubTrader
                         $"[cyan]Mode:[/] [green]{_config.General.TradingMode}[/]\n" +
                         $"[cyan]Balance:[/] [green]{_initialBalance:N0}[/] THB\n\n" +
                         $"[cyan]Auto Trading:[/] {(_config.General.EnableAutoTrading ? "[green]ON[/]" : "[red]OFF[/]")}\n" +
-                        $"[cyan]LINE Notify:[/] {(_config.Notifications.EnableLineNotify ? "[green]ON[/]" : "[red]OFF[/]")}\n\n" +
+                        $"[cyan]LINE OA:[/] {(_config.Notifications.EnableLineNotify ? "[green]ON[/]" : "[red]OFF[/]")}\n\n" +
                         $"[dim]ปรับแต่งได้ทุกอย่างใน trading_config.json[/]"
                     ),
                     VerticalAlignment.Middle
@@ -322,7 +323,7 @@ namespace BitkubTrader
             if (_config.Notifications.NotifyOnSignal)
             {
                 var reasoning = BuildReasoning(analysis);
-                await _lineNotifier.NotifySignalAsync(
+                await _lineMessenger.NotifySignalAsync(
                     _config.General.Symbol,
                     "BUY",
                     analysis.MasterScore,
@@ -367,7 +368,7 @@ namespace BitkubTrader
             // แจ้งเตือน LINE
             if (_config.Notifications.NotifyOnEntry)
             {
-                await _lineNotifier.NotifyEntryAsync(
+                await _lineMessenger.NotifyEntryAsync(
                     plan.Symbol,
                     entry.Price,
                     entry.Amount,
@@ -398,14 +399,14 @@ namespace BitkubTrader
                     _todayProfitLoss += loss;
                     _currentBalance += loss;
 
-                    await _lineNotifier.NotifyStopLossAsync(
+                    await _lineMessenger.NotifyStopLossAsync(
                         position.Symbol,
                         position.EntryPrice,
                         currentPrice,
                         loss
                     );
 
-                    await _lineNotifier.NotifyExitAsync(
+                    await _lineMessenger.NotifyExitAsync(
                         position.Symbol,
                         position.EntryPrice,
                         currentPrice,
@@ -430,7 +431,7 @@ namespace BitkubTrader
                         _todayProfitLoss += profit;
                         _currentBalance += profit;
 
-                        await _lineNotifier.NotifyTakeProfitAsync(
+                        await _lineMessenger.NotifyTakeProfitAsync(
                             position.Symbol,
                             position.EntryPrice,
                             currentPrice,
@@ -500,7 +501,7 @@ namespace BitkubTrader
             _todayProfitLoss += profitLoss;
             _currentBalance += profitLoss;
 
-            await _lineNotifier.NotifyExitAsync(
+            await _lineMessenger.NotifyExitAsync(
                 position.Symbol,
                 position.EntryPrice,
                 exitPrice,
@@ -528,7 +529,7 @@ namespace BitkubTrader
                         .Replace("{score}", analysis.MasterScore.ToString())
                         .Replace("{price}", currentPrice.ToString("N2"));
 
-                    await _lineNotifier.NotifyCustomEventAsync(customEvent.Name, message);
+                    await _lineMessenger.NotifyCustomEventAsync(customEvent.Name, message);
                 }
             }
         }

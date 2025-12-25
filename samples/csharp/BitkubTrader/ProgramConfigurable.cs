@@ -197,7 +197,8 @@ namespace BitkubTrader
             table.AddEmptyRow();
 
             table.AddRow("[bold]Notifications[/]", "");
-            table.AddRow("  LINE Notify", config.Notifications.EnableLineNotify ? "ON" : "OFF");
+            table.AddRow("  LINE OA", config.Notifications.EnableLineOA ? "ON" : "OFF");
+            table.AddRow("  User IDs", config.Notifications.LineUserIds.Count.ToString());
             table.AddRow("  Notify on Signal", config.Notifications.NotifyOnSignal ? "ON" : "OFF");
             table.AddRow("  Notify on Entry", config.Notifications.NotifyOnEntry ? "ON" : "OFF");
 
@@ -263,10 +264,30 @@ namespace BitkubTrader
             }
             else if (section.Contains("Notifications"))
             {
-                config.Notifications.EnableLineNotify = ConsoleUI.Confirm("Enable LINE Notify?");
-                if (config.Notifications.EnableLineNotify)
+                config.Notifications.EnableLineOA = ConsoleUI.Confirm("Enable LINE Official Account?");
+                if (config.Notifications.EnableLineOA)
                 {
-                    config.Notifications.LineAccessToken = ConsoleUI.AskInput("LINE Access Token", config.Notifications.LineAccessToken);
+                    ConsoleUI.ShowInfo("\n📱 ตั้งค่า LINE Official Account:");
+                    ConsoleUI.ShowInfo("1. สร้าง LINE OA: https://manager.line.biz/");
+                    ConsoleUI.ShowInfo("2. สร้าง Messaging API: https://developers.line.biz/console/");
+                    ConsoleUI.ShowInfo("3. คัดลอก Channel Access Token\n");
+
+                    config.Notifications.LineChannelAccessToken = ConsoleUI.AskInput("Channel Access Token", config.Notifications.LineChannelAccessToken);
+
+                    ConsoleUI.ShowInfo("\n💡 วิธีหา User ID:");
+                    ConsoleUI.ShowInfo("- เพิ่มเพื่อน LINE OA");
+                    ConsoleUI.ShowInfo("- ดู User ID จาก Webhook หรือ Messaging API Console\n");
+
+                    var userIdInput = ConsoleUI.AskInput("User ID (ใส่ได้ทีละหลายคน คั่นด้วย ,)",
+                        config.Notifications.LineUserIds.Count > 0 ? string.Join(",", config.Notifications.LineUserIds) : "");
+
+                    if (!string.IsNullOrEmpty(userIdInput))
+                    {
+                        config.Notifications.LineUserIds = new List<string>(
+                            userIdInput.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                        );
+                    }
+
                     config.Notifications.NotifyOnSignal = ConsoleUI.Confirm("Notify on Signal?");
                     config.Notifications.NotifyOnEntry = ConsoleUI.Confirm("Notify on Entry?");
                     config.Notifications.NotifyOnExit = ConsoleUI.Confirm("Notify on Exit?");
@@ -328,18 +349,20 @@ namespace BitkubTrader
 
             var config = TradingConfig.Load(CONFIG_FILE);
 
-            if (!config.Notifications.EnableLineNotify)
+            if (!config.Notifications.EnableLineOA)
             {
-                ConsoleUI.ShowWarning("⚠️ LINE Notify ยังไม่ได้เปิดใช้งานใน Config");
+                ConsoleUI.ShowWarning("⚠️ LINE OA ยังไม่ได้เปิดใช้งานใน Config");
+                LineUserIdHelper.ShowInstructions();
                 return;
             }
 
-            var lineNotifier = new LineNotifier(
-                config.Notifications.LineAccessToken,
-                config.Notifications.EnableLineNotify
+            var lineMessenger = new LineMessenger(
+                config.Notifications.LineChannelAccessToken,
+                config.Notifications.LineUserIds,
+                config.Notifications.EnableLineOA
             );
 
-            await lineNotifier.TestConnectionAsync();
+            await lineMessenger.TestConnectionAsync();
         }
 
         static async Task CreateTradingPlan(BitkubClient client, DatabaseManager db)

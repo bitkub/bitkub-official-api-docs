@@ -202,8 +202,9 @@ namespace BitkubTrader
 
                 Notifications = new NotificationSettings
                 {
-                    EnableLineNotify = true,
-                    LineAccessToken = "YOUR_LINE_ACCESS_TOKEN",
+                    EnableLineOA = true,
+                    LineChannelAccessToken = "YOUR_CHANNEL_ACCESS_TOKEN",
+                    LineUserIds = new List<string> { "YOUR_USER_ID" },
 
                     NotifyOnSignal = true,
                     NotifyOnEntry = true,
@@ -253,9 +254,14 @@ namespace BitkubTrader
             if (Risk.MaxRiskPerTradePercent <= 0 || Risk.MaxRiskPerTradePercent > 100)
                 errors.Add("MaxRiskPerTradePercent ต้องอยู่ระหว่าง 0-100");
 
-            if (Notifications.EnableLineNotify &&
-                string.IsNullOrEmpty(Notifications.LineAccessToken))
-                errors.Add("ต้องใส่ LINE Access Token ถ้าเปิดใช้งาน LINE Notify");
+            if (Notifications.EnableLineOA)
+            {
+                if (string.IsNullOrEmpty(Notifications.LineChannelAccessToken))
+                    errors.Add("ต้องใส่ LINE Channel Access Token ถ้าเปิดใช้งาน LINE OA");
+
+                if (Notifications.LineUserIds == null || Notifications.LineUserIds.Count == 0)
+                    errors.Add("ต้องใส่ LINE User ID อย่างน้อย 1 คน");
+            }
 
             return (errors.Count == 0, errors);
         }
@@ -376,8 +382,9 @@ namespace BitkubTrader
 
     public class NotificationSettings
     {
-        public bool EnableLineNotify { get; set; } = true;
-        public string LineAccessToken { get; set; } = "";
+        public bool EnableLineOA { get; set; } = true;
+        public string LineChannelAccessToken { get; set; } = ""; // LINE Official Account Channel Access Token
+        public List<string> LineUserIds { get; set; } = new(); // User IDs ที่จะส่งข้อความ
 
         public bool NotifyOnSignal { get; set; } = true;
         public bool NotifyOnEntry { get; set; } = true;
