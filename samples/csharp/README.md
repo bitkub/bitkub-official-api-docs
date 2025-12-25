@@ -143,7 +143,7 @@
   - Overbought/Oversold levels
   - Period และ Multiplier
 
-#### 📱 LINE Notify Integration
+#### 📱 LINE Official Account Integration
 - ✅ **แจ้งเตือนสัญญาณ** - STRONG_BUY, BUY, SELL พร้อม Master Score และเหตุผล
 - ✅ **แจ้งเตือนเข้า Position** - ราคา, จำนวน, Stop Loss, Take Profit
 - ✅ **แจ้งเตือนออก Position** - กำไร/ขาดทุน, เปอร์เซ็นต์, เหตุผล
@@ -248,11 +248,12 @@ dotnet run
 - 💼 **View Open Positions** - ดู Positions ที่เปิดอยู่
 - 📈 **View Performance** - ดูสถิติการเทรด
 
-**วิธีตั้งค่า LINE Notify:**
-1. ไปที่ https://notify-bot.line.me/
-2. Login ด้วย LINE account
-3. Generate Token
-4. ใส่ Token ใน Config หรือแก้ไขผ่านโปรแกรม
+**วิธีตั้งค่า LINE Official Account:**
+1. สร้าง LINE Official Account: https://manager.line.biz/
+2. สร้าง Messaging API Channel: https://developers.line.biz/console/
+3. คัดลอก Channel Access Token จากหน้า Messaging API
+4. รับ User ID จากการส่งข้อความไปหาบอท หรือใช้ Webhook
+5. ใส่ Channel Access Token และ User ID ใน Config หรือแก้ไขผ่านโปรแกรม
 
 **ตัวอย่าง Config (trading_config.json):**
 ```json
@@ -285,8 +286,9 @@ dotnet run
     "MaxDailyTrades": 10
   },
   "Notifications": {
-    "EnableLineNotify": true,
-    "LineAccessToken": "YOUR_LINE_TOKEN",
+    "EnableLineOA": true,
+    "LineChannelAccessToken": "YOUR_CHANNEL_ACCESS_TOKEN",
+    "LineUserIds": ["USER_ID_1", "USER_ID_2"],
     "NotifyOnSignal": true,
     "NotifyOnEntry": true
   }
@@ -539,7 +541,7 @@ BitkubTrader/
 - **ProgramConfigurable.cs** - Entry point พร้อมเมนูและ Config Editor
 - **ConfigurableBot.cs** - บอทที่ใช้ Config ในการตัดสินใจทุกอย่าง
 - **TradingConfig.cs** - ระบบ Config แบบ JSON (trading_config.json)
-- **LineNotifier.cs** - ระบบแจ้งเตือน LINE Notify
+- **LineMessenger.cs** - ระบบแจ้งเตือน LINE Official Account (Messaging API)
 - **ChartPlanner.cs** - ระบบวางแผนการเทรดพร้อมกราฟ
 - **README_ULTIMATE.md** - คู่มือละเอียดของ Ultimate System
 
