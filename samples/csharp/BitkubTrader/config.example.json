@@ -1,0 +1,10 @@
+{
+  "ApiKey": "YOUR_API_KEY_HERE",
+  "ApiSecret": "YOUR_API_SECRET_HERE",
+  "TradingSettings": {
+    "DefaultSymbol": "THB_BTC",
+    "MaxOrderAmount": 1000,
+    "MinProfitPercent": 1.5,
+    "StopLossPercent": 2.0
+  }
+}
