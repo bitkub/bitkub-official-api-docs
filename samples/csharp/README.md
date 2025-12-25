@@ -2,8 +2,11 @@
 
 โปรแกรมเทรด Cryptocurrency บน Bitkub Exchange ด้วย C# (.NET 6.0+)
 
+🎨 **พิเศษ! เวอร์ชั่น Beautiful UI พร้อม Animations และ Live Dashboard**
+
 ## คุณสมบัติ
 
+### 🚀 Core Features
 - ✅ ดึงข้อมูลตลาด (Market Data) - Ticker, Order Book, Symbols
 - ✅ จัดการบัญชี - ตรวจสอบยอดเงิน (Balances)
 - ✅ การเทรด - สั่งซื้อ (Buy), สั่งขาย (Sell), ยกเลิกคำสั่ง (Cancel)
@@ -12,6 +15,18 @@
 - ✅ HMAC SHA-256 Authentication
 - ✅ Async/Await pattern
 - ✅ Type-safe models
+
+### 🎨 Beautiful UI Features (NEW!)
+- ✨ **ASCII Art Logo** - โลโก้สวยงามตอนเปิดโปรแกรม
+- 🌈 **Color-coded Display** - สีสันสดใส แยกแยะข้อมูลง่าย
+- 📊 **Interactive Tables** - ตารางข้อมูลที่สวยงาม
+- 📈 **Live Charts** - กราฟราคาแบบ real-time
+- ⚡ **Animations** - Loading spinners และ progress bars
+- 📺 **Live Dashboard** - หน้าจอแสดงข้อมูลแบบ real-time update
+- 🎯 **Interactive Menus** - เมนูเลือกแบบ interactive
+- 💫 **Visual Effects** - เอฟเฟคสวยงามทั่วโปรแกรม
+- 📉 **Order Book Display** - แสดง Order Book แบบสวยงาม
+- 💰 **Portfolio Charts** - กราฟแสดงสัดส่วนพอร์ต
 
 ## ความต้องการของระบบ
 
@@ -46,7 +61,21 @@ private const string API_SECRET = "YOUR_API_SECRET";
 
 ## การใช้งาน
 
-### รันโปรแกรมตัวอย่าง
+### รันโปรแกรมแบบ Beautiful UI 🎨 (แนะนำ!)
+
+```bash
+# รัน Beautiful UI version พร้อม Interactive Menu และ Animations
+dotnet run --project BitkubTrader.csproj ProgramBeautiful.cs
+```
+
+หรือแก้ไข `BitkubTrader.csproj` เปลี่ยน entry point:
+```xml
+<PropertyGroup>
+  <StartupObject>BitkubTrader.ProgramBeautiful</StartupObject>
+</PropertyGroup>
+```
+
+### รันโปรแกรมตัวอย่างแบบธรรมดา
 
 ```bash
 dotnet run
