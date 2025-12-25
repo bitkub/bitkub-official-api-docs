@@ -16,7 +16,7 @@
 - ✅ Async/Await pattern
 - ✅ Type-safe models
 
-### 🎨 Beautiful UI Features (NEW!)
+### 🎨 Beautiful UI Features
 - ✨ **ASCII Art Logo** - โลโก้สวยงามตอนเปิดโปรแกรม
 - 🌈 **Color-coded Display** - สีสันสดใส แยกแยะข้อมูลง่าย
 - 📊 **Interactive Tables** - ตารางข้อมูลที่สวยงาม
@@ -27,6 +27,27 @@
 - 💫 **Visual Effects** - เอฟเฟคสวยงามทั่วโปรแกรม
 - 📉 **Order Book Display** - แสดง Order Book แบบสวยงาม
 - 💰 **Portfolio Charts** - กราฟแสดงสัดส่วนพอร์ต
+
+### 🤖 AI Trading Features (EPIC!)
+- 🧠 **AI Trading Engine** - AI วิเคราะห์และตัดสินใจเทรดอัตโนมัติ
+- 📊 **Technical Analysis** - RSI, MACD, Bollinger Bands, SMA/EMA, Stochastic, ATR
+- 🎯 **Smart Signals** - STRONG_BUY, BUY, HOLD, SELL, STRONG_SELL พร้อม Confidence Score
+- 📰 **News Sentiment Analysis** - วิเคราะห์ข่าวจากเว็บไทย (Thairath, Sanook, Manager)
+- 💾 **SQLite Database** - เก็บสถิติการเทรด, ราคา, signals, performance ทั้งหมด
+- 🎚️ **Multiple Trading Modes**:
+  - ⚡ **Aggressive** - เทรดบ่อย ความเสี่ยงสูง ผลตอบแทนสูง
+  - ⚖️ **Balanced** - สมดุลระหว่างความเสี่ยงและผลตอบแทน
+  - 🛡️ **Conservative** - เทรดระมัดระวัง ความเสี่ยงต่ำ
+- 💰 **Risk Management System**:
+  - 🎯 Auto Take Profit - กำไรถึงเป้าขายอัตโนมัติ
+  - 🛑 Auto Stop Loss - ขาดทุนถึงจุดหยุดขายอัตโนมัติ
+  - 📊 Position Sizing - คำนวณขนาดคำสั่งตามความเสี่ยง
+- 📈 **Performance Analytics**:
+  - 📊 Win Rate, Profit Factor, Sharpe Ratio
+  - 💰 Total P/L, Average Win/Loss
+  - 📉 Max Drawdown, Largest Win/Loss
+- 🔍 **Pattern Detection** - Double Top/Bottom, Head & Shoulders, Trends
+- 🎯 **Multi-Indicator Scoring** - รวม indicators หลายตัวเพื่อความแม่นยำสูง
 
 ## ความต้องการของระบบ
 
@@ -61,23 +82,39 @@ private const string API_SECRET = "YOUR_API_SECRET";
 
 ## การใช้งาน
 
-### รันโปรแกรมแบบ Beautiful UI 🎨 (แนะนำ!)
+### รันโปรแกรม AI Trading (🚀 แนะนำ!)
 
 ```bash
-# รัน Beautiful UI version พร้อม Interactive Menu และ Animations
-dotnet run --project BitkubTrader.csproj ProgramBeautiful.cs
+# รัน AI Trading System - เทพที่สุด!
+dotnet run
+# แล้วแก้ไข Program.cs ให้ชี้ไปที่ ProgramAI.Main()
 ```
 
 หรือแก้ไข `BitkubTrader.csproj` เปลี่ยน entry point:
 ```xml
 <PropertyGroup>
-  <StartupObject>BitkubTrader.ProgramBeautiful</StartupObject>
+  <StartupObject>BitkubTrader.ProgramAI</StartupObject>
 </PropertyGroup>
+```
+
+**AI Trading System มี:**
+- 🤖 Start AI Trading Bot (เลือกโหมดได้)
+- 📊 View Performance Analytics
+- 📰 Analyze Market News (ข่าวไทย)
+- 🔍 Technical Analysis
+- 💾 Database Statistics
+
+### รันโปรแกรมแบบ Beautiful UI 🎨
+
+```bash
+# แก้ไข BitkubTrader.csproj ให้ StartupObject เป็น ProgramBeautiful
+dotnet run
 ```
 
 ### รันโปรแกรมตัวอย่างแบบธรรมดา
 
 ```bash
+# แก้ไข BitkubTrader.csproj ให้ StartupObject เป็น Program
 dotnet run
 ```
 
