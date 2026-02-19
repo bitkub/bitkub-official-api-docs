@@ -196,22 +196,20 @@ Received when your order status changes (created, filled, partially filled, canc
         "type": "limit | stoplimit | market",
         "status": "new | open | rejected | partial_filled | filled | partial_filled_canceled | canceled | untriggered",
         "partial_filled": false,
-        "price": 1000000.00,
+        "price": "1000000.00",
         "stop_price": null,
         "order_currency": "THB",
-        "order_amount": 10000.00,
+        "order_amount": "10000.00",
         "executed_currency": "THB",
-        "executed_amount": 5000.00,
+        "executed_amount": "5000.00",
         "received_currency": "BTC",
-        "received_amount": 0.005,
-        "total_fee": 12.50,
-        "credit_used": 0.00,
-        "net_fee_paid": 12.50,
-        "avg_filled_price": 1000000.00,
+        "received_amount": "0.005",
+        "total_fee": "12.50",
+        "credit_used": "0.00",
+        "net_fee_paid": "12.50",
+        "avg_filled_price": "1000000.00",
         "post_only": false,
-        "canceled_by": null,
         "order_created_at": 1704067200000,
-        "order_triggered_at": null,
         "order_updated_at": 1704067250000
     },
     "connection_id": "Y33pLftYyQ0CEpQ=",
@@ -231,18 +229,18 @@ Received when your order status changes (created, filled, partially filled, canc
 | `type` | string | Order type: `limit`, `stoplimit`, or `market` |
 | `status` | string | Order status (see Status Mapping below) |
 | `partial_filled` | boolean | True when status is `partial_filled` |
-| `price` | number \| null | Limit price (null for market orders) |
-| `stop_price` | number \| null | Stop price (for stop-limit orders) |
+| `price` | string \| null | Limit price (null for market orders) |
+| `stop_price` | string \| null | Stop price (for stop-limit orders) |
 | `order_currency` | string | Currency used for the order |
-| `order_amount` | number | Original order amount |
+| `order_amount` | string | Original order amount |
 | `executed_currency` | string | Currency of executed amount |
-| `executed_amount` | number | Total executed amount (including fees for buy orders) |
+| `executed_amount` | string | Total executed amount (including fees for buy orders) |
 | `received_currency` | string | Currency received |
-| `received_amount` | number | Amount received after fees |
-| `total_fee` | number | Total fee (wallet + credit) |
-| `credit_used` | number | Fee paid using credit |
-| `net_fee_paid` | number | Net fee paid from wallet |
-| `avg_filled_price` | number | Average filled price |
+| `received_amount` | string | Amount received after fees |
+| `total_fee` | string | Total fee (wallet + credit) |
+| `credit_used` | string | Fee paid using credit |
+| `net_fee_paid` | string | Net fee paid from wallet |
+| `avg_filled_price` | string | Average filled price |
 | `post_only` | boolean | Whether the order is post-only |
 | `canceled_by` | string \| null | Cancellation source (if cancelled) |
 | `order_created_at` | number | Order creation timestamp (Unix milliseconds) |
