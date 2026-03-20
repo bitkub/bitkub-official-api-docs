@@ -17,12 +17,14 @@ The Private WebSocket API provides real-time trading data updates for authentica
 It is recommended to set a `User-Agent` header when establishing the WebSocket connection. This helps with identification and debugging on the server side.
 
 ```
-User-Agent: <your-app-name>/<version>
+User-Agent: <runtime>-<client-type>/<version>
 ```
 
-**Example:**
+**Examples:**
 ```
-User-Agent: my-trading-bot/1.0.0
+User-Agent: nodejs-websocket-client/1.0.0
+User-Agent: python-websocket-client/2.3.1
+User-Agent: java-websocket-client/1.5.0
 ```
 
 ## Connection Lifecycle
@@ -396,7 +398,7 @@ let pingInterval;
 function connect() {
     // Set User-Agent header to identify your application
     ws = new WebSocket(WEBSOCKET_URL, [], {
-        headers: { 'User-Agent': 'my-trading-bot/1.0.0' }
+        headers: { 'User-Agent': 'nodejs-websocket-client/1.0.0' }
     });
 
     ws.onopen = () => {
