@@ -12,9 +12,9 @@ The Private WebSocket API provides real-time trading data updates for authentica
 
 ## Connection
 
-### Recommended Headers
+### Required Headers (Server-to-Server)
 
-It is recommended to set a `User-Agent` header when establishing the WebSocket connection. This helps with identification and debugging on the server side.
+A `User-Agent` header is **required** when establishing the WebSocket connection from a server-to-server context. This is mandatory for identification and debugging on the server side.
 
 ```
 User-Agent: <runtime>-<client-type>/<version>
@@ -542,4 +542,4 @@ connect();
 3. **Validate signatures**: Ensure proper HMAC SHA256 signature generation
 4. **Handle disconnections**: Implement proper reconnection logic
 5. **Monitor connection health**: Track pings/pongs and reconnect if needed
-6. **Set a User-Agent header**: Include a descriptive `User-Agent` when connecting to help with server-side identification and debugging
+6. **Set a User-Agent header**: A `User-Agent` header is **required** for server-to-server connections. Include a descriptive value to enable server-side identification and debugging
