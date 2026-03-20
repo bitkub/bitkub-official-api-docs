@@ -213,7 +213,7 @@ Received when your order status changes (created, filled, partially filled, canc
         "type": "limit | stoplimit | market",
         "status": "new | open | rejected | partial_filled | filled | partial_filled_canceled | canceled | untriggered",
         "price": "1000000.00",
-        "stop_price": null,
+        "stop_price": "string | null",
         "order_currency": "THB",
         "order_amount": "10000.00",
         "executed_currency": "THB",
