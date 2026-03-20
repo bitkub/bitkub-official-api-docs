@@ -10,6 +10,21 @@ The Private WebSocket API provides real-time trading data updates for authentica
 |-------------|---------------|
 | Production | `wss://stream.bitkub.com/v3/private` |
 
+## Connection
+
+### Recommended Headers
+
+It is recommended to set a `User-Agent` header when establishing the WebSocket connection. This helps with identification and debugging on the server side.
+
+```
+User-Agent: <your-app-name>/<version>
+```
+
+**Example:**
+```
+User-Agent: my-trading-bot/1.0.0
+```
+
 ## Connection Lifecycle
 
 - **Ping Frequency**: Send ping at least every **5 minutes** to keep the connection alive
@@ -195,7 +210,6 @@ Received when your order status changes (created, filled, partially filled, canc
         "side": "buy | sell",
         "type": "limit | stoplimit | market",
         "status": "new | open | rejected | partial_filled | filled | partial_filled_canceled | canceled | untriggered",
-        "partial_filled": false,
         "price": "1000000.00",
         "stop_price": null,
         "order_currency": "THB",
@@ -228,7 +242,6 @@ Received when your order status changes (created, filled, partially filled, canc
 | `side` | string | Order side: `buy` or `sell` |
 | `type` | string | Order type: `limit`, `stoplimit`, or `market` |
 | `status` | string | Order status (see Status Mapping below) |
-| `partial_filled` | boolean | True when status is `partial_filled` |
 | `price` | string \| null | Limit price (null for market orders) |
 | `stop_price` | string \| null | Stop price (for stop-limit orders) |
 | `order_currency` | string | Currency used for the order |
@@ -381,7 +394,10 @@ let pingInterval;
 
 // Connect to WebSocket
 function connect() {
-    ws = new WebSocket(WEBSOCKET_URL);
+    // Set User-Agent header to identify your application
+    ws = new WebSocket(WEBSOCKET_URL, [], {
+        headers: { 'User-Agent': 'my-trading-bot/1.0.0' }
+    });
 
     ws.onopen = () => {
         console.log('Connected to Private WebSocket');
@@ -524,3 +540,4 @@ connect();
 3. **Validate signatures**: Ensure proper HMAC SHA256 signature generation
 4. **Handle disconnections**: Implement proper reconnection logic
 5. **Monitor connection health**: Track pings/pongs and reconnect if needed
+6. **Set a User-Agent header**: Include a descriptive `User-Agent` when connecting to help with server-side identification and debugging
