@@ -32,6 +32,7 @@ User-Agent: java-websocket-client/1.5.0
 - **Ping Frequency**: Send ping at least every **5 minutes** to keep the connection alive
 - **Maximum Connection Duration**: Connections are automatically terminated after **2 hours**
 - **Recommended Ping Interval**: 4 minutes (240 seconds)
+- **Maximum Concurrent Connections**: Each API key is limited to **5 simultaneous connections**
 
 ---
 
@@ -376,6 +377,7 @@ For backward compatibility, you can map new statuses to old statuses:
 | `400` | Bad Request - Invalid request format |
 | `401` | Unauthorized - Authentication failed |
 | `404` | Not Found - Resource not found |
+| `429` | Too Many Connections - Maximum of 5 concurrent connections per API key exceeded |
 | `500` | Internal Server Error |
 
 ---
