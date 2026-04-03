@@ -1,6 +1,7 @@
 # Websocket API for Bitkub (2023-04-19)
 
 # Changelog
+* 2026-05-18 `market.trade.<symbol>` stream will be permanently closed. Please migrate to [Private WebSocket](./private-websocket-api.md).
 * 2023-04-19 Changed the webSocket
 market.trade.symbol. Field ```bid, sid``` changed type from ```Integer to String```.
 * 2023-01-16 Update `Live Order Book`, added a new event info.
@@ -61,6 +62,8 @@ Refer to the following for description of each stream
 
 * Response field ```bid, sid``` change type from ```Integer to String```.
 * Ref: [Announcement](#announcement)
+
+> **Deprecation Notice:** The `market.trade.<symbol>` stream will be **permanently closed on 18 May 2026**. Please migrate to the [Private WebSocket](./private-websocket-api.md) before this date to avoid service interruption.
 
 #### Name:
 market.trade.\<symbol\>
