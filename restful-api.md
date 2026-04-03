@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2025-10-10)
+# RESTful API for Bitkub (2025-03-04)
 
 # Announcement
+* `market.trade.<symbol>` stream will be permanently closed on 18 May 2026. Please migrate to [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md).
 * The following market endpoints will be deprecated on 9 Dec 2025. Please use [v3 endpoints](#non-secure-endpoints-v3) as replacement: [GET /api/market/symbols](#get-apimarketsymbols), [GET /api/market/ticker](#get-apimarketticker), [GET /api/market/trades](#get-apimarkettrades), [GET /api/market/bids](#get-apimarketbids), [GET /api/market/asks](#get-apimarketasks), [GET /api/market/books](#get-apimarketbooks), [GET /api/market/depth](#get-apimarketdepth)
 * Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
 * Order history older than 90 days is archived for [my-order-history] (#get-apiv3marketmy-order-history) More details here.
