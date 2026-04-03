@@ -194,11 +194,14 @@ Send periodic ping messages to maintain the connection:
 
 ## Events and Responses
 
-### Order Update Event
+### Order Update stream
+#### Name:
+order_update
 
+#### Description:
 Received when your order status changes (created, filled, partially filled, cancelled, etc.)
 
-**Response Format:**
+#### Response:
 
 ```json
 {
@@ -265,11 +268,14 @@ Received when your order status changes (created, filled, partially filled, canc
 
 ---
 
-### Match Update Event
+### Match Update stream
+#### Name:
+match_update
 
+#### Description:
 Received when a trade executes (order is matched).
 
-**Response Format:**
+#### Response:
 
 ```json
 {
