@@ -10,3 +10,12 @@ Name | Description
 [restful-api.md](./restful-api.md)       | Details on the RESTful API V3 (/api)
 [restful-api-v4.md](./restful-api-v4.md) | Details on the RESTful API V4 (/api)
 [websocket-api.md](./websocket-api.md)   | Details on the Websocket API (/websocket-api)
+
+## Recommended SDKs
+
+Language | Repository | Maintainer
+-------- | ---------- | ---------
+Go | [go-bitkub](https://github.com/dvgamerr-app/go-bitkub) | <img src="https://github.com/dvgamerr.png" width="28" style="border-radius:50%" /> [dvgamerr](https://github.com/dvgamerr)
+
+**Note:** This SDK list contains community-driven open source projects and is not officially maintained by Bitkub.
+
