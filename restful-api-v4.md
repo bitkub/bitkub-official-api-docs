@@ -4,9 +4,11 @@
 
 - Deposit history records are available for the last 90 days only for [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits). Records older than 90 days are archived.
 - Introducing the New Public API v4 for Crypto Endpoints
+- Introducing the New Public API v4 for Fiat Endpoints
 
 # Change log
 
+- 2026-04-07 Introducing Fiat V4 Endpoints
 - 2025-05-27 Added new Crypto endpoint [GET /api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for [GET /api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits)
 - 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
 - 2025-04-03 Added new Crypto endpoint [GET /api/v4/crypto/coins](#get-apiv4cryptocoins)
@@ -40,6 +42,13 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v4/crypto/withdraws](#post-apiv4cryptowithdraws)        | POST   |         | ✅       |       |
 | [/api/v4/crypto/coins](#get-apiv4cryptocoins)                 | GET    |         |          |       |
 | [/api/v4/crypto/compensations](#get-apiv4cryptocompensations) | GET    |         |          |       |
+
+| Fiat V4 Endpoints                                              | Method | Deposit | Withdraw | Trade |
+| -------------------------------------------------------------- | ------ | ------- | -------- | ----- |
+| [/api/v4/fiat/accounts](#get-apiv4fiataccounts)                | GET    |         | ✅       |       |
+| [/api/v4/fiat/deposit/history](#get-apiv4fiatdeposithistory)   | GET    |         |          |       |
+| [/api/v4/fiat/withdraw/history](#get-apiv4fiatwithdrawhistory) | GET    |         |          |       |
+| [/api/v4/fiat/withdraw](#post-apiv4fiatwithdraw)               | POST   |         |          |       |
 
 # Constructing the request
 
@@ -526,6 +535,213 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
         "user_id": "1234"
       }
     ]
+  }
+}
+```
+
+### GET /api/v4/fiat/accounts
+
+#### Description:
+
+List approved bank accounts for the user.
+
+#### Path Params: -
+
+#### Query Params:
+
+| Key   | Type | Required | Description                     |
+| ----- | ---- | -------- | ------------------------------- |
+| page  | int  | false    | Page (default = 1, min = 1)     |
+| limit | int  | false    | Limit (default = 25, max = 100) |
+
+> **Note**: `page` and `limit` must be provided together. Providing only one will return a validation error.
+
+#### Body Params: -
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/fiat/accounts?page=1&limit=25' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": "123456",
+      "bank": "KBANK",
+      "name": "John Doe",
+      "time": 1706745600
+    },
+    {
+      "id": "789012",
+      "bank": "SCB",
+      "name": "John Doe",
+      "time": 1706832000
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 25
+  }
+}
+```
+
+### GET /api/v4/fiat/deposit/history
+
+#### Description:
+
+List fiat deposit transaction history for the user.
+
+#### Path Params: -
+
+#### Query Params:
+
+| Key   | Type | Required | Description                     |
+| ----- | ---- | -------- | ------------------------------- |
+| page  | int  | false    | Page (default = 1, min = 1)     |
+| limit | int  | false    | Limit (default = 25, max = 100) |
+
+> **Note**: `page` and `limit` must be provided together. Providing only one will return a validation error.
+
+#### Body Params: -
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit=25' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "txn_id": "THBDPXXXXXXXXXX",
+      "currency": "THB",
+      "amount": "10000.50",
+      "status": "complete",
+      "time": 1706745600
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 25
+  }
+}
+```
+
+### GET /api/v4/fiat/withdraw/history
+
+#### Description:
+
+List fiat withdrawal transaction history for the user.
+
+#### Path Params: -
+
+#### Query Params:
+
+| Key   | Type | Required | Description                     |
+| ----- | ---- | -------- | ------------------------------- |
+| page  | int  | false    | Page (default = 1, min = 1)     |
+| limit | int  | false    | Limit (default = 25, max = 100) |
+
+> **Note**: `page` and `limit` must be provided together. Providing only one will return a validation error.
+
+#### Body Params: -
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw/history?page=1&limit=25' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "txn_id": "THBDPXXXXXXXXXX",
+      "currency": "THB",
+      "amount": "5000.00",
+      "fee": "10.00",
+      "status": "complete",
+      "time": 1706745600
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 25
+  }
+}
+```
+
+### POST /api/v4/fiat/withdraw
+
+#### Description:
+
+Submit a fiat withdrawal request to an **approved** bank account.
+
+#### Required Permission: `withdraw`
+
+#### Path Params: -
+
+#### Query Params: -
+
+#### Body Params:
+
+| Key             | Type   | Required | Description                                 |
+| --------------- | ------ | -------- | ------------------------------------------- |
+| bank_account_no | String | true     | Approved bank account number to withdraw to |
+| amount          | double | true     | Withdrawal amount (must be > 0)             |
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a' \
+--header 'Content-Type: application/json' \
+--data '{
+    "bank_account_no": "1234567890",
+    "amount": 5000.00
+}'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "txn_id": "THBDPXXXXXXXXXX",
+    "bank_account_no": "******7890",
+    "currency": "THB",
+    "amount": "5000.00",
+    "fee": "10.00",
+    "receive": "4990.00",
+    "time": 1706745600
   }
 }
 ```

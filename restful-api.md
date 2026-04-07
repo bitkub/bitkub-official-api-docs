@@ -1,7 +1,8 @@
 
-# RESTful API for Bitkub (2025-03-04)
+# RESTful API for Bitkub (2026-04-07)
 
 # Announcement
+**Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](restful-api-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
 * `market.trade.<symbol>` stream will be permanently closed on 18 May 2026. Please migrate to [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md).
 * remove status: "cancelled" from [my-order-info](#get-apiv3marketorder-info) after 3 days period. remove on 9 April 2026
 * The following market endpoints will be deprecated on 9 Dec 2025. Please use [v3 endpoints](#non-secure-endpoints-v3) as replacement: [GET /api/market/symbols](#get-apimarketsymbols), [GET /api/market/ticker](#get-apimarketticker), [GET /api/market/trades](#get-apimarkettrades), [GET /api/market/bids](#get-apimarketbids), [GET /api/market/asks](#get-apimarketasks), [GET /api/market/books](#get-apimarketbooks), [GET /api/market/depth](#get-apimarketdepth)
@@ -12,6 +13,7 @@
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 # Change log
+* 2026-04-07 Announce Fiat v4 API and deprecation of Fiat v3 endpoints on 09 June 2026
 * 2025-09-08 Update API [my-order-history](#get-apiv3marketmy-order-history) spec
 * 2025-01-07 Update FIAT Withdraw error code
 * 2025-04-03 Deprecated Crypto Endpoint v3 and Remove from the Document.
