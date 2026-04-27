@@ -197,54 +197,20 @@ There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, an
    "pairing_id":1
 }
 ```
-
-#### Example response (ticker):
-```javascript
-{
-   "data":{
-      "baseVolume":106302.39237032, // amount of crypto
-      "change":0.16, // difference of price compare to the latest
-      "close":15.9, // close price
-      "high24hr":16.72, // the highest bidding price taken in the last 24 hours
-      "highestBid":15.81, // the highest bidding price
-      "highestBidSize":5640.39911448, // the amount of the highest bidding order
-      "id":139, // symbol id
-      "isFrozen":0, // symbol trade status
-      "last":15.9, // the latest price
-      "low24hr":15.7, // the lowest price taken in the last 24 hours
-      "lowestAsk":16.22, // the lowest asking price
-      "lowestAskSize":1582, // the amount of the lowest asking order
-      "open":15.74, // open price
-      "percentChange":1.02, // difference of price compare to the latest in percent
-      "quoteVolume":1715566.77, //  amount of fiat
-      "stream":"market.ticker.thb_1inch" // stream name
-   },
-   "event":"global.ticker", // event name
-   "pairing_id":1
-}
-```
-
 #### Example response (global.ticker):
 ```javascript
 {
    "data":{
-      "baseVolume":106302.39237032, // amount of crypto
-      "change":0.16, // difference of price compare to the latest
-      "close":15.9, // close price
-      "high24hr":16.72, // the highest bidding price taken in the last 24 hours
-      "highestBid":15.81, // the highest bidding price
-      "highestBidSize":5640.39911448, // the amount of the highest bidding order
-      "id":139, // symbol id
-      "isFrozen":0, // symbol trade status
-      "last":15.9, // the latest price
-      "low24hr":15.7, // the lowest price taken in the last 24 hours
-      "lowestAsk":16.22, // the lowest asking price
-      "lowestAskSize":1582, // the amount of the lowest asking order
-      "open":15.74, // open price
-      "percentChange":1.02, // difference of price compare to the latest in percent
-      "quoteVolume":1715566.77, //  amount of fiat
-      "stream":"market.ticker.thb_1inch" // stream name
-   },
+      "id": 1,
+      "last": "1500000.00",
+      "percentChange": "2.45",
+      "baseVolume": "123.456",
+      "quoteVolume": "185184000.00",
+      "high24hr": "1520000.00",
+      "low24hr": "1460000.00",
+      "highestBid": "1499900.00",
+      "lowestAsk": "1500100.00"
+    },
    "event":"global.ticker" // event name
 }
 ```
