@@ -1,4 +1,12 @@
-# Private WebSocket API
+# WebSocket API — Private
+
+## Announcement
+
+N/A — No announcements for this API.
+
+## Change Log
+
+N/A — No change log available for this API.
 
 ## Overview
 
@@ -7,40 +15,25 @@ The Private WebSocket API provides real-time trading data updates for authentica
 ## Endpoint
 
 | Environment | WebSocket URL |
-|-------------|---------------|
-| Production | `wss://stream.bitkub.com/v3/private` |
-
-## Connection
-
-### Required Headers (Server-to-Server)
-
-A `User-Agent` header is **required** when establishing the WebSocket connection from a server-to-server context. This is mandatory for identification and debugging on the server side.
-
-```
-User-Agent: <runtime>-<client-type>/<version>
-```
-
-**Examples:**
-```
-User-Agent: nodejs-websocket-client/1.0.0
-User-Agent: python-websocket-client/2.3.1
-User-Agent: java-websocket-client/1.5.0
-```
-
-## Connection Lifecycle
-
-- **Ping Frequency**: Send ping at least every **5 minutes** to keep the connection alive
-- **Maximum Connection Duration**: Connections are automatically terminated after **2 hours**
-- **Recommended Ping Interval**: 4 minutes (240 seconds)
-- **Maximum Concurrent Connections**: Each API key is limited to **5 simultaneous connections**
+| ----------- | ------------- |
+| Production  | `wss://stream.bitkub.com/v3/private` |
 
 ---
 
-## Authentication
+## Getting Started
+
+### Connection Requirements
+
+- **User-Agent header** is required for server-to-server connections: `User-Agent: nodejs-websocket-client/1.0.0`
+- **Ping Frequency**: Send ping at least every 5 minutes to keep connection alive (recommended: 4 minutes)
+- **Maximum Connection Duration**: Automatically terminated after 2 hours
+- **Maximum Concurrent Connections**: 5 per API key
+
+### Authentication Flow
 
 After establishing a WebSocket connection, you must authenticate using your API credentials.
 
-### Generate Signature
+#### Generate Signature
 
 Create an HMAC SHA256 signature using the timestamp as the payload:
 
@@ -50,7 +43,7 @@ const payload = [timestamp];
 const signature = CryptoJS.HmacSHA256(payload.join(""), apiSecret).toString(CryptoJS.enc.Hex);
 ```
 
-### Authentication Request
+#### Authentication Request
 
 ```json
 {
@@ -63,7 +56,7 @@ const signature = CryptoJS.HmacSHA256(payload.join(""), apiSecret).toString(Cryp
 }
 ```
 
-### Authentication Response
+#### Response:
 
 **Success:**
 ```json
@@ -89,20 +82,18 @@ const signature = CryptoJS.HmacSHA256(payload.join(""), apiSecret).toString(Cryp
 }
 ```
 
----
-
-## Subscription
+### Subscription Management
 
 After successful authentication, subscribe to the channels you want to receive updates from.
 
-### Available Channels
+#### Available Channels
 
 | Channel | Description |
 |---------|-------------|
 | `order_update` | Real-time order status updates (placed, modified, cancelled, executed) |
 | `match_update` | Real-time trade execution notifications |
 
-### Subscribe Request
+#### Subscribe Request
 
 ```json
 {
@@ -118,7 +109,7 @@ After successful authentication, subscribe to the channels you want to receive u
 }
 ```
 
-### Subscribe Response
+#### Response:
 
 **Success:**
 ```json
@@ -135,7 +126,7 @@ After successful authentication, subscribe to the channels you want to receive u
 }
 ```
 
-### Unsubscribe Request
+#### Unsubscribe Request
 
 ```json
 {
@@ -144,7 +135,7 @@ After successful authentication, subscribe to the channels you want to receive u
 }
 ```
 
-### Unsubscribe Response
+#### Unsubscribe Response
 
 **Success:**
 ```json
@@ -161,13 +152,11 @@ After successful authentication, subscribe to the channels you want to receive u
 }
 ```
 
----
+### Keep-Alive
 
-## Ping (Keep-Alive)
+Send periodic ping messages to maintain the connection.
 
-Send periodic ping messages to maintain the connection:
-
-### Ping Request
+#### Ping Request
 
 ```json
 {
@@ -175,7 +164,7 @@ Send periodic ping messages to maintain the connection:
 }
 ```
 
-### Ping Response
+#### Response:
 
 ```json
 {
@@ -192,13 +181,16 @@ Send periodic ping messages to maintain the connection:
 
 ---
 
-## Events and Responses
+## Data Streams
 
-### Order Update stream
+### Order Update Stream
+
 #### Name:
+
 order_update
 
 #### Description:
+
 Received when your order status changes (created, filled, partially filled, cancelled, etc.)
 
 #### Response:
@@ -230,6 +222,8 @@ Received when your order status changes (created, filled, partially filled, canc
         "avg_filled_price": "1000000.00",
         "post_only": false,
         "order_created_at": 1704067200000,
+        "canceled_by": null,
+        "order_triggered_at": null,
         "order_updated_at": 1704067250000
     },
     "connection_id": "Y33pLftYyQ0CEpQ=",
@@ -237,42 +231,43 @@ Received when your order status changes (created, filled, partially filled, canc
 }
 ```
 
-**Field Descriptions:**
+#### Field Descriptions:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `user_id` | string | User identifier |
-| `order_id` | string | Unique order identifier |
-| `client_id` | string \| null | Client-provided order identifier |
-| `symbol` | string | Trading pair (e.g., `BTC_THB`) |
-| `side` | string | Order side: `buy` or `sell` |
-| `type` | string | Order type: `limit`, `stoplimit`, or `market` |
-| `status` | string | Order status (see Status Mapping below) |
-| `price` | string \| null | Limit price (null for market orders) |
-| `stop_price` | string \| null | Stop price (for stop-limit orders) |
-| `order_currency` | string | Currency used for the order |
-| `order_amount` | string | Original order amount |
-| `executed_currency` | string | Currency of executed amount |
-| `executed_amount` | string | Total executed amount (including fees for buy orders) |
-| `received_currency` | string | Currency received |
-| `received_amount` | string | Amount received after fees |
-| `total_fee` | string | Total fee (wallet + credit) |
-| `credit_used` | string | Fee paid using credit |
-| `net_fee_paid` | string | Net fee paid from wallet |
-| `avg_filled_price` | string | Average filled price |
-| `post_only` | boolean | Whether the order is post-only |
-| `canceled_by` | string \| null | Cancellation source (if cancelled) |
-| `order_created_at` | number | Order creation timestamp (Unix milliseconds) |
-| `order_triggered_at` | number \| null | Trigger timestamp for stop orders (Unix milliseconds) |
-| `order_updated_at` | number \| null | Last update timestamp (Unix milliseconds) |
+| user_id | string | User identifier |
+| order_id | string | Unique order identifier |
+| client_id | string \| null | Client-provided order identifier |
+| symbol | string | Trading pair (e.g., `BTC_THB`) |
+| side | string | Order side: `buy` or `sell` |
+| type | string | Order type: `limit`, `stoplimit`, or `market` |
+| status | string | Order status (see Status Mapping below) |
+| price | string \| null | Limit price (null for market orders) |
+| stop_price | string \| null | Stop price (for stop-limit orders) |
+| order_currency | string | Currency used for the order |
+| order_amount | string | Original order amount |
+| executed_currency | string | Currency of executed amount |
+| executed_amount | string | Total executed amount (including fees for buy orders) |
+| received_currency | string | Currency received |
+| received_amount | string | Amount received after fees |
+| total_fee | string | Total fee (wallet + credit) |
+| credit_used | string | Fee paid using credit |
+| net_fee_paid | string | Net fee paid from wallet |
+| avg_filled_price | string | Average filled price |
+| post_only | boolean | Whether the order is post-only |
+| canceled_by | string \| null | Cancellation source (if cancelled) |
+| order_created_at | number | Order creation timestamp (Unix milliseconds) |
+| order_triggered_at | number \| null | Trigger timestamp for stop orders (Unix milliseconds) |
+| order_updated_at | number \| null | Last update timestamp (Unix milliseconds) |
 
----
+### Match Update Stream
 
-### Match Update stream
 #### Name:
+
 match_update
 
 #### Description:
+
 Received when a trade executes (order is matched).
 
 #### Response:
@@ -307,36 +302,42 @@ Received when a trade executes (order is matched).
 }
 ```
 
-**Field Descriptions:**
+#### Field Descriptions:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `order_id` | string | Unique order identifier |
-| `txn_id` | string | Transaction/trade identifier |
-| `client_id` | string \| null | Client-provided order identifier |
-| `symbol` | string | Trading pair (e.g., `BTC_THB`) |
-| `type` | string | Order type: `limit`, `stoplimit`, or `market` |
-| `status` | string | Order status after this match |
-| `side` | string | Order side: `buy` or `sell` |
-| `is_maker` | boolean | True if this order was the maker |
-| `price` | string | Execution price |
-| `executed_currency` | string | Currency of executed amount |
-| `executed_amount` | string | Amount executed in this trade |
-| `received_currency` | string | Currency received |
-| `received_amount` | string | Amount received after fees |
-| `fee_rate` | string | Fee rate applied |
-| `total_fee` | string | Total fee for this trade |
-| `credit_used` | string | Fee paid using credit |
-| `net_fee_paid` | string | Net fee paid from wallet |
-| `txn_ts` | number | Transaction timestamp (Unix seconds) |
+| order_id | string | Unique order identifier |
+| txn_id | string | Transaction/trade identifier |
+| client_id | string \| null | Client-provided order identifier |
+| symbol | string | Trading pair (e.g., `BTC_THB`) |
+| type | string | Order type: `limit`, `stoplimit`, or `market` |
+| status | string | Order status after this match |
+| side | string | Order side: `buy` or `sell` |
+| is_maker | boolean | True if this order was the maker |
+| price | string | Execution price |
+| executed_currency | string | Currency of executed amount |
+| executed_amount | string | Amount executed in this trade |
+| received_currency | string | Currency received |
+| received_amount | string | Amount received after fees |
+| fee_rate | string | Fee rate applied |
+| total_fee | string | Total fee for this trade |
+| credit_used | string | Fee paid using credit |
+| net_fee_paid | string | Net fee paid from wallet |
+| txn_ts | number | Transaction timestamp (Unix seconds) |
 
 ---
 
-## Order Status Mapping
+## Reference
+
+### Stream Demo
+
+N/A — Private WebSocket does not have a public demo page.
+
+### Order Status Values
 
 The new trade system provides more granular order statuses. Here is the mapping between old and new statuses:
 
-### Status Values
+#### Status Values
 
 | New Status | Description |
 |------------|-------------|
@@ -349,7 +350,7 @@ The new trade system provides more granular order statuses. Here is the mapping 
 | `rejected` | Order rejected |
 | `untriggered` | Conditional order waiting for trigger (stop-limit) |
 
-### Mapping: Old Status to New Status
+#### Mapping: Old Status to New Status
 
 | Old Status | New Statuses |
 |------------|--------------|
@@ -358,7 +359,7 @@ The new trade system provides more granular order statuses. Here is the mapping 
 | `cancel` | `rejected`, `canceled`, `partial_filled_canceled` |
 | *(new)* | `untriggered` |
 
-### Mapping: New Status to Old Status
+#### Mapping: New Status to Old Status
 
 For backward compatibility, you can map new statuses to old statuses:
 
@@ -373,9 +374,7 @@ For backward compatibility, you can map new statuses to old statuses:
 | `rejected` | `cancel` |
 | `untriggered` | `untriggered` |
 
----
-
-## Error Codes
+### Error Codes
 
 | Code | Description |
 |------|-------------|
