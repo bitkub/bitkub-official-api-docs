@@ -10,11 +10,29 @@ The Private WebSocket API provides real-time trading data updates for authentica
 |-------------|---------------|
 | Production | `wss://stream.bitkub.com/v3/private` |
 
+## Connection
+
+### Required Headers (Server-to-Server)
+
+A `User-Agent` header is **required** when establishing the WebSocket connection from a server-to-server context. This is mandatory for identification and debugging on the server side.
+
+```
+User-Agent: <runtime>-<client-type>/<version>
+```
+
+**Examples:**
+```
+User-Agent: nodejs-websocket-client/1.0.0
+User-Agent: python-websocket-client/2.3.1
+User-Agent: java-websocket-client/1.5.0
+```
+
 ## Connection Lifecycle
 
 - **Ping Frequency**: Send ping at least every **5 minutes** to keep the connection alive
 - **Maximum Connection Duration**: Connections are automatically terminated after **2 hours**
 - **Recommended Ping Interval**: 4 minutes (240 seconds)
+- **Maximum Concurrent Connections**: Each API key is limited to **5 simultaneous connections**
 
 ---
 
@@ -176,11 +194,14 @@ Send periodic ping messages to maintain the connection:
 
 ## Events and Responses
 
-### Order Update Event
+### Order Update stream
+#### Name:
+order_update
 
+#### Description:
 Received when your order status changes (created, filled, partially filled, cancelled, etc.)
 
-**Response Format:**
+#### Response:
 
 ```json
 {
@@ -195,9 +216,8 @@ Received when your order status changes (created, filled, partially filled, canc
         "side": "buy | sell",
         "type": "limit | stoplimit | market",
         "status": "new | open | rejected | partial_filled | filled | partial_filled_canceled | canceled | untriggered",
-        "partial_filled": false,
         "price": "1000000.00",
-        "stop_price": null,
+        "stop_price": "string | null",
         "order_currency": "THB",
         "order_amount": "10000.00",
         "executed_currency": "THB",
@@ -228,7 +248,6 @@ Received when your order status changes (created, filled, partially filled, canc
 | `side` | string | Order side: `buy` or `sell` |
 | `type` | string | Order type: `limit`, `stoplimit`, or `market` |
 | `status` | string | Order status (see Status Mapping below) |
-| `partial_filled` | boolean | True when status is `partial_filled` |
 | `price` | string \| null | Limit price (null for market orders) |
 | `stop_price` | string \| null | Stop price (for stop-limit orders) |
 | `order_currency` | string | Currency used for the order |
@@ -249,11 +268,14 @@ Received when your order status changes (created, filled, partially filled, canc
 
 ---
 
-### Match Update Event
+### Match Update stream
+#### Name:
+match_update
 
+#### Description:
 Received when a trade executes (order is matched).
 
-**Response Format:**
+#### Response:
 
 ```json
 {
@@ -361,6 +383,7 @@ For backward compatibility, you can map new statuses to old statuses:
 | `400` | Bad Request - Invalid request format |
 | `401` | Unauthorized - Authentication failed |
 | `404` | Not Found - Resource not found |
+| `429` | Too Many Connections - Maximum of 5 concurrent connections per API key exceeded |
 | `500` | Internal Server Error |
 
 ---
@@ -381,7 +404,10 @@ let pingInterval;
 
 // Connect to WebSocket
 function connect() {
-    ws = new WebSocket(WEBSOCKET_URL);
+    // Set User-Agent header to identify your application
+    ws = new WebSocket(WEBSOCKET_URL, [], {
+        headers: { 'User-Agent': 'nodejs-websocket-client/1.0.0' }
+    });
 
     ws.onopen = () => {
         console.log('Connected to Private WebSocket');
@@ -524,3 +550,4 @@ connect();
 3. **Validate signatures**: Ensure proper HMAC SHA256 signature generation
 4. **Handle disconnections**: Implement proper reconnection logic
 5. **Monitor connection health**: Track pings/pongs and reconnect if needed
+6. **Set a User-Agent header**: A `User-Agent` header is **required** for server-to-server connections. Include a descriptive value to enable server-side identification and debugging

@@ -1,10 +1,11 @@
 # Websocket API for Bitkub (2023-04-19)
 
-# Changelog
-* 2023-04-19 Changed the webSocket
-market.trade.symbol. Field ```bid, sid``` changed type from ```Integer to String```.
+# Change log
+* 2026-05-18 `market.trade.<symbol>` stream will be permanently closed on 18 May 2026. Please migrate to [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md).
+* 2023-04-19 Changed the webSocket `market.trade.<symbol>`. Field `bid, sid` changed type from `Integer` to `String`.
 * 2023-01-16 Update `Live Order Book`, added a new event info.
 * 2022-08-31 Deprecated the authentication to `Live Order Book` websocket.
+
 # Table of contents
 * [Websocket endpoint](#websocket-endpoint)
 * [Stream name](#stream-name)
@@ -57,10 +58,8 @@ Refer to [RESTful API](https://github.com/bitkub/bitkub-official-api-docs/blob/m
 Refer to the following for description of each stream
 
 ### Trade stream
-<span style="color:white;background:red;"> ⚠️ After April 18th, 2023 at 18:00PM(GMT+7)</span>
-
-* Response field ```bid, sid``` change type from ```Integer to String```.
-* Ref: [Announcement](#announcement)
+> **Deprecation Notice:** The `market.trade.<symbol>` stream will be **permanently closed on 18 May 2026**. Please migrate to the [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md) before this date to avoid service interruption.
+> As of 2023-04-19, response fields `bid` and `sid` changed type from `Integer` to `String`.
 
 #### Name:
 market.trade.\<symbol\>
@@ -76,8 +75,8 @@ The trade stream provides real-time data on matched orders. Each trade contains 
   "txn": "ETHSELL0000074282", // transaction id
   "rat": "5977.00", // rate matched
   "amt": 1.556539, // amount matched
-  "bid": 2048451, // buy order id
-  "sid": 2924729, // sell order id
+  "bid": "2048451", // buy order id (string since 2023-04-19)
+  "sid": "2924729", // sell order id (string since 2023-04-19)
   "ts": 1542268567 // trade timestamp
 }
 ```
@@ -91,23 +90,23 @@ The ticker stream provides real-time data on ticker of the specified symbol. Tic
 
 #### Response:
 ```javascript
- {
-    "stream": "market.ticker.thb_btc",
-    "id": 1,
-    "last": 2883194.85,
-    "lowestAsk": 2883194.9,
-    "lowestAskSize": 0.0070947,
-    "highestBid": 2881000.31,
-    "highestBidSize": 0.00470253,
-    "change": 60622.33,
-    "percentChange": 2.15,
-    "baseVolume": 89.25334259,
-    "quoteVolume": 256768588.16,
-    "isFrozen": 0,
-    "high24hr": 2916959.99,
-    "low24hr": 2819009.05,
-    "open": 2822572.52,
-    "close": 2883194.85
+{
+  "stream": "market.ticker.thb_btc",
+  "id": 1,
+  "last": 2883194.85,
+  "lowestAsk": 2883194.9,
+  "lowestAskSize": 0.0070947,
+  "highestBid": 2881000.31,
+  "highestBidSize": 0.00470253,
+  "change": 60622.33,
+  "percentChange": 2.15,
+  "baseVolume": 89.25334259,
+  "quoteVolume": 256768588.16,
+  "isFrozen": 0,
+  "high24hr": 2916959.99,
+  "low24hr": 2819009.05,
+  "open": 2822572.52,
+  "close": 2883194.85
 }
 ```
 
@@ -115,8 +114,20 @@ The ticker stream provides real-time data on ticker of the specified symbol. Tic
 The demo page is available [here](https://api.bitkub.com/websocket-api?streams=) for testing streams subscription.
 
 # Live Order Book
+
+### Live Order Book stream
+#### Name:
+orderbook.\<symbol-id\>
+
 #### Description:
 Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/orderbook/[\<symbol-id\>](#symbols)**.
+
+There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, and **global.ticker**
+* **bidschanged** occurs when any buy order has changed on the selected symbol (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
+* **askschanged** occurs when any sell order has changed on the selected symbol (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
+* **tradeschanged** occurs when buy and sell orders have been matched on the selected symbol. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
+* **ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on the selected symbol.
+* **global.ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on any symbol in the exchange.
 
 #### Message data:
 ```javascript
@@ -125,12 +136,6 @@ Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitk
     "event": (event type)
 }
 ```
-There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, and **global.ticker**
-* **bidschanged** occurs when any buy order has changed on the selected symbol (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
-* **askschanged** occurs when any sell order has changed on the selected symbol (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
-* **tradeschanged** occurs when buy and sell orders have been matched on the selected symbol. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
-* **ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on the selected symbol.
-* **global.ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on any symbol in the exchange.
 
 #### Example response (bidschanged or askschanged):
 ```javascript
@@ -192,54 +197,20 @@ There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, an
    "pairing_id":1
 }
 ```
-
-#### Example response (ticker):
-```javascript
-{
-   "data":{
-      "baseVolume":106302.39237032, // amount of crypto
-      "change":0.16, // difference of price compare to the latest
-      "close":15.9, // close price
-      "high24hr":16.72, // the highest bidding price taken in the last 24 hours
-      "highestBid":15.81, // the highest bidding price
-      "highestBidSize":5640.39911448, // the amount of the highest bidding order
-      "id":139, // symbol id
-      "isFrozen":0, // symbol trade status
-      "last":15.9, // the latest price
-      "low24hr":15.7, // the lowest price taken in the last 24 hours
-      "lowestAsk":16.22, // the lowest asking price
-      "lowestAskSize":1582, // the amount of the lowest asking order
-      "open":15.74, // open price
-      "percentChange":1.02, // difference of price compare to the latest in percent
-      "quoteVolume":1715566.77, //  amount of fiat
-      "stream":"market.ticker.thb_1inch" // stream name
-   },
-   "event":"global.ticker", // event name
-   "pairing_id":1
-}
-```
-
 #### Example response (global.ticker):
 ```javascript
 {
    "data":{
-      "baseVolume":106302.39237032, // amount of crypto
-      "change":0.16, // difference of price compare to the latest
-      "close":15.9, // close price
-      "high24hr":16.72, // the highest bidding price taken in the last 24 hours
-      "highestBid":15.81, // the highest bidding price
-      "highestBidSize":5640.39911448, // the amount of the highest bidding order
-      "id":139, // symbol id
-      "isFrozen":0, // symbol trade status
-      "last":15.9, // the latest price
-      "low24hr":15.7, // the lowest price taken in the last 24 hours
-      "lowestAsk":16.22, // the lowest asking price
-      "lowestAskSize":1582, // the amount of the lowest asking order
-      "open":15.74, // open price
-      "percentChange":1.02, // difference of price compare to the latest in percent
-      "quoteVolume":1715566.77, //  amount of fiat
-      "stream":"market.ticker.thb_1inch" // stream name
-   },
+      "id": 1,
+      "last": "1500000.00",
+      "percentChange": "2.45",
+      "baseVolume": "123.456",
+      "quoteVolume": "185184000.00",
+      "high24hr": "1520000.00",
+      "low24hr": "1460000.00",
+      "highestBid": "1499900.00",
+      "lowestAsk": "1500100.00"
+    },
    "event":"global.ticker" // event name
 }
 ```
