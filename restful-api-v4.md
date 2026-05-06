@@ -733,4 +733,3 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | Endpoint           | Rate Limit        |
 | ------------------ | ----------------- |
 | /api/v4/crypto/\*  | 250 req / 10 secs |
-| /api/v4/wallet/\*  | 250 req / 10 secs |
