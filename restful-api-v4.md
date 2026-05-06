@@ -8,6 +8,7 @@
 
 # Change log
 
+- 2026-05-06 Added new Wallet endpoints [GET /api/v4/wallet/balances](#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](#get-apiv4walletassets)
 - 2026-04-07 Introducing Fiat V4 Endpoints
 - 2025-05-27 Added new Crypto endpoint [GET /api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for [GET /api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits)
 - 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
@@ -42,6 +43,11 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v4/crypto/withdraws](#post-apiv4cryptowithdraws)        | POST   |         | ✅       |       |
 | [/api/v4/crypto/coins](#get-apiv4cryptocoins)                 | GET    |         |          |       |
 | [/api/v4/crypto/compensations](#get-apiv4cryptocompensations) | GET    |         |          |       |
+
+| Wallet V4 Endpoints                                     | Method |
+| ------------------------------------------------------- | ------ |
+| [/api/v4/wallet/balances](#get-apiv4walletbalances)     | GET    |
+| [/api/v4/wallet/assets](#get-apiv4walletassets)         | GET    |
 
 | Fiat V4 Endpoints                                              | Method | Deposit | Withdraw | Trade |
 | -------------------------------------------------------------- | ------ | ------- | -------- | ----- |
@@ -539,6 +545,92 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
 }
 ```
 
+### GET /api/v4/wallet/balances
+
+#### Description:
+
+Get wallet balances.
+
+#### Path Params: -
+
+#### Query Params:
+
+| Key     | Type          | Required | Description              |
+| ------- | ------------- | -------- | ------------------------ |
+| segment | enum(funding) | false    | Segment (default: funding) |
+
+#### Body Params: -
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/wallet/balances' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": "0",
+  "message": "success",
+  "data": [
+    {
+      "currency": "BTC",
+      "available": "1000",
+      "reserved": "100",
+      "total": "1100"
+    },
+    {
+      "currency": "THB",
+      "available": "10",
+      "reserved": "10",
+      "total": "20"
+    }
+  ]
+}
+```
+
+### GET /api/v4/wallet/assets
+
+#### Description:
+
+Get wallet assets.
+
+#### Path Params: -
+
+#### Query Params:
+
+| Key     | Type          | Required | Description              |
+| ------- | ------------- | -------- | ------------------------ |
+| segment | enum(funding) | false    | Segment (default: funding) |
+
+#### Body Params: -
+
+#### Example cURL:
+
+```javascript
+curl --location 'https://api.bitkub.com/api/v4/wallet/assets' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: e286825bda3497ae2d03aa3a30c420d603060cb4edbdd3ec711910c86966e9ba' \
+--header 'X-BTK-SIGN: f5884963865a6e868ddbd58c9fb9ea4bd013076e8a8fa51d38b86c38d707cb8a'
+```
+
+#### Response:
+
+```javascript
+{
+  "code": "0",
+  "message": "success",
+  "data": {
+    "BTC": "1000",
+    "ETH": "100"
+  }
+}
+```
+
 ### GET /api/v4/fiat/accounts
 
 #### Description:
@@ -854,6 +946,6 @@ Internal Server Error.
 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual user accessing the API. **_The rate limit is applied to each endpoint regardless the API version._**
 
-| Endpoint          | Rate Limit        |
-| ----------------- | ----------------- |
-| /api/v4/crypto/\* | 250 req / 10 secs |
+| Endpoint           | Rate Limit        |
+| ------------------ | ----------------- |
+| /api/v4/crypto/\*  | 250 req / 10 secs |
