@@ -10,3 +10,14 @@ Name | Description
 [restful-api.md](./restful-api.md)       | Details on the RESTful API V3 (/api)
 [restful-api-v4.md](./restful-api-v4.md) | Details on the RESTful API V4 (/api)
 [websocket-api.md](./websocket-api.md)   | Details on the Websocket API (/websocket-api)
+
+## Community Integrations
+
+> The following tools are community-built and are **not** officially supported or maintained by Bitkub.
+
+### bitkub-trading-mcp (MCP Server)
+
+[bitkub-trading-mcp](https://www.npmjs.com/package/bitkub-trading-mcp) is a community MCP (Model Context Protocol) server that wraps the Bitkub public API, enabling AI assistants to interact with Bitkub markets.
+
+- **Source & Support:** https://www.npmjs.com/package/bitkub-trading-mcp
+- **Maintained by:** Community contributor (not Bitkub)
