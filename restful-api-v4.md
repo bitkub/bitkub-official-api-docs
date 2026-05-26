@@ -946,6 +946,8 @@ Internal Server Error.
 
 If the request rate exceeds the limit in any endpoints, the request will be blocked for 30 seconds. When blocked, HTTP response is 429 Too Many Requests. The limits apply to individual user accessing the API. **_The rate limit is applied to each endpoint regardless the API version._**
 
-| Endpoint           | Rate Limit        |
-| ------------------ | ----------------- |
-| /api/v4/crypto/\*  | 250 req / 10 secs |
+| Endpoint              | Rate Limit        |
+| --------------------- | ----------------- |
+| /api/v4/crypto/\*     | 250 req / 10 secs |
+| /api/v4/wallet/balances | 150 req/sec     |
+| /api/v4/wallet/assets   | 150 req/sec     |
