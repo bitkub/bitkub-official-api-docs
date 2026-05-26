@@ -2,6 +2,7 @@
 # RESTful API for Bitkub (2026-04-07)
 
 # Announcement
+* `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](restful-api-v4.md) and [GET /api/v4/wallet/assets](restful-api-v4.md) as replacements.
 * Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](restful-api-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
 * `market.trade.<symbol>` stream will be permanently closed on 18 May 2026. Please migrate to [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md).
 * remove status: "cancelled" from [my-order-info](#get-apiv3marketorder-info) after 3 days period. remove on 9 April 2026
@@ -13,6 +14,7 @@
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 # Change log
+* 2026-05-26 Removed deprecated endpoints `/api/v3/market/wallet` and `/api/v3/market/balances`. Use [GET /api/v4/wallet/balances](restful-api-v4.md) and [GET /api/v4/wallet/assets](restful-api-v4.md) instead.
 * 2026-04-07 Announce Fiat v4 API and deprecation of Fiat v3 endpoints on 09 June 2026
 * 2025-09-08 Update API [my-order-history](#get-apiv3marketmy-order-history) spec
 * 2025-01-07 Update FIAT Withdraw error code
@@ -74,8 +76,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 
 | Trading Endpoint                                                     | Method | Trade | Deposit | Withdraw |
 | ------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/market/wallet](#post-apiv3marketwallet)                    | POST   |       |         |          |
-| [/api/v3/market/balances](#post-apiv3marketbalances)                | POST   |       |         |          |
 | [/api/v3/market/place-bid](#post-apiv3marketplace-bid)              | POST   | ✅     |         |          |
 | [/api/v3/market/place-ask](#post-apiv3marketplace-ask)              | POST   | ✅     |         |          |
 | [/api/v3/market/cancel-order](#post-apiv3marketcancel-order)        | POST   | ✅     |         |          |
@@ -468,25 +468,6 @@ List recent trades.
 ## Trading Endpoint V3
 
 
-### POST /api/v3/market/wallet
-
-#### Description:
-Get user available balances (for both available and reserved balances please use [POST /api/v3/market/balances](#post-apiv3marketbalances)).
-
-#### Query:
-- n/a
-
-#### Response:
-```javascript
-{
-  "error": 0,
-  "result": {
-    "THB": 188379.27,
-    "BTC": 8.90397323,
-    "ETH": 10.1
-  }
-}
-```
 ### POST /api/v3/user/trading-credits
 
 ### Description:
@@ -580,34 +561,6 @@ Cancel an open order.
 ```javascript
 {
   "error": 0
-}
-```
-### POST /api/v3/market/balances
-
-#### Description:
-Get balances info: this includes both available and reserved balances.
-
-#### Query:
-- n/a
-
-#### Response:
-```javascript
-{
-  "error": 0,
-  "result": {
-    "THB":  {
-      "available": 188379.27,
-      "reserved": 0
-    },
-    "BTC": {
-      "available": 8.90397323,
-      "reserved": 0
-    },
-    "ETH": {
-      "available": 10.1,
-      "reserved": 0
-    }
-  }
 }
 ```
 ### GET /api/v3/market/my-open-orders
@@ -1135,8 +1088,6 @@ If the request rate exceeds the limit in any endpoints, the request will be bloc
 | /api/market/place-bid        | 150 req/sec       |
 | /api/market/place-ask        | 150 req/sec       |
 | /api/market/cancel-order     | 200 req/sec      |
-| /api/market/balances         | 150 req/sec      |
-| /api/market/wallet           | 150 req/sec      |
 | /api/servertime              | 2,000 req/10secs |
 | /api/status                  | 100 req/sec      |
 | /api/fiat/*                  | 20 req/sec       |
