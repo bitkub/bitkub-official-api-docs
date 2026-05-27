@@ -122,10 +122,11 @@ orderbook.\<symbol-id\>
 #### Description:
 Use symbol id (numeric id) to get real-time data of order book: **wss://api.bitkub.com/websocket-api/orderbook/[\<symbol-id\>](#symbols)**.
 
-There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, and **global.ticker**
+There are 5 event types: **bidschanged**, **askschanged**, **tradeschanged**, **depthchanged**, and **global.ticker**
 * **bidschanged** occurs when any buy order has changed on the selected symbol (opened/closed/cancelled). Data is array of buy orders after the change (max. 30 orders).
 * **askschanged** occurs when any sell order has changed on the selected symbol (opened/closed/cancelled). Data is array of sell orders after the change (max. 30 orders).
 * **tradeschanged** occurs when buy and sell orders have been matched on the selected symbol. Data is array containing 3 arrays: array of latest trades, array of buy orders, and array of sell orders (each max. 30 orders). You get this event as the initial data upon successful subscription.
+* **depthchanged** occurs when the order book depth has changed on the selected symbol. Data contains two arrays — `bids` and `asks` — each entry with `price`, `base_volume`, and `quote_volume`.
 * **ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on the selected symbol.
 * **global.ticker** occurs every time when either bidschanged, askschanged, or tradeschanged is fired on any symbol in the exchange.
 
@@ -194,6 +195,39 @@ There are 4 event types: **bidschanged**, **askschanged**, **tradeschanged**, an
       ]
    ],
    "event":"tradeschanged",
+   "pairing_id":1
+}
+```
+#### Example response (depthchanged):
+```javascript
+{
+   "data":{
+      "bids":[
+         {
+            "price": 2466650.35, // bid price
+            "base_volume": 0.0002027, // amount in base currency
+            "quote_volume": 500 // amount in quote currency
+         },
+         {
+            "price": 2466650.33,
+            "base_volume": 0.00299999,
+            "quote_volume": 7399.93
+         }
+      ],
+      "asks":[
+         {
+            "price": 2467772.05, // ask price
+            "base_volume": 0.003, // amount in base currency
+            "quote_volume": 7403.32 // amount in quote currency
+         },
+         {
+            "price": 2468266.95,
+            "base_volume": 0.03140643,
+            "quote_volume": 77519.46
+         }
+      ]
+   },
+   "event":"depthchanged",
    "pairing_id":1
 }
 ```
