@@ -896,25 +896,26 @@ Internal Server Error.
 
 ### Business Error
 
-| Code     | Status | Message                        |
-| -------- | ------ | ------------------------------ |
-| B1000-CW | 400    | User account is suspended      |
-| B1001-CW | 400    | Network is disabled            |
-| B1002-CW | 400    | CWS Wallet not found           |
-| B1003-CW | 400    | Insufficient balance           |
-| B1004-CW | 400    | User mismatch condition        |
-| B1005-CW | 400    | Duplicate key                  |
-| B1006-CW | 400    | Airdrop already transfer       |
-| B1007-CW | 400    | Symbol required                |
-| B1008-CW | 400    | Event Symbol mismatched        |
-| B1009-CW | 400    | Pending withdrawal exists      |
-| B1010-CW | 400    | User account is frozen         |
-| B1011-CW | 400    | Withdrawal exceeds daily limit |
-| B1012-CW | 400    | Address is not trusted         |
-| B1013-CW | 400    | Withdrawal is frozen           |
-| B1014-CW | 400    | Address is not whitelisted     |
-| B1015-CW | 400    | Request is processing          |
-| B1016-CW | 400    | Deposit is frozen              |
+| Code     | Status | Message                                                 |
+| -------- | ------ | ------------------------------------------------------- |
+| B1000-CW | 400    | User account is suspended                               |
+| B1001-CW | 400    | Network is disabled                                     |
+| B1002-CW | 400    | CWS Wallet not found                                    |
+| B1003-CW | 400    | Insufficient balance                                    |
+| B1004-CW | 400    | User mismatch condition                                 |
+| B1005-CW | 400    | Duplicate key                                           |
+| B1006-CW | 400    | Airdrop already transfer                                |
+| B1007-CW | 400    | Symbol required                                         |
+| B1008-CW | 400    | Event Symbol mismatched                                 |
+| B1009-CW | 400    | Pending withdrawal exists                               |
+| B1010-CW | 400    | User account is frozen                                  |
+| B1011-CW | 400    | Withdrawal exceeds daily limit                          |
+| B1012-CW | 400    | Address is not trusted                                  |
+| B1013-CW | 400    | Withdrawal is frozen                                    |
+| B1014-CW | 400    | Address is not whitelisted                              |
+| B1015-CW | 400    | Request is processing                                   |
+| B1016-CW | 400    | Deposit is frozen                                       |
+| B1017-CW | 400    | The amount is higher than the maximum withdrawal amount |
 
 ### Validation Error
 
