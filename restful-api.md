@@ -4,7 +4,6 @@
 # Announcement
 * `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) as replacements.
 * Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](restful-api-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
-* `market.trade.<symbol>` stream will be permanently closed on 18 May 2026. Please migrate to [Private WebSocket](https://github.com/bitkub/bitkub-official-api-docs/blob/master/private-websocket.md).
 * remove status: "cancelled" from [my-order-info](#get-apiv3marketorder-info) after 3 days period. remove on 9 April 2026
 * The following market endpoints will be deprecated on 9 Dec 2025. Please use [v3 endpoints](#non-secure-endpoints-v3) as replacement: GET /api/market/symbols, GET /api/market/ticker, GET /api/market/trades, GET /api/market/bids, GET /api/market/asks, GET /api/market/books, GET /api/market/depth
 * Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
