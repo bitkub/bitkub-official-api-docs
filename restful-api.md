@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2026-04-07)
+# RESTful API for Bitkub (2026-06-09)
 
 # Announcement
 * `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) as replacements.
@@ -14,6 +14,7 @@
 * Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 # Change log
+* 2026-06-09 Removed deprecated Fiat v3 endpoints: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history). Please migrate to [Fiat v4 endpoints](restful-api-v4.md).
 * 2026-05-26 Removed deprecated endpoints `/api/v3/market/wallet` and `/api/v3/market/balances`. Use [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) instead.
 * 2026-04-07 Announce Fiat v4 API and deprecation of Fiat v3 endpoints on 09 June 2026
 * 2025-09-08 Update API [my-order-history](#get-apiv3marketmy-order-history) spec
