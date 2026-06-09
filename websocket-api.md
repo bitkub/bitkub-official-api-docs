@@ -75,8 +75,6 @@ The trade stream provides real-time data on matched orders. Each trade contains 
   "txn": "ETHSELL0000074282", // transaction id
   "rat": "5977.00", // rate matched
   "amt": 1.556539, // amount matched
-  "bid": "2048451", // buy order id (string since 2023-04-19)
-  "sid": "2924729", // sell order id (string since 2023-04-19)
   "ts": 1542268567 // trade timestamp
 }
 ```
