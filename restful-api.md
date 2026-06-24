@@ -1,5 +1,5 @@
 
-# RESTful API for Bitkub (2026-06-09)
+# RESTful API for Bitkub (2026-06-24)
 
 # Announcement
 * Crypto deposit and withdraw history older than 90 days is archived for [deposits](restful-api-v4.md#get-apiv4cryptodeposits) and [withdraws](restful-api-v4.md#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).

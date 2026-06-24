@@ -1,32 +1,31 @@
-# RESTful API for Bitkub V4 (2025-12-03)
+# RESTful API for Bitkub V4 (2026-06-24)
 
 # Announcement
-- Crypto deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4cryptodeposits) and [withdraws](#get-apiv4cryptowithdraws). More details here.
-- Deposit history records are available for the last 90 days only for [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits). Records older than 90 days are archived.
-- Introducing the New Public API v4 for Crypto Endpoints
-- Introducing the New Public API v4 for Fiat Endpoints
+* Crypto deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4cryptodeposits) and [withdraws](#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).
+* Introducing the New Public API v4 for Crypto Endpoints
+* Introducing the New Public API v4 for Fiat Endpoints
 
 # Change log
 
-- 2026-05-06 Added new Wallet endpoints [GET /api/v4/wallet/balances](#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](#get-apiv4walletassets)
-- 2026-04-07 Introducing Fiat V4 Endpoints
-- 2025-05-27 Added new Crypto endpoint [GET /api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for [GET /api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits)
-- 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
-- 2025-04-03 Added new Crypto endpoint [GET /api/v4/crypto/coins](#get-apiv4cryptocoins)
-- 2025-02-03 Introducing Crypto V4 Endpoints
+* 2026-05-06 Added new Wallet endpoints [GET /api/v4/wallet/balances](#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](#get-apiv4walletassets)
+* 2026-04-07 Introducing Fiat V4 Endpoints
+* 2025-05-27 Added new Crypto endpoint [GET /api/v4/crypto/compensations](#get-apiv4cryptocompensations) and update api specification for [GET /api/v4/crypto/withdraws](#get-apiv4cryptowithdraws) and [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits)
+* 2025-04-08 Added new error codes: [B1016-CW] Deposit is frozen, [V1015-CW] Coin not found
+* 2025-04-03 Added new Crypto endpoint [GET /api/v4/crypto/coins](#get-apiv4cryptocoins)
+* 2025-02-03 Introducing Crypto V4 Endpoints
 
 # Table of contents
 
-- [Base URL](#base-url)
-- [Endpoint types](#endpoint-types)
-- [Constructing the request](#constructing-the-request)
-- [API documentation](#api-documentation)
-- [Error codes](#error-codes)
-- [Rate limits](#rate-limits)
+* [Base URL](#base-url)
+* [Endpoint types](#endpoint-types)
+* [Constructing the request](#constructing-the-request)
+* [API documentation](#api-documentation)
+* [Error codes](#error-codes)
+* [Rate limits](#rate-limits)
 
 # Base URL
 
-- The base URL is: https://api.bitkub.com
+* The base URL is: https://api.bitkub.com
 
 # Endpoint types
 
@@ -60,18 +59,18 @@ All secure endpoints require [authentication](#constructing-the-request).
 
 ### GET/POST request
 
-- GET requests require parameters as **query string** in the URL (e.g. ?symbol=BTC&limit=10).
-- POST requests require JSON payload (application/json).
+* GET requests require parameters as **query string** in the URL (e.g. ?symbol=BTC&limit=10).
+* POST requests require JSON payload (application/json).
 
 ### Request headers (Secure Endpoints)
 
 Authentication requires API KEY and API SECRET. Every request to the server must contain the following in the request header:
 
-- Accept: application/json
-- Content-type: application/json
-- X-BTK-APIKEY: {YOUR API KEY}
-- X-BTK-TIMESTAMP: {Timestamp i.e. 1699376552354 }
-- X-BTK-SIGN: [Signature](#signature)
+* Accept: application/json
+* Content-type: application/json
+* X-BTK-APIKEY: {YOUR API KEY}
+* X-BTK-TIMESTAMP: {Timestamp i.e. 1699376552354 }
+* X-BTK-SIGN: [Signature](#signature)
 
 ### Signature
 
