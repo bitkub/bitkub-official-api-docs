@@ -1,7 +1,7 @@
 # RESTful API for Bitkub V4 (2025-12-03)
 
 # Announcement
-
+- Crypto deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4cryptodeposits) and [withdraws](#get-apiv4cryptowithdraws). More details here.
 - Deposit history records are available for the last 90 days only for [GET /api/v4/crypto/deposits](#get-apiv4cryptodeposits). Records older than 90 days are archived.
 - Introducing the New Public API v4 for Crypto Endpoints
 - Introducing the New Public API v4 for Fiat Endpoints
