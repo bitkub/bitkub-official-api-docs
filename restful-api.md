@@ -85,13 +85,6 @@ All secure endpoints require [authentication](#constructing-the-request).
 | [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    |        |         |          |
 | [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    |       |         |          |
 
-| Fiat Endpoint                                                    | Method | Trade | Deposit | Withdraw |
-| ---------------------------------------------------------------- | ------ | ----- | ------- | -------- |
-| [/api/v3/fiat/accounts](#post-apiv3fiataccounts)                 | POST   |       |         | ✅       |
-| [/api/v3/fiat/withdraw](#post-apiv3fiatwithdraw)                 | POST   |       |         |          |
-| [/api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history)   | POST   |       |         |          |
-| [/api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history) | POST   |       |         |          |
-
 # Constructing the request
 ### GET/POST request
 * GET requests require parameters as **query string** in the URL (e.g. ?sym=THB_BTC&lmt=10). 
