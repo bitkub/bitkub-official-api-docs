@@ -1,6 +1,7 @@
-# RESTful API for Bitkub V4 (2026-06-24)
+# RESTful API for Bitkub V4 (2026-07-14)
 
 # Announcement
+* Fiat deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4fiatdeposithistory) and [withdraws](#get-apiv4fiatwithdrawhistory). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009940).
 * Crypto deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4cryptodeposits) and [withdraws](#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).
 * Introducing the New Public API v4 for Crypto Endpoints
 * Introducing the New Public API v4 for Fiat Endpoints
@@ -691,6 +692,8 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/accounts?page=1&limit=25' \
 
 List fiat deposit transaction history for the user.
 
+#### Note: Only deposit records within the last 90 days will be returned.
+
 #### Path Params: -
 
 #### Query Params:
@@ -740,6 +743,8 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit
 #### Description:
 
 List fiat withdrawal transaction history for the user.
+
+#### Note: Only withdraw records within the last 90 days will be returned.
 
 #### Path Params: -
 
