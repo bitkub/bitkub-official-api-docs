@@ -1,8 +1,8 @@
 
-# RESTful API for Bitkub (2026-06-24)
+# RESTful API for Bitkub (2026-07-14)
 
 # Announcement
-* Fiat deposit and withdraw history older than 90 days is archived for [deposits](#get-apiv4fiatdeposithistory) and [withdraws](#get-apiv4fiatwithdrawhistory). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009940).
+* Fiat deposit and withdraw history older than 90 days is archived for [deposits](restful-api-v4.md#get-apiv4fiatdeposithistory) and [withdraws](restful-api-v4.md#get-apiv4fiatwithdrawhistory). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009940).
 * Crypto deposit and withdraw history older than 90 days is archived for [deposits](restful-api-v4.md#get-apiv4cryptodeposits) and [withdraws](restful-api-v4.md#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).
 * `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) as replacements.
 * Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](restful-api-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
