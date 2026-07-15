@@ -51,12 +51,6 @@ V3 is the current stable REST API for market data and trading operations. It int
 
 ## Endpoint Index
 
-### Non-Secure Endpoints
-* [GET /api/status](#get-apistatus)
-* [GET /api/servertime](#get-apiservertime)
-* [GET /tradingview/history](#get-tradingviewhistory)
-* [GET /api/v3/servertime](#get-apiv3servertime)
-
 ### Non-Secure Endpoints V3
 
 | Market Data Endpoint | Method |
@@ -117,65 +111,6 @@ All secure endpoints require the following headers:
 
 ### Server Information
 
-### GET /api/status
-
-#### Description:
-Get endpoint status. When status is not `ok`, it is highly recommended to wait until the status changes back to `ok`.
-
-
-#### Required Permission:
-N/A
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location 'https://api.bitkub.com/api/status'
-```
-
-#### Response:
-```json
-[
-  {
-    "name": "Non-secure endpoints",
-    "status": "ok",
-    "message": ""
-  },
-  {
-    "name": "Secure endpoints",
-    "status": "ok",
-    "message": ""
-  }
-]
-```
-
-#### Field Descriptions:
-N/A
-### GET /api/servertime
-
-#### Description:
-Get server timestamp.
-
-**⚠️ DEPRECATED:** Returns seconds. Use GET /api/v3/servertime instead (returns milliseconds).
-
-
-#### Required Permission:
-N/A
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location 'https://api.bitkub.com/api/servertime'
-```
-
-#### Response:
-```json
-1707220534359
-```
-
-#### Field Descriptions:
-N/A
 ### GET /api/v3/servertime
 
 #### Description:
@@ -451,48 +386,6 @@ curl --location 'https://api.bitkub.com/api/v3/market/trades?sym=btc_thb&lmt=5'
     [1734661894000, 3367353.98, 0.00148484, "BUY"],
     [1734661893000, 3367353.98, 0.00029622, "BUY"]
   ]
-}
-```
-
-#### Field Descriptions:
-N/A
-### Chart Data
-
-### GET /tradingview/history
-
-#### Description:
-Get OHLCV historical data for TradingView chart integration.
-
-
-#### Required Permission:
-N/A
-#### Query Params:
-
-| Key | Type | Required | Description |
-| --- | ---- | -------- | ----------- |
-| symbol | string | true | The symbol (e.g. BTC_THB) |
-| resolution | string | true | Chart resolution: 1, 5, 15, 60, 240, 1D |
-| from | int | true | Start timestamp (Unix seconds) |
-| to | int | true | End timestamp (Unix seconds) |
-
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location 'https://api.bitkub.com/tradingview/history?symbol=BTC_THB&resolution=60&from=1633424427&to=1633427427'
-```
-
-#### Response:
-```json
-{
-  "c": [1685000, 1680699.95, 1688998.99, 1692222.22],
-  "h": [1685000, 1685000, 1689000, 1692222.22],
-  "l": [1680053.22, 1671000, 1680000, 1684995.07],
-  "o": [1682500, 1685000, 1680100, 1684995.07],
-  "s": "ok",
-  "t": [1633424400, 1633425300, 1633426200, 1633427100],
-  "v": [4.604352630000001, 8.530631670000005, 4.836581560000002, 2.851018920000002]
 }
 ```
 

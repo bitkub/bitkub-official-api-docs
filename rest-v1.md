@@ -2,7 +2,7 @@
 
 ## Announcement
 
-N/A — V1 endpoints have been removed.
+N/A — V1 endpoints have been removed, except GET /api/status, GET /api/servertime, and GET /tradingview/history, which remain active (unversioned).
 
 ## Change Log
 
@@ -41,6 +41,111 @@ N/A — V1 used a different authentication mechanism (API key in query string). 
 | /api/market/my-open-orders | GET | GET /api/v3/market/my-open-orders |
 | /api/market/my-order-history | GET | GET /api/v3/market/my-order-history |
 | /api/market/order-info | GET | GET /api/v3/market/order-info |
+| /api/servertime | GET | GET /api/v3/servertime |
+| /api/status | GET | N/A — unversioned, no replacement |
+| /tradingview/history | GET | N/A — unversioned, no replacement |
+
+### GET /api/status
+
+#### Description:
+Get endpoint status. When status is not `ok`, it is highly recommended to wait until the status changes back to `ok`.
+
+
+#### Required Permission:
+N/A
+
+#### Validation Rules:
+N/A
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/status'
+```
+
+#### Response:
+```json
+[
+  {
+    "name": "Non-secure endpoints",
+    "status": "ok",
+    "message": ""
+  },
+  {
+    "name": "Secure endpoints",
+    "status": "ok",
+    "message": ""
+  }
+]
+```
+
+#### Field Descriptions:
+N/A
+
+### GET /api/servertime
+
+#### Description:
+Get server timestamp.
+
+**⚠️ DEPRECATED:** Returns seconds. Use GET /api/v3/servertime instead (returns milliseconds).
+
+
+#### Required Permission:
+N/A
+
+#### Validation Rules:
+N/A
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/servertime'
+```
+
+#### Response:
+```json
+1707220534359
+```
+
+#### Field Descriptions:
+N/A
+
+### GET /tradingview/history
+
+#### Description:
+Get OHLCV historical data for TradingView chart integration.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| symbol | string | true | The symbol (e.g. BTC_THB) |
+| resolution | string | true | Chart resolution: 1, 5, 15, 60, 240, 1D |
+| from | int | true | Start timestamp (Unix seconds) |
+| to | int | true | End timestamp (Unix seconds) |
+
+
+#### Validation Rules:
+N/A
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/tradingview/history?symbol=BTC_THB&resolution=60&from=1633424427&to=1633427427'
+```
+
+#### Response:
+```json
+{
+  "c": [1685000, 1680699.95, 1688998.99, 1692222.22],
+  "h": [1685000, 1685000, 1689000, 1692222.22],
+  "l": [1680053.22, 1671000, 1680000, 1684995.07],
+  "o": [1682500, 1685000, 1680100, 1684995.07],
+  "s": "ok",
+  "t": [1633424400, 1633425300, 1633426200, 1633427100],
+  "v": [4.604352630000001, 8.530631670000005, 4.836581560000002, 2.851018920000002]
+}
+```
+
+#### Field Descriptions:
+N/A
 
 ## Additional
 
