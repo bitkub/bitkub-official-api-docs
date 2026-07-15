@@ -2,22 +2,44 @@
 
 ## Announcement
 
-* **⚠️ 2026-06-09:** Fiat v3 endpoints will be deprecated. Please migrate to Fiat v4 endpoints (rest-v4.md).
-* **⚠️ 2025-12-09:** The following market endpoints will be deprecated. Please use v3 endpoints as replacement: GET /api/market/symbols, GET /api/market/ticker, GET /api/market/trades, GET /api/market/bids, GET /api/market/asks, GET /api/market/books, GET /api/market/depth
-* Page-based pagination will be deprecated on 8 Sep 2025 for my-order-history.
-* Order history older than 90 days is archived for my-order-history.
-* Deprecation of Order Hash for my-open-orders, my-order-history, my-order-info, place-bid, place-ask, cancel-order on 28/02/2025 onwards.
+* Fiat deposit and withdraw history older than 90 days is archived for [deposits](restful-api-v4.md#get-apiv4fiatdeposithistory) and [withdraws](restful-api-v4.md#get-apiv4fiatwithdrawhistory). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009940).
+* Crypto deposit and withdraw history older than 90 days is archived for [deposits](restful-api-v4.md#get-apiv4cryptodeposits) and [withdraws](restful-api-v4.md#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).
+* `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) as replacements.
+* Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](restful-api-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
+* remove status: "cancelled" from [my-order-info](#get-apiv3marketorder-info) after 3 days period. remove on 9 April 2026
+* The following market endpoints will be deprecated on 9 Dec 2025. Please use [v3 endpoints](#non-secure-endpoints-v3) as replacement: GET /api/market/symbols, GET /api/market/ticker, GET /api/market/trades, GET /api/market/bids, GET /api/market/asks, GET /api/market/books, GET /api/market/depth
+* Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
+* Order history older than 90 days is archived for [my-order-history](#get-apiv3marketmy-order-history) More details here.
+* order_id and txn_id formats of [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) may change for some symbols due to a system upgrade, See affected symbols and detail : [here](https://support.bitkub.com/en/support/solutions/articles/151000214886-announcement-trading-system-upgrade)
+* API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](restful-api-v4.md)
+* Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
 
 ## Change Log
 
+* 2026-06-09 Removed deprecated Fiat v3 endpoints: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history). Please migrate to [Fiat v4 endpoints](restful-api-v4.md).
+* 2026-05-26 Removed deprecated endpoints `/api/v3/market/wallet` and `/api/v3/market/balances`. Use [GET /api/v4/wallet/balances](restful-api-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](restful-api-v4.md#get-apiv4walletassets) instead.
 * 2026-04-07 Announce Fiat v4 API and deprecation of Fiat v3 endpoints on 09 June 2026
-* 2025-09-08 Update API my-order-history spec
+* 2025-09-08 Update API [my-order-history](#get-apiv3marketmy-order-history) spec
 * 2025-01-07 Update FIAT Withdraw error code
-* 2024-12-20 Introducing Enhanced Market Data Endpoints: Ticker, Depth, Bids, Asks, Trades
-* 2024-07-25 Deprecated Secure Endpoint V1/V2
-* 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders
-* 2024-05-16 Post-Only Functionality added to place-bid and place-ask
+* 2025-04-03 Deprecated Crypto Endpoint v3 and Remove from the Document.
+* 2024-12-20 Introducing the Enhanced Market Data Endpoint [Ticker, Depth, Bids, Asks, Trades](#non-secure-endpoints-v3)
+* 2024-07-25 Deprecated Secure Endpoint V1/V2 and Remove from the Document.
+* 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders  [Rate-Limits](#rate-limits)
+* 2024-07-05 Update rate-limits which will be apply on 17 July 2024 [Rate-Limits](#rate-limits)
+* 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
 * 2024-06-11 Added new error code 58 - Transaction Not Found
+* 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
+* 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
+* 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
+
+# Table of contents
+* [Overview](#overview)
+* [Base URL](#base-url)
+* [Endpoint Index](#endpoint-index)
+* [Authentication](#authentication)
+* [Endpoints](#endpoints)
+* [Error Codes](#error-codes)
+* [Rate Limits](#rate-limits)
 
 ## Overview
 
@@ -26,6 +48,48 @@ V3 is the current stable REST API for market data and trading operations. It int
 ## Base URL
 
 `https://api.bitkub.com`
+
+## Endpoint Index
+
+### Non-Secure Endpoints
+* [GET /api/status](#get-apistatus)
+* [GET /api/servertime](#get-apiservertime)
+* [GET /tradingview/history](#get-tradingviewhistory)
+* [GET /api/v3/servertime](#get-apiv3servertime)
+
+### Non-Secure Endpoints V3
+
+| Market Data Endpoint | Method |
+| --------------------------------------------------------------| ------ |
+| [GET /api/v3/market/symbols](#get-apiv3marketsymbols)         | GET    |
+| [GET /api/v3/market/ticker](#get-apiv3marketticker)           | GET    |
+| [GET /api/v3/market/bids](#get-apiv3marketbids)               | GET    |
+| [GET /api/v3/market/asks](#get-apiv3marketasks)               | GET    |
+| [GET /api/v3/market/depth](#get-apiv3marketdepth)             | GET    |
+| [GET /api/v3/market/trades](#get-apiv3markettrades)           | GET    |
+
+| Exchange Information Endpoint | Method |
+| --------------------------------------------------------------| ------ |
+| [GET /api/v3/servertime](#get-apiv3servertime)                | GET    |
+
+### Secure Endpoints V3
+All secure endpoints require [authentication](#authentication).
+
+| User Endpoint                                                             | Method | Trade | Deposit | Withdraw |
+| ------------------------------------------------------------------------- | ------ | ----- | ------- | -------- |
+| [/api/v3/user/trading-credits](#post-apiv3usertrading-credits)            | POST   |       |         |          |
+| [/api/v3/user/limits](#post-apiv3userlimits)                              | POST   |       |         |          |
+| [/api/v3/user/coin-convert-history](#get-apiv3usercoin-convert-history)   | GET    |       |         |          |
+
+| Trading Endpoint                                                     | Method | Trade | Deposit | Withdraw |
+| --------------------------------------------------------------------| ------ | ----- | ------- | -------- |
+| [/api/v3/market/place-bid](#post-apiv3marketplace-bid)              | POST   | ✅     |         |          |
+| [/api/v3/market/place-ask](#post-apiv3marketplace-ask)              | POST   | ✅     |         |          |
+| [/api/v3/market/cancel-order](#post-apiv3marketcancel-order)        | POST   | ✅     |         |          |
+| [/api/v3/market/wstoken](#post-apiv3marketwstoken)                  | POST   | ✅     |         |          |
+| [/api/v3/market/my-open-orders](#get-apiv3marketmy-open-orders)     | GET    |        |         |          |
+| [/api/v3/market/my-order-history](#get-apiv3marketmy-order-history) | GET    |        |         |          |
+| [/api/v3/market/order-info](#get-apiv3marketorder-info)             | GET    |       |         |          |
 
 ## Authentication
 
@@ -327,11 +391,11 @@ N/A
 | Key | Type | Required | Description |
 | --- | ---- | -------- | ----------- |
 | sym | string | true | The symbol (e.g. btc_thb) |
-| lmt | int | false | Depth size |
+| lmt | int | true | Depth size |
 
 
 #### Validation Rules:
-N/A
+- `lmt` value can not be less than 1
 #### Example cURL:
 ```bash
 curl --location 'https://api.bitkub.com/api/v3/market/depth?sym=btc_thb&lmt=5'
@@ -369,11 +433,11 @@ N/A
 | Key | Type | Required | Description |
 | --- | ---- | -------- | ----------- |
 | sym | string | true | The symbol (e.g. btc_thb) |
-| lmt | int | false | Limit number of results |
+| lmt | int | true | Limit number of results |
 
 
 #### Validation Rules:
-N/A
+- `lmt` value can not be less than 1
 #### Example cURL:
 ```bash
 curl --location 'https://api.bitkub.com/api/v3/market/trades?sym=btc_thb&lmt=5'
@@ -438,72 +502,6 @@ N/A
 
 ### User Account & Limits
 
-### POST /api/v3/market/wallet
-
-#### Description:
-Get user available balances. For both available and reserved balances use POST /api/v3/market/balances.
-
-
-#### Required Permission:
-N/A
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/market/wallet' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": {
-    "THB": 188379.27,
-    "BTC": 8.90397323,
-    "ETH": 10.1
-  }
-}
-```
-
-#### Field Descriptions:
-N/A
-### POST /api/v3/market/balances
-
-#### Description:
-Get balances info including both available and reserved balances.
-
-
-#### Required Permission:
-N/A
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/market/balances' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": {
-    "THB": { "available": 188379.27, "reserved": 0 },
-    "BTC": { "available": 8.90397323, "reserved": 0 },
-    "ETH": { "available": 10.1, "reserved": 0 }
-  }
-}
-```
-
-#### Field Descriptions:
-N/A
 ### POST /api/v3/user/trading-credits
 
 #### Description:
@@ -1004,228 +1002,7 @@ curl --location 'https://api.bitkub.com/api/v3/market/order-info?sym=btc_thb&id=
 
 #### Field Descriptions:
 N/A
-### POST /api/v3/market/wstoken
 
-#### Description:
-Generate a token for WebSocket authentication (used with the Public WebSocket API).
-
-
-#### Required Permission:
-N/A
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/market/wstoken' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
-}
-```
-
-#### Field Descriptions:
-N/A
-## Fiat Operations (DEPRECATED — Migrate to V4 by 2026-06-09)
-
-**⚠️ These endpoints will be permanently removed on 09 June 2026. Please migrate to REST API V4 Fiat endpoints.**
-
-### POST /api/v3/fiat/accounts
-
-#### Description:
-List all approved bank accounts.
-
-**⚠️ DEPRECATED:** Use GET /api/v4/fiat/accounts instead.
-
-
-#### Required Permission:
-N/A
-#### Query Params:
-
-| Key | Type | Required | Description |
-| --- | ---- | -------- | ----------- |
-| p | int | false | Page |
-| lmt | int | false | Limit |
-
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/fiat/accounts' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": [
-    {
-      "id": "7262109099",
-      "bank": "Kasikorn Bank",
-      "name": "Somsak",
-      "time": 1570893867
-    }
-  ],
-  "pagination": { "page": 1, "last": 1 }
-}
-```
-
-#### Field Descriptions:
-N/A
-### POST /api/v3/fiat/withdraw
-
-#### Description:
-Make a withdrawal to an approved bank account.
-
-**⚠️ DEPRECATED:** Use POST /api/v4/fiat/withdraw instead.
-
-
-#### Required Permission:
-N/A
-#### Body Params:
-
-| Key | Type | Required | Description |
-| --- | ---- | -------- | ----------- |
-| id | string | true | Bank account ID |
-| amt | float | true | Amount to withdraw |
-
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location 'https://api.bitkub.com/api/v3/fiat/withdraw' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}' \
---header 'Content-Type: application/json' \
---data '{"id":"7262109099","amt":1000}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": {
-    "txn": "THBWD0000012345",
-    "acc": "7262109099",
-    "cur": "THB",
-    "amt": 21,
-    "fee": 20,
-    "rec": 1,
-    "ts": 1569999999
-  }
-}
-```
-
-#### Field Descriptions:
-N/A
-### POST /api/v3/fiat/deposit-history
-
-#### Description:
-List fiat deposit history.
-
-**⚠️ DEPRECATED:** Use GET /api/v4/fiat/deposit/history instead.
-
-
-#### Required Permission:
-N/A
-#### Query Params:
-
-| Key | Type | Required | Description |
-| --- | ---- | -------- | ----------- |
-| p | int | false | Page |
-| lmt | int | false | Limit |
-
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/fiat/deposit-history' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": [
-    {
-      "txn_id": "THBDP0000012345",
-      "currency": "THB",
-      "amount": 5000.55,
-      "status": "complete",
-      "time": 1570893867
-    }
-  ],
-  "pagination": { "page": 1, "last": 1 }
-}
-```
-
-#### Field Descriptions:
-N/A
-### POST /api/v3/fiat/withdraw-history
-
-#### Description:
-List fiat withdrawal history.
-
-**⚠️ DEPRECATED:** Use GET /api/v4/fiat/withdraw/history instead.
-
-
-#### Required Permission:
-N/A
-#### Query Params:
-
-| Key | Type | Required | Description |
-| --- | ---- | -------- | ----------- |
-| p | int | false | Page |
-| lmt | int | false | Limit |
-
-
-#### Validation Rules:
-N/A
-#### Example cURL:
-```bash
-curl --location --request POST 'https://api.bitkub.com/api/v3/fiat/withdraw-history' \
---header 'X-BTK-TIMESTAMP: 1699381086593' \
---header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
---header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
-```
-
-#### Response:
-```json
-{
-  "error": 0,
-  "result": [
-    {
-      "txn_id": "THBWD0000012345",
-      "currency": "THB",
-      "amount": "21",
-      "fee": 20,
-      "status": "complete",
-      "time": 1570893493
-    }
-  ],
-  "pagination": { "page": 1, "last": 1 }
-}
-```
-
-#### Field Descriptions:
-N/A
 ## Additional
 
 N/A — No additional reference information for V3.
@@ -1249,10 +1026,10 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 6 | Missing / invalid signature |
 | 7 | Missing timestamp |
 | 8 | Invalid timestamp |
-| 9 | Invalid user / User not found |
-| 10 | Invalid parameter |
+| 9 | • Invalid user <br> • User not found <br> • Freeze withdrawal <br> • User is not allowed to perform this action within the last 24 hours <br> • User has suspicious withdraw crypto txn |
+| 10 | • Invalid parameter <br> • Invalid response: Code not found in response <br> • Validate params <br> • Default |
 | 11 | Invalid symbol |
-| 12 | Invalid amount |
+| 12 | • Invalid amount <br> • Withdrawal amount is below the minimum threshold |
 | 13 | Invalid rate |
 | 14 | Improper rate |
 | 15 | Amount too low |
@@ -1261,21 +1038,21 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 18 | Insufficient balance |
 | 19 | Failed to insert order into db |
 | 20 | Failed to deduct balance |
-| 21 | Invalid order for cancellation |
+| 21 | Invalid order for cancellation (Unable to find OrderID or Symbol.) |
 | 22 | Invalid side |
 | 23 | Failed to update order status |
-| 24 | Invalid order for lookup |
+| 24 | • Invalid order for lookup <br> • Invalid kyc level |
 | 25 | KYC level 1 is required to proceed |
 | 30 | Limit exceeds |
 | 40 | Pending withdrawal exists |
 | 41 | Invalid currency for withdrawal |
 | 42 | Address is not in whitelist |
-| 43 | Failed to deduct crypto |
+| 43 | • Failed to deduct crypto <br> • Insufficient balance <br> • Deduct balance failed |
 | 44 | Failed to create withdrawal record |
 | 47 | Withdrawal amount exceeds the maximum limit |
-| 48 | Invalid bank account |
+| 48 | • Invalid bank account <br> • User bank id is not found <br> • User bank is unavailable |
 | 49 | Bank limit exceeds |
-| 50 | Pending withdrawal exists / Cannot perform action due to pending transactions |
+| 50 | • Pending withdrawal exists <br> • Cannot perform the action due to pending transactions |
 | 51 | Withdrawal is under maintenance |
 | 52 | Invalid permission |
 | 53 | Invalid internal address |
@@ -1283,8 +1060,8 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 55 | Cancel only mode |
 | 56 | User has been suspended from purchasing |
 | 57 | User has been suspended from selling |
-| 58 | User bank is not verified |
-| 61 | This endpoint does not support broker coins |
+| 58 | ~~Transaction not found~~ <br> User bank is not verified |
+| 61 | This endpoint doesn't support broker coins ('source' = broker). You can check 'source' of each symbol in /api/v3/market/symbols. |
 | 90 | Server error (please contact support) |
 
 ### System Errors
@@ -1321,8 +1098,6 @@ Exceeding the limit blocks requests for 30 seconds (HTTP 429). Limits apply per 
 | /api/market/place-bid | 150 req/sec |
 | /api/market/place-ask | 150 req/sec |
 | /api/market/cancel-order | 200 req/sec |
-| /api/market/balances | 150 req/sec |
-| /api/market/wallet | 150 req/sec |
 | /api/servertime | 2,000 req/10secs |
 | /api/status | 100 req/sec |
 | /api/fiat/* | 20 req/sec |
