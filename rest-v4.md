@@ -12,6 +12,15 @@
 * 2025-04-03 Added GET /api/v4/crypto/coins
 * 2025-02-03 Introducing Crypto V4 Endpoints
 
+# Table of contents
+* [Overview](#overview)
+* [Base URL](#base-url)
+* [Endpoint Index](#endpoint-index)
+* [Authentication](#authentication)
+* [Endpoints](#endpoints)
+* [Error Codes](#error-codes)
+* [Rate Limits](#rate-limits)
+
 ## Overview
 
 V4 is the current REST API for crypto and fiat deposit/withdrawal operations. It uses the same HMAC authentication as V3 but returns structured error codes (e.g. `V1007-CW`) instead of numeric codes.
@@ -19,6 +28,33 @@ V4 is the current REST API for crypto and fiat deposit/withdrawal operations. It
 ## Base URL
 
 `https://api.bitkub.com`
+
+## Endpoint Index
+
+### Secure Endpoints V4
+All secure endpoints require [authentication](#authentication).
+
+| Crypto V4 Endpoints                                           | Method | Deposit | Withdraw | Trade |
+| --------------------------------------------------------------| ------ | ------- | -------- | ----- |
+| [/api/v4/crypto/addresses](#get-apiv4cryptoaddresses)         | GET    |         |          |       |
+| [/api/v4/crypto/addresses](#post-apiv4cryptoaddresses)        | POST   | ✅      |          |       |
+| [/api/v4/crypto/deposits](#get-apiv4cryptodeposits)           | GET    |         |          |       |
+| [/api/v4/crypto/withdraws](#get-apiv4cryptowithdraws)         | GET    |         |          |       |
+| [/api/v4/crypto/withdraws](#post-apiv4cryptowithdraws)        | POST   |         | ✅       |       |
+| [/api/v4/crypto/coins](#get-apiv4cryptocoins)                 | GET    |         |          |       |
+| [/api/v4/crypto/compensations](#get-apiv4cryptocompensations) | GET    |         |          |       |
+
+| Wallet V4 Endpoints                                     | Method |
+| --------------------------------------------------------| ------ |
+| [/api/v4/wallet/balances](#get-apiv4walletbalances)     | GET    |
+| [/api/v4/wallet/assets](#get-apiv4walletassets)         | GET    |
+
+| Fiat V4 Endpoints                                              | Method | Deposit | Withdraw | Trade |
+| ----------------------------------------------------------------| ------ | ------- | -------- | ----- |
+| [/api/v4/fiat/accounts](#get-apiv4fiataccounts)                | GET    |         | ✅       |       |
+| [/api/v4/fiat/deposit/history](#get-apiv4fiatdeposithistory)   | GET    |         |          |       |
+| [/api/v4/fiat/withdraw/history](#get-apiv4fiatwithdrawhistory) | GET    |         |          |       |
+| [/api/v4/fiat/withdraw](#post-apiv4fiatwithdraw)               | POST   |         |          |       |
 
 ## Authentication
 
@@ -83,7 +119,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses?symbol=ATOM' \
   "data": {
     "page": 1,
     "total_page": 1,
-    "total_item": 2,
+    "total_item": 1,
     "items": [
       {
         "symbol": "ATOM",
@@ -243,7 +279,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
   "data": {
     "page": 1,
     "total_page": 1,
-    "total_item": 2,
+    "total_item": 1,
     "items": [
       {
         "txn_id": "RDNTWD0000804050",
@@ -305,7 +341,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
   "data": {
     "page": 1,
     "total_page": 1,
-    "total_item": 2,
+    "total_item": 1,
     "items": [
       {
         "txn_id": "XRPCP0000001234",
@@ -442,6 +478,96 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 
 #### Field Descriptions:
 N/A
+## Wallet Endpoints
+
+### GET /api/v4/wallet/balances
+
+#### Description:
+Get wallet balances.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| segment | enum(funding) | false | Segment (default: funding) |
+
+
+#### Validation Rules:
+N/A
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/v4/wallet/balances' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
+--header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
+```
+
+#### Response:
+```json
+{
+  "code": "0",
+  "message": "success",
+  "data": [
+    {
+      "currency": "BTC",
+      "available": "1000",
+      "reserved": "100",
+      "total": "1100"
+    },
+    {
+      "currency": "THB",
+      "available": "10",
+      "reserved": "10",
+      "total": "20"
+    }
+  ]
+}
+```
+
+#### Field Descriptions:
+N/A
+### GET /api/v4/wallet/assets
+
+#### Description:
+Get wallet assets.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| segment | enum(funding) | false | Segment (default: funding) |
+
+
+#### Validation Rules:
+N/A
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/v4/wallet/assets' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
+--header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
+```
+
+#### Response:
+```json
+{
+  "code": "0",
+  "message": "success",
+  "data": {
+    "BTC": "1000",
+    "ETH": "100"
+  }
+}
+```
+
+#### Field Descriptions:
+N/A
 ## Fiat Endpoints
 
 ### Account Management
@@ -449,7 +575,7 @@ N/A
 ### GET /api/v4/fiat/accounts
 
 #### Description:
-List approved bank accounts for the authenticated user. Both `page` and `limit` must be provided together.
+List approved bank accounts for the authenticated user.
 
 #### Required Permission: `withdraw`
 
@@ -462,7 +588,7 @@ List approved bank accounts for the authenticated user. Both `page` and `limit` 
 
 
 #### Validation Rules:
-N/A
+- `page` and `limit` must be provided together
 #### Example cURL:
 ```bash
 curl --location 'https://api.bitkub.com/api/v4/fiat/accounts?page=1&limit=25' \
@@ -495,7 +621,7 @@ N/A
 ### GET /api/v4/fiat/deposit/history
 
 #### Description:
-List fiat deposit transaction history. Both `page` and `limit` must be provided together.
+List fiat deposit transaction history.
 
 
 #### Required Permission:
@@ -509,7 +635,7 @@ N/A
 
 
 #### Validation Rules:
-N/A
+- `page` and `limit` must be provided together
 #### Example cURL:
 ```bash
 curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit=25' \
@@ -541,7 +667,7 @@ N/A
 ### GET /api/v4/fiat/withdraw/history
 
 #### Description:
-List fiat withdrawal transaction history. Both `page` and `limit` must be provided together.
+List fiat withdrawal transaction history. Only withdraw records within the last 90 days will be returned.
 
 
 #### Required Permission:
@@ -555,7 +681,7 @@ N/A
 
 
 #### Validation Rules:
-N/A
+- `page` and `limit` must be provided together
 #### Example cURL:
 ```bash
 curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw/history?page=1&limit=25' \
@@ -698,6 +824,7 @@ N/A — V4 uses structured string error codes (e.g. `V1007-CW`), not numeric cod
 | B1014-CW | 400 | Address is not whitelisted |
 | B1015-CW | 400 | Request is processing |
 | B1016-CW | 400 | Deposit is frozen |
+| B1017-CW | 400 | The amount is higher than the maximum withdrawal amount |
 
 ### Validation Errors
 
@@ -732,4 +859,5 @@ Exceeding the limit blocks requests for 30 seconds (HTTP 429). Limits apply per 
 | Endpoint | Rate Limit |
 | -------- | ---------- |
 | /api/v4/crypto/* | 250 req/10secs |
-| /api/v4/fiat/* | 250 req/10secs |
+| /api/v4/wallet/balances | 150 req/sec |
+| /api/v4/wallet/assets | 150 req/sec |
