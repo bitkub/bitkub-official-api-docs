@@ -64,8 +64,6 @@ Real-time matched order data. Each trade contains buy order id and sell order id
   "txn": "ETHSELL0000074282",
   "rat": "5977.00",
   "amt": 1.556539,
-  "bid": "2048451",
-  "sid": "2924729",
   "ts": 1542268567
 }
 ```
@@ -79,8 +77,6 @@ Real-time matched order data. Each trade contains buy order id and sell order id
 | txn    | string | Transaction ID                          |
 | rat    | string | Rate matched (price)                    |
 | amt    | float  | Amount matched                          |
-| bid    | string | Buy order ID (string since 2023-04-19)  |
-| sid    | string | Sell order ID (string since 2023-04-19) |
 | ts     | int    | Trade timestamp (Unix seconds)          |
 
 ### Ticker Stream
@@ -140,13 +136,14 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 orderbook.\<symbol-id\>
 
 #### Description:
-Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `ticker`, and `global.ticker`.
+Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `depthchanged`, and `global.ticker`.
 
 | Event         | Trigger                                                              | Max Depth |
 | ------------- | -------------------------------------------------------------------- | --------- |
 | bidschanged   | Any buy order opened/closed/cancelled on this symbol                 | 30 orders |
 | askschanged   | Any sell order opened/closed/cancelled on this symbol                | 30 orders |
 | tradeschanged | Orders matched on this symbol (also sent as initial data on connect) | 30 each   |
+| depthchanged  | Order book depth changed on this symbol                              | —         |
 | ticker        | Any of bidschanged/askschanged/tradeschanged fires on this symbol    | —         |
 | global.ticker | Any of bidschanged/askschanged/tradeschanged fires on any symbol     | —         |
 
@@ -176,29 +173,39 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: ticker / global.ticker**
+**Event: depthchanged**
 ```json
 {
   "data": {
-    "baseVolume": 106302.39237032,
-    "change": 0.16,
-    "close": 15.9,
-    "high24hr": 16.72,
-    "highestBid": 15.81,
-    "highestBidSize": 5640.39911448,
-    "id": 139,
-    "isFrozen": 0,
-    "last": 15.9,
-    "low24hr": 15.7,
-    "lowestAsk": 16.22,
-    "lowestAskSize": 1582,
-    "open": 15.74,
-    "percentChange": 1.02,
-    "quoteVolume": 1715566.77,
-    "stream": "market.ticker.thb_1inch"
+    "bids": [
+      { "price": 2466650.35, "base_volume": 0.0002027, "quote_volume": 500 },
+      { "price": 2466650.33, "base_volume": 0.00299999, "quote_volume": 7399.93 }
+    ],
+    "asks": [
+      { "price": 2467772.05, "base_volume": 0.003, "quote_volume": 7403.32 },
+      { "price": 2468266.95, "base_volume": 0.03140643, "quote_volume": 77519.46 }
+    ]
   },
-  "event": "ticker",
+  "event": "depthchanged",
   "pairing_id": 1
+}
+```
+
+**Event: global.ticker**
+```json
+{
+  "data": {
+    "id": 1,
+    "last": "1500000.00",
+    "percentChange": "2.45",
+    "baseVolume": "123.456",
+    "quoteVolume": "185184000.00",
+    "high24hr": "1520000.00",
+    "low24hr": "1460000.00",
+    "highestBid": "1499900.00",
+    "lowestAsk": "1500100.00"
+  },
+  "event": "global.ticker"
 }
 ```
 
@@ -214,6 +221,14 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 | 3     | int     | Reserved (always 0)        |
 | 4     | boolean | Is new order               |
 | 5     | boolean | User is owner (deprecated) |
+
+**depthchanged — `bids` / `asks` entry:**
+
+| Field        | Type  | Description                    |
+| ------------ | ----- | ------------------------------- |
+| price        | float | Price                            |
+| base_volume  | float | Amount in base currency          |
+| quote_volume | float | Amount in quote currency         |
 
 **tradeschanged — array[0] latest trades:**
 
@@ -240,26 +255,19 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 | 4     | boolean | Is new order                                 |
 | 5     | boolean | User is owner (available when authenticated) |
 
-**ticker / global.ticker — data object:**
+**global.ticker — data object:**
 
 | Field          | Type   | Description                         |
 | -------------- | ------ | ----------------------------------- |
-| baseVolume     | float  | Amount of crypto                    |
-| change         | float  | Price difference compared to latest |
-| close          | float  | Close price                         |
-| high24hr       | float  | Highest price in last 24 hours      |
-| highestBid     | float  | Highest bidding price               |
-| highestBidSize | float  | Amount of the highest bidding order |
 | id             | int    | Symbol ID                           |
-| isFrozen       | int    | Symbol trade status                 |
-| last           | float  | Latest price                        |
-| low24hr        | float  | Lowest price in last 24 hours       |
-| lowestAsk      | float  | Lowest asking price                 |
-| lowestAskSize  | float  | Amount of the lowest asking order   |
-| open           | float  | Open price                          |
-| percentChange  | float  | Price difference in percent         |
-| quoteVolume    | float  | Amount of fiat                      |
-| stream         | string | Stream name                         |
+| last           | string | Latest price                        |
+| percentChange  | string | Price difference in percent         |
+| baseVolume     | string | Amount of crypto                    |
+| quoteVolume    | string | Amount of fiat                      |
+| high24hr       | string | Highest price in last 24 hours      |
+| low24hr        | string | Lowest price in last 24 hours       |
+| highestBid     | string | Highest bidding price               |
+| lowestAsk      | string | Lowest asking price                 |
 
 ---
 

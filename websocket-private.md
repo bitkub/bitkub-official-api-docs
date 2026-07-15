@@ -222,8 +222,6 @@ Received when your order status changes (created, filled, partially filled, canc
         "avg_filled_price": "1000000.00",
         "post_only": false,
         "order_created_at": 1704067200000,
-        "canceled_by": null,
-        "order_triggered_at": null,
         "order_updated_at": 1704067250000
     },
     "connection_id": "Y33pLftYyQ0CEpQ=",
