@@ -80,7 +80,9 @@ curl --location 'https://api.bitkub.com/api/status'
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /api/servertime
 
@@ -108,7 +110,9 @@ curl --location 'https://api.bitkub.com/api/servertime'
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /tradingview/history
 
@@ -151,7 +155,9 @@ curl --location 'https://api.bitkub.com/tradingview/history?symbol=BTC_THB&resol
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ## Additional
 

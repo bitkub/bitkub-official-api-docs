@@ -136,7 +136,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses?symbol=ATOM' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### POST /api/v4/crypto/addresses
 
@@ -184,7 +186,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### Transaction History
 
@@ -248,7 +252,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/deposits?limit=10' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /api/v4/crypto/withdraws
 
@@ -312,7 +318,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /api/v4/crypto/compensations
 
@@ -373,7 +381,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### Asset Operations
 
@@ -444,7 +454,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/coins?symbol=BTC' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### POST /api/v4/crypto/withdraws
 
@@ -497,7 +509,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ## Wallet Endpoints
 
@@ -551,7 +565,9 @@ curl --location 'https://api.bitkub.com/api/v4/wallet/balances' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /api/v4/wallet/assets
 
@@ -593,7 +609,9 @@ curl --location 'https://api.bitkub.com/api/v4/wallet/assets' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ## Fiat Endpoints
 
@@ -644,7 +662,9 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/accounts?page=1&limit=25' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### Transaction History
 
@@ -695,7 +715,9 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### GET /api/v4/fiat/withdraw/history
 
@@ -745,7 +767,9 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw/history?page=1&limi
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ### Fiat Operations
 
@@ -796,7 +820,9 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw' \
 #### Field Descriptions:
 N/A
 
+
 ---
+
 
 ## Additional
 

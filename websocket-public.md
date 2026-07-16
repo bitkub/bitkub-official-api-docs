@@ -42,7 +42,9 @@ N/A — Connect directly to the stream URL. No subscribe/unsubscribe events need
 
 No explicit ping required. Reconnect on disconnect.
 
+
 ---
+
 
 ## Data Streams
 
@@ -79,7 +81,9 @@ Real-time matched order data. Each trade contains buy order id and sell order id
 | amt    | float  | Amount matched                          |
 | ts     | int    | Trade timestamp (Unix seconds)          |
 
+
 ---
+
 
 ### Ticker Stream
 
@@ -132,7 +136,9 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 | open           | float  | Open price                               |
 | close          | float  | Close price                              |
 
+
 ---
+
 
 ### Live Order Book Stream
 
@@ -273,7 +279,9 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 | highestBid     | string | Highest bidding price               |
 | lowestAsk      | string | Lowest asking price                 |
 
+
 ---
+
 
 ## Reference
 
@@ -289,7 +297,9 @@ N/A — Public streams do not carry order status data.
 
 N/A — Public streams do not return structured error codes. Connection failures result in WebSocket disconnect.
 
+
 ---
+
 
 ## Complete Example
 
