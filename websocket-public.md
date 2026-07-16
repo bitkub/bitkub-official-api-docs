@@ -2,7 +2,7 @@
 
 ## Announcement
 
-* **⚠️ 2026-05-18:** `market.trade.<symbol>` stream will be permanently closed. Please migrate to Private WebSocket.
+N/A — see [README.md](./README.md#announcement).
 
 ## Change Log
 

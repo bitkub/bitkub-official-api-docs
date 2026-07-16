@@ -2,7 +2,7 @@
 
 ## Announcement
 
-N/A — V2 endpoints have been removed.
+N/A — see [README.md](./README.md#announcement).
 
 ## Change Log
 

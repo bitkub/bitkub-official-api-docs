@@ -2,7 +2,7 @@
 
 ## Announcement
 
-* Deposit history records are available for the last 90 days only for GET /api/v4/crypto/deposits. Records older than 90 days are archived.
+N/A — see [README.md](./README.md#announcement).
 
 ## Change Log
 

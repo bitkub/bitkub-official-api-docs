@@ -2,7 +2,7 @@
 
 ## Announcement
 
-N/A — V1 endpoints have been removed, except GET /api/status, GET /api/servertime, and GET /tradingview/history, which remain active (unversioned).
+N/A — see [README.md](./README.md#announcement).
 
 ## Change Log
 

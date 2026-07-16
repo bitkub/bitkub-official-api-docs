@@ -2,7 +2,7 @@
 
 ## Announcement
 
-N/A — No announcements for this API.
+N/A — see [README.md](./README.md#announcement).
 
 ## Change Log
 
