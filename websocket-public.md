@@ -148,20 +148,9 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 orderbook.\<symbol-id\>
 
 #### Description:
-Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `depthchanged`, and `global.ticker`.
+Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `depthchanged`, and `global.ticker`. bidschanged/askschanged fire when a buy/sell order is opened, closed, or cancelled (max 30 orders each); tradeschanged fires on matched trades and is also sent as initial data on connect (max 30 each); depthchanged fires when order book depth changes; ticker/global.ticker aggregate the above per-symbol or across all symbols respectively.
 
-| Event         | Trigger                                                              | Max Depth |
-| ------------- | -------------------------------------------------------------------- | --------- |
-| bidschanged   | Any buy order opened/closed/cancelled on this symbol                 | 30 orders |
-| askschanged   | Any sell order opened/closed/cancelled on this symbol                | 30 orders |
-| tradeschanged | Orders matched on this symbol (also sent as initial data on connect) | 30 each   |
-| depthchanged  | Order book depth changed on this symbol                              | —         |
-| ticker        | Any of bidschanged/askschanged/tradeschanged fires on this symbol    | —         |
-| global.ticker | Any of bidschanged/askschanged/tradeschanged fires on any symbol     | —         |
-
-#### Response:
-
-**Event: bidschanged / askschanged**
+#### Response (bidschanged / askschanged):
 ```json
 {
   "data": [
@@ -172,7 +161,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: tradeschanged**
+#### Response (tradeschanged):
 ```json
 {
   "data": [
@@ -185,7 +174,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: depthchanged**
+#### Response (depthchanged):
 ```json
 {
   "data": {
@@ -203,7 +192,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: global.ticker**
+#### Response (global.ticker):
 ```json
 {
   "data": {
