@@ -134,6 +134,9 @@ curl --location 'https://api.bitkub.com/api/v3/servertime'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### Market Data (Read-Only)
 
 ### GET /api/v3/market/symbols
@@ -406,6 +409,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/trades?sym=btc_thb&lmt=5'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ## Secure Endpoints
 
 ### User Account & Limits
@@ -539,6 +545,9 @@ curl --location 'https://api.bitkub.com/api/v3/user/coin-convert-history?p=1&lmt
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### Trading Operations
 
 ### POST /api/v3/market/place-bid
@@ -930,6 +939,8 @@ curl --location 'https://api.bitkub.com/api/v3/market/order-info?sym=btc_thb&id=
 
 #### Field Descriptions:
 N/A
+
+---
 
 ## Additional
 

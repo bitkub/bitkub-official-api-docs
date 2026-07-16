@@ -45,8 +45,6 @@ N/A — V1 used a different authentication mechanism (API key in query string). 
 | /api/status | GET | N/A — unversioned, no replacement |
 | /tradingview/history | GET | N/A — unversioned, no replacement |
 
----
-
 ### GET /api/status
 
 #### Description:
@@ -152,6 +150,8 @@ curl --location 'https://api.bitkub.com/tradingview/history?symbol=BTC_THB&resol
 
 #### Field Descriptions:
 N/A
+
+---
 
 ## Additional
 

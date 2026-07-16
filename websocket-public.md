@@ -275,6 +275,8 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 
 ---
 
+---
+
 ## Reference
 
 ### Stream Demo

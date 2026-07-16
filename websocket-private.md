@@ -327,6 +327,8 @@ Received when a trade executes (order is matched).
 
 ---
 
+---
+
 ## Reference
 
 ### Stream Demo
