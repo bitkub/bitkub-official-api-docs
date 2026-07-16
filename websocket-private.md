@@ -258,6 +258,8 @@ Received when your order status changes (created, filled, partially filled, canc
 | order_triggered_at | number \| null | Trigger timestamp for stop orders (Unix milliseconds) |
 | order_updated_at | number \| null | Last update timestamp (Unix milliseconds) |
 
+---
+
 ### Match Update Stream
 
 #### Name:
