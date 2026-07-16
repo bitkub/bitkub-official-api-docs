@@ -1,9 +1,5 @@
 # REST API V1 — Deprecated
 
-## Announcement
-
-N/A — V1 endpoints have been removed, except GET /api/status, GET /api/servertime, and GET /tradingview/history, which remain active (unversioned).
-
 ## Change Log
 
 * 2024-07-25 Deprecated and removed all V1 endpoints
@@ -80,7 +76,11 @@ curl --location 'https://api.bitkub.com/api/status'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/servertime
 
@@ -108,7 +108,11 @@ curl --location 'https://api.bitkub.com/api/servertime'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /tradingview/history
 
@@ -151,7 +155,11 @@ curl --location 'https://api.bitkub.com/tradingview/history?symbol=BTC_THB&resol
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Additional
 

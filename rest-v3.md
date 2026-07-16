@@ -1,19 +1,5 @@
 # REST API V3
 
-## Announcement
-
-* Fiat deposit and withdraw history older than 90 days is archived for [deposits](rest-v4.md#get-apiv4fiatdeposithistory) and [withdraws](rest-v4.md#get-apiv4fiatwithdrawhistory). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009940).
-* Crypto deposit and withdraw history older than 90 days is archived for [deposits](rest-v4.md#get-apiv4cryptodeposits) and [withdraws](rest-v4.md#get-apiv4cryptowithdraws). More details [here](https://support.bitkub.com/en/solutions/articles?id=KM000009898).
-* `/api/v3/market/wallet` and `/api/v3/market/balances` are deprecated. Please migrate to [GET /api/v4/wallet/balances](rest-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](rest-v4.md#get-apiv4walletassets) as replacements.
-* Fiat v3 endpoints will be deprecated on 09 June 2026.** Please migrate to [Fiat v4 endpoints](rest-v4.md) as replacement: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history)
-* remove status: "cancelled" from [my-order-info](#get-apiv3marketorder-info) after 3 days period. remove on 9 April 2026
-* The following market endpoints will be deprecated on 9 Dec 2025. Please use [v3 endpoints](#non-secure-endpoints-v3) as replacement: GET /api/market/symbols, GET /api/market/ticker, GET /api/market/trades, GET /api/market/bids, GET /api/market/asks, GET /api/market/books, GET /api/market/depth
-* Page-based pagination will be deprecated on 8 Sep 2025 for [my-order-history](#get-apiv3marketmy-order-history).
-* Order history older than 90 days is archived for [my-order-history](#get-apiv3marketmy-order-history) More details here.
-* order_id and txn_id formats of [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) may change for some symbols due to a system upgrade, See affected symbols and detail : [here](https://support.bitkub.com/en/support/solutions/articles/151000214886-announcement-trading-system-upgrade)
-* API Specifications for Crypto Endpoints, please refer to the documentation here: [Crypto Endpoints](rest-v4.md)
-* Deprecation of Order Hash for [my-open-orders](#get-apiv3marketmy-open-orders), [my-order-history](#get-apiv3marketmy-order-history), [my-order-info](#get-apiv3marketorder-info), [place-bid](#post-apiv3marketplace-bid), [place-ask](#post-apiv3marketplace-ask), [cancel-order](#post-apiv3marketcancel-order) on 28/02/2025 onwards, More details [here](https://support.bitkub.com/en/support/solutions/articles/151000205895-notice-deprecation-of-order-hash-from-public-api-on-28-02-2025-onwards)
-
 ## Change Log
 
 * 2026-06-09 Removed deprecated Fiat v3 endpoints: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history). Please migrate to [Fiat v4 endpoints](rest-v4.md).
@@ -135,7 +121,11 @@ curl --location 'https://api.bitkub.com/api/v3/servertime'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Market Data (Read-Only)
 
@@ -192,7 +182,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/symbols'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/ticker
 
@@ -236,7 +230,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/ticker?sym=btc_thb'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/bids
 
@@ -281,7 +279,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/bids?sym=btc_thb&lmt=5'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/asks
 
@@ -326,7 +328,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/asks?sym=btc_thb&lmt=5'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/depth
 
@@ -371,7 +377,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/depth?sym=btc_thb&lmt=5'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/trades
 
@@ -410,7 +420,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/trades?sym=btc_thb&lmt=5'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Secure Endpoints
 
@@ -446,7 +460,11 @@ curl --location --request POST 'https://api.bitkub.com/api/v3/user/trading-credi
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### POST /api/v3/user/limits
 
@@ -492,7 +510,11 @@ curl --location --request POST 'https://api.bitkub.com/api/v3/user/limits' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/user/coin-convert-history
 
@@ -546,7 +568,11 @@ curl --location 'https://api.bitkub.com/api/v3/user/coin-convert-history?p=1&lmt
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Trading Operations
 
@@ -603,7 +629,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-bid' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### POST /api/v3/market/place-ask
 
@@ -658,7 +688,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-ask' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### POST /api/v3/market/cancel-order
 
@@ -699,7 +733,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/cancel-order' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/my-open-orders
 
@@ -752,7 +790,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-open-orders?sym=btc_thb
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/my-order-history
 
@@ -873,7 +915,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-order-history?sym=BTC_T
 | ts | number | Order close timestamp (milliseconds) |
 | order_closed_at | number | Order closure timestamp (milliseconds, nullable) |
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v3/market/order-info
 
@@ -940,7 +986,11 @@ curl --location 'https://api.bitkub.com/api/v3/market/order-info?sym=btc_thb&id=
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Additional
 

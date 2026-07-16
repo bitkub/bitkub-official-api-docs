@@ -1,9 +1,5 @@
 # WebSocket API — Private
 
-## Announcement
-
-N/A — No announcements for this API.
-
 ## Change Log
 
 N/A — No change log available for this API.
@@ -18,7 +14,11 @@ The Private WebSocket API provides real-time trading data updates for authentica
 | ----------- | ------------- |
 | Production  | `wss://stream.bitkub.com/v3/private` |
 
+<br>
+
 ---
+
+<br>
 
 ## Getting Started
 
@@ -179,7 +179,11 @@ Send periodic ping messages to maintain the connection.
 }
 ```
 
+<br>
+
 ---
+
+<br>
 
 ## Data Streams
 
@@ -258,7 +262,11 @@ Received when your order status changes (created, filled, partially filled, canc
 | order_triggered_at | number \| null | Trigger timestamp for stop orders (Unix milliseconds) |
 | order_updated_at | number \| null | Last update timestamp (Unix milliseconds) |
 
+<br>
+
 ---
+
+<br>
 
 ### Match Update Stream
 
@@ -325,7 +333,11 @@ Received when a trade executes (order is matched).
 | net_fee_paid | string | Net fee paid from wallet |
 | txn_ts | number | Transaction timestamp (Unix seconds) |
 
+<br>
+
 ---
+
+<br>
 
 ## Reference
 
@@ -385,7 +397,11 @@ For backward compatibility, you can map new statuses to old statuses:
 | `429` | Too Many Connections - Maximum of 5 concurrent connections per API key exceeded |
 | `500` | Internal Server Error |
 
+<br>
+
 ---
+
+<br>
 
 ## Complete Example
 
@@ -540,7 +556,11 @@ function handleMatchUpdate(data) {
 connect();
 ```
 
+<br>
+
 ---
+
+<br>
 
 ## Security Best Practices
 

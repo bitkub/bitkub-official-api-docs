@@ -1,9 +1,5 @@
 # REST API V4
 
-## Announcement
-
-* Deposit history records are available for the last 90 days only for GET /api/v4/crypto/deposits. Records older than 90 days are archived.
-
 ## Change Log
 
 * 2026-04-07 Introducing Fiat V4 Endpoints
@@ -136,7 +132,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses?symbol=ATOM' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### POST /api/v4/crypto/addresses
 
@@ -184,7 +184,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Transaction History
 
@@ -248,7 +252,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/deposits?limit=10' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v4/crypto/withdraws
 
@@ -312,7 +320,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v4/crypto/compensations
 
@@ -373,7 +385,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/compensations?symbol=ATOM'
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Asset Operations
 
@@ -444,7 +460,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/coins?symbol=BTC' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### POST /api/v4/crypto/withdraws
 
@@ -497,7 +517,11 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Wallet Endpoints
 
@@ -551,7 +575,11 @@ curl --location 'https://api.bitkub.com/api/v4/wallet/balances' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v4/wallet/assets
 
@@ -593,7 +621,11 @@ curl --location 'https://api.bitkub.com/api/v4/wallet/assets' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Fiat Endpoints
 
@@ -644,7 +676,11 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/accounts?page=1&limit=25' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Transaction History
 
@@ -695,7 +731,11 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### GET /api/v4/fiat/withdraw/history
 
@@ -745,7 +785,11 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw/history?page=1&limi
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ### Fiat Operations
 
@@ -796,7 +840,11 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/withdraw' \
 #### Field Descriptions:
 N/A
 
+<br>
+
 ---
+
+<br>
 
 ## Additional
 

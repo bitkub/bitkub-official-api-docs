@@ -1,9 +1,5 @@
 # WebSocket API — Public (2023-04-19)
 
-## Announcement
-
-* **⚠️ 2026-05-18:** `market.trade.<symbol>` stream will be permanently closed. Please migrate to Private WebSocket.
-
 ## Change Log
 
 * 2026-05-18 `market.trade.<symbol>` stream will be permanently closed on 2026-05-18
@@ -42,7 +38,11 @@ N/A — Connect directly to the stream URL. No subscribe/unsubscribe events need
 
 No explicit ping required. Reconnect on disconnect.
 
+<br>
+
 ---
+
+<br>
 
 ## Data Streams
 
@@ -79,7 +79,11 @@ Real-time matched order data. Each trade contains buy order id and sell order id
 | amt    | float  | Amount matched                          |
 | ts     | int    | Trade timestamp (Unix seconds)          |
 
+<br>
+
 ---
+
+<br>
 
 ### Ticker Stream
 
@@ -132,7 +136,11 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 | open           | float  | Open price                               |
 | close          | float  | Close price                              |
 
+<br>
+
 ---
+
+<br>
 
 ### Live Order Book Stream
 
@@ -140,20 +148,9 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 orderbook.\<symbol-id\>
 
 #### Description:
-Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `depthchanged`, and `global.ticker`.
+Real-time order book data using numeric symbol ID. Emits 5 event types: `bidschanged`, `askschanged`, `tradeschanged`, `depthchanged`, and `global.ticker`. bidschanged/askschanged fire when a buy/sell order is opened, closed, or cancelled (max 30 orders each); tradeschanged fires on matched trades and is also sent as initial data on connect (max 30 each); depthchanged fires when order book depth changes; ticker/global.ticker aggregate the above per-symbol or across all symbols respectively.
 
-| Event         | Trigger                                                              | Max Depth |
-| ------------- | -------------------------------------------------------------------- | --------- |
-| bidschanged   | Any buy order opened/closed/cancelled on this symbol                 | 30 orders |
-| askschanged   | Any sell order opened/closed/cancelled on this symbol                | 30 orders |
-| tradeschanged | Orders matched on this symbol (also sent as initial data on connect) | 30 each   |
-| depthchanged  | Order book depth changed on this symbol                              | —         |
-| ticker        | Any of bidschanged/askschanged/tradeschanged fires on this symbol    | —         |
-| global.ticker | Any of bidschanged/askschanged/tradeschanged fires on any symbol     | —         |
-
-#### Response:
-
-**Event: bidschanged / askschanged**
+#### Response (bidschanged / askschanged):
 ```json
 {
   "data": [
@@ -164,7 +161,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: tradeschanged**
+#### Response (tradeschanged):
 ```json
 {
   "data": [
@@ -177,7 +174,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: depthchanged**
+#### Response (depthchanged):
 ```json
 {
   "data": {
@@ -195,7 +192,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-**Event: global.ticker**
+#### Response (global.ticker):
 ```json
 {
   "data": {
@@ -273,7 +270,11 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 | highestBid     | string | Highest bidding price               |
 | lowestAsk      | string | Lowest asking price                 |
 
+<br>
+
 ---
+
+<br>
 
 ## Reference
 
@@ -289,7 +290,11 @@ N/A — Public streams do not carry order status data.
 
 N/A — Public streams do not return structured error codes. Connection failures result in WebSocket disconnect.
 
+<br>
+
 ---
+
+<br>
 
 ## Complete Example
 
