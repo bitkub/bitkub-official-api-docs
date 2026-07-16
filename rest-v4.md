@@ -1,9 +1,5 @@
 # REST API V4
 
-## Announcement
-
-N/A — see [README.md](./README.md#announcement).
-
 ## Change Log
 
 * 2026-04-07 Introducing Fiat V4 Endpoints

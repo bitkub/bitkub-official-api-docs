@@ -1,9 +1,5 @@
 # WebSocket API — Public (2023-04-19)
 
-## Announcement
-
-N/A — see [README.md](./README.md#announcement).
-
 ## Change Log
 
 * 2026-05-18 `market.trade.<symbol>` stream will be permanently closed on 2026-05-18

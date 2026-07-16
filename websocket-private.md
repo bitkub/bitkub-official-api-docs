@@ -1,9 +1,5 @@
 # WebSocket API — Private
 
-## Announcement
-
-N/A — see [README.md](./README.md#announcement).
-
 ## Change Log
 
 N/A — No change log available for this API.

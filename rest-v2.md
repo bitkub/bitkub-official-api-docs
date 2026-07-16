@@ -1,9 +1,5 @@
 # REST API V2 — Deprecated
 
-## Announcement
-
-N/A — see [README.md](./README.md#announcement).
-
 ## Change Log
 
 * 2024-07-25 Deprecated and removed all V2 secure endpoints

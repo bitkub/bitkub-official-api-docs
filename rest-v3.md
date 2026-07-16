@@ -1,9 +1,5 @@
 # REST API V3
 
-## Announcement
-
-N/A — see [README.md](./README.md#announcement).
-
 ## Change Log
 
 * 2026-06-09 Removed deprecated Fiat v3 endpoints: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history). Please migrate to [Fiat v4 endpoints](rest-v4.md).
