@@ -188,6 +188,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/symbols'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/ticker
 
 #### Description:
@@ -229,6 +232,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/ticker?sym=btc_thb'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/bids
 
 #### Description:
@@ -271,6 +277,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/bids?sym=btc_thb&lmt=5'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/asks
 
 #### Description:
@@ -313,6 +322,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/asks?sym=btc_thb&lmt=5'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/depth
 
 #### Description:
@@ -355,6 +367,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/depth?sym=btc_thb&lmt=5'
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/trades
 
 #### Description:
@@ -424,6 +439,9 @@ curl --location --request POST 'https://api.bitkub.com/api/v3/user/trading-credi
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### POST /api/v3/user/limits
 
 #### Description:
@@ -467,6 +485,9 @@ curl --location --request POST 'https://api.bitkub.com/api/v3/user/limits' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/user/coin-convert-history
 
 #### Description:
@@ -572,6 +593,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-bid' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### POST /api/v3/market/place-ask
 
 #### Description:
@@ -624,6 +648,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-ask' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### POST /api/v3/market/cancel-order
 
 #### Description:
@@ -662,6 +689,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/cancel-order' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/my-open-orders
 
 #### Description:
@@ -712,6 +742,9 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-open-orders?sym=btc_thb
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v3/market/my-order-history
 
 #### Description:
@@ -830,6 +863,8 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-order-history?sym=BTC_T
 | amount | string | Order amount |
 | ts | number | Order close timestamp (milliseconds) |
 | order_closed_at | number | Order closure timestamp (milliseconds, nullable) |
+
+---
 
 ### GET /api/v3/market/order-info
 

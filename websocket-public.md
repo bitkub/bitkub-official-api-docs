@@ -79,6 +79,8 @@ Real-time matched order data. Each trade contains buy order id and sell order id
 | amt    | float  | Amount matched                          |
 | ts     | int    | Trade timestamp (Unix seconds)          |
 
+---
+
 ### Ticker Stream
 
 #### Name:
@@ -129,6 +131,8 @@ Real-time ticker data. Re-calculated on every order creation, cancellation, and 
 | low24hr        | float  | Lowest price in last 24 hours            |
 | open           | float  | Open price                               |
 | close          | float  | Close price                              |
+
+---
 
 ### Live Order Book Stream
 

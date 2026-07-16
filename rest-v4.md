@@ -135,6 +135,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/addresses?symbol=ATOM' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### POST /api/v4/crypto/addresses
 
 #### Description:
@@ -241,6 +244,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/deposits?limit=10' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v4/crypto/withdraws
 
 #### Description:
@@ -302,6 +308,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v4/crypto/compensations
 
 #### Description:
@@ -428,6 +437,9 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/coins?symbol=BTC' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### POST /api/v4/crypto/withdraws
 
 #### Description:
@@ -529,6 +541,9 @@ curl --location 'https://api.bitkub.com/api/v4/wallet/balances' \
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v4/wallet/assets
 
 #### Description:
@@ -664,6 +679,9 @@ curl --location 'https://api.bitkub.com/api/v4/fiat/deposit/history?page=1&limit
 
 #### Field Descriptions:
 N/A
+
+---
+
 ### GET /api/v4/fiat/withdraw/history
 
 #### Description:

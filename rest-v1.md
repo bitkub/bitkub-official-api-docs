@@ -45,6 +45,8 @@ N/A — V1 used a different authentication mechanism (API key in query string). 
 | /api/status | GET | N/A — unversioned, no replacement |
 | /tradingview/history | GET | N/A — unversioned, no replacement |
 
+---
+
 ### GET /api/status
 
 #### Description:
@@ -80,6 +82,8 @@ curl --location 'https://api.bitkub.com/api/status'
 #### Field Descriptions:
 N/A
 
+---
+
 ### GET /api/servertime
 
 #### Description:
@@ -105,6 +109,8 @@ curl --location 'https://api.bitkub.com/api/servertime'
 
 #### Field Descriptions:
 N/A
+
+---
 
 ### GET /tradingview/history
 
