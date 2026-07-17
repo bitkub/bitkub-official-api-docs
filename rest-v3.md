@@ -1002,11 +1002,10 @@ N/A — No additional reference information for V3.
 
 N/A — V3 uses numeric error codes, not HTTP status-based codes.
 
-### Numeric Errors
+### Authentication Errors
 
 | Code | Description |
 | ---- | ----------- |
-| 0 | No error |
 | 1 | Invalid JSON payload |
 | 2 | Missing X-BTK-APIKEY |
 | 3 | Invalid API key |
@@ -1015,6 +1014,11 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 6 | Missing / invalid signature |
 | 7 | Missing timestamp |
 | 8 | Invalid timestamp |
+
+### User Errors
+
+| Code | Description |
+| ---- | ----------- |
 | 9 | • Invalid user <br> • User not found <br> • Freeze withdrawal <br> • User is not allowed to perform this action within the last 24 hours <br> • User has suspicious withdraw crypto txn |
 | 10 | • Invalid parameter <br> • Invalid response: Code not found in response <br> • Validate params <br> • Default |
 | 11 | Invalid symbol |
@@ -1022,6 +1026,11 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 13 | Invalid rate |
 | 14 | Improper rate |
 | 15 | Amount too low |
+
+### Trading Errors
+
+| Code | Description |
+| ---- | ----------- |
 | 16 | Failed to get balance |
 | 17 | Wallet is empty |
 | 18 | Insufficient balance |
@@ -1033,6 +1042,11 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 24 | • Invalid order for lookup <br> • Invalid kyc level |
 | 25 | KYC level 1 is required to proceed |
 | 30 | Limit exceeds |
+
+### Withdrawal Errors
+
+| Code | Description |
+| ---- | ----------- |
 | 40 | Pending withdrawal exists |
 | 41 | Invalid currency for withdrawal |
 | 42 | Address is not in whitelist |
@@ -1043,6 +1057,12 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 49 | Bank limit exceeds |
 | 50 | • Pending withdrawal exists <br> • Cannot perform the action due to pending transactions |
 | 51 | Withdrawal is under maintenance |
+
+### System Errors
+
+| Code | Description |
+| ---- | ----------- |
+| 0 | No error |
 | 52 | Invalid permission |
 | 53 | Invalid internal address |
 | 54 | Address has been deprecated |
@@ -1052,22 +1072,6 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 58 | ~~Transaction not found~~ <br> User bank is not verified |
 | 61 | This endpoint doesn't support broker coins ('source' = broker). You can check 'source' of each symbol in /api/v3/market/symbols. |
 | 90 | Server error (please contact support) |
-
-### System Errors
-
-N/A — V3 uses numeric error codes. System errors are covered in Numeric Errors (code 90).
-
-### Business Errors
-
-N/A — V3 uses numeric error codes. Business errors are covered in Numeric Errors above.
-
-### Validation Errors
-
-N/A — V3 uses numeric error codes. Validation errors are covered in Numeric Errors above.
-
-### Authentication Errors
-
-N/A — V3 uses numeric error codes. Authentication errors (codes 2-8) are covered in Numeric Errors above.
 
 ## Rate Limits
 
