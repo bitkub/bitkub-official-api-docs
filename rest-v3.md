@@ -2,7 +2,7 @@
 
 ## Change Log
 
-* 2026-06-09 Removed deprecated Fiat v3 endpoints: [POST /api/v3/fiat/accounts](#post-apiv3fiataccounts), [POST /api/v3/fiat/withdraw](#post-apiv3fiatwithdraw), [POST /api/v3/fiat/deposit-history](#post-apiv3fiatdeposit-history), [POST /api/v3/fiat/withdraw-history](#post-apiv3fiatwithdraw-history). Please migrate to [Fiat v4 endpoints](rest-v4.md).
+* 2026-06-09 Removed deprecated Fiat v3 endpoints: POST /api/v3/fiat/accounts, POST /api/v3/fiat/withdraw, POST /api/v3/fiat/deposit-history, POST /api/v3/fiat/withdraw-history. Please migrate to [Fiat v4 endpoints](rest-v4.md).
 * 2026-05-26 Removed deprecated endpoints `/api/v3/market/wallet` and `/api/v3/market/balances`. Use [GET /api/v4/wallet/balances](rest-v4.md#get-apiv4walletbalances) and [GET /api/v4/wallet/assets](rest-v4.md#get-apiv4walletassets) instead.
 * 2026-04-07 Announce Fiat v4 API and deprecation of Fiat v3 endpoints on 09 June 2026
 * 2025-09-08 Update API [my-order-history](#get-apiv3marketmy-order-history) spec
@@ -12,10 +12,10 @@
 * 2024-07-25 Deprecated Secure Endpoint V1/V2 and Remove from the Document.
 * 2024-07-05 Update rate-limits of place-bid, place-ask, cancel-order, my-open-orders  [Rate-Limits](#rate-limits)
 * 2024-07-05 Update rate-limits which will be apply on 17 July 2024 [Rate-Limits](#rate-limits)
-* 2024-06-11 Updated API request of [POST /api/v3/crypto/internal-withdraw](#post-apiv3cryptointernal-withdraw) and edited API response of [POST /api/v3/crypto/withdraw-history](#post-apiv3cryptowithdraw-history)
+* 2024-06-11 Updated API request of POST /api/v3/crypto/internal-withdraw and edited API response of POST /api/v3/crypto/withdraw-history
 * 2024-06-11 Added new error code 58 - Transaction Not Found
 * 2024-05-16 Release: Post-Only Functionality Added to [POST /api/v3/market/place-bid](#post-apiv3marketplace-bid) and [POST /api/v3/market/place-ask](#post-apiv3marketplace-ask)
-* 2024-03-06 Edited Request field for [POST /api/v3/crypto/withdraw](#post-apiv3cryptowithdraw)
+* 2024-03-06 Edited Request field for POST /api/v3/crypto/withdraw
 * 2024-02-15 Edited Endpoint permission [Permission Table](#secure-endpoints-v3)
 
 # Table of contents
