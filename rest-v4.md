@@ -2,6 +2,7 @@
 
 ## Change Log
 
+* 2026-05-06 Added new Wallet endpoints GET /api/v4/wallet/balances and GET /api/v4/wallet/assets
 * 2026-04-07 Introducing Fiat V4 Endpoints
 * 2025-05-27 Added GET /api/v4/crypto/compensations, updated spec for crypto/withdraws and crypto/deposits
 * 2025-04-08 Added new error codes: B1016-CW Deposit is frozen, V1015-CW Coin not found
