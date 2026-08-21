@@ -1073,6 +1073,14 @@ N/A — V3 uses numeric error codes, not HTTP status-based codes.
 | 61 | This endpoint doesn't support broker coins ('source' = broker). You can check 'source' of each symbol in /api/v3/market/symbols. |
 | 90 | Server error (please contact support) |
 
+### Business Errors
+
+N/A — V3 has no Business error category.
+
+### Validation Errors
+
+N/A — V3 has no Validation error category.
+
 ## Rate Limits
 
 Exceeding the limit blocks requests for 30 seconds (HTTP 429). Limits apply per user per endpoint regardless of API version.
