@@ -171,7 +171,19 @@ N/A — V1 endpoints have been removed.
 
 N/A — V1 endpoints have been removed.
 
-### Numeric Errors
+### Authentication Errors
+
+N/A — V1 endpoints have been removed.
+
+### User Errors
+
+N/A — V1 endpoints have been removed.
+
+### Trading Errors
+
+N/A — V1 endpoints have been removed.
+
+### Withdrawal Errors
 
 N/A — V1 endpoints have been removed.
 
@@ -184,10 +196,6 @@ N/A — V1 endpoints have been removed.
 N/A — V1 endpoints have been removed.
 
 ### Validation Errors
-
-N/A — V1 endpoints have been removed.
-
-### Authentication Errors
 
 N/A — V1 endpoints have been removed.
 

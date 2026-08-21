@@ -2,6 +2,7 @@
 
 ## Change Log
 
+* 2026-05-06 Added new Wallet endpoints GET /api/v4/wallet/balances and GET /api/v4/wallet/assets
 * 2026-04-07 Introducing Fiat V4 Endpoints
 * 2025-05-27 Added GET /api/v4/crypto/compensations, updated spec for crypto/withdraws and crypto/deposits
 * 2025-04-08 Added new error codes: B1016-CW Deposit is frozen, V1015-CW Coin not found
@@ -880,9 +881,24 @@ Error response format:
 | 404 | NOT_FOUND — The requested resource doesn't exist |
 | 5XX | Internal Server Error |
 
-### Numeric Errors
+### Authentication Errors
 
-N/A — V4 uses structured string error codes (e.g. `V1007-CW`), not numeric codes.
+| Code | Status | Message |
+| ---- | ------ | ------- |
+| A1000-CW | 401 | Unauthorized Access |
+| A1001-CW | 403 | Permission denied |
+
+### User Errors
+
+N/A — V4 has no User error category.
+
+### Trading Errors
+
+N/A — V4 has no Trading error category.
+
+### Withdrawal Errors
+
+N/A — V4 has no Withdrawal error category.
 
 ### System Errors
 
@@ -931,13 +947,6 @@ N/A — V4 uses structured string error codes (e.g. `V1007-CW`), not numeric cod
 | V1011-CW | 400 | Address already exists |
 | V1012-CW | 400 | Destination address not active |
 | V1015-CW | 404 | Coin not found |
-
-### Authentication Errors
-
-| Code | Status | Message |
-| ---- | ------ | ------- |
-| A1000-CW | 401 | Unauthorized Access |
-| A1001-CW | 403 | Permission denied |
 
 ## Rate Limits
 

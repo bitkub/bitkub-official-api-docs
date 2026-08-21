@@ -210,20 +210,38 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 }
 ```
 
-#### Field Descriptions:
+#### Field Descriptions (bidschanged / askschanged):
 
-**bidschanged / askschanged — array items:**
+| Field       | Type    | Description                |
+| ----------- | ------- | -------------------------- |
+| data[0][0]  | float   | Volume                     |
+| data[0][1]  | float   | Rate (price)               |
+| data[0][2]  | float   | Amount                     |
+| data[0][3]  | int     | Reserved (always 0)        |
+| data[0][4]  | boolean | Is new order                |
+| data[0][5]  | boolean | User is owner (deprecated) |
 
-| Index | Type    | Description                |
-| ----- | ------- | -------------------------- |
-| 0     | float   | Volume                     |
-| 1     | float   | Rate (price)               |
-| 2     | float   | Amount                     |
-| 3     | int     | Reserved (always 0)        |
-| 4     | boolean | Is new order               |
-| 5     | boolean | User is owner (deprecated) |
+#### Field Descriptions (tradeschanged):
 
-**depthchanged — `bids` / `asks` entry:**
+| Field                    | Type    | Description                                   |
+| ------------------------ | ------- | ---------------------------------------------- |
+| data[0][0]               | int     | Timestamp                                      |
+| data[0][1]               | float   | Rate (price)                                   |
+| data[0][2]               | float   | Amount                                         |
+| data[0][3]               | string  | Side: BUY or SELL                              |
+| data[0][4]               | int     | Reserved (always 0)                            |
+| data[0][5]               | int     | Reserved (always 0)                            |
+| data[0][6]               | boolean | Is new order                                   |
+| data[0][7]               | boolean | User is buyer (available when authenticated)   |
+| data[0][8]               | boolean | User is seller (available when authenticated)  |
+| data[1][0] / data[2][0]  | float   | Volume                                         |
+| data[1][1] / data[2][1]  | float   | Rate (price)                                   |
+| data[1][2] / data[2][2]  | float   | Amount                                         |
+| data[1][3] / data[2][3]  | int     | Reserved (always 0)                            |
+| data[1][4] / data[2][4]  | boolean | Is new order                                   |
+| data[1][5] / data[2][5]  | boolean | User is owner (available when authenticated)   |
+
+#### Field Descriptions (depthchanged):
 
 | Field        | Type  | Description                    |
 | ------------ | ----- | ------------------------------- |
@@ -231,32 +249,7 @@ Real-time order book data using numeric symbol ID. Emits 5 event types: `bidscha
 | base_volume  | float | Amount in base currency          |
 | quote_volume | float | Amount in quote currency         |
 
-**tradeschanged — array[0] latest trades:**
-
-| Index | Type    | Description                                   |
-| ----- | ------- | --------------------------------------------- |
-| 0     | int     | Timestamp                                     |
-| 1     | float   | Rate (price)                                  |
-| 2     | float   | Amount                                        |
-| 3     | string  | Side: BUY or SELL                             |
-| 4     | int     | Reserved (always 0)                           |
-| 5     | int     | Reserved (always 0)                           |
-| 6     | boolean | Is new order                                  |
-| 7     | boolean | User is buyer (available when authenticated)  |
-| 8     | boolean | User is seller (available when authenticated) |
-
-**tradeschanged — array[1] buy orders / array[2] sell orders:**
-
-| Index | Type    | Description                                  |
-| ----- | ------- | -------------------------------------------- |
-| 0     | float   | Volume                                       |
-| 1     | float   | Rate (price)                                 |
-| 2     | float   | Amount                                       |
-| 3     | int     | Reserved (always 0)                          |
-| 4     | boolean | Is new order                                 |
-| 5     | boolean | User is owner (available when authenticated) |
-
-**global.ticker — data object:**
+#### Field Descriptions (global.ticker):
 
 | Field          | Type   | Description                         |
 | -------------- | ------ | ----------------------------------- |
