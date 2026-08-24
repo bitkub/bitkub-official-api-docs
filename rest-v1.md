@@ -2,7 +2,7 @@
 
 ## Change Log
 
-* 2024-07-25 Deprecated the V1/V2 secure endpoints and removed them from the document
+* 2024-07-25 Deprecated the V1 secure endpoints and removed them from the document
 
 ## Overview
 
