@@ -2,17 +2,17 @@
 
 ## Change Log
 
-* 2024-07-25 Deprecated and removed all V1 endpoints
+* 2024-07-25 Deprecated the V1/V2 secure endpoints and removed them from the document
 
 ## Overview
 
-**⚠️ All V1 endpoints have been removed. This document is for historical reference only.**
+**⚠️ The V1 `/api/market/*` endpoints have been removed. The three unversioned endpoints documented below — `/api/status`, `/api/servertime` and `/tradingview/history` — remain available, but for enhanced security and performance we strongly recommend using the [V3 non-secure endpoints](rest-v3.md#non-secure-endpoints-v3).**
 
-V1 was the original Bitkub REST API. All endpoints were deprecated in 2024 and fully removed. Please use V3 or V4 equivalents.
+V1 was the original Bitkub REST API. Its `/api/market/*` endpoints were deprecated and removed; please use the V3 or V4 equivalents listed below.
 
 ## Base URL
 
-N/A — V1 endpoints have been removed.
+`https://api.bitkub.com` — for the three unversioned endpoints that remain available. The removed V1 `/api/market/*` endpoints have no base URL.
 
 ## Authentication
 
@@ -87,7 +87,7 @@ N/A
 #### Description:
 Get server timestamp.
 
-**⚠️ DEPRECATED:** Returns seconds. Use GET /api/v3/servertime instead (returns milliseconds).
+**⚠️ DEPRECATED:** Cannot be used with secure endpoint V3 signing. Use [GET /api/v3/servertime](rest-v3.md#get-apiv3servertime) instead.
 
 
 #### Required Permission:
@@ -201,4 +201,4 @@ N/A — V1 endpoints have been removed.
 
 ## Rate Limits
 
-N/A — V1 endpoints have been removed.
+The removed V1 `/api/market/*` endpoints have no rate limits. Limits for the three unversioned endpoints that remain available are listed in [rest-v3.md](rest-v3.md#rate-limits).

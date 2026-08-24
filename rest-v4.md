@@ -59,9 +59,15 @@ All secure endpoints require the following headers:
 
 | Header | Description |
 | ------ | ----------- |
+| `Accept` | `application/json` |
+| `Content-Type` | `application/json` |
 | `X-BTK-APIKEY` | Your API key |
 | `X-BTK-TIMESTAMP` | Timestamp in milliseconds (from GET /api/v3/servertime) |
 | `X-BTK-SIGN` | HMAC SHA-256 signature in hex format |
+
+GET requests require parameters as a **query string** in the URL (e.g. `?symbol=ATOM&limit=10`). POST requests require a JSON payload (`application/json`) — the payload is always JSON.
+
+You must get a new timestamp in milliseconds from [GET /api/v3/servertime](rest-v3.md#get-apiv3servertime).
 
 **Signature format:** `{timestamp}{METHOD}{/api/path}{?query or body}`
 
@@ -297,7 +303,7 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
   "data": {
     "page": 1,
     "total_page": 1,
-    "total_item": 1,
+    "total_item": 2,
     "items": [
       {
         "txn_id": "RDNTWD0000804050",
@@ -310,6 +316,20 @@ curl --location 'https://api.bitkub.com/api/v4/crypto/withdraws?limit=10' \
         "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
         "memo": "",
         "status": "processing",
+        "created_at": "2024-09-01T10:02:43.211Z",
+        "completed_at": "2024-09-01T10:02:45.031Z"
+      },
+      {
+        "txn_id": "BTCWD1321312683",
+        "external_ref": "XX_1111111112",
+        "hash": "0x8891b79c79f0842c9a654db47745fe0291fba222b290d22cabc93f8ae4490303",
+        "symbol": "BTC",
+        "network": "BTC",
+        "amount": "0.10000000",
+        "fee": "0.0025",
+        "address": "0xDaCd17d1E77604aaFB6e47F5Ffa1F7E35F83fDa7",
+        "memo": "",
+        "status": "complete",
         "created_at": "2024-09-01T10:02:43.211Z",
         "completed_at": "2024-09-01T10:02:45.031Z"
       }
@@ -688,7 +708,7 @@ N/A
 ### GET /api/v4/fiat/deposit/history
 
 #### Description:
-List fiat deposit transaction history.
+List fiat deposit transaction history. Only deposit records within the last 90 days will be returned.
 
 
 #### Required Permission:
