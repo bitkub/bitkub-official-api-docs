@@ -77,9 +77,15 @@ All secure endpoints require the following headers:
 
 | Header | Description |
 | ------ | ----------- |
+| `Accept` | `application/json` |
+| `Content-Type` | `application/json` |
 | `X-BTK-APIKEY` | Your API key |
 | `X-BTK-TIMESTAMP` | Timestamp in milliseconds (from GET /api/v3/servertime) |
 | `X-BTK-SIGN` | HMAC SHA-256 signature in hex format |
+
+GET requests require parameters as a **query string** in the URL (e.g. `?sym=THB_BTC&lmt=10`). POST requests require a JSON payload (`application/json`) — the payload is always JSON.
+
+You must get a new timestamp in milliseconds from [GET /api/v3/servertime](#get-apiv3servertime).
 
 **Signature format:** `{timestamp}{METHOD}{/api/path}{?query or body}`
 
@@ -375,7 +381,13 @@ curl --location 'https://api.bitkub.com/api/v3/market/depth?sym=btc_thb&lmt=5'
 ```
 
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ---------- | ----- | ----------- |
+| asks[n][0] | float | Price |
+| asks[n][1] | float | Size |
+| bids[n][0] | float | Price |
+| bids[n][1] | float | Size |
 
 <br>
 
@@ -508,7 +520,22 @@ curl --location --request POST 'https://api.bitkub.com/api/v3/user/limits' \
 ```
 
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| limits | object | Limitations by KYC level |
+| limits.crypto.deposit | number | BTC value equivalent |
+| limits.crypto.withdraw | number | BTC value equivalent |
+| limits.fiat.deposit | number | THB value equivalent |
+| limits.fiat.withdraw | number | THB value equivalent |
+| usage | object | Today's usage |
+| usage.crypto.deposit | number | BTC value equivalent |
+| usage.crypto.withdraw | number | BTC value equivalent |
+| usage.crypto.deposit_thb_equivalent | number | THB value equivalent |
+| usage.crypto.withdraw_thb_equivalent | number | THB value equivalent |
+| usage.fiat.deposit | number | THB value equivalent |
+| usage.fiat.withdraw | number | THB value equivalent |
+| rate | number | Current THB rate used to calculate |
 
 <br>
 
@@ -532,7 +559,7 @@ N/A
 | lmt | int | false | Limit (default = 100) |
 | sort | int | false | Sort: 1 or -1 (default = 1) |
 | status | string | false | Filter: success, fail, all (default = all) |
-| sym | string | false | Filter by symbol |
+| sym | string | false | Filter by symbol (e.g. KUB) |
 | start | int | false | Start timestamp |
 | end | int | false | End timestamp |
 
@@ -627,7 +654,18 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-bid' \
 ```
 
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | string | Order ID |
+| typ | string | Order type |
+| amt | number | Spending amount |
+| rat | number | Rate |
+| fee | number | Fee |
+| cre | number | Fee credit used |
+| rec | number | Amount to receive |
+| ts | string | Timestamp |
+| ci | string | Input ID for reference |
 
 <br>
 
@@ -686,7 +724,18 @@ curl --location 'https://api.bitkub.com/api/v3/market/place-ask' \
 ```
 
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | string | Order ID |
+| typ | string | Order type |
+| amt | number | Selling amount |
+| rat | number | Rate |
+| fee | number | Fee |
+| cre | number | Fee credit used |
+| rec | number | Amount to receive |
+| ts | string | Timestamp |
+| ci | string | Input ID for reference |
 
 <br>
 
@@ -770,6 +819,20 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-open-orders?sym=btc_thb
   "error": 0,
   "result": [
     {
+      "id": "2",
+      "side": "sell",
+      "type": "limit",
+      "rate": "15000",
+      "fee": "35.01",
+      "credit": "35.01",
+      "amount": "0.93333334",
+      "receive": "14000",
+      "parent_id": "1",
+      "super_id": "1",
+      "client_id": "client_id",
+      "ts": 1702543272000
+    },
+    {
       "id": "278465822",
       "side": "buy",
       "type": "limit",
@@ -787,8 +850,24 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-open-orders?sym=btc_thb
 }
 ```
 
+The first entry is a sell order and the second a buy order — note that `amount` and `receive` swap meaning between them.
+
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | string | Order ID |
+| side | string | Order side: buy or sell |
+| type | string | Order type |
+| rate | string | Rate |
+| fee | string | Fee |
+| credit | string | Credit used |
+| amount | string | On a buy order the THB amount; on a sell order the crypto quantity |
+| receive | string | On a buy order the crypto quantity; on a sell order the THB amount |
+| parent_id | string | Parent order ID |
+| super_id | string | Super parent order ID |
+| client_id | string | Client ID |
+| ts | number | Timestamp (milliseconds) |
 
 <br>
 
@@ -911,9 +990,57 @@ curl --location 'https://api.bitkub.com/api/v3/market/my-order-history?sym=BTC_T
 | rate | string | Order price/rate |
 | fee | string | Fee paid in THB |
 | credit | string | Credit used for fee payment |
-| amount | string | Order amount |
+| amount | string | Order amount — quote quantity for buy orders, base quantity for sell orders |
 | ts | number | Order close timestamp (milliseconds) |
 | order_closed_at | number | Order closure timestamp (milliseconds, nullable) |
+| page | number | Current page number |
+| last | number | Total number of pages |
+| next | number | Next page number (nullable) |
+| prev | number | Previous page number (nullable) |
+| cursor | string | Base64 encoded cursor for the next page |
+| has_next | boolean | Whether there are more records |
+
+#### Cursor Encoding Details:
+
+The `cursor` parameter uses Base64 encoding of a JSON object containing pagination state.
+
+**Cursor structure:**
+```json
+{
+  "id": "ORDER_ID_STRING",
+  "ts": "TIMESTAMP_DECIMAL"
+}
+```
+
+**Encoding process:**
+1. Create a JSON object with `id` (order ID) and `ts` (timestamp as decimal)
+2. Convert the JSON to a string
+3. Encode the string using Base64 standard encoding
+
+**Example:**
+```json
+// Original cursor object
+{
+  "id": "ORD123456789",
+  "ts": "1672531200"
+}
+
+// JSON string
+'{"id":"ORD123456789","ts":"1672531200"}'
+
+// Base64 encoded
+"eyJpZCI6Ik9SRDEyMzQ1Njc4OSIsInRzIjoiMTY3MjUzMTIwMCJ9"
+```
+
+**Custom cursor creation:**
+1. Take the last item's `order_id` and `ts` from the previous response
+2. Create the JSON: `{"id":"LAST_ORDER_ID","ts":"LAST_TIMESTAMP"}`
+3. Base64 encode the JSON string
+4. Use the encoded string as the `cursor` parameter
+
+**Empty cursor:**
+- Default empty cursor: `e30=` (Base64 of `{}`)
+- Used when no cursor is provided in keyset pagination
 
 <br>
 
@@ -984,7 +1111,25 @@ curl --location 'https://api.bitkub.com/api/v3/market/order-info?sym=btc_thb&id=
 ```
 
 #### Field Descriptions:
-N/A
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | string | Order ID |
+| first | string | First order ID |
+| parent | string | Parent order ID |
+| last | string | Last order ID |
+| client_id | string | Your ID for reference |
+| post_only | boolean | Post-only flag: true or false |
+| amount | string | Order amount — on a buy order the THB amount; on a sell order the crypto amount |
+| rate | number | Order rate |
+| fee | number | Order fee |
+| credit | number | Order fee credit used |
+| filled | number | Filled amount |
+| total | number | Total amount |
+| status | string | Order status: filled, unfilled or cancelled |
+| partial_filled | boolean | True when the order has been partially filled; false when not filled or fully filled |
+| remaining | number | Remaining amount to be executed |
+| history | array | Per-fill history entries for this order |
 
 <br>
 

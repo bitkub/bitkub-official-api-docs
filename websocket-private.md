@@ -24,7 +24,7 @@ The Private WebSocket API provides real-time trading data updates for authentica
 
 ### Connection Requirements
 
-- **User-Agent header** is required for server-to-server connections: `User-Agent: nodejs-websocket-client/1.0.0`
+- **User-Agent header** is required for server-to-server connections, in the format `User-Agent: <runtime>-<client-type>/<version>` (e.g. `nodejs-websocket-client/1.0.0`, `python-websocket-client/2.3.1`, `java-websocket-client/1.5.0`)
 - **Ping Frequency**: Send ping at least every 5 minutes to keep connection alive (recommended: 4 minutes)
 - **Maximum Connection Duration**: Automatically terminated after 2 hours
 - **Maximum Concurrent Connections**: 5 per API key
