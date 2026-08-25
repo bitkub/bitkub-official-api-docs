@@ -29,8 +29,8 @@ N/A — V1 used a different authentication mechanism (API key in query string). 
 | /api/market/asks | GET | GET /api/v3/market/asks |
 | /api/market/books | GET | GET /api/v3/market/depth |
 | /api/market/depth | GET | GET /api/v3/market/depth |
-| /api/market/wallet | POST | POST /api/v3/market/wallet |
-| /api/market/balances | POST | POST /api/v3/market/balances |
+| /api/market/wallet | POST | GET /api/v4/wallet/assets |
+| /api/market/balances | POST | GET /api/v4/wallet/balances |
 | /api/market/place-bid | POST | POST /api/v3/market/place-bid |
 | /api/market/place-ask | POST | POST /api/v3/market/place-ask |
 | /api/market/cancel-order | POST | POST /api/v3/market/cancel-order |
