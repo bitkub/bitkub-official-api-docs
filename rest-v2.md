@@ -22,8 +22,8 @@ N/A — V2 passed API key as a query parameter: `?api_key=xxx`. V3+ uses header-
 
 | Endpoint | Method | Replacement |
 | -------- | ------ | ----------- |
-| /api/v2/market/wallet | POST | POST /api/v3/market/wallet |
-| /api/v2/market/balances | POST | POST /api/v3/market/balances |
+| /api/v2/market/wallet | POST | GET /api/v4/wallet/assets |
+| /api/v2/market/balances | POST | GET /api/v4/wallet/balances |
 | /api/v2/market/place-bid | POST | POST /api/v3/market/place-bid |
 | /api/v2/market/place-ask | POST | POST /api/v3/market/place-ask |
 | /api/v2/market/cancel-order | POST | POST /api/v3/market/cancel-order |
