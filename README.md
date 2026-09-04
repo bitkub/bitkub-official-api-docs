@@ -5,8 +5,8 @@
 ### 📚 The one and only official documentation for Bitkub's trading APIs 📚
 
 [![Official](https://img.shields.io/badge/Bitkub-OFFICIAL-1AB759.svg?style=for-the-badge)](https://github.com/bitkub/bitkub-official-api-docs)
-[![REST API](https://img.shields.io/badge/REST-V3%20%26%20V4-0A66C2.svg?style=for-the-badge)](./restful-api-v4.md)
-[![WebSocket](https://img.shields.io/badge/WebSocket-Realtime-8B5CF6.svg?style=for-the-badge)](./websocket-api.md)
+[![REST API](https://img.shields.io/badge/REST-V3%20%26%20V4-0A66C2.svg?style=for-the-badge)](./rest-v4.md)
+[![WebSocket](https://img.shields.io/badge/WebSocket-Realtime-8B5CF6.svg?style=for-the-badge)](./websocket-public.md)
 
 **✅ Officially supported & maintained by Bitkub's own development team**
 
@@ -72,14 +72,15 @@
 
 </div>
 
-> 🔒 **READ-ONLY BY DESIGN.** This server **never** places orders, cancels orders, generates addresses, or initiates withdrawals. Only data-retrieval and observation endpoints are exposed — even a key with full trading permissions cannot move money or submit orders.
+> ⚠️ **THIS SERVER CAN MOVE REAL MONEY.** Alongside read-only market-data and account tools, it exposes **trading, withdrawal, and deposit-address** endpoints. Every one of them sits behind a **two-step confirmation gate** — the first call only previews the exact request and returns a one-time token; nothing reaches Bitkub until a second call replays that token. Set `BITKUB_ENABLE_WRITE=false` to switch the whole write group off, and scope your API key to only the permissions you actually want reachable.
 
 ### ✨ What you get
 
 | 🎯 | Capability |
 | -- | ---------- |
-| 📊 | **9 public REST tools** — status, symbols, ticker, bids/asks, depth, trades, TradingView history |
-| 🔐 | **12 secure REST tools** — wallet balances, crypto/fiat deposits & withdraws, open orders, order history, user limits |
+| 📊 | **9 public REST tools** — status, servertime, symbols, ticker, bids/asks, depth, trades, TradingView history |
+| 🔐 | **12 secure REST tools** (read-only) — wallet balances, crypto/fiat deposits & withdraws history, addresses, open orders, order history, user limits & trading credits |
+| ⚠️ | **6 write tools** (gated) — place bid/ask, cancel order, generate crypto address, crypto withdraw, fiat withdraw |
 | 📡 | **3 WebSocket snapshot tools** — public ticker + private order/match updates |
 | 🧠 | **Ask in plain language** — *"What's in my Bitkub wallet?"*, *"Show me the BTC order book"* |
 
@@ -98,6 +99,16 @@ claude mcp add bitkub-trading-mcp-official \
   -- npx -y bitkub-trading-mcp-official
 ```
 
-> 💡 Generate a key at **<https://www.bitkub.com/en/api-management>** — enable **read-only** permissions only.
+### 🛡️ Read-only mode (recommended if you only want an AI-readable view)
 
-📖 Full docs, manual config & tool reference: **<https://github.com/bitkub/bitkub-trading-mcp-official>**
+```bash
+claude mcp add bitkub-trading-mcp-official \
+  -e BITKUB_API_KEY=your_real_key_here \
+  -e BITKUB_API_SECRET=your_real_secret_here \
+  -e BITKUB_ENABLE_WRITE=false \
+  -- npx -y bitkub-trading-mcp-official
+```
+
+> 💡 Generate a key at **<https://www.bitkub.com/en/api-management>**. Your key's permissions are the real boundary: leave **Trade**, **Deposit**, and **Withdraw** unchecked for a read-only key; grant only the scopes you intend to use otherwise. Crypto withdrawals additionally require the destination to be on your **trusted address** list.
+
+📖 Full docs, write-tool reference & the confirmation-gate spec: **<https://github.com/bitkub/bitkub-trading-mcp-official>**
