@@ -48,6 +48,7 @@
 * Deposit history records are available for the last 90 days only for GET /api/v4/crypto/deposits. Records older than 90 days are archived.
 * **⚠️ 2026-05-18:** `market.trade.<symbol>` stream will be permanently closed. Please migrate to Private WebSocket.
 
+<!-- HIDDEN until the launch blog post is published — restore by deleting this comment wrapper.
 
 ---
 <br>
@@ -112,3 +113,5 @@ claude mcp add bitkub-trading-mcp-official \
 > 💡 Generate a key at **<https://www.bitkub.com/en/api-management>**. Your key's permissions are the real boundary: leave **Trade**, **Deposit**, and **Withdraw** unchecked for a read-only key; grant only the scopes you intend to use otherwise. Crypto withdrawals additionally require the destination to be on your **trusted address** list.
 
 📖 Full docs, write-tool reference & the confirmation-gate spec: **<https://github.com/bitkub/bitkub-trading-mcp-official>**
+
+-->
