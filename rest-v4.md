@@ -2,6 +2,7 @@
 
 ## Change Log
 
+* 2026-10-21 Added new Market endpoints GET /api/v4/market/open-orders, GET /api/v4/market/orders and GET /api/v4/market/matched
 * 2026-05-06 Added new Wallet endpoints GET /api/v4/wallet/balances and GET /api/v4/wallet/assets
 * 2026-04-07 Introducing Fiat V4 Endpoints
 * 2025-05-27 Added GET /api/v4/crypto/compensations, updated spec for crypto/withdraws and crypto/deposits
@@ -20,7 +21,7 @@
 
 ## Overview
 
-V4 is the current REST API for crypto and fiat deposit/withdrawal operations. It uses the same HMAC authentication as V3 but returns structured error codes (e.g. `V1007-CW`) instead of numeric codes.
+V4 is the current REST API for crypto and fiat deposit/withdrawal operations, wallet balances, and order/trade history. It uses the same HMAC authentication as V3 but returns structured error codes (e.g. `V1007-CW`) instead of numeric codes.
 
 ## Base URL
 
@@ -45,6 +46,12 @@ All secure endpoints require [authentication](#authentication).
 | --------------------------------------------------------| ------ |
 | [/api/v4/wallet/balances](#get-apiv4walletbalances)     | GET    |
 | [/api/v4/wallet/assets](#get-apiv4walletassets)         | GET    |
+
+| Market V4 Endpoints                                         | Method |
+| ----------------------------------------------------------- | ------ |
+| [/api/v4/market/open-orders](#get-apiv4marketopen-orders)   | GET    |
+| [/api/v4/market/orders](#get-apiv4marketorders)             | GET    |
+| [/api/v4/market/matched](#get-apiv4marketmatched)           | GET    |
 
 | Fiat V4 Endpoints                                              | Method | Deposit | Withdraw | Trade |
 | ----------------------------------------------------------------| ------ | ------- | -------- | ----- |
@@ -867,6 +874,346 @@ N/A
 
 <br>
 
+## Market Endpoints
+
+All three market endpoints use cursor-based pagination. When `has_next` is `true`, pass the returned `cursor.id` as `next_id` and `cursor.ts` as `next_ts` to fetch the next page. `next_id` and `next_ts` must always be sent together.
+
+### GET /api/v4/market/open-orders
+
+#### Description:
+List open orders (pending or partially filled) for the authenticated user, with optional filters and cursor-based pagination.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| symbol | string | false | Trading pair symbol (e.g. BTC_THB) |
+| order_id | string | false | Filter by order ID. Requires `symbol` |
+| side | string | false | Order side: buy, sell |
+| type | string | false | Order type: limit, market, stoplimit |
+| contain_client_id | string | false | Return only orders whose `client_id` contains this value |
+| limit | int | false | Number of results (default = 10, min = 1, max = 1000) |
+| next_id | string | false | Cursor ID for the next page (alphanumeric). Must be used with `next_ts` |
+| next_ts | string | false | Cursor timestamp for the next page. Must be used with `next_id` |
+| start_time | int | false | Start time (Unix timestamp in milliseconds) |
+| end_time | int | false | End time (Unix timestamp in milliseconds) |
+
+
+#### Validation Rules:
+- `symbol` is required when `order_id` is provided
+- `next_id` and `next_ts` must be provided together
+- `next_id` must be alphanumeric
+- `limit` must be between 1 and 1000
+- `start_time` and `end_time` must be positive integers (milliseconds) if provided
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/v4/market/open-orders?symbol=BTC_THB&limit=10' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
+--header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
+```
+
+#### Response:
+```json
+{
+  "code": "0",
+  "message": "success",
+  "data": {
+    "limit": 10,
+    "has_next": true,
+    "cursor": {
+      "id": "68a82566596d482000f4e4ed",
+      "ts": 1755850086843
+    },
+    "items": [
+      {
+        "order_id": "68a82566596d482000f4e4ed",
+        "client_id": "my-order-001",
+        "symbol": "BTC_THB",
+        "side": "buy",
+        "type": "limit",
+        "status": "partial_filled",
+        "partial_filled": true,
+        "price": "2500000",
+        "order_currency": "THB",
+        "order_amount": "1000",
+        "executed_currency": "THB",
+        "executed_amount": "400",
+        "received_currency": "BTC",
+        "received_amount": "0.0001596",
+        "total_fee": "1",
+        "credit_used": "0",
+        "fee_currency": "THB",
+        "net_fee_paid": "1",
+        "avg_filled_price": "2500000",
+        "post_only": false,
+        "order_created_at": 1755850086843,
+        "order_updated_at": 1755850090120,
+        "quote_amount": "1000"
+      }
+    ]
+  }
+}
+```
+
+#### Field Descriptions:
+See [Order Item Fields](#order-item-fields) and [Pagination Fields](#pagination-fields).
+
+<br>
+
+---
+
+<br>
+
+### GET /api/v4/market/orders
+
+#### Description:
+List order history (all statuses) for the authenticated user, with optional filters and cursor-based pagination.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| symbol | string | false | Trading pair symbol (e.g. BTC_THB) |
+| order_id | string | false | Filter by order ID. Requires `symbol` |
+| side | string | false | Order side: buy, sell |
+| type | string | false | Order type: limit, market, stoplimit |
+| status | string | false | Order status: new, open, rejected, partial_filled, partial_filled_canceled, filled, canceled, untriggered |
+| limit | int | false | Number of results (default = 10, min = 1, max = 1000) |
+| next_id | string | false | Cursor ID for the next page (alphanumeric). Must be used with `next_ts` |
+| next_ts | string | false | Cursor timestamp for the next page. Must be used with `next_id` |
+| start_time | int | false | Start time (Unix timestamp in milliseconds) |
+| end_time | int | false | End time (Unix timestamp in milliseconds) |
+
+
+#### Validation Rules:
+- `symbol` is required when `order_id` is provided
+- `next_id` and `next_ts` must be provided together
+- `next_id` must be alphanumeric
+- `limit` must be between 1 and 1000
+- `start_time` and `end_time` must be positive integers (milliseconds) if provided
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/v4/market/orders?symbol=BTC_THB&status=filled&limit=10' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
+--header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
+```
+
+#### Response:
+```json
+{
+  "code": "0",
+  "message": "success",
+  "data": {
+    "limit": 10,
+    "has_next": false,
+    "cursor": {
+      "id": "",
+      "ts": 0
+    },
+    "items": [
+      {
+        "order_id": "68a82566596d482000f4e4ee",
+        "client_id": "my-order-002",
+        "symbol": "BTC_THB",
+        "side": "sell",
+        "type": "limit",
+        "status": "filled",
+        "partial_filled": false,
+        "price": "2500000",
+        "order_currency": "BTC",
+        "order_amount": "0.001",
+        "executed_currency": "BTC",
+        "executed_amount": "0.001",
+        "received_currency": "THB",
+        "received_amount": "2493.75",
+        "total_fee": "6.25",
+        "credit_used": "0",
+        "fee_currency": "THB",
+        "net_fee_paid": "6.25",
+        "avg_filled_price": "2500000",
+        "post_only": false,
+        "order_created_at": 1755850086843,
+        "order_updated_at": 1755850087001,
+        "base_amount": "0.001",
+        "quote_amount": "2500"
+      }
+    ]
+  }
+}
+```
+
+#### Field Descriptions:
+
+##### Order Item Fields
+
+Shared by [GET /api/v4/market/open-orders](#get-apiv4marketopen-orders) and [GET /api/v4/market/orders](#get-apiv4marketorders). Optional fields are omitted from the response when they have no value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| order_id | string | Order ID |
+| client_id | string | Client-provided order ID (omitted if not set) |
+| symbol | string | Trading pair symbol (e.g. BTC_THB) |
+| side | string | Order side: buy or sell |
+| type | string | Order type: limit, market or stoplimit |
+| status | string | Order status: new, open, rejected, partial_filled, partial_filled_canceled, filled, canceled, untriggered |
+| partial_filled | boolean | Whether the order has been partially filled |
+| price | string | Limit price (omitted for market orders) |
+| stop_price | string | Stop trigger price (stoplimit orders only) |
+| order_currency | string | Currency of `order_amount` (quote currency for buy, base currency for sell) |
+| order_amount | string | Amount placed on the order |
+| executed_currency | string | Currency of `executed_amount` |
+| executed_amount | string | Amount executed so far |
+| received_currency | string | Currency of `received_amount` |
+| received_amount | string | Amount received so far |
+| total_fee | string | Total fee charged |
+| credit_used | string | Trading credit used to pay the fee |
+| fee_currency | string | Currency the fee is charged in |
+| net_fee_paid | string | Fee paid after trading credit (`total_fee` - `credit_used`) |
+| avg_filled_price | string | Average filled price |
+| post_only | boolean | Whether the order is post-only |
+| canceled_by | string | Who canceled the order (omitted if not canceled) |
+| order_created_at | number | Order creation time (milliseconds) |
+| order_triggered_at | number | Stop order trigger time (milliseconds, stoplimit orders only) |
+| order_updated_at | number | Last update time (milliseconds) |
+| base_amount | string | Order amount in base currency (omitted if not applicable) |
+| condition | string | Stop trigger condition (stoplimit orders only) |
+| quote_amount | string | Order amount in quote currency |
+
+##### Pagination Fields
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| limit | number | Page size used for this request |
+| has_next | boolean | Whether more records are available |
+| cursor.id | string | Pass as `next_id` to fetch the next page |
+| cursor.ts | number | Pass as `next_ts` to fetch the next page |
+| items | array | List of records |
+
+<br>
+
+---
+
+<br>
+
+### GET /api/v4/market/matched
+
+#### Description:
+List executed trades (matches) for the authenticated user, with optional filters and cursor-based pagination.
+
+
+#### Required Permission:
+N/A
+#### Query Params:
+
+| Key | Type | Required | Description |
+| --- | ---- | -------- | ----------- |
+| symbol | string | false | Trading pair symbol (e.g. BTC_THB) |
+| order_id | string | false | Filter by order ID. Requires `symbol` |
+| txn_id | string | false | Filter by transaction ID (alphanumeric) |
+| side | string | false | Order side: buy, sell |
+| type | string | false | Order type: limit, market, stoplimit |
+| limit | int | false | Number of results (default = 20, min = 1, max = 100) |
+| next_id | string | false | Cursor ID for the next page (alphanumeric). Must be used with `next_ts` |
+| next_ts | string | false | Cursor timestamp for the next page. Must be used with `next_id` |
+| start_time | int | false | Start time (Unix timestamp in milliseconds) |
+| end_time | int | false | End time (Unix timestamp in milliseconds) |
+| archive | boolean | false | Query archived records (default = false) |
+
+
+#### Validation Rules:
+- `symbol` is required when `order_id` is provided
+- `next_id` and `next_ts` must be provided together
+- `next_id` and `txn_id` must be alphanumeric
+- `limit` must be between 1 and 100
+- `start_time` and `end_time` must be positive integers (milliseconds) if provided
+- `start_time` must be less than `end_time` if both are provided
+#### Example cURL:
+```bash
+curl --location 'https://api.bitkub.com/api/v4/market/matched?symbol=BTC_THB&limit=20' \
+--header 'X-BTK-TIMESTAMP: 1699381086593' \
+--header 'X-BTK-APIKEY: {YOUR_API_KEY}' \
+--header 'X-BTK-SIGN: {YOUR_SIGNATURE}'
+```
+
+#### Response:
+```json
+{
+  "code": "0",
+  "message": "success",
+  "data": {
+    "limit": 20,
+    "has_next": true,
+    "cursor": {
+      "id": "68a82566596d482000f4e4f0",
+      "ts": 1755850087001
+    },
+    "items": [
+      {
+        "order_id": "68a82566596d482000f4e4ee",
+        "txn_id": "68a82566596d482000f4e4f0",
+        "client_id": "my-order-002",
+        "symbol": "BTC_THB",
+        "type": "limit",
+        "status": "filled",
+        "side": "sell",
+        "is_maker": true,
+        "price": "2500000",
+        "executed_currency": "BTC",
+        "executed_amount": "0.001",
+        "received_currency": "THB",
+        "received_amount": "2493.75",
+        "fee_rate": "0.0025",
+        "total_fee": "6.25",
+        "credit_used": "0",
+        "fee_currency": "THB",
+        "net_fee_paid": "6.25",
+        "txn_ts": 1755850087001
+      }
+    ]
+  }
+}
+```
+
+#### Field Descriptions:
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| order_id | string | Order ID |
+| txn_id | string | Transaction (match) ID |
+| client_id | string | Client-provided order ID (omitted if not set) |
+| symbol | string | Trading pair symbol (e.g. BTC_THB) |
+| type | string | Order type: limit, market or stoplimit |
+| status | string | Order status |
+| side | string | Order side: buy or sell |
+| is_maker | boolean | Whether this side of the trade was the maker |
+| price | string | Execution price |
+| executed_currency | string | Currency of `executed_amount` |
+| executed_amount | string | Amount executed in this trade |
+| received_currency | string | Currency of `received_amount` |
+| received_amount | string | Amount received from this trade |
+| fee_rate | string | Fee rate applied |
+| total_fee | string | Total fee charged |
+| credit_used | string | Trading credit used to pay the fee |
+| fee_currency | string | Currency the fee is charged in |
+| net_fee_paid | string | Fee paid after trading credit (`total_fee` - `credit_used`) |
+| txn_ts | number | Trade execution time (milliseconds) |
+
+See [Pagination Fields](#pagination-fields) for `limit`, `has_next` and `cursor`.
+
+<br>
+
+---
+
+<br>
+
 ## Additional
 
 For the use of coins and networks, please use coin or network symbol for any API request. Please refer to the link below for available coins and networks: https://www.bitkub.com/fee/cryptocurrency
@@ -948,6 +1295,36 @@ N/A — V4 has no Withdrawal error category.
 | B1015-CW | 400 | Request is processing |
 | B1016-CW | 400 | Deposit is frozen |
 | B1017-CW | 400 | The amount is higher than the maximum withdrawal amount |
+
+### Market Errors
+
+Market endpoints (`/api/v4/market/*`) return error codes with the `-MK` suffix.
+
+| Code | Status | Message |
+| ---- | ------ | ------- |
+| A1000-MK | 401 | Unauthorized |
+| A1001-MK | 403 | IP address not allowed |
+| A1002-MK | 401 | API key is missing |
+| A1003-MK | 401 | Invalid API key |
+| A1004-MK | 401 | Signature is missing |
+| A1005-MK | 401 | Invalid signature |
+| A1006-MK | 401 | Invalid timestamp |
+| A1007-MK | 401 | Timestamp expired |
+| A1008-MK | 429 | Rate limit exceeded |
+| B1000-MK | 404 | Order not found |
+| V1000-MK | 400 | Invalid parameter |
+| V1001-MK | 404 | Symbol not found |
+| V1002-MK | 400 | next_id and next_ts must be provided together |
+| V1003-MK | 400 | symbol is required when order_id is provided |
+| V1004-MK | 400 | start_time must be less than end_time |
+| V1006-MK | 400 | invalid side — must be buy or sell |
+| V1008-MK | 400 | invalid order type |
+| V1010-MK | 400 | invalid status value |
+| V1012-MK | 400 | limit must be at least 1 |
+| V1013-MK | 400 | limit exceeds maximum allowed value |
+| V1015-MK | 400 | start_time must be greater than zero |
+| V1017-MK | 400 | end_time must be greater than zero |
+| S1000-MK | 500 | Internal server error |
 
 ### Validation Errors
 
